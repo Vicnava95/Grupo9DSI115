@@ -327,6 +327,13 @@
 						</div>
 					</div>
 					<ul class="nav nav-primary">
+						<li class="nav-item">
+							
+								<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modeloFormulario">
+							Modelo de inputs para formulario
+						</button>
+						</li>
 						<li class="nav-item active">
 							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -1184,7 +1191,11 @@
 			</div>
 		</div>
 		<!-- End Custom template -->
-	</div>
+
+		<!-- Modal para el modelo de formulario-->
+		<div class="modal fade" id="modeloFormulario" tabindex="-1" role="dialog" aria-labelledby="modeloFormulario" aria-hidden="true">
+			@include('formModel.formModel');
+		</div>
 	<!--   Core JS Files   -->
 	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="../assets/js/core/popper.min.js"></script>
