@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index',function(){
-    return view('Prueba.index1');
+    return view('Base.prueba');
 })->name('index');
 Route::get('/forms',function(){
     return view('Prueba.forms');
