@@ -11,11 +11,11 @@ class CreateSexosTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() //php artisan migrate
     {
         Schema::create('sexos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',10);
+            $table->enum('nombre',['masculino','femenino'])->require();
             $table->timestamps();
         });
     }
@@ -25,7 +25,7 @@ class CreateSexosTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() // php artisan migrate:rollback
     {
         Schema::dropIfExists('sexos');
     }

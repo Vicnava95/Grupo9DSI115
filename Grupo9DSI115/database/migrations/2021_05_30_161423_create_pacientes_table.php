@@ -11,21 +11,21 @@ class CreatePacientesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() //php artisan migrate
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->String('nombres');
-            $table->String('apellidos');
-            $table->String('dui',9);
-            $table->String('telefonoCasa',9);
-            $table->String('telefonoCelular',9);
-            $table->Date('fechaDeNacimiento');
-            $table->String('direccion');
-            $table->String('referenciaPersonal');
-            $table->String('telReferenciaPersonal');
-            $table->String('ocupacion');
-            $table->String('correoElectronico');
+            $table->String('nombres')->require();
+            $table->String('apellidos')->require();
+            $table->String('dui',9)->nullable();
+            $table->String('telefonoCasa',9)->nullable();
+            $table->String('telefonoCelular',9)->require();
+            $table->Date('fechaDeNacimiento')->require();
+            $table->String('direccion')->require();
+            $table->String('referenciaPersonal')->nullable();
+            $table->String('telReferenciaPersonal')->nullable();
+            $table->String('ocupacion')->nullable()->default("Sin ocupacion actualmente");
+            $table->String('correoElectronico')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('sexo_id');
@@ -38,7 +38,7 @@ class CreatePacientesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() // php artisan migrate:rollback
     {
         Schema::dropIfExists('pacientes');
     }
