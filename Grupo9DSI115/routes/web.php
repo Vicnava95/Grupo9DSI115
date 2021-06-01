@@ -24,3 +24,7 @@ Route::get('/forms',function(){
 Route::get('/prueba',function(){
     return view('Prueba.prueba');
 })->name('prueba');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
