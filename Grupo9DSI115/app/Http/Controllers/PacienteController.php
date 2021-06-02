@@ -14,7 +14,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
+        $pacientes = Paciente::all();
+        return view('pacientes.index', compact('pacientes'));
     }
 
     /**
@@ -24,7 +25,9 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('pacientes.create',[
+            'paciente'=>new Paciente()
+        ]);
     }
 
     /**
@@ -46,7 +49,7 @@ class PacienteController extends Controller
      */
     public function show(Paciente $paciente)
     {
-        //
+        return view('pacientes.show', compact('paciente'));
     }
 
     /**
@@ -57,7 +60,7 @@ class PacienteController extends Controller
      */
     public function edit(Paciente $paciente)
     {
-        //
+        return view('pacientes.edit',compact('paciente'));
     }
 
     /**
@@ -80,6 +83,9 @@ class PacienteController extends Controller
      */
     public function destroy(Paciente $paciente)
     {
-        //
+        $paciente->delete();
+        return redirect()->route('pacientes.destroy');
     }
+
+    
 }

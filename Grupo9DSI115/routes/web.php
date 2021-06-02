@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Sexo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index',function(){
+    /*Sexo::firstOrCreate(['nombre'=>'masculino']);
+    Sexo::firstOrCreate(['nombre'=>'Femenino']);*/
     return view('Base.prueba');
 })->name('index');
 Route::get('/forms',function(){
@@ -24,3 +26,7 @@ Route::get('/forms',function(){
 Route::get('/prueba',function(){
     return view('Prueba.prueba');
 })->name('prueba');
+
+//php artisan route:list --name=pacientes
+//para visualizar los nombres de las rutas
+Route::resource('pacientes', 'PacienteController');

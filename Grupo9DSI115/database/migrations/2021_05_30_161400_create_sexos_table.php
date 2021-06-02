@@ -15,7 +15,7 @@ class CreateSexosTable extends Migration
     {
         Schema::create('sexos', function (Blueprint $table) {
             $table->id();
-            $table->enum('nombre',['masculino','femenino'])->require();
+            $table->enum('nombre',['Masculino','Femenino'])->require()->unique();
             $table->timestamps();
         });
     }
