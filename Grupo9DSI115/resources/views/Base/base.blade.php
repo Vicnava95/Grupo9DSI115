@@ -20,10 +20,44 @@
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	
 	<link rel="stylesheet" href="../assets/css/atlantis.min.css">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css">
+	
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../assets/css/demo.css">
+
+
+	<!--   Core JS Files   -->
+	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../assets/js/core/popper.min.js"></script>
+	<script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+		
+        $(function () {
+            $.extend(true, $.fn.datetimepicker.defaults, {
+                icons: {
+                    time: 'far fa-clock',
+                    date: 'far fa-calendar',
+                    up: 'fas fa-arrow-up',
+                    down: 'fas fa-arrow-down',
+                    previous: 'fas fa-chevron-left',
+                    next: 'fas fa-chevron-right',
+                    today: 'far fa-calendar-check-o',
+                    clear: 'far fa-trash',
+                    close: 'far fa-times'
+                }
+            });
+        });
+        </script>
+
+		<!-- jQuery UI -->
+	<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
 </head>
 <body data-background-color="dark">
 	<div class="wrapper">
@@ -54,14 +88,8 @@
 		<div class="modal fade" id="modeloFormulario" tabindex="-1" role="dialog" aria-labelledby="modeloFormulario" aria-hidden="true">
 			@include('formModel.formModel');
 		</div>
-	<!--   Core JS Files   -->
-	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-	<script src="../assets/js/core/popper.min.js"></script>
-	<script src="../assets/js/core/bootstrap.min.js"></script>
-
-	<!-- jQuery UI -->
-	<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-	<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	
+	
 
 	<!-- jQuery Scrollbar -->
 	<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
