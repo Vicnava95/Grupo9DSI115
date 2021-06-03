@@ -12,8 +12,10 @@ class Paciente extends Model
 
     //validacion de migrate
 
-    protected $table = 'pacientes';
+    //protected $table = 'pacientes';
+
 
     //Definiendo los campos que se pueden llenar
-    protected $fillable = ['nombres','apellidos','dui','telefonoCasa','telefonoCelular','fechaDeNacimiento','direccion','referenciaPersonal','telReferenciaPersonal','ocupacion','correoElectronico'];
+    //protected $fillable = ['nombres','apellidos','dui','telefonoCasa','telefonoCelular','fechaDeNacimiento','direccion','referenciaPersonal','telReferenciaPersonal','ocupacion','correoElectronico'];
+    protected $guarded=[];
 }

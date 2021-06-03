@@ -17,7 +17,7 @@ class CreatePacientesTable extends Migration
             $table->id();
             $table->String('nombres')->require();
             $table->String('apellidos')->require();
-            $table->String('dui',9)->nullable();
+            $table->String('dui',10)->nullable();
             $table->String('telefonoCasa',9)->nullable();
             $table->String('telefonoCelular',9)->require();
             $table->Date('fechaDeNacimiento')->require();

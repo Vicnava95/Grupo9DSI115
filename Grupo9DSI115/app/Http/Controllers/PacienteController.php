@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Paciente;
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidatePacienteFormRequest;
 
 class PacienteController extends Controller
 {
@@ -36,9 +38,10 @@ class PacienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidatePacienteFormRequest $request)
     {
-        //
+        Paciente::created($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
+
     }
 
     /**
@@ -70,9 +73,9 @@ class PacienteController extends Controller
      * @param  \App\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(ValidatePacienteFormRequest $request, Paciente $paciente)
     {
-        //
+        $paciente->update($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
     }
 
     /**
@@ -87,5 +90,5 @@ class PacienteController extends Controller
         return redirect()->route('pacientes.destroy');
     }
 
-    
+
 }
