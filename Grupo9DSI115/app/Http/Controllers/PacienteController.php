@@ -41,7 +41,7 @@ class PacienteController extends Controller
     public function store(ValidatePacienteFormRequest $request)
     {
         Paciente::created($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
-
+        return redirect()->route('pacientes.index');
     }
 
     /**
@@ -76,6 +76,7 @@ class PacienteController extends Controller
     public function update(ValidatePacienteFormRequest $request, Paciente $paciente)
     {
         $paciente->update($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
+        return redirect()->route('pacientes.show',$paciente);
     }
 
     /**
@@ -87,7 +88,7 @@ class PacienteController extends Controller
     public function destroy(Paciente $paciente)
     {
         $paciente->delete();
-        return redirect()->route('pacientes.destroy');
+        return redirect()->route('pacientes.index');
     }
 
 
