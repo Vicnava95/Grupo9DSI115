@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            //Foreign key table rols
+            $table->unsignedBigInteger('rols_fk'); 
+            $table->foreign('rols_fk')
+                ->references('id')->on('rols')
+                ->onDelete('cascade');
         });
     }
 
@@ -33,4 +39,6 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+
+
 }
