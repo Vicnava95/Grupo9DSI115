@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use App\Rol;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -37,14 +36,6 @@ class RegisterController extends Controller
      *
      * @return void
      */
-
-    public function index(){
-        $allRol = Rol::all();
-        //dd($allRol);
-        $this->middleware('guest');
-        return view('auth.register',compact('allRol'));
-    }
-
     public function __construct()
     {
         $this->middleware('guest');
@@ -63,7 +54,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        
     }
 
     /**
@@ -72,7 +62,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data , Request $request)
+    protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],

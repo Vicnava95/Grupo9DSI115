@@ -61,16 +61,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Rol</label>
-                            <div class="col-md-6">
-                                <select class="form-select" aria-label="Default select example" name="rol">
-                                    <option selected>Open this select menu</option>
-
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

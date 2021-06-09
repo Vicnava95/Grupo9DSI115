@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Sexo;
+use App\Models\Sexo;
 use Illuminate\Http\Request;
 
+/**
+ * Class SexoController
+ * @package App\Http\Controllers
+ */
 class SexoController extends Controller
 {
     /**
@@ -14,7 +18,10 @@ class SexoController extends Controller
      */
     public function index()
     {
-        //
+        $sexos = Sexo::paginate();
+
+        return view('sexo.index', compact('sexos'))
+            ->with('i', (request()->input('page', 1) - 1) * $sexos->perPage());
     }
 
     /**
@@ -24,62 +31,79 @@ class SexoController extends Controller
      */
     public function create()
     {
-        //
+        $sexo = new Sexo();
+        return view('sexo.create', compact('sexo'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        request()->validate(Sexo::$rules);
+
+        $sexo = Sexo::create($request->all());
+
+        return redirect()->route('sexos.index')
+            ->with('success', 'Sexo created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sexo  $sexo
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sexo $sexo)
+    public function show($id)
     {
-        //
+        $sexo = Sexo::find($id);
+
+        return view('sexo.show', compact('sexo'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sexo  $sexo
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sexo $sexo)
+    public function edit($id)
     {
-        //
+        $sexo = Sexo::find($id);
+
+        return view('sexo.edit', compact('sexo'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sexo  $sexo
+     * @param  \Illuminate\Http\Request $request
+     * @param  Sexo $sexo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Sexo $sexo)
     {
-        //
+        request()->validate(Sexo::$rules);
+
+        $sexo->update($request->all());
+
+        return redirect()->route('sexos.index')
+            ->with('success', 'Sexo updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Sexo  $sexo
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Sexo $sexo)
+    public function destroy($id)
     {
-        //
+        $sexo = Sexo::find($id)->delete();
+
+        return redirect()->route('sexos.index')
+            ->with('success', 'Sexo deleted successfully');
     }
 }

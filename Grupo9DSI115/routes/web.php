@@ -30,8 +30,13 @@ Route::get('/prueba',function(){
 //php artisan route:list --name=pacientes
 //para visualizar los nombres de las rutas
 Route::resource('pacientes', 'PacienteController');
+Route::resource('sexos', 'SexoController');
 //Route::get('/registro', 'Auth\RegisterController@index')->name('register');
 //Route::post('/register', 'RegisterController@register')->name('register_post');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidatePacienteFormRequest;
 
+/**
+ * Class PacienteController
+ * @package App\Http\Controllers
+ */
 class PacienteController extends Controller
 {
     /**
@@ -16,8 +18,10 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::all();
-        return view('pacientes.index', compact('pacientes'));
+        $pacientes = Paciente::paginate();
+
+        return view('paciente.index', compact('pacientes'))
+            ->with('i', (request()->input('page', 1) - 1) * $pacientes->perPage());
     }
 
     /**
@@ -27,69 +31,81 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        return view('pacientes.create',[
-            'paciente'=>new Paciente()
-        ]);
+        $paciente = new Paciente();
+        return view('paciente.create', compact('paciente'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidatePacienteFormRequest $request)
+    public function store(Request $request)
     {
         Paciente::create($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
-        return redirect()->route('pacientes.index');
+        /*return redirect()->route('pacientes.index');
+        request()->validate(Paciente::$rules);
+*/
+        $paciente = Paciente::create($request->all());
+
+        return redirect()->route('pacientes.index')
+            ->with('success', 'Paciente created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Paciente  $paciente
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Paciente $paciente)
+    public function show($id)
     {
-        return view('pacientes.show', compact('paciente'));
+        $paciente = Paciente::find($id);
+
+        return view('paciente.show', compact('paciente'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Paciente  $paciente
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paciente $paciente)
+    public function edit($id)
     {
-        return view('pacientes.edit',compact('paciente'));
+        $paciente = Paciente::find($id);
+
+        return view('paciente.edit', compact('paciente'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Paciente  $paciente
+     * @param  \Illuminate\Http\Request $request
+     * @param  Paciente $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(ValidatePacienteFormRequest $request, Paciente $paciente)
+    public function update(Request $request, Paciente $paciente)
     {
-        $paciente->update($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
-        return redirect()->route('pacientes.show',$paciente);
+        request()->validate(Paciente::$rules);
+
+        $paciente->update($request->all());
+
+        return redirect()->route('pacientes.index')
+            ->with('success', 'Paciente updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Paciente  $paciente
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Paciente $paciente)
+    public function destroy($id)
     {
-        $paciente->delete();
-        return redirect()->route('pacientes.index');
+        $paciente = Paciente::find($id)->delete();
+
+        return redirect()->route('pacientes.index')
+            ->with('success', 'Paciente deleted successfully');
     }
-
-
 }
