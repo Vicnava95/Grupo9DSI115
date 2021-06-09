@@ -25,8 +25,8 @@ Route::get('/prueba',function(){
     return view('Prueba.prueba');
 })->name('prueba');
 
-//Route::get('/registro', 'Auth\RegisterController@index')->name('register');
-//Route::post('/register', 'RegisterController@register')->name('register_post');
+Route::get('/registro', 'Auth\RegisterController@index')->name('registro');
+Route::post('/registro', 'Auth\RegisterController@register')->name('register_post');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

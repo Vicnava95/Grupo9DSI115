@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register_post') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -66,7 +66,9 @@
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Default select example" name="rol">
                                     <option selected>Open this select menu</option>
-
+                                    @foreach ($allRol as $rol)
+                                    <option id="{{$rol->id}}" value="{{$rol->id}}">{{$rol->nombreRol}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
