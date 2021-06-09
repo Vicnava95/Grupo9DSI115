@@ -16,6 +16,6 @@ class Paciente extends Model
 
 
     //Definiendo los campos que se pueden llenar
-    //protected $fillable = ['nombres','apellidos','dui','telefonoCasa','telefonoCelular','fechaDeNacimiento','direccion','referenciaPersonal','telReferenciaPersonal','ocupacion','correoElectronico'];
-    protected $guarded=[];
+    protected $fillable = ['nombres','apellidos','dui','telefonoCasa','telefonoCelular','fechaDeNacimiento','direccion','referenciaPersonal','telReferenciaPersonal','ocupacion','correoElectronico'];
+    //protected $guarded=[];
 }

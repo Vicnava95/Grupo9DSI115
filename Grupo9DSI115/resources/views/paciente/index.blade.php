@@ -1,17 +1,28 @@
-@extends('layouts.app')
+@extends('Base.base')
 
-@section('template_title')
-    Paciente
+<!-- Titulo del head de la pagina-->
+@section('tituloPagnia')
+    
 @endsection
 
-@section('content')
+<!-- Titulo para el cuerpo de la pagina web-->
+@section('titulo')
+    
+@endsection
+
+<!-- descripcion para el cuerpo de la pagina web-->
+@section('descripcion')
+    
+@endsection
+
+<!-- Agregar contenido de la pagina web-->
+@section('cuerpo')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
                             <span id="card_title">
                                 {{ __('Paciente') }}
                             </span>
@@ -47,7 +58,7 @@
 										<th>Telreferenciapersonal</th>
 										<th>Ocupacion</th>
 										<th>Correoelectronico</th>
-										<th>Sexo Id</th>
+										<th>Sexo</th>
 
                                         <th></th>
                                     </tr>
@@ -68,7 +79,7 @@
 											<td>{{ $paciente->telReferenciaPersonal }}</td>
 											<td>{{ $paciente->ocupacion }}</td>
 											<td>{{ $paciente->correoElectronico }}</td>
-											<td>{{ $paciente->sexo_id }}</td>
+											<td>{{ $paciente->sexo->nombre }}</td>
 
                                             <td>
                                                 <form action="{{ route('pacientes.destroy',$paciente->id) }}" method="POST">

@@ -43,10 +43,10 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        Paciente::create($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
-        /*return redirect()->route('pacientes.index');
+        //Paciente::create($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
+        /*return redirect()->route('pacientes.index');*/
         request()->validate(Paciente::$rules);
-*/
+
         $paciente = Paciente::create($request->all());
 
         return redirect()->route('pacientes.index')
