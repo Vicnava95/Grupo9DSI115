@@ -215,7 +215,7 @@
                 <script type="text/javascript">
                     $(function () {
                         $("#datetimepicker").datetimepicker({
-                            format: 'DD/MM/YYYY',
+                            format: 'YYYY/MM/DD',
                         });    
                     });
                  </script>
@@ -260,11 +260,11 @@
                  <script type="text/javascript">
                     $(function () {
                         $('#datetimepicker6').datetimepicker({
-                            format: 'DD/MM/YYYY',
+                            format: 'YYYY/MM/DD',
                         });
                         $('#datetimepicker7').datetimepicker({
                             useCurrent: false,
-                            format: 'DD/MM/YYYY', //Important! See issue #1075
+                            format: 'YYYY/MM/DD', //Important! See issue #1075
                     });
                         $("#datetimepicker6").on("dp.change", function (e) {
                             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
