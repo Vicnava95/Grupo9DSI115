@@ -45,7 +45,7 @@
                 <div class="form-group">
                     {{ Form::label('fecha de nacimiento') }}
                     <div class="input-group date" >
-                        {{ Form::text('fechaDeNacimiento',!empty($paciente->fechaDeNacimiento)? $paciente->fechaDeNacimiento:'', ['class' => 'form-control' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fechadenacimiento', 'id'=>'inputFechaDeNacimiento']) }}
+                        {{ Form::text('fechaDeNacimiento',!empty($paciente->fechaDeNacimiento)? $paciente->fechaDeNacimiento:'', ['class' => 'form-control inputFechaDeNacimiento' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fechadenacimiento', 'id'=>'inputFechaDeNacimiento']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
@@ -54,7 +54,7 @@
                 </div>
                 <script type="text/javascript">
                     $(function () {
-                        $("#inputFechaDeNacimiento").datetimepicker({
+                        $(".inputFechaDeNacimiento").datetimepicker({
                             format: 'YYYY/MM/DD',
                         });    
                     });
@@ -128,7 +128,5 @@
             </div> -->
         </div>
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary float-right">Enviar</button>
-    </div>
+    
 </div>

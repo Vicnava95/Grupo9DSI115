@@ -29,7 +29,6 @@
                             <a class="btn btn-primary" href="{{ route('pacientes.index') }}"> Back</a>
                         </div>
                     </div>-->
-
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">

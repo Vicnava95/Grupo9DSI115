@@ -10,7 +10,7 @@
                         <span class="card-title">Registrar paciente</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('pacientes.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" id="formCreate" action="{{ route('pacientes.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('paciente.form')
