@@ -103,7 +103,7 @@
                                                         data-telefonocelular="{{$paciente->telefonoCelular }}"
                                                         data-fechadenacimiento="{{ $paciente->fechaDeNacimiento }}"
                                                         data-direccion="{{ $paciente->direccion }}"
-                                                        data-referenciapersonal="{{ $paciente->referenciaPersonal }}" 
+                                                        data-referenciapersonal="{{ $paciente->referenciaPersonal }}"
                                                         data-telReferenciapersonal="{{$paciente->telReferenciaPersonal}}"
                                                         data-ocupacion="{{ $paciente->ocupacion }}"
                                                         data-correoelectronico={{ $paciente->correoElectronico }}
@@ -169,7 +169,7 @@
                     <div class="col-md-12">
 
                         @includeif("partials.errors")
-        
+
                             <div class="card-header">
                                 <span class="card-title">Actualizar paciente</span>
                             </div>
@@ -177,7 +177,7 @@
                                 <form method="POST" id="formEdit" action="{{ route("pacientes.update",'') }}"  role="form" enctype="multipart/form-data">
                                     {{ method_field("PATCH") }}
                                     @csrf
-        
+
                                     @include("paciente.form")
                                 </form>
                             </div>
@@ -203,7 +203,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -29,14 +29,26 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Paciente extends Model
 {
-    
+
     static $rules = [
-		'nombres' => 'required',
+        'nombres'=>'required|max:255|string',
+        'apellidos'=>'required|max:255|string',
+        'dui'=>'nullable|size:10|string',
+        'telefonoCasa'=>'nullable|size:9|string',
+        'telefonoCelular'=>'required|size:9|string',
+        'fechaDeNacimiento'=>'required|date|before:today',
+        'direccion'=>'required|string',
+        'referenciaPersonal'=>'nullable|max:255|string',
+        'telReferenciaPersonal'=>'nullable|size:9|string',
+        'ocupacion'=>'nullable|max:255|string',
+        'correoElectronico'=>'nullable|max:255|email',
+        'idSexo'=>'required'
+        /*'nombres' => 'required',
 		'apellidos' => 'required',
 		'telefonoCelular' => 'required',
 		'fechaDeNacimiento' => 'required',
 		'direccion' => 'required',
-		'sexo_id' => 'required',
+		'sexo_id' => 'required',*/
     ];
 
     protected $perPage = 20;
@@ -56,6 +68,6 @@ class Paciente extends Model
     {
         return $this->hasOne('App\Models\Sexo', 'id', 'sexo_id');
     }
-    
+
 
 }

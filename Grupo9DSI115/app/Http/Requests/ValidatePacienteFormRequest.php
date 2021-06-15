@@ -43,7 +43,7 @@ class ValidatePacienteFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nombres.required'=>'El paciente necesita un Nombre',
+            /*'nombres.required'=>'El paciente necesita un Nombre',
             'nombres.max'=>'El nombre del paciente debe contener maximo 255 caracteres',
             'apellidos.required'=>'El paciente necesita un Apellidos',
             'apellidos.max'=>'Los apellidos del paciente debe contener maximo 255 caracteres',
@@ -56,7 +56,7 @@ class ValidatePacienteFormRequest extends FormRequest
             'referenciaPersonal.max'=>'El nombre completo de la referencial personal del paciente debe tener maximo 255 caracteres',
             'telReferenciaPersonal.size'=>'El telefono de contacto de la referencia personal del paciente debe tener el siguiente formato ####-####',
             'ocupacion.max'=>'La ocupacion del Paciente no debe propasar los 255 caracteres',
-            'correoElectronico.email'=>'Debe escribir un correo electronico valido',
+            'correoElectronico.email'=>'Debe escribir un correo electronico valido',*/
 
         ];
     }

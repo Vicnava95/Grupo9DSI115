@@ -25,6 +25,6 @@ class RolTableSeeder extends Seeder
                 'nombreRol' => $rol
             ]);
         }
-       
+
     }
 }
