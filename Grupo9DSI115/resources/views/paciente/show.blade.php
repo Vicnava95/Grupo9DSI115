@@ -1,34 +1,11 @@
-@extends('Base.base')
 
-<!-- Titulo del head de la pagina-->
-@section('tituloPagnia')
-    Paciente
-@endsection
-
-<!-- Titulo para el cuerpo de la pagina web-->
-@section('titulo')
-    Paciente
-@endsection
-
-<!-- descripcion para el cuerpo de la pagina web-->
-@section('descripcion')
-    
-@endsection
 
 <!-- Agregar contenido de la pagina web-->
-@section('cuerpo')
+
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <!--<div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">Show Paciente</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('pacientes.index') }}"> Back</a>
-                        </div>
-                    </div>-->
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
@@ -115,4 +92,3 @@
             </div>
         </div>
     </section>
-@endsection
