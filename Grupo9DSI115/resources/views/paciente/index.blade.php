@@ -129,7 +129,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><-----></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><---Titulo---></h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
