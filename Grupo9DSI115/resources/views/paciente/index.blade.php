@@ -94,20 +94,8 @@
                                                         <i class="fa fa-fw fa-eye"></i>
                                                     </a>
                                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
-                                                        href="#" data-toggle="modal" data-target="#actualizarPacienteModal"
-                                                        data-id="{{ $paciente->id }}"
-                                                        data-nombres="{{ $paciente->nombres }}"
-                                                        data-apellidos="{{ $paciente->apellidos}}"
-                                                        data-dui="{{ $paciente->dui }}"
-                                                        data-telefonocasa="{{ $paciente->telefonoCasa }}"
-                                                        data-telefonocelular="{{$paciente->telefonoCelular }}"
-                                                        data-fechadenacimiento="{{ $paciente->fechaDeNacimiento }}"
-                                                        data-direccion="{{ $paciente->direccion }}"
-                                                        data-referenciapersonal="{{ $paciente->referenciaPersonal }}"
-                                                        data-telReferenciapersonal="{{$paciente->telReferenciaPersonal}}"
-                                                        data-ocupacion="{{ $paciente->ocupacion }}"
-                                                        data-correoelectronico={{ $paciente->correoElectronico }}
-                                                        data-sexo={{ $paciente->sexo_id }} >
+                                                        id="mediumButton" data-toggle="modal" data-target="#mediumModal"
+                                                        data-attr="{{ route("pacientes.edit", $paciente->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                     </a>
                                                     
@@ -146,22 +134,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="col-md-12">
-
-                        @includeif("partials.errors")
-
-                            <div class="card-header">
-                                <span class="card-title">Actualizar paciente</span>
-                            </div>
-                            <div class="card-body">
-                                <form method="POST" id="formEdit" action="{{ route("pacientes.update",'') }}"  role="form" enctype="multipart/form-data">
-                                    {{ method_field("PATCH") }}
-                                    @csrf
-
-                                    @include("paciente.form")
-                                </form>
-                            </div>
+                <div class="modal-body" id="mediumBody">
+                    <div>
+                        <!-- the result to be displayed apply here -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -172,27 +147,7 @@
         </div>
     </div>
 
-    <!-- Modal Consultar paciente -->
-    <div class="modal fade" id="actualizarPacienteModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content bg-dark">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Consultar paciente</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="formEdit" class="btn btn-primary">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 <script>
 
