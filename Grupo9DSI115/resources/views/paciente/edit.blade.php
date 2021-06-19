@@ -1,7 +1,4 @@
-
-
 <!-- Agregar contenido de la pagina web-->
-
 <div class="col-md-12">
 
     @includeif('partials.errors')
@@ -20,4 +17,3 @@
             </form>
         </div>
 </div>
-
