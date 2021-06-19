@@ -14,9 +14,9 @@
             {{ method_field('PATCH') }}
             @csrf
             @include('paciente.form')
-            <!--<div class="box-footer mt20">
-                    <button type="submit" form="formEdit" class="btn btn-primary float-right">Enviar</button>-->
+            
+                
+        </form>
     </div>
-    </form>
 </div>
-</div>
+
