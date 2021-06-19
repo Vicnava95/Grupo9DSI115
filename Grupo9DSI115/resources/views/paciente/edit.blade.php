@@ -14,8 +14,6 @@
             {{ method_field('PATCH') }}
             @csrf
             @include('paciente.form')
-            
-                
         </form>
     </div>
 </div>
