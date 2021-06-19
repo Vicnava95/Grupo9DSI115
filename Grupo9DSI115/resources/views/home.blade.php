@@ -1,4 +1,20 @@
-@extends('layouts.app')
+@extends('Master.auth')
+
+@section('title')
+Home
+@stop
+
+@section('extraJS')
+<script src="js/master.js"></script>
+@stop
+
+@section('extraCSS')
+<link href="css/master.css" rel="stylesheet" type="text/css"/>
+@stop
+
+@section('tituloTemplate')
+Nombre de la clínica
+@stop
 
 @section('content')
 <div class="container">

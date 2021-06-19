@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Rol;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +38,47 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
+    public function index(){
+        $this->middleware('guest');
+        $allRol = Rol::all();
+        return view('auth.register',compact('allRol'));
+    }
+
+    protected function register(Request $request)
+    {
+         $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'rols_fk' => $request->rol,
+        ]);
+
+        $name = $request->name;
+
+        switch($request->rol){
+            case 1:
+                return view('Prueba.admin',compact('name'));
+                break;
+            case 2: 
+                return view('Prueba.doctorGeneral',compact('name'));
+            break;
+            case 3: 
+                return view('Prueba.doctoraDental',compact('name'));
+            break;
+            case 4: 
+                return view('Prueba.secretaria',compact('name'));
+            break;
+        }
+            
+    }
+
     public function __construct()
     {
         $this->middleware('guest');
