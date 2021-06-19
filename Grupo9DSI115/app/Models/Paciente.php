@@ -42,7 +42,7 @@ class Paciente extends Model
         'telReferenciaPersonal'=>'nullable|size:9|string',
         'ocupacion'=>'nullable|max:255|string',
         'correoElectronico'=>'nullable|max:255|email',
-        'idSexo'=>'required'
+        'sexo_id'=>'nullable|integer'
         /*'nombres' => 'required',
 		'apellidos' => 'required',
 		'telefonoCelular' => 'required',

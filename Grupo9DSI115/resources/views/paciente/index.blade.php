@@ -27,17 +27,15 @@
                                 {{ __("Paciente") }}
                             </span>
                             <div class="float-right">
-                                <a href="{{ route("pacientes.create") }}" class="btn btn-primary float-right text-white"
-                                    data-placement="left" data-toggle="modal" data-target="#registrarPacienteModal">
-                                    Registrar paciente
-                                </a>
+
+                            <a class="btn btn-primary float-right text-white" data-placement="left" 
+                                data-toggle="modal" id="mediumButton" data-target="#mediumModal"
+                                data-attr="{{ route('pacientes.create') }}" title="Create a project"> 
+                                Registrar paciente
+                            </a>    
+
                             </div>
-                            <!--
-                                 <div class="float-right">
-                                    <a href="{{ route("pacientes.create") }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                      {{ __("Create New") }}
-                                    </a>
-                                  </div> -->
+                            
                         </div>
                     </div>
                     @if ($message = Session::get("success"))
@@ -90,34 +88,26 @@
                                             <td>
                                                 <form action="{{ route("pacientes.destroy", $paciente->id) }}"
                                                     method="POST">
-                                                    <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
-                                                        href="{{ route("pacientes.show", $paciente->id) }}"><i class="fa fa-fw fa-eye"></i>
+                                                    <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
+                                                        id="mediumButton" data-toggle="modal" data-target="#mediumModal"
+                                                        data-attr="{{ route("pacientes.show", $paciente->id) }}">
+                                                        <i class="fa fa-fw fa-eye"></i>
                                                     </a>
                                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
-                                                        href="#" data-toggle="modal" data-target="#actualizarPacienteModal"
-                                                        data-id="{{ $paciente->id }}"
-                                                        data-nombres="{{ $paciente->nombres }}"
-                                                        data-apellidos="{{ $paciente->apellidos}}"
-                                                        data-dui="{{ $paciente->dui }}"
-                                                        data-telefonocasa="{{ $paciente->telefonoCasa }}"
-                                                        data-telefonocelular="{{$paciente->telefonoCelular }}"
-                                                        data-fechadenacimiento="{{ $paciente->fechaDeNacimiento }}"
-                                                        data-direccion="{{ $paciente->direccion }}"
-                                                        data-referenciapersonal="{{ $paciente->referenciaPersonal }}"
-                                                        data-telReferenciapersonal="{{$paciente->telReferenciaPersonal}}"
-                                                        data-ocupacion="{{ $paciente->ocupacion }}"
-                                                        data-correoelectronico={{ $paciente->correoElectronico }}
-                                                        data-sexo={{ $paciente->sexo_id }} >
+                                                        id="mediumButton" data-toggle="modal" data-target="#mediumModal"
+                                                        data-attr="{{ route("pacientes.edit", $paciente->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                     </a>
+                                                    
                                                         {{--<a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         href="{{ route("pacientes.show", $paciente->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i></a>--}}
                                                     @csrf
                                                     @method("DELETE")
                                                     <button type="submit"
-                                                        class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"><i
-                                                            class="fa fa-fw fa-trash"></i></button>
+                                                        class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1">
+                                                        <i class="fa fa-fw fa-trash"></i>
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -130,125 +120,93 @@
                 {!! $pacientes->links() !!}
             </div>
         </div>
-    </div>
+    </div>     
 
-    <!-- Modal registrar paciente -->
-    <div class="modal fade" id="registrarPacienteModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+    <!-- Modal Registrar/Editar/Eliminar -->
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Registrar paciente</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><---Titulo---></h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    @include("paciente.create", ["paciente"=>App\Models\Paciente::class])
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="formCreate" class="btn btn-primary">Registrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal actualizar paciente -->
-    <div class="modal fade" id="actualizarPacienteModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content bg-dark">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar paciente</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-md-12">
-
-                        @includeif("partials.errors")
-
-                            <div class="card-header">
-                                <span class="card-title">Actualizar paciente</span>
-                            </div>
-                            <div class="card-body">
-                                <form method="POST" id="formEdit" action="{{ route("pacientes.update",'') }}"  role="form" enctype="multipart/form-data">
-                                    {{ method_field("PATCH") }}
-                                    @csrf
-
-                                    @include("paciente.form")
-                                </form>
-                            </div>
+                <div class="modal-body" id="mediumBody">
+                    <div>
+                        <!-- the result to be displayed apply here -->
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="formEdit" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
+                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Consultar paciente -->
-    <div class="modal fade" id="actualizarPacienteModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content bg-dark">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Consultar paciente</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="formEdit" class="btn btn-primary">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 <script>
-    $("#actualizarPacienteModal").on("shown.bs.modal", function (event) {
-        //obetener el los data- de actualizar <a/>
-        var boton = $(event.relatedTarget)
-        //oebetenr los data-
-        var id = boton.data("id")
-        var nombres = boton.data("nombres")
-        var apellidos = boton.data("apellidos")
-        var dui = boton.data("dui")
-        var telefonoCasa = boton.data("telefonocasa")
-        var telefonoCelular = boton.data("telefonocelular")
-        var fechaDeNacimiento = boton.data("fechadenacimiento")
-        var direccion = boton.data("direccion")
-        var referenciaPersonal = boton.data("referenciapersonal")
-        var telReferenciaPersonal = boton.data("telreferenciapersonal")
-        var ocupacion = boton.data("ocupacion")
-        var correoElectronico = boton.data("correoelectronico")
-        var sexo = boton.data("sexo")
-        console.log({{$paciente->id}})
-        $('#formEdit').attr('action', "{{ route("pacientes.update",'') }}"+"/"+id);
-        //obtener modal actual
-        var modal = $(this)
-        modal.find("input[name=nombres]").val(nombres)
-        modal.find("input[name=apellidos]").val(apellidos)
-        modal.find("input[name=dui]").val(dui)
-        modal.find("input[name=telefonoCasa]").val(telefonoCasa)
-        modal.find("input[name=telefonoCelular]").val(telefonoCelular)
-        modal.find("input[name=fechaDeNacimiento]").val(fechaDeNacimiento)
-        modal.find("input[name=direccion]").val(direccion)
-        modal.find("input[name=referenciaPersonal]").val(referenciaPersonal)
-        modal.find("input[name=telReferenciaPersonal]").val(telReferenciaPersonal)
-        modal.find("input[name=ocupacion]").val(ocupacion)
-        modal.find("input[name=correoElectronico]").val(correoElectronico)
-        if(sexo==1) modal.find("input[name=sexo_id]")[0].checked = true
-        else modal.find("input[name=sexo_id]")[1].checked = true
-    })
+
+    // display a modal (medium modal)
+    $(document).on('click', '#mediumButton', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            document.getElementById('registrar').style.display = 'block';
+            document.getElementById('editar').style.display = 'block';
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#mediumModal').modal("show");
+                    $('#mediumBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 8000
+                
+            })
+
+            var letra = href.charAt(href.length-1);
+            var b = document.getElementById('exampleModalLongTitle');
+
+            if  (letra != 'e') {
+                document.getElementById('registrar').style.display = 'none';
+            }
+
+            if  (letra != 't') {
+                document.getElementById('editar').style.display = 'none';
+            }
+
+            switch(letra){
+                case 'e':
+                    b.innerHTML = "Registrar paciente" ;
+                    break;
+                
+                case 't':
+                    b.innerHTML = "Editar paciente" ;
+                    break
+
+                default:
+                    b.innerHTML = "Mostrar paciente" ;
+                    break
+            }
+            
+        });
+
 </script>
 
 @endsection
