@@ -1,5 +1,3 @@
-
-
 <!-- Agregar contenido de la pagina web-->
 
 <section class="content container-fluid">

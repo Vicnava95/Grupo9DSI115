@@ -1,22 +1,22 @@
 @extends("Base.base")
 
 <!-- Titulo del head de la pagina-->
-@section("tituloPagnia")
+@section('tituloPagnia')
 
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
-@section("titulo")
+@section('titulo')
 
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
-@section("descripcion")
+@section('descripcion')
 
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
-@section("cuerpo")
+@section('cuerpo')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -24,21 +24,21 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                {{ __("Paciente") }}
+                                {{ __('Paciente') }}
                             </span>
                             <div class="float-right">
 
-                            <a class="btn btn-primary float-right text-white" data-placement="left" 
-                                data-toggle="modal" id="mediumButton" data-target="#mediumModal"
-                                data-attr="{{ route('pacientes.create') }}" title="Create a project"> 
-                                Registrar paciente
-                            </a>    
+                                <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
+                                    id="mediumButton" data-target="#mediumModal"
+                                    data-attr="{{ route('pacientes.create') }}" title="Create a project">
+                                    Registrar paciente
+                                </a>
 
                             </div>
-                            
+
                         </div>
                     </div>
-                    @if ($message = Session::get("success"))
+                    @if ($message = Session::get('success'))
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
                         </div>
@@ -86,22 +86,22 @@
 											<td>{{ $paciente->sexo->nombre }}</td> --}}
 
                                             <td>
-                                                <form action="{{ route("pacientes.destroy", $paciente->id) }}"
+                                                <form action="{{ route('pacientes.destroy', $paciente->id) }}"
                                                     method="POST">
                                                     <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route("pacientes.show", $paciente->id) }}">
+                                                        data-attr="{{ route('pacientes.show', $paciente->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                     </a>
                                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route("pacientes.edit", $paciente->id) }}">
+                                                        data-attr="{{ route('pacientes.edit', $paciente->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                     </a>
-                                                    
-                                                        {{--<a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
+
+                                                    {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         href="{{ route("pacientes.show", $paciente->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i></a>--}}
+                                                            class="fa fa-fw fa-eye"></i></a> --}}
                                                     @csrf
                                                     @method("DELETE")
                                                     <button type="submit"
@@ -120,7 +120,7 @@
                 {!! $pacientes->links() !!}
             </div>
         </div>
-    </div>     
+    </div>
 
 
     <!-- Modal Registrar/Editar/Eliminar -->
@@ -129,7 +129,9 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><---Titulo---></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        <---Titulo--->
+                    </h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -148,12 +150,11 @@
         </div>
     </div>
 
-    
 
-<script>
 
-    // display a modal (medium modal)
-    $(document).on('click', '#mediumButton', function(event) {
+    <script>
+        // display a modal (medium modal)
+        $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
             document.getElementById('registrar').style.display = 'block';
@@ -177,36 +178,36 @@
                     $('#loader').hide();
                 },
                 timeout: 8000
-                
+
             })
 
-            var letra = href.charAt(href.length-1);
+            var letra = href.charAt(href.length - 1);
             var b = document.getElementById('exampleModalLongTitle');
 
-            if  (letra != 'e') {
+            if (letra != 'e') {
                 document.getElementById('registrar').style.display = 'none';
             }
 
-            if  (letra != 't') {
+            if (letra != 't') {
                 document.getElementById('editar').style.display = 'none';
             }
 
-            switch(letra){
+            switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar paciente" ;
+                    b.innerHTML = "Registrar paciente";
                     break;
-                
+
                 case 't':
-                    b.innerHTML = "Editar paciente" ;
+                    b.innerHTML = "Editar paciente";
                     break
 
                 default:
-                    b.innerHTML = "Mostrar paciente" ;
+                    b.innerHTML = "Mostrar paciente";
                     break
             }
-            
+
         });
 
-</script>
+    </script>
 
 @endsection
