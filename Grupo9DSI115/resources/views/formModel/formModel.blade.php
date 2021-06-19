@@ -20,8 +20,6 @@
                     </div>
                 </div>
 
-                
-
                 <div class="form-group">
                     <label for="email2">Email Address</label>
                     <input type="email" class="form-control" id="email2" placeholder="Enter Email">
@@ -204,6 +202,78 @@
                         </div>
                     </div>
                 </div>
+                <h2> DATE and time</h2>
+                <!-- Fecha -->
+                <div class="form-group">
+                    <div class="input-group date" >
+                        <input type="text" class="form-control" id="datetimepicker">
+                        <div class="input-group-addon input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#datetimepicker").datetimepicker({
+                            format: 'YYYY/MM/DD',
+                        });    
+                    });
+                 </script>
+
+                <!--Hora-->
+
+                <div class="form-group">
+                    <div class="input-group date" >
+                    <input type="text" class="form-control" id="datetimepicker3"/>
+                    <span class="input-group-addon input-group-prepend">
+                        <div class="input-group-addon input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                        </div>
+                    </div>
+                </div>
+                
+                 <script type="text/javascript">
+                    $(function () {
+                        $("#datetimepicker3").datetimepicker({
+                            format: 'HH:mm',
+                        });
+                    });
+                 </script>
+                
+                 <!-- Fechas enlazadas -->
+                 <div class="form-group">
+                    <div class='input-group date'>
+                       <input type='text' class="form-control" id='datetimepicker6'/>
+                       <div class="input-group-addon input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="form-group">
+                    <div class='input-group date'>
+                       <input type='text' class="form-control" id='datetimepicker7'/>
+                       <div class="input-group-addon input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        </div>
+                    </div>
+                 </div>
+                 <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker6').datetimepicker({
+                            format: 'YYYY/MM/DD',
+                        });
+                        $('#datetimepicker7').datetimepicker({
+                            useCurrent: false,
+                            format: 'YYYY/MM/DD', //Important! See issue #1075
+                    });
+                        $("#datetimepicker6").on("dp.change", function (e) {
+                            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                        });
+                        $("#datetimepicker7").on("dp.change", function (e) {
+                            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                        });
+                    });
+                 </script>
 
                 <h2>Botones</h2>
                 <div class="card-action">

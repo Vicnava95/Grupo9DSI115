@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Sexo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index',function(){
-    return view('Prueba.index1');
+    /*Sexo::firstOrCreate(['nombre'=>'masculino']);
+    Sexo::firstOrCreate(['nombre'=>'Femenino']);*/
+    return view('Base.prueba');
 })->name('index');
 Route::get('/forms',function(){
     return view('Prueba.forms');
@@ -27,10 +29,18 @@ Route::get('/prueba',function(){
 
 Route::get('/registro', 'Auth\RegisterController@index')->name('registro');
 Route::post('/registro', 'Auth\RegisterController@register')->name('register_post');
+//php artisan route:list --name=pacientes
+//para visualizar los nombres de las rutas
+Route::resource('pacientes', 'PacienteController');
+Route::resource('sexos', 'SexoController');
+//Route::get('/registro', 'Auth\RegisterController@index')->name('register');
+//Route::post('/register', 'RegisterController@register')->name('register_post');
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
+
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/prueba',function(){
@@ -70,10 +80,9 @@ Route::middleware(['auth'])->group(function (){
 
 });
 
-
-
 /* Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'],function(){
     Route::get('/admin',function(){
         return view('Prueba.admin');
     })->name('admin');
 }); */
+
