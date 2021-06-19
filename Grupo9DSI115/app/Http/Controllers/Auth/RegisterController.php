@@ -47,51 +47,36 @@ class RegisterController extends Controller
 
     protected function register(Request $request)
     {
-        //dd($request->rol); 
          $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        return User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'rols_fk' => $request->rol,
         ]);
 
+        $name = $request->name;
 
-        // Creación del usuario
-/*         $user = new User;
-        $user->username = $username;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->birthday = Date::make($request->birthday);
-        $user->email = $request->email;
-        $user->cell_phone = $request->cell_phone;
-        $user->passcode = Hash::make($request->passcode);
-        $user->password = Hash::make($temp_password);
-        $user->temp_password = $temp_password;
-        //$user->password = Hash::make('prueba123admin'); // cambiar por $temp_password
-        $user->estado = 'Inactivo';
-        $user->save();
-
-        // Asginando preguntas al usuario
-        $user->asks()->attach($request->question_one, ['anwer'=>Hash::make($request->answer_one)]);
-        $user->asks()->attach($request->question_two, ['anwer'=>Hash::make($request->answer_two)]);
-        $user->asks()->attach($request->question_three, ['anwer'=>Hash::make($request->answer_three)]);
-
-        $ban = new Ban;
-        $ban->user_id = $user->id;
-        $ban->blocked = false;
-        $ban->active = true;
-        $ban->active_at = Carbon::now();
-        $ban->save();
-
-        // Envio de email para verificación de cuenta
-        Mail::to($user->email)->send(new EmailVerification($user, $user->temp_password)); */
-       /* return view('auth.verify', compact('user')); */
+        switch($request->rol){
+            case 1:
+                return view('Prueba.admin',compact('name'));
+                break;
+            case 2: 
+                return view('Prueba.doctorGeneral',compact('name'));
+            break;
+            case 3: 
+                return view('Prueba.doctoraDental',compact('name'));
+            break;
+            case 4: 
+                return view('Prueba.secretaria',compact('name'));
+            break;
+        }
+            
     }
 
     public function __construct()

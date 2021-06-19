@@ -1,11 +1,27 @@
-@extends('layouts.app')
+@extends('Master.auth')
 
-@section('content')
+@section('title')
+Recuperar contraseña
+@stop
+
+@section('extraJS')
+<script src="js/master.js"></script>
+@stop
+
+@section('extraCSS')
+<link href="css/master.css" rel="stylesheet" type="text/css"/>
+@stop
+
+@section('tituloTemplate')
+Nombre de la clínica
+@stop
+
+@section('contenido')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header" style="color:white;">Recuperar contraseña</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -44,4 +60,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop
