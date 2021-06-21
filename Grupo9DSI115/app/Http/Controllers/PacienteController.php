@@ -23,6 +23,7 @@ class PacienteController extends Controller
         $pacientes = Paciente::select('*')->where('nombres','LIKE',$texto.'%')
                             ->orWhere('apellidos','LIKE',$texto.'%')
                             ->orWhere('id','LIKE',$texto.'%')
+                            ->orderBy('apellidos')
                             ->paginate(10);              
         //$pacientes = Paciente::paginate();
 
