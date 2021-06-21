@@ -31,6 +31,7 @@ Route::get('/registro', 'Auth\RegisterController@index')->name('registro');
 Route::post('/registro', 'Auth\RegisterController@register')->name('register_post');
 //php artisan route:list --name=pacientes
 //para visualizar los nombres de las rutas
+Route::resource('usuarios','UserController');
 Route::resource('pacientes', 'PacienteController');
 Route::resource('sexos', 'SexoController');
 //Route::get('/registro', 'Auth\RegisterController@index')->name('register');
