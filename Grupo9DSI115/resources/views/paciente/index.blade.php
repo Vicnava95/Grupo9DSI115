@@ -22,18 +22,23 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="d-flex justify-content-start align-items-center">
                             <span id="card_title">
                                 {{ __('Paciente') }}
                             </span>
-                            <div class="float-right">
-
+                            <div class="flex-fill bd-highlight ml-5">
+                                <form action="{{ route('pacientes.index') }}"
+                                    method="GET" class="d-flex">
+                                        <input class="form-control" type="text" placeholder="Nombre, apellido o ID" name="texto" aria-label="default input">
+                                        <button type="submit" class="btn btn-primary">Buscar</button>
+                                </form>
+                            </div>
+                            <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
                                     data-attr="{{ route('pacientes.create') }}" title="Create a project">
                                     Registrar paciente
                                 </a>
-
                             </div>
 
                         </div>
@@ -142,7 +147,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                 </div>

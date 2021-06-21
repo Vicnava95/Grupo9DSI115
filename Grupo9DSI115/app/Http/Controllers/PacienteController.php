@@ -16,9 +16,15 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pacientes = Paciente::paginate();
+        $texto =trim($request->get('texto'));
+        
+        $pacientes = Paciente::select('*')->where('nombres','LIKE',$texto.'%')
+                            ->orWhere('apellidos','LIKE',$texto.'%')
+                            ->orWhere('id','LIKE',$texto.'%')
+                            ->paginate(10);              
+        //$pacientes = Paciente::paginate();
 
         return view('paciente.index', compact('pacientes'))
             ->with('i', (request()->input('page', 1) - 1) * $pacientes->perPage());
