@@ -24,7 +24,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('User') }}
+                                Usuarios
                             </span>
 
                              <div class="float-right">
@@ -49,10 +49,10 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Name</th>
+										<th>Nombre</th>
 										<th>Email</th>
-										<th>Rols Fk</th>
-
+										<th>Rol</th>
+                                        <th colspan="3"> Acciones</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -60,7 +60,6 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
 											<td>{{ $user->name }}</td>
 											<td>{{ $user->email }}</td>
 											<td>{{ $user->rols_fk }}</td>
@@ -108,7 +107,7 @@
             <div class="modal-content bg-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
-                        <---Titulo--->
+                        
                     </h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -181,7 +180,6 @@
                     b.innerHTML = "Mostrar Usuario";
                     break
             }
-
         });
 
     </script>

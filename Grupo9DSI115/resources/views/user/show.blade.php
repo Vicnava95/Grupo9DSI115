@@ -4,10 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <span class="card-title">Show User</span>
-                    </div>
-                    <div class="float-right">
-                        <a class="btn btn-primary" href="{{ route('usuarios.index') }}"> Back</a>
+                        <span class="card-title">Usuario</span>
                     </div>
                 </div>
 
