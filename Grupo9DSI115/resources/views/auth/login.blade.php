@@ -13,7 +13,7 @@ Login
 @stop
 
 @section('tituloTemplate')
-Nombre de la clínica
+Clínica San Pablo
 @stop
 
 @section('contenido')
