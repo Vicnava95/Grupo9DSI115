@@ -39,12 +39,12 @@
             <ul class="nav nav-primary">
                 <li class="nav-item">
                     
-                        <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modeloFormulario">
+                <!-- Button trigger modal -->
+                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modeloFormulario">
                     Modelo de inputs para formulario
-                </button>
+                </button> --}}
                 </li>
-                <li class="nav-item active">
+                {{-- <li class="nav-item active">
                     <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
@@ -64,7 +64,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -242,13 +242,13 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+{{--                 <li class="nav-item">
                     <a href="widgets.html">
                         <i class="fas fa-desktop"></i>
                         <p>Widgets</p>
                         <span class="badge badge-success">4</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#submenu">
                         <i class="fas fa-bars"></i>
@@ -300,9 +300,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="mx-4 mt-2">
-                    <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a> 
-                </li>
+                
             </ul>
         </div>
     </div>

@@ -12,14 +12,15 @@ use App\Sexo;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
     Sexo::firstOrCreate(['nombre'=>'Femenino']);*/
     return view('Base.prueba');
 })->name('index');
+
 Route::get('/forms',function(){
     return view('Prueba.forms');
 })->name('forms');
@@ -32,14 +33,13 @@ Route::post('/registro', 'Auth\RegisterController@register')->name('register_pos
 //php artisan route:list --name=pacientes
 //para visualizar los nombres de las rutas
 Route::resource('usuarios','UserController');
-Route::resource('pacientes', 'PacienteController');
+//Route::resource('pacientes', 'PacienteController');
 Route::resource('sexos', 'SexoController');
-//Route::get('/registro', 'Auth\RegisterController@index')->name('register');
-//Route::post('/register', 'RegisterController@register')->name('register_post');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/', 'HomeController@index')->name('home');
+//Solo Admin y secretaria
+Route::resource('pacientes', 'PacienteController')->middleware('App\Http\Middleware\SecretariaMiddleware','App\Http\Middleware\AdminMiddleware');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function (){
@@ -54,9 +54,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/admin',function(){
             return view('Prueba.admin');
         })->name('admin');
-        Route::get('/prueba',function(){
-            return view('Prueba.prueba');
-        })->name('prueba');
+
+        Route::resource('usuarios','UserController');
     });
 
     //Rutas asignadas para el Doctor General
