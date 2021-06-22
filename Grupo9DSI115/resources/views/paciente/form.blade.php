@@ -20,32 +20,41 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('dui') }}
-                    {{ Form::text('dui', !empty($paciente->dui) ? $paciente->dui : '', ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'Dui']) }}
+                    {{ Form::label('DUI') }}
+                    {{ Form::text('dui', !empty($paciente->dui) ? $paciente->dui : '', ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'DUI']) }}
                     {!! $errors->first('dui', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('telefono de casa') }}
-                    {{ Form::text('telefonoCasa', !empty($paciente->telefonoCasa) ? $paciente->telefonoCasa : '', ['class' => 'form-control' . ($errors->has('telefonoCasa') ? ' is-invalid' : ''), 'placeholder' => 'Telefonocasa']) }}
-                    {!! $errors->first('telefonoCasa', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    {{ Form::label('ocupación') }}
+                    {{ Form::text('ocupacion', !empty($paciente->ocupacion) ? $paciente->ocupacion : '', ['class' => 'form-control' . ($errors->has('ocupacion') ? ' is-invalid' : ''), 'placeholder' => 'Ocupación']) }}
+                    {!! $errors->first('ocupacion', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('telefono celular') }}
-                    {{ Form::text('telefonoCelular', !empty($paciente->telefonoCelular) ? $paciente->telefonoCelular : '', ['class' => 'form-control' . ($errors->has('telefonoCelular') ? ' is-invalid' : ''), 'placeholder' => 'Telefonocelular']) }}
-                    {!! $errors->first('telefonoCelular', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    {{ Form::label('teléfono de casa') }}
+                    {{ Form::text('telefonoCasa', !empty($paciente->telefonoCasa) ? $paciente->telefonoCasa : '', ['class' => 'form-control' . ($errors->has('telefonoCasa') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono casa']) }}
+                    {!! $errors->first('telefonoCasa', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
+                    {{ Form::label('teléfono celular') }}
+                    {{ Form::text('telefonoCelular', !empty($paciente->telefonoCelular) ? $paciente->telefonoCelular : '', ['class' => 'form-control' . ($errors->has('telefonoCelular') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono celular']) }}
+                    {!! $errors->first('telefonoCelular', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
                     {{ Form::label('fecha de nacimiento') }}
                     <div class="input-group date">
-                        {{ Form::text('fechaDeNacimiento', !empty($paciente->fechaDeNacimiento) ? $paciente->fechaDeNacimiento : '', ['class' => 'form-control inputFechaDeNacimiento' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fechadenacimiento', 'id' => 'inputFechaDeNacimiento']) }}
+                        {{ Form::text('fechaDeNacimiento', !empty($paciente->fechaDeNacimiento) ? $paciente->fechaDeNacimiento : '', ['class' => 'form-control inputFechaDeNacimiento' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de nacimiento', 'id' => 'inputFechaDeNacimiento']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
@@ -61,48 +70,6 @@
 
                 </script>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('direccion') }}
-                    {{ Form::text('direccion', !empty($paciente->direccion) ? $paciente->direccion : '', ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
-                    {!! $errors->first('direccion', '<div class="invalid-feedback"><p>:message</p></div>') !!}
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('referencia personal') }}
-                    {{ Form::text('referenciaPersonal', !empty($paciente->referenciaPersonal) ? $paciente->referenciaPersonal : '', ['class' => 'form-control' . ($errors->has('referenciaPersonal') ? ' is-invalid' : ''), 'placeholder' => 'Referenciapersonal']) }}
-                    {!! $errors->first('referenciaPersonal', '<div class="invalid-feedback"><p>:message</p></div>') !!}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('telefono de referencia personal') }}
-                    {{ Form::text('telReferenciaPersonal', !empty($paciente->telReferenciaPersonal) ? $paciente->telReferenciaPersonal : '', ['class' => 'form-control' . ($errors->has('telReferenciaPersonal') ? ' is-invalid' : ''), 'placeholder' => 'Telreferenciapersonal']) }}
-                    {!! $errors->first('telReferenciaPersonal', '<div class="invalid-feedback"><p>:message</p></div>') !!}
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('ocupacion') }}
-                    {{ Form::text('ocupacion', !empty($paciente->ocupacion) ? $paciente->ocupacion : '', ['class' => 'form-control' . ($errors->has('ocupacion') ? ' is-invalid' : ''), 'placeholder' => 'Ocupacion']) }}
-                    {!! $errors->first('ocupacion', '<div class="invalid-feedback"><p>:message</p></div>') !!}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('correo electronico') }}
-                    {{ Form::text('correoElectronico', !empty($paciente->correoElectronico) ? $paciente->correoElectronico : '', ['class' => 'form-control' . ($errors->has('correoElectronico') ? ' is-invalid' : ''), 'placeholder' => 'Correoelectronico']) }}
-                    {!! $errors->first('correoElectronico', '<div class="invalid-feedback"><p>:message</p></div>') !!}
-                </div>
-            </div>
-
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('Sexo') }}
@@ -126,6 +93,38 @@
                     {!! $errors->first('sexo_id', '<div class="invalid-feedback"><p>message</p></div>') !!}
                 </div>
             </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('dirección') }}
+                    {{ Form::text('direccion', !empty($paciente->direccion) ? $paciente->direccion : '', ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Dirección']) }}
+                    {!! $errors->first('direccion', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('correo electrónico') }}
+                    {{ Form::text('correoElectronico', !empty($paciente->correoElectronico) ? $paciente->correoElectronico : '', ['class' => 'form-control' . ($errors->has('correoElectronico') ? ' is-invalid' : ''), 'placeholder' => 'Correo electrónico']) }}
+                    {!! $errors->first('correoElectronico', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('referencia personal') }}
+                    {{ Form::text('referenciaPersonal', !empty($paciente->referenciaPersonal) ? $paciente->referenciaPersonal : '', ['class' => 'form-control' . ($errors->has('referenciaPersonal') ? ' is-invalid' : ''), 'placeholder' => 'Referencia personal']) }}
+                    {!! $errors->first('referenciaPersonal', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('teléfono de referencia personal') }}
+                    {{ Form::text('telReferenciaPersonal', !empty($paciente->telReferenciaPersonal) ? $paciente->telReferenciaPersonal : '', ['class' => 'form-control' . ($errors->has('telReferenciaPersonal') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono referencia personal']) }}
+                    {!! $errors->first('telReferenciaPersonal', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                </div>
+            </div>
         </div>
     </div>
 

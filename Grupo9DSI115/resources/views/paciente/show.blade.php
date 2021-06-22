@@ -28,13 +28,13 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
-                                <strong>Telefono de casa:</strong>
+                                <strong>Teléfono de casa:</strong>
                                 {{ $paciente->telefonoCasa }}
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
-                                <strong>Telefono celular:</strong>
+                                <strong>Teléfono celular:</strong>
                                 {{ $paciente->telefonoCelular }}
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
-                                <strong>Direccion:</strong>
+                                <strong>Dirección:</strong>
                                 {{ $paciente->direccion }}
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
-                                <strong>Telefono de referencia personal:</strong>
+                                <strong>Teléfono de referencia personal:</strong>
                                 {{ $paciente->telReferenciaPersonal }}
                             </div>
                         </div>
@@ -68,13 +68,13 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
-                                <strong>Ocupacion:</strong>
+                                <strong>Ocupación:</strong>
                                 {{ $paciente->ocupacion }}
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
-                                <strong>Correoe lectronico:</strong>
+                                <strong>Correo electrónico:</strong>
                                 {{ $paciente->correoElectronico }}
                             </div>
                         </div>

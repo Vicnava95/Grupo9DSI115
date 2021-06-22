@@ -59,8 +59,8 @@
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
                                         {{-- <th>Dui</th> --}}
-                                        <th>Telefonocasa</th>
-                                        <th>Telefonocelular</th>
+                                        <th>Teléfono casa</th>
+                                        <th>Teléfono celular</th>
                                         {{-- <th>Fechadenacimiento</th>
 										<th>Direccion</th>
 										<th>Referenciapersonal</th>
