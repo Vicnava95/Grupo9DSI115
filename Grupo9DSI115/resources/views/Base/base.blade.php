@@ -81,7 +81,7 @@
 		</div>
 		
 		<!-- Custom template | don't include it in your project! -->
-		@include('Base.customTemplate')
+		
 		<!-- End Custom template -->
 
 		<!-- Modal para el modelo de formulario-->
