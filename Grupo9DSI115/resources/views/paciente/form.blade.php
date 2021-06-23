@@ -3,14 +3,14 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('nombres') }}
+                    {{ Form::label('nombres*') }}
                     {{ Form::text('nombres', !empty($paciente->nombres) ? $paciente->nombres : '', ['class' => 'form-control' . ($errors->has('nombres') ? ' is-invalid' : ''), 'placeholder' => 'Nombres']) }}
                     {!! $errors->first('nombres', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('apellidos') }}
+                    {{ Form::label('apellidos*') }}
                     {{ Form::text('apellidos', !empty($paciente->apellidos) ? $paciente->apellidos : '', ['class' => 'form-control' . ($errors->has('apellidos') ? ' is-invalid' : ''), 'placeholder' => 'Apellidos']) }}
                     {!! $errors->first('apellidos', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
@@ -37,14 +37,14 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('teléfono de casa') }}
-                    {{ Form::text('telefonoCasa', !empty($paciente->telefonoCasa) ? $paciente->telefonoCasa : '', ['class' => 'form-control' . ($errors->has('telefonoCasa') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono casa']) }}
+                    {{ Form::text('telefonoCasa', !empty($paciente->telefonoCasa) ? $paciente->telefonoCasa : '', ['class' => 'form-control' . ($errors->has('telefonoCasa') ? ' is-invalid' : ''), 'placeholder' => '####-####']) }}
                     {!! $errors->first('telefonoCasa', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('teléfono celular') }}
-                    {{ Form::text('telefonoCelular', !empty($paciente->telefonoCelular) ? $paciente->telefonoCelular : '', ['class' => 'form-control' . ($errors->has('telefonoCelular') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono celular']) }}
+                    {{ Form::label('teléfono celular*') }}
+                    {{ Form::text('telefonoCelular', !empty($paciente->telefonoCelular) ? $paciente->telefonoCelular : '', ['class' => 'form-control' . ($errors->has('telefonoCelular') ? ' is-invalid' : ''), 'placeholder' => '####-####']) }}
                     {!! $errors->first('telefonoCelular', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('fecha de nacimiento') }}
+                    {{ Form::label('fecha de nacimiento*') }}
                     <div class="input-group date">
                         {{ Form::text('fechaDeNacimiento', !empty($paciente->fechaDeNacimiento) ? $paciente->fechaDeNacimiento : '', ['class' => 'form-control inputFechaDeNacimiento' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de nacimiento', 'id' => 'inputFechaDeNacimiento']) }}
                         <div class="input-group-addon input-group-prepend">
@@ -72,7 +72,7 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('Sexo') }}
+                    {{ Form::label('Sexo*') }}
                     <div class="selectgroup w-100">
                         <label class="selectgroup-item">
                             {{ Form::radio('sexo_id', 1, !empty($paciente->sexo_id) && $paciente->sexo->id == 1 ? true : false, ['class' => 'selectgroup-input' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'value' => '1']) }}
@@ -97,7 +97,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('dirección') }}
+                    {{ Form::label('dirección*') }}
                     {{ Form::text('direccion', !empty($paciente->direccion) ? $paciente->direccion : '', ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Dirección']) }}
                     {!! $errors->first('direccion', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
