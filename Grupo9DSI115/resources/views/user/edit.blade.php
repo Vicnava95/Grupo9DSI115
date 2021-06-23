@@ -9,12 +9,12 @@
                     <span class="card-title">Editar Usuario</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('usuarios.update', $user->id) }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formEdit" action="{{ route('usuarios.update', $user->id) }}"  role="form" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         @csrf
 
                         @include('user.form')
-
+                        
                     </form>
                 </div>
             </div>

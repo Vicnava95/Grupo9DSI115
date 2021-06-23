@@ -57,7 +57,7 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('usuarios.index')
-            ->with('success', 'User created successfully.');
+            ->with('success', 'Usuario creado satisfactoriamente');
     }
 
     /**
@@ -69,8 +69,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
-        return view('user.show', compact('user'));
+        $roles = Rol::all();
+        return view('user.show', compact('user','roles'));
     }
 
     /**
@@ -95,9 +95,9 @@ class UserController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //request()->validate(User::$rules);
+        request()->validate(User::$rules);
 
         /* $user->name = $request->name;
         $user->email = $request->email;
@@ -106,15 +106,17 @@ class UserController extends Controller
         dd($user); 
         $user->update(); */
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'rols_fk' => $request->rols_fk,
-        ]);
+        //$user->update($request->all());
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->rols_fk = $request->rols_fk;
+        $user->update();
 
         return redirect()->route('usuarios.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'Usuario actualizado satisfactoriamente');
     }
 
     /**
@@ -127,6 +129,6 @@ class UserController extends Controller
         $user = User::find($id)->delete();
 
         return redirect()->route('usuarios.index')
-            ->with('success', 'User deleted successfully');
+            ->with('success', 'Usuario eliminado satisfactoriamente');
     }
 }

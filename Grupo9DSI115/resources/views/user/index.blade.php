@@ -37,9 +37,29 @@
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
+
+                    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content bg-dark">
+                            <div class="modal-body py-5">
+                                <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
+                              <p class="text-white text-center">{{ $message }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <script type="text/javascript">
+                            $('#modalSuccess').modal('show');
+                            setTimeout(function(){
+                                $('#modalSuccess').modal('hide')
+                            }, 5000);
+                        </script>
+                        
+                        <!--
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
                         </div>
+                        -->
                     @endif
 
                     <div class="card-body">
@@ -123,7 +143,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar </button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                 </div>

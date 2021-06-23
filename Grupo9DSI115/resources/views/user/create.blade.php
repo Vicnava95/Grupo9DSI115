@@ -9,7 +9,7 @@
                     <span class="card-title">Crear Usuario</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('usuarios.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('usuarios.store') }}"  id="formCreate" enctype="multipart/form-data">
                         @csrf
 
                         @include('user.form')

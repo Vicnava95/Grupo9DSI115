@@ -29,14 +29,10 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('Rol*') }}
-                    {{ Form::select('rols_fk', $roles , null,['class' => 'form-control' . ($errors->has('rols_fk') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un rol']) }}
+                    {{ Form::select('rols_fk', $roles , $user->rols_fk,['class' => 'form-control' . ($errors->has('rols_fk') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un rol']) }}
                     {!! $errors->first('rols_fk', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
         </div>
-
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>

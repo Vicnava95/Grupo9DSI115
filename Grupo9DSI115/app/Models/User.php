@@ -28,7 +28,7 @@ class User extends Model
 		'name' => 'required',
 		'email' => 'required',
 		'rols_fk' => 'required',
-    'password' => 'required',
+    'password' => 'required'
     ];
 
     protected $perPage = 20;

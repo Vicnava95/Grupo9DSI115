@@ -11,7 +11,7 @@
                 <div class="card-body">
                     
                     <div class="form-group">
-                        <strong>Name:</strong>
+                        <strong>Nombre:</strong>
                         {{ $user->name }}
                     </div>
                     <div class="form-group">
@@ -19,8 +19,13 @@
                         {{ $user->email }}
                     </div>
                     <div class="form-group">
-                        <strong>Rols Fk:</strong>
-                        {{ $user->rols_fk }}
+                        <strong>Rol:</strong>
+                        @foreach ($roles as $r)
+                            @if ($r->id == $user->rols_fk )
+                                {{ $r->nombreRol }}
+                            @endif
+                        @endforeach
+                        {{-- $user->rols_fk --}}
                     </div>
 
                 </div>
