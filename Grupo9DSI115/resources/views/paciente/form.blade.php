@@ -64,7 +64,8 @@
                 <script type="text/javascript">
                     $(function() {
                         $(".inputFechaDeNacimiento").datetimepicker({
-                            format: 'YYYY/MM/DD',
+                            format: 'YYYY-MM-DD',
+                            maxDate: new Date()
                         });
                     });
 

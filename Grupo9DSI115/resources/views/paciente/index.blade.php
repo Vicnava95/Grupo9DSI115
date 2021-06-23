@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-
+Registrar Paciente
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-
+Registrar Paciente
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -43,14 +43,19 @@
 
                         </div>
                     </div>
-                    @if ($message = Session::get('success'))
-
+                    @if ($message = Session::get('success') || count($errors) > 0)
                     <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content bg-dark">
                             <div class="modal-body py-5">
-                                <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
-                              <p class="text-white text-center">{{ $message }}</p>
+                                @if ($message = Session::get('success'))
+                                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
+                                    <p class="text-white text-center">{{ $message }}</p>
+                                @endif
+                                @if (count($errors) > 0)
+                                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
+                                    <p class="text-white text-center">Hubo un problema, ingresa la informacion correctamente</p>
+                                @endif
                             </div>
                           </div>
                         </div>
@@ -229,7 +234,6 @@
                     b.innerHTML = "Mostrar paciente";
                     break
             }
-
         });
 
     </script>
