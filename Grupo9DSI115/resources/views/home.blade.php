@@ -16,24 +16,11 @@ Home
 Clínica San Pablo
 @stop
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('contenido')
+<a href="{{route('admin')}}" class="btn btn-light active" role="button" aria-pressed="true">Admin</a>
+<a href="{{route('doctorGeneral')}}" class="btn btn-light active" role="button" aria-pressed="true">Doctor General</a>
+<a href="{{route('doctoraDental')}}" class="btn btn-light active" role="button" aria-pressed="true">Doctora Dental</a>
+<a href="{{route('secretaria')}}" class="btn btn-light active" role="button" aria-pressed="true">Secretaria</a>
+<a href="{{route('usuarios.index')}}" class="btn btn-light active" role="button" aria-pressed="true">Usuarios</a>
+<a href="{{route('pacientes.index')}}" class="btn btn-light active" role="button" aria-pressed="true">Pacientes</a>
 @endsection

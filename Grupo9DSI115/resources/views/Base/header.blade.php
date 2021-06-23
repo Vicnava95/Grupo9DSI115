@@ -23,7 +23,7 @@
     <!-- Navbar Header -->
     <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
         
-        <div class="container-fluid">
+        <div class="container-fluid" hidden>
             <div class="collapse" id="search-nav">
                 <form class="navbar-left navbar-form nav-search mr-md-3">
                     <div class="input-group">

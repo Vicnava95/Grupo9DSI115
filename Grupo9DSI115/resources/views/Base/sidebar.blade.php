@@ -8,8 +8,8 @@
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            Hizrian
-                            <span class="user-level">Administrator</span>
+                            {{ Auth::user()->name }}
+                            
                             <span class="caret"></span>
                         </span>
                     </a>
@@ -18,16 +18,22 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="#profile">
-                                    <span class="link-collapse">My Profile</span>
-                                </a>
+                                <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+													 style="color: white">
+                                        {{ __('Logout') }}
+                                    	</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                             </li>
-                            <li>
+                            <li hidden>
                                 <a href="#edit">
                                     <span class="link-collapse">Edit Profile</span>
                                 </a>
                             </li>
-                            <li>
+                            <li hidden>
                                 <a href="#settings">
                                     <span class="link-collapse">Settings</span>
                                 </a>

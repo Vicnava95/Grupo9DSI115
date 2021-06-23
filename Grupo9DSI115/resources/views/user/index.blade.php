@@ -62,8 +62,12 @@
                                             <td>{{ ++$i }}</td>
 											<td>{{ $user->name }}</td>
 											<td>{{ $user->email }}</td>
-											<td>{{ $user->rols_fk }}</td>
-
+                                            @foreach ($roles as $r)
+                                            @if ($r->id == $user->rols_fk )
+                                                <td>{{ $r->nombreRol }}</td>
+                                            @endif
+                                            @endforeach
+											
                                             <td>
                                                 <form action="{{ route('usuarios.destroy',$user->id) }}" method="POST">
 

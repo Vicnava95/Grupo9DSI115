@@ -46,7 +46,7 @@ class User extends Model
      */
     public function rol()
     {
-        return $this->hasOne('App\Models\Rol', 'id', 'rols_fk');
+        return $this->hasOne('App\Models\Rol', 'id', 'rols_fk','nombreRol');
     }
     
 

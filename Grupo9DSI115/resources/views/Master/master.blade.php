@@ -54,7 +54,7 @@
 			<!-- Navbar Header -->
 			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
 				
-				<div class="container-fluid">
+				<div class="container-fluid" hidden>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 						<li class="nav-item toggle-nav-search hidden-caret">
 							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
@@ -289,8 +289,8 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
+									{{ Auth::user()->name }}
+									
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -298,17 +298,24 @@
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li>
-										<a href="#profile">
-											<span class="link-collapse">My Profile</span>
-										</a>
+									<li >
+										<a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+													 style="color: white">
+                                        {{ __('Logout') }}
+                                    	</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
 									</li>
-									<li>
+									<li hidden>
 										<a href="#edit">
 											<span class="link-collapse">Edit Profile</span>
 										</a>
 									</li>
-									<li>
+									<li hidden>
 										<a href="#settings">
 											<span class="link-collapse">Settings</span>
 										</a>
@@ -318,7 +325,7 @@
 						</div>
 					</div>
 					<ul class="nav nav-primary">
-						<li class="nav-item active">
+						<li class="nav-item active" hidden>
 							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Inicio</p>
@@ -516,7 +523,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" hidden>
 							<a href="widgets.html">
 								<i class="fas fa-desktop"></i>
 								<p>Widgets</p>
@@ -665,9 +672,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="custom-toggle">
-				<i class="flaticon-settings"></i>
 			</div>
 		</div>
 		<!-- End Custom template -->
