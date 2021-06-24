@@ -289,7 +289,6 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									{{ Auth::user()->name }}
 									
 									<span class="caret"></span>
 								</span>
