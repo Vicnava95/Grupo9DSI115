@@ -40,6 +40,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 //Solo Admin y secretaria
 Route::resource('pacientes', 'PacienteController')->middleware('App\Http\Middleware\SecretariaMiddleware','App\Http\Middleware\AdminMiddleware');
+Route::get('pacientes/{paciente}/borrar', 'PacienteController@delete')->name('pacientes.delete');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function (){

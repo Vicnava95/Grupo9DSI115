@@ -115,8 +115,7 @@ Registrar Paciente
 											<td>{{ $paciente->sexo->nombre }}</td> --}}
 
                                             <td>
-                                                <form action="{{ route('pacientes.destroy', $paciente->id) }}"
-                                                    method="POST">
+                                                
                                                     <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
                                                         data-attr="{{ route('pacientes.show', $paciente->id) }}">
@@ -131,13 +130,13 @@ Registrar Paciente
                                                     {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         href="{{ route("pacientes.show", $paciente->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i></a> --}}
-                                                    @csrf
-                                                    @method("DELETE")
-                                                    <button type="submit"
-                                                        class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1">
+                                                    
+                                                    <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
+                                                        id="mediumButton" data-toggle="modal" data-target="#mediumModal"
+                                                        data-attr="{{ route('pacientes.delete', $paciente->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
-                                                    </button>
-                                                </form>
+                                                    </a>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -174,11 +173,11 @@ Registrar Paciente
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
+                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <script>
@@ -221,6 +220,10 @@ Registrar Paciente
                 document.getElementById('editar').style.display = 'none';
             }
 
+            if (letra != 'r') {
+                document.getElementById('eliminar').style.display = 'none';
+            }
+
             switch (letra) {
                 case 'e':
                     b.innerHTML = "Registrar paciente";
@@ -228,7 +231,11 @@ Registrar Paciente
 
                 case 't':
                     b.innerHTML = "Editar paciente";
-                    break
+                    break;
+                
+                case 'r':
+                    b.innerHTML = "Eliminar paciente";
+                    break;
 
                 default:
                     b.innerHTML = "Mostrar paciente";

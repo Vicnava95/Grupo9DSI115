@@ -104,6 +104,19 @@ class PacienteController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $paciente = Paciente::find($id);
+
+        return view('paciente.destroy', compact('paciente'));
+    }
+
+    /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
