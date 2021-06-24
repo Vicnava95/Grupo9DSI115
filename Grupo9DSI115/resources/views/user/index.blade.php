@@ -95,7 +95,7 @@ Registrar Usuario
                                             @endforeach
 											
                                             <td>
-                                                <form action="{{ route('usuarios.destroy',$user->id) }}" method="POST">
+                                                
 
                                                     {{-- <a class="btn btn-sm btn-primary " href="{{ route('usuarios.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a> --}}
                                                     <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
@@ -112,11 +112,11 @@ Registrar Usuario
                                                     @csrf
                                                     @method('DELETE')
                                                     {{-- <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button> --}}
-                                                    <button type="submit"
-                                                        class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1">
+                                                    <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
+                                                        id="mediumButton" data-toggle="modal" data-target="#mediumModal"
+                                                        data-attr="{{ route('usuarios.delete', $user->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
-                                                    </button>
-                                                </form>
+                                                    </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -152,6 +152,7 @@ Registrar Usuario
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar </button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
+                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -164,6 +165,7 @@ Registrar Usuario
             let href = $(this).attr('data-attr');
             document.getElementById('registrar').style.display = 'block';
             document.getElementById('editar').style.display = 'block';
+            document.getElementById('eliminar').style.display = 'block';
             $.ajax({
                 url: href,
                 beforeSend: function() {
@@ -197,6 +199,10 @@ Registrar Usuario
                 document.getElementById('editar').style.display = 'none';
             }
 
+            if (letra != 'r') {
+                document.getElementById('eliminar').style.display = 'none';
+            }
+
             switch (letra) {
                 case 'e':
                     b.innerHTML = "Registrar Usuario";
@@ -204,11 +210,15 @@ Registrar Usuario
 
                 case 't':
                     b.innerHTML = "Editar Usuario";
-                    break
+                    break;
+
+                case 'r':
+                    b.innerHTML = "Eliminar paciente";
+                    break;
 
                 default:
                     b.innerHTML = "Mostrar Usuario";
-                    break
+                    break;
             }
         });
 

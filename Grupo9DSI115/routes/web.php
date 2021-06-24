@@ -33,6 +33,8 @@ Route::post('/registro', 'Auth\RegisterController@register')->name('register_pos
 //php artisan route:list --name=pacientes
 //para visualizar los nombres de las rutas
 Route::resource('usuarios','UserController');
+Route::get('usuarios/{usuario}/borrar', 'UserController@delete')->name('usuarios.delete');
+Auth::routes();
 //Route::resource('pacientes', 'PacienteController');
 Route::resource('sexos', 'SexoController');
 Auth::routes();

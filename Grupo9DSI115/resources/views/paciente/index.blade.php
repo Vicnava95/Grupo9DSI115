@@ -131,7 +131,7 @@ Registrar Paciente
                                                         href="{{ route("pacientes.show", $paciente->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i></a> --}}
                                                     
-                                                    <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
+                                                    <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
                                                         data-attr="{{ route('pacientes.delete', $paciente->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
@@ -187,6 +187,7 @@ Registrar Paciente
             let href = $(this).attr('data-attr');
             document.getElementById('registrar').style.display = 'block';
             document.getElementById('editar').style.display = 'block';
+            document.getElementById('eliminar').style.display = 'block';
             $.ajax({
                 url: href,
                 beforeSend: function() {
@@ -239,7 +240,7 @@ Registrar Paciente
 
                 default:
                     b.innerHTML = "Mostrar paciente";
-                    break
+                    break;
             }
         });
 
