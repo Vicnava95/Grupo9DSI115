@@ -238,7 +238,7 @@ class PacienteTableSeeder extends Seeder
             'apellidos'=>'Campos Navarrete',
             'dui'=>'',
             'telefonoCasa'=>'2298-0945',
-            'telefonoCelular'=>'',
+            'telefonoCelular'=>'7759-8522',
             'fechaDeNacimiento'=>'2005-12-05',
             'direccion'=>'CALLE PPAL. Y 4 CALLE PONIENTE Bo. CONCEPCION, MUNICIPIO DE SAN JUAN NONUALCO, LA PAZ',
             'referenciaPersonal'=>'Maria Julia Campos de Navarrete',

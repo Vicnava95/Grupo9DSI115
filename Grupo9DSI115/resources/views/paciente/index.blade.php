@@ -187,6 +187,7 @@ Registrar Paciente
             let href = $(this).attr('data-attr');
             document.getElementById('registrar').style.display = 'block';
             document.getElementById('editar').style.display = 'block';
+            document.getElementById('eliminar').style.display = 'block';
             $.ajax({
                 url: href,
                 beforeSend: function() {
