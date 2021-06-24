@@ -122,7 +122,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('teléfono de referencia personal') }}
-                    {{ Form::text('telReferenciaPersonal', !empty($paciente->telReferenciaPersonal) ? $paciente->telReferenciaPersonal : '', ['class' => 'form-control' . ($errors->has('telReferenciaPersonal') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono referencia personal']) }}
+                    {{ Form::text('telReferenciaPersonal', !empty($paciente->telReferenciaPersonal) ? $paciente->telReferenciaPersonal : '', ['class' => 'form-control' . ($errors->has('telReferenciaPersonal') ? ' is-invalid' : ''), 'placeholder' => '####-####']) }}
                     {!! $errors->first('telReferenciaPersonal', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>
