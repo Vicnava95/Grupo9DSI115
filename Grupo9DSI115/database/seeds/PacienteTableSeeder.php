@@ -53,17 +53,17 @@ class PacienteTableSeeder extends Seeder
         ]);
 
         DB::table('pacientes')->insert([
-            'nombres'=> 'Mario Alfonso',
-            'apellidos'=>'Peñate Sosa',
+            'nombres'=> 'Ernesto Jose',
+            'apellidos'=>'Perez Castro',
             'dui'=>'05649872-4',
-            'telefonoCasa'=>'2278-0945',
-            'telefonoCelular'=>'7698-4521',
-            'fechaDeNacimiento'=>'1996-05-23',
-            'direccion'=>'CALLE PPAL. Y 4 CALLE PONIENTE Bo. CONCEPCION, MUNICIPIO DE SAN JUAN NONUALCO, LA PAZ',
+            'telefonoCasa'=>'2266-0271',
+            'telefonoCelular'=>'7725-2324',
+            'fechaDeNacimiento'=>'1995-07-12',
+            'direccion'=>'CALLE OPONIENTE Bo. San Jose, MUNICIPIO DE SOYAPANGO, SAN SALVADOR',
             'referenciaPersonal'=>'',
             'telReferenciaPersonal'=>'',
             'ocupacion'=>'Estudiante Universitario',
-            'correoElectronico'=>'MarioSosa1996@gmail.com',
+            'correoElectronico'=>'ErnestoPerez1995@gmail.com',
             'sexo_id'=>'1'
         ]);
 
