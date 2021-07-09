@@ -12,9 +12,7 @@
                     <form method="POST" id="formCreate" action="{{ route('pacientes.store') }}" role="form"
                         enctype="multipart/form-data">
                         @csrf
-
                         @include('paciente.form')
-
                     </form>
                 </div>
             </div>

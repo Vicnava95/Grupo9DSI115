@@ -28,7 +28,7 @@ class CreatePacientesTable extends Migration
             $table->String('correoElectronico')->nullable();
             $table->timestamps();
 
-            $table->unsignedBigInteger('sexo_id')->nullable();
+            $table->unsignedBigInteger('sexo_id')->require();
             $table->foreign('sexo_id')->references('id')->on('sexos');
         });
     }

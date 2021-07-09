@@ -51,21 +51,21 @@ Registrar Paciente
                                 @if ($message = Session::get('success'))
                                     <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
                                     <p class="text-white text-center">{{ $message }}</p>
+                                    <script type="text/javascript">
+                                        $('#modalSuccess').modal('show');
+                                        setTimeout(function(){
+                                            $('#modalSuccess').modal('hide')
+                                        }, 5000);
+                                    </script>
                                 @endif
-                                @if (count($errors) > 0)
+                                {{--@if (count($errors) > 0)
                                     <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
                                     <p class="text-white text-center">Hubo un problema, ingresa la informacion correctamente</p>
-                                @endif
+                                @endif--}}
                             </div>
                           </div>
                         </div>
                       </div>
-                        <script type="text/javascript">
-                            $('#modalSuccess').modal('show');
-                            setTimeout(function(){
-                                $('#modalSuccess').modal('hide')
-                            }, 5000);
-                        </script>
                         
                         <!--
                         <div class="alert alert-success">
@@ -178,13 +178,46 @@ Registrar Paciente
             </div>
         </div>
     </div>
-
-
     <script>
+
+        @if (count($errors) > 0)
+            let href=localStorage.getItem('formulario');
+            mostrarModal(href)
+            setTimeout(function(){
+            
+
+                @foreach ($paciente->getAttributes() as $key => $value)
+                    @error($key)
+                        @if ($key == 'sexo_id')
+                            $("[name='{{$key}}']").addClass('is-invalid').parent().parent().parent().append('<div class="invalid-feedback d-block"><p>{{$message}}</p></div>')
+                        @else
+                            $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
+                        @endif
+                    @enderror
+
+                    @if ($key == 'sexo_id')
+                        @if (old($key)==1)
+                            $("[name='{{$key}}'][value=1]").attr('checked', true)
+                        @endif
+                        @if (old($key)==2)
+                            $("[name='{{$key}}'][value=2]").attr('checked', true)
+                        @endif
+                    @else
+                        $("[name='{{$key}}']").val('{{ old($key) }}')
+                    @endif
+                @endforeach
+            },500)
+        @endif
+
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
+            mostrarModal(href)
+            localStorage.setItem('formulario', href);
+        });
+
+        function mostrarModal(href) {
             document.getElementById('registrar').style.display = 'block';
             document.getElementById('editar').style.display = 'block';
             document.getElementById('eliminar').style.display = 'block';
@@ -206,7 +239,7 @@ Registrar Paciente
                     alert("Page " + href + " cannot open. Error:" + error);
                     $('#loader').hide();
                 },
-                timeout: 8000
+                timeout: 0
 
             })
 
@@ -242,8 +275,7 @@ Registrar Paciente
                     b.innerHTML = "Mostrar paciente";
                     break;
             }
-        });
-
+        }
     </script>
 
 @endsection

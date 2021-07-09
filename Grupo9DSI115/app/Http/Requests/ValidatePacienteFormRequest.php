@@ -35,7 +35,7 @@ class ValidatePacienteFormRequest extends FormRequest
             'telReferenciaPersonal'=>'nullable|size:9|string',
             'ocupacion'=>'nullable|max:255|string',
             'correoElectronico'=>'nullable|max:255|email',
-            'sexo_id'=>'nullable|integer'
+            'sexo_id'=>'required|integer'
 
         ];
     }

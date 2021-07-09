@@ -8,11 +8,6 @@ use PhpParser\Node\Stmt\Global_;
 
 class PacienteTableSeeder extends Seeder
 {
-
-
-
-
-
     /**
      * Run the database seeds.
      *
@@ -113,7 +108,7 @@ class PacienteTableSeeder extends Seeder
         ]);
 
         DB::table('pacientes')->insert([
-            'nombres'=> 'Leonel Samuel ',
+            'nombres'=> 'Leonel Samuel',
             'apellidos'=>'Casas Sosa',
             'dui'=>'04963245-4',
             'telefonoCasa'=>'2245-9857',

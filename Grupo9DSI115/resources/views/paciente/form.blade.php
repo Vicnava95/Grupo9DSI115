@@ -54,7 +54,7 @@
                 <div class="form-group">
                     {{ Form::label('fecha de nacimiento*') }}
                     <div class="input-group date">
-                        {{ Form::text('fechaDeNacimiento', !empty($paciente->fechaDeNacimiento) ? $paciente->fechaDeNacimiento : '', ['class' => 'form-control inputFechaDeNacimiento' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de nacimiento', 'id' => 'inputFechaDeNacimiento']) }}
+                        {{ Form::text('fechaDeNacimiento', !empty($paciente->fechaDeNacimiento) ? $paciente->fechaDeNacimiento : '', ['class' => 'form-control' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de nacimiento', 'id' => 'inputFechaDeNacimiento']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
@@ -63,11 +63,11 @@
                 </div>
                 <script type="text/javascript">
                     $(function() {
-                        $(".inputFechaDeNacimiento").datetimepicker({
+                        $("#inputFechaDeNacimiento").datetimepicker({
                             format: 'YYYY-MM-DD',
                             maxDate: new Date()
-                        });
-                    });
+                        })
+                    })
 
                 </script>
             </div>
@@ -84,14 +84,14 @@
                             <span class="selectgroup-button">Mujer</span>
                         </label>
                     </div>
+                    {!! $errors->first('sexo_id', '<div class="invalid-feedback"><p>message</p></div>') !!}
                 </div>
             </div>
             <!--
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('sexo') }}
-                    {{ Form::text('sexo_id', !empty($paciente->sexo_id) ? $paciente->sexo_id : '', ['class' => 'form-control' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'placeholder' => 'Sexo Id']) }}
-                    {!! $errors->first('sexo_id', '<div class="invalid-feedback"><p>message</p></div>') !!}
+                    
+                    
                 </div>
             </div> -->
         </div>
