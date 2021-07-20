@@ -35,6 +35,7 @@
 	<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+	<script src="{{asset('assets/js/jquery.mask.js')}}"></script>
     <script>
 		
         $(function () {
