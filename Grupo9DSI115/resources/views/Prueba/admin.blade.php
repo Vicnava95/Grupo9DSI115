@@ -1,8 +1,9 @@
-@extends('Master.master')
+@extends('Base.base')
 
-@section('title')
+<!-- Titulo del head de la pagina-->
+@section('tituloPagnia')
 Admin
-@stop
+@endsection
 
 @section('extraJS')
 <script src="js/master.js"></script>
@@ -12,12 +13,17 @@ Admin
 <link href="css/master.css" rel="stylesheet" type="text/css"/>
 @stop
 
-@section('tituloTemplate')
+<!-- Titulo para el cuerpo de la pagina web-->
+@section('titulo')
 Admin
-@stop
+@endsection
 
-@section('contenido')
+<!-- descripcion para el cuerpo de la pagina web-->
+@section('descripcion')
 <h1>Todo el contenido</h1>
+@endsection
+
+@section('cuerpo')
 <a href="{{route('admin')}}" class="btn btn-light active" role="button" aria-pressed="true">Admin</a>
 <a href="{{route('doctorGeneral')}}" class="btn btn-light active" role="button" aria-pressed="true">Doctor General</a>
 <a href="{{route('doctoraDental')}}" class="btn btn-light active" role="button" aria-pressed="true">Doctora Dental</a>
