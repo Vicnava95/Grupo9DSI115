@@ -68,7 +68,6 @@
                             maxDate: new Date()
                         })
                     })
-
                 </script>
             </div>
             <div class="col-md-6 col-sm-12">
@@ -130,3 +129,12 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("input[name='telReferenciaPersonal']").mask('0000-0000');
+        $("input[name='telefonoCelular']").mask('0000-0000');
+        $("input[name='telefonoCasa']").mask('0000-0000');
+        $("input[name='dui']").mask('00000000-0');
+    });
+</script>
