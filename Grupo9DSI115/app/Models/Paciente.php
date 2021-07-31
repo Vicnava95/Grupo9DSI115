@@ -41,7 +41,7 @@ class Paciente extends Model
         'referenciaPersonal'=>'nullable|max:255|string',
         'telReferenciaPersonal'=>'nullable|size:9|string',
         'ocupacion'=>'nullable|max:255|string',
-        'correoElectronico'=>'nullable|max:255|email',
+        'correoElectronico'=>'nullable|max:255|email|regex:/^([a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*\.[a-zA-Z]{2,7})$/',
         'sexo_id'=>'required|integer'
         /*'nombres' => 'required',
 		'apellidos' => 'required',

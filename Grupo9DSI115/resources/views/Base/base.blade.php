@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>@yield('tituloPagnia')</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{{asset('assets/img/icon.ico')}}" type="image/x-icon"/>
+	<link rel="icon" href="{{asset('assets/img/icono.ico')}}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -55,6 +55,7 @@
         </script>
 
 		<!-- jQuery UI -->
+	<script src="{{asset('assets/js/jquery.mask.js')}}"></script>
 	<script src="{{asset('assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
 	<script src="{{asset('assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')}}"></script>
 

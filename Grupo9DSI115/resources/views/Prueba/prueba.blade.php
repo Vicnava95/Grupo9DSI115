@@ -1,8 +1,8 @@
-@extends('Master.master')
+@extends('Base.base')
 
-@section('title')
+@section('tituloPagnia')
 Prueba
-@stop
+@endsection
 
 @section('extraJS')
 <script src="js/master.js"></script>
@@ -12,10 +12,16 @@ Prueba
 <link href="css/master.css" rel="stylesheet" type="text/css"/>
 @stop
 
-@section('tituloTemplate')
+<!-- Titulo para el cuerpo de la pagina web-->
+@section('titulo')
 Prueba
-@stop
+@endsection
 
-@section('contenido')
+<!-- descripcion para el cuerpo de la pagina web-->
+@section('descripcion')
 <h1>Todo el contenido</h1>
+@endsection
+
+@section('cuerpo')
+
 @stop
