@@ -106,6 +106,7 @@ Registrar Usuario
                                                         data-attr="{{ route('usuarios.edit',$user->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                     </a>
+                                                    @if (Auth::id()!=$user->id)
                                                     @csrf
                                                     @method('DELETE')
                                                     {{-- <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button> --}}
@@ -114,6 +115,7 @@ Registrar Usuario
                                                         data-attr="{{ route('usuarios.delete', $user->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
+                                                    @endif
                                             </td>
                                         </tr>
                                     @endforeach
