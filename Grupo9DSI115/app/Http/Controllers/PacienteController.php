@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Auth;
 
 /**
  * Class PacienteController
@@ -18,6 +19,8 @@ class PacienteController extends Controller
      */
     public function index(Request $request)
     {
+        $id = Auth::user()->rols_fk;
+        //dd($id); 
         $texto =trim($request->get('texto'));
         
         $pacientes = Paciente::select('*')->where('nombres','LIKE',$texto.'%')
