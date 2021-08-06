@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class RolTableSeeder extends Seeder
+class RolPersonaTableSeeder extends Seeder
 {
-    static $roles = [
+    static $rolesPersona = [
         'Administrador',
         'Doctor General',
         'Doctora Dental',
@@ -20,9 +20,9 @@ class RolTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach(self::$roles as $rol){
-            DB::table('rols')->insert([
-                'nombreRol' => $rol
+        foreach(self::$rolesPersona as $rolPersona){
+            DB::table('rolpersonas')->insert([
+                'nombreRolPersona' => $rolPersona
             ]);
         }
     }
