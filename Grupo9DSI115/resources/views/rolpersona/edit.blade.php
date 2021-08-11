@@ -1,10 +1,4 @@
-@extends('layouts.app')
 
-@section('template_title')
-    Update Rolpersona
-@endsection
-
-@section('content')
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">
@@ -13,10 +7,10 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Rolpersona</span>
+                        <span class="card-title">Actualizar Rol</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('rolpersonas.update', $rolpersona->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" id="formEdit" action="{{ route('rolpersonas.update', $rolpersona->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
@@ -28,4 +22,4 @@
             </div>
         </div>
     </section>
-@endsection
+

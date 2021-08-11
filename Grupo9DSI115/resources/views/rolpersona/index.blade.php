@@ -51,10 +51,7 @@ Roles
                                         }, 5000);
                                     </script>
                                 @endif
-                                {{--@if (count($errors) > 0)
-                                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
-                                    <p class="text-white text-center">Hubo un problema, ingresa la informacion correctamente</p>
-                                @endif--}}
+                                
                             </div>
                           </div>
                         </div>
@@ -95,23 +92,13 @@ Roles
                                                         data-attr="{{ route('rolpersonas.edit',$rolpersona->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                     </a>
-
-                                                    {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
-                                                        href="{{ route("pacientes.show", $paciente->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i></a> --}}
                                                     
                                                     <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
                                                         data-attr="{{ route('rolpersonas.delete',$rolpersona->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
-                                                {{-- <form action="{{ route('rolpersonas.destroy',$rolpersona->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('rolpersonas.show',$rolpersona->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('rolpersonas.edit',$rolpersona->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form> --}}
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -159,27 +146,11 @@ Roles
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
             setTimeout(function(){
-            
-
-                @foreach ($paciente->getAttributes() as $key => $value)
+                @foreach ($rolpersona->getAttributes() as $key => $value)
                     @error($key)
-                        @if ($key == 'sexo_id')
-                            $("[name='{{$key}}']").addClass('is-invalid').parent().parent().parent().append('<div class="invalid-feedback d-block"><p>{{$message}}</p></div>')
-                        @else
-                            $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
-                        @endif
+                        $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror
-
-                    @if ($key == 'sexo_id')
-                        @if (old($key)==1)
-                            $("[name='{{$key}}'][value=1]").attr('checked', true)
-                        @endif
-                        @if (old($key)==2)
-                            $("[name='{{$key}}'][value=2]").attr('checked', true)
-                        @endif
-                    @else
-                        $("[name='{{$key}}']").val('{{ old($key) }}')
-                    @endif
+                    $("[name='{{$key}}']").val('{{ old($key) }}')
                 @endforeach
             },500)
         @endif
@@ -214,7 +185,7 @@ Roles
                     alert("Page " + href + " cannot open. Error:" + error);
                     $('#loader').hide();
                 },
-                timeout: 0
+                timeout: 8000
 
             })
 
@@ -235,19 +206,19 @@ Roles
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar paciente";
+                    b.innerHTML = "Registrar rol";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar paciente";
+                    b.innerHTML = "Editar rol";
                     break;
                 
                 case 'r':
-                    b.innerHTML = "Eliminar paciente";
+                    b.innerHTML = "Eliminar rol";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar paciente";
+                    b.innerHTML = "Mostrar rol";
                     break;
             }
         }

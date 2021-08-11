@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rolpersona;
 use Illuminate\Http\Request;
+use Auth;
 
 /**
  * Class RolpersonaController
@@ -48,7 +49,7 @@ class RolpersonaController extends Controller
         $rolpersona = Rolpersona::create($request->all());
 
         return redirect()->route('rolpersonas.index')
-            ->with('success', 'Rolpersona created successfully.');
+            ->with('success', 'Rol creado satisfactoriamente');
     }
 
     /**
@@ -91,7 +92,7 @@ class RolpersonaController extends Controller
         $rolpersona->update($request->all());
 
         return redirect()->route('rolpersonas.index')
-            ->with('success', 'Rolpersona updated successfully');
+            ->with('success', 'Rol actualizado satisfactoriamente');
     }
 
     /**
