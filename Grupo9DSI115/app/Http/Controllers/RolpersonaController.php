@@ -99,11 +99,19 @@ class RolpersonaController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
+
+    public function delete($id)
+    {
+        $rolpersona = Rolpersona::find($id);
+
+        return view('rolpersona.destroy', compact('rolpersona'));
+    } 
+
     public function destroy($id)
     {
         $rolpersona = Rolpersona::find($id)->delete();
 
         return redirect()->route('rolpersonas.index')
-            ->with('success', 'Rolpersona deleted successfully');
+            ->with('success', 'Rol eliminado satisfactoriamente');
     }
 }
