@@ -15,6 +15,16 @@ use App\Sexo;
 /* Route::get('/', function () {
     return view('welcome');
 }); */
+
+//prueba
+Route::get('/citas', function () {
+    return view('DoctoraDental.DashboardDoctoraDental');
+});
+
+Route::get('/expediente', function () {
+    return view('Expediente.index');
+});
+
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
     Sexo::firstOrCreate(['nombre'=>'Femenino']);*/
