@@ -19,7 +19,7 @@ class PacienteController extends Controller
      */
     public function index(Request $request)
     {
-        $id = Auth::user()->rols_fk;
+        //$id = Auth::user()->rols_fk;
         //dd($id); 
         $texto =trim($request->get('texto'));
         

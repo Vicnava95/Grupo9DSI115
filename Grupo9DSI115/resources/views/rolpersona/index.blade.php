@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Pacientes
+Roles
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Pacientes
+Roles
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -15,29 +15,23 @@ Pacientes
 
 @endsection
 
-<!-- Agregar contenido de la pagina web-->
 @section('cuerpo')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="d-flex justify-content-start align-items-center">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+
                             <span id="card_title">
-                                {{ __('Paciente') }}
+                                {{ __('Roles') }}
                             </span>
-                            <div class="flex-fill bd-highlight ml-5">
-                                <form action="{{ route('pacientes.index') }}"
-                                    method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Nombre, apellido o ID" name="texto" aria-label="default input">
-                                        <button type="submit" class="btn btn-primary">Buscar</button>
-                                </form>
-                            </div>
+
                             <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
-                                    data-attr="{{ route('pacientes.create') }}" title="Create a project">
-                                    Registrar paciente
+                                    data-attr="{{ route('rolpersonas.create') }}" title="Create a project">
+                                    Crear Rol
                                 </a>
                             </div>
                         </div>
@@ -57,74 +51,54 @@ Pacientes
                                         }, 5000);
                                     </script>
                                 @endif
+                                
                             </div>
                           </div>
                         </div>
                       </div>
+                        
+                        <!--
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                        -->
                     @endif
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
-                                        {{-- <th>Dui</th> --}}
-                                        <th>Teléfono casa</th>
-                                        <th>Teléfono celular</th>
-                                        {{-- <th>Fechadenacimiento</th>
-										<th>Direccion</th>
-										<th>Referenciapersonal</th>
-										<th>Telreferenciapersonal</th>
-										<th>Ocupacion</th>
-										<th>Correoelectronico</th>
-										<th>Sexo</th> --}}
-
+										<th>Rol</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pacientes as $paciente)
+                                    @foreach ($rolpersonas as $rolpersona)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-                                            <td>{{ $paciente->nombres }}</td>
-                                            <td>{{ $paciente->apellidos }}</td>
-                                            {{-- <td>{{ $paciente->dui }}</td> --}}
-                                            <td>{{ $paciente->telefonoCasa }}</td>
-                                            <td>{{ $paciente->telefonoCelular }}</td>
-                                            {{-- <td>{{ $paciente->fechaDeNacimiento }}</td>
-											<td>{{ $paciente->direccion }}</td>
-											<td>{{ $paciente->referenciaPersonal }}</td>
-											<td>{{ $paciente->telReferenciaPersonal }}</td>
-											<td>{{ $paciente->ocupacion }}</td>
-											<td>{{ $paciente->correoElectronico }}</td>
-											<td>{{ $paciente->sexo->nombre }}</td> --}}
+                                            
+											<td>{{ $rolpersona->nombreRolPersona }}</td>
 
                                             <td>
-                                                
-                                                    <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
+                                                <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('pacientes.show', $paciente->id) }}">
+                                                        data-attr="{{ route('rolpersonas.show',$rolpersona->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                     </a>
                                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('pacientes.edit', $paciente->id) }}">
+                                                        data-attr="{{ route('rolpersonas.edit',$rolpersona->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                     </a>
-
-                                                    {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
-                                                        href="{{ route("pacientes.show", $paciente->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i></a> --}}
                                                     
                                                     <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('pacientes.delete', $paciente->id) }}">
+                                                        data-attr="{{ route('rolpersonas.delete',$rolpersona->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -133,7 +107,7 @@ Pacientes
                         </div>
                     </div>
                 </div>
-                {!! $pacientes->links() !!}
+                {!! $rolpersonas->links() !!}
             </div>
         </div>
     </div>
@@ -172,27 +146,11 @@ Pacientes
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
             setTimeout(function(){
-            
-
-                @foreach ($paciente->getAttributes() as $key => $value)
+                @foreach ($rolpersona->getAttributes() as $key => $value)
                     @error($key)
-                        @if ($key == 'sexo_id')
-                            $("[name='{{$key}}']").addClass('is-invalid').parent().parent().parent().append('<div class="invalid-feedback d-block"><p>{{$message}}</p></div>')
-                        @else
-                            $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
-                        @endif
+                        $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror
-
-                    @if ($key == 'sexo_id')
-                        @if (old($key)==1)
-                            $("[name='{{$key}}'][value=1]").attr('checked', true)
-                        @endif
-                        @if (old($key)==2)
-                            $("[name='{{$key}}'][value=2]").attr('checked', true)
-                        @endif
-                    @else
-                        $("[name='{{$key}}']").val('{{ old($key) }}')
-                    @endif
+                    $("[name='{{$key}}']").val('{{ old($key) }}')
                 @endforeach
             },500)
         @endif
@@ -227,7 +185,7 @@ Pacientes
                     alert("Page " + href + " cannot open. Error:" + error);
                     $('#loader').hide();
                 },
-                timeout: 0
+                timeout: 8000
 
             })
 
@@ -248,22 +206,21 @@ Pacientes
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar paciente";
+                    b.innerHTML = "Registrar rol";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar paciente";
+                    b.innerHTML = "Editar rol";
                     break;
                 
                 case 'r':
-                    b.innerHTML = "Eliminar paciente";
+                    b.innerHTML = "Eliminar rol";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar paciente";
+                    b.innerHTML = "Mostrar rol";
                     break;
             }
         }
     </script>
-
 @endsection
