@@ -24,6 +24,10 @@ Route::get('/citas', function () {
 Route::get('/expediente', function () {
     return view('Expediente.index');
 });
+//consulta
+Route::resource('consultas', 'ConsultaController');
+//recetas
+Route::resource('recetas', 'RecetaController');
 
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
