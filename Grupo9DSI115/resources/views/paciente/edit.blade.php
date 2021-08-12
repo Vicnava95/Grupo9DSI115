@@ -1,11 +1,5 @@
-
-
-<!-- Agregar contenido de la pagina web-->
-
 <div class="col-md-12">
-
     @includeif('partials.errors')
-
     <div class="card-header">
         <span class="card-title">Actualizar paciente</span>
     </div>

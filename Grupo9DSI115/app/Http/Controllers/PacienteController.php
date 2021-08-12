@@ -115,7 +115,6 @@ class PacienteController extends Controller
     public function delete($id)
     {
         $paciente = Paciente::find($id);
-
         return view('paciente.destroy', compact('paciente'));
     }
 

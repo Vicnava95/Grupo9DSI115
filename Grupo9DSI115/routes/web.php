@@ -26,6 +26,7 @@ Route::get('/expediente', function () {
 });
 //consulta
 Route::resource('consultas', 'ConsultaController');
+Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 //recetas
 Route::resource('recetas', 'RecetaController');
 

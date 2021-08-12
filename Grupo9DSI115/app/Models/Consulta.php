@@ -25,10 +25,10 @@ class Consulta extends Model
 {
     
     static $rules = [
-		'descripcion' => 'required',
-		'fecha' => 'required',
-		'paciente_id' => 'required',
-		'persona_id' => 'required',
+		'descripcion' => 'required|max:255|string',
+		'fecha' => 'required|date|after:yesterday',
+		'paciente_id' => 'required|integer|exists:pacientes,id',
+		'persona_id' => 'required|integer|exists:personas,id',
     ];
 
     protected $perPage = 20;

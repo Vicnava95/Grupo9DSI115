@@ -40,7 +40,6 @@ Registrar Paciente
                                     Registrar paciente
                                 </a>
                             </div>
-
                         </div>
                     </div>
                     @if ($message = Session::get('success') || count($errors) > 0)
@@ -58,20 +57,10 @@ Registrar Paciente
                                         }, 5000);
                                     </script>
                                 @endif
-                                {{--@if (count($errors) > 0)
-                                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
-                                    <p class="text-white text-center">Hubo un problema, ingresa la informacion correctamente</p>
-                                @endif--}}
                             </div>
                           </div>
                         </div>
                       </div>
-                        
-                        <!--
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                        -->
                     @endif
                     <div class="card-body">
                         <div class="table-responsive">
@@ -136,7 +125,6 @@ Registrar Paciente
                                                         data-attr="{{ route('pacientes.delete', $paciente->id) }}">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
-                                                
                                             </td>
                                         </tr>
                                     @endforeach

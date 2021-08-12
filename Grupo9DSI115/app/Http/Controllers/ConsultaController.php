@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paciente;
 use App\Models\Consulta;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,18 @@ class ConsultaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $consultas = Consulta::paginate();
+        $texto =trim($request->get('texto'));
+        //$doctores = Persona::all();
+        if($texto==''){
+            $consultas = Consulta::paginate();
+        } else{
+            $consultas = Consulta::select('*')
+                        ->where('paciente_id', '=' ,$texto)
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+        }
 
         return view('consulta.index', compact('consultas'))
             ->with('i', (request()->input('page', 1) - 1) * $consultas->perPage());
@@ -92,6 +102,19 @@ class ConsultaController extends Controller
 
         return redirect()->route('consultas.index')
             ->with('success', 'Consulta updated successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $consulta = Consulta::find($id);
+        $paciente = Paciente::find($consulta->paciente_id);
+        return view('consulta.destroy', compact('consulta', 'paciente'));
     }
 
     /**
