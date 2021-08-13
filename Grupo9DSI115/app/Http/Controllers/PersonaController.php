@@ -109,6 +109,12 @@ class PersonaController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
+    public function delete($id)
+    {
+        $persona = Persona::find($id);
+        return view('persona.destroy', compact('persona'));
+    }
+
     public function destroy($id)
     {
         $persona = Persona::find($id)->delete();
