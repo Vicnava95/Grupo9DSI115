@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function (){
     })->name('prueba');
     Route::resource('pacientes', 'PacienteController');
     Route::get('pacientes/{paciente}/borrar', 'PacienteController@delete')->name('pacientes.delete');
+    Route::resource('personas', 'PersonaController');
     Route::resource('rolpersonas', 'RolpersonaController');
     Route::get('rolpersonas/{rolpersona}/borrar', 'RolpersonaController@delete')->name('rolpersonas.delete');
     //CRUD citas (TODOS PUEDEN)  Tomar en cuenta que los dos doctores pueden tener cita a la misma hora pero no el mismo paciente
