@@ -1,4 +1,3 @@
-
 <form id="formDelete" action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST">
     @csrf
     @method("DELETE")

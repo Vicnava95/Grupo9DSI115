@@ -1,28 +1,20 @@
+
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="float-left">
-                        <span class="card-title">Show Persona</span>
-                    </div>
-                    <div class="float-right">
-                        <a class="btn btn-primary" href="{{ route('personas.index') }}"> Back</a>
-                    </div>
-                </div>
-
                 <div class="card-body">
                     
                     <div class="form-group">
-                        <strong>Nombrepersonas:</strong>
+                        <strong>Nombres:</strong>
                         {{ $persona->nombrePersonas }}
                     </div>
                     <div class="form-group">
-                        <strong>Apellidopersonas:</strong>
+                        <strong>Apellidos:</strong>
                         {{ $persona->apellidoPersonas }}
                     </div>
                     <div class="form-group">
-                        <strong>Dui:</strong>
+                        <strong>DUI:</strong>
                         {{ $persona->dui }}
                     </div>
                     <div class="form-group">
@@ -30,15 +22,15 @@
                         {{ $persona->telefono }}
                     </div>
                     <div class="form-group">
-                        <strong>Fechadenacimiento:</strong>
+                        <strong>Fecha de nacimiento:</strong>
                         {{ $persona->fechaDeNacimiento }}
                     </div>
                     <div class="form-group">
-                        <strong>Nitpersona:</strong>
+                        <strong>NIT:</strong>
                         {{ $persona->nitPersona }}
                     </div>
                     <div class="form-group">
-                        <strong>Sexo Id:</strong>
+                        <strong>Sexo:</strong>
                         @foreach ($sexos as $sexo)
                             @if ($sexo->id == $persona->sexo_id)
                                 {{ $sexo->nombre }}
@@ -46,7 +38,7 @@
                         @endforeach
                     </div>
                     <div class="form-group">
-                        <strong>Rolpersona Id:</strong>
+                        <strong>Rolpersona:</strong>
                         @foreach ($roles as $rol)
                             @if ($rol->id == $persona->rolpersona_id)
                                 <td>{{ $rol->nombreRolPersona }}</td>

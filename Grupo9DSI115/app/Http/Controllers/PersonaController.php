@@ -6,6 +6,7 @@ use App\Models\Persona;
 use App\Models\Sexo;
 use App\Models\Rolpersona;
 use Illuminate\Http\Request;
+use Auth;
 
 /**
  * Class PersonaController
@@ -18,9 +19,16 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $personas = Persona::paginate();
+        $texto =trim($request->get('texto'));
+        
+        $personas = Persona::select('*')->where('nombrePersonas','LIKE',$texto.'%')
+                            ->orWhere('apellidoPersonas','LIKE',$texto.'%')
+                           //->orWhere('id','LIKE',$texto.'%')
+                            ->orderBy('apellidoPersonas')
+                            ->paginate(10);   
+        // $personas = Persona::paginate();
         $sexos = Sexo::all();
         $roles = Rolpersona::all();
 

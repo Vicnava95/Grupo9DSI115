@@ -13,7 +13,6 @@
                         <form method="POST" id="formEdit" action="{{ route('rolpersonas.update', $rolpersona->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
-
                             @include('rolpersona.form')
 
                         </form>
