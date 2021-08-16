@@ -29,6 +29,7 @@ Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 //recetas
 Route::resource('recetas', 'RecetaController');
+Route::get('recetas/{receta}/borrar', 'RecetaController@delete')->name('recetas.delete');
 
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
@@ -70,10 +71,10 @@ Route::middleware(['auth'])->group(function (){
     //Mostrar las citas del día para los dos doctores
 
     /******** FIN RUTAS COMPARTIDAS *********************/
-    
+
 
     //Rutas asignadas para el Administrador (Admin, Doctor General, Doctora Dental)
-    //Todos ellos pueden entrar menos la secretaria 
+    //Todos ellos pueden entrar menos la secretaria
     Route::group(['middleware' => 'AdminMiddleware'],function(){
         Route::get('/admin',function(){
             return view('Prueba.admin');
@@ -94,14 +95,14 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
-        
+
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)
     Route::group(['middleware' => ['SecretariaMiddleware']], function () {
         Route::get('/secretaria',function(){
             return view('Prueba.secretaria');
-        })->name('secretaria');    
+        })->name('secretaria');
     });
-}); 
+});
 

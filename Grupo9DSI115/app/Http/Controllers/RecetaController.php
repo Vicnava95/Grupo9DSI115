@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Receta;
+use App\Model\Consulta;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 /**
@@ -92,6 +94,19 @@ class RecetaController extends Controller
 
         return redirect()->route('recetas.index')
             ->with('success', 'Receta updated successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $receta = Receta::find($id);
+        $paciente = Paciente::find($receta->paciente_id);
+        return view('receta.destroy', compact('receta', 'paciente'));
     }
 
     /**

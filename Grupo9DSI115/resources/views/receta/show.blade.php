@@ -1,49 +1,38 @@
-@extends('layouts.app')
 
-@section('template_title')
-    {{ $receta->name ?? 'Show Receta' }}
-@endsection
-
-@section('content')
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Receta</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('recetas.index') }}"> Back</a>
+                            <span class="card-title">Mostrar Receta</span>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
-                            <strong>Descripcion:</strong>
-                            {{ $receta->descripcion }}
+                            <strong>Consulta Id:</strong>
+                            {{ $receta->consulta }}
                         </div>
                         <div class="form-group">
                             <strong>Fecha:</strong>
                             {{ $receta->fecha }}
                         </div>
                         <div class="form-group">
+                            <strong>Descripcion:</strong>
+                            {{ $receta->descripcion }}
+                        </div>
+                        <div class="form-group">
                             <strong>Proximacita:</strong>
                             {{ $receta->proximaCita }}
                         </div>
                         <div class="form-group">
-                            <strong>Consulta Id:</strong>
-                            {{ $receta->consulta_id }}
+                            <strong>Paciente:</strong>
+                            {{ $receta->Paciente->apellidos }}, {{ $receta->Paciente->nombres }}
                         </div>
-                        <div class="form-group">
-                            <strong>Paciente Id:</strong>
-                            {{ $receta->paciente_id }}
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
-@endsection
+
