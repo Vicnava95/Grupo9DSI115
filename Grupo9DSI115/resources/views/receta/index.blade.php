@@ -31,7 +31,7 @@ Registrar Receta
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('recetas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="codigo de receta" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="codigo de receta, codigo de consulta o nombre de paciente" name="texto" aria-label="default input">
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
@@ -72,10 +72,10 @@ Registrar Receta
                                         <th>No</th>
 
                                         <th>Fecha</th>
-                                        <th>Consulta Id</th>
+                                        <th>Consulta</th>
 										<th>Descripcion</th>
 										<th>Proximacita</th>
-										<th>Paciente Id</th>
+										<th>Paciente</th>
 
                                         <th></th>
                                     </tr>
@@ -87,7 +87,7 @@ Registrar Receta
 
                                             <td>{{ $receta->fecha }}</td>
                                             <td>{{ $receta->consulta_id }}</td>
-											<td>{!! Str::words($receta->descripcion, 4, ' ...') !!}</td>
+											<td>{!! Str::words($receta->descripcion, 2, ' ...') !!}</td>
 											<td>{{ $receta->proximaCita }}</td>
 											<td>{{ $receta->Paciente->apellidos }}, {{ $receta->Paciente->nombres }}</td>
 

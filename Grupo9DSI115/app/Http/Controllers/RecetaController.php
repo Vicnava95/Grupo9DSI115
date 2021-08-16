@@ -18,9 +18,20 @@ class RecetaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $recetas = Receta::paginate();
+        $texto =trim($request->get('texto'));
+        if($texto==''){
+            $recetas = Receta::paginate();
+        }else{
+            $recetas = Receta::select('*')
+                        ->where('consulta_id', '=' ,$texto)
+                        //->orwhere('paciente_id','=',$texto) // verificar luego
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+
+        }
+
 
         return view('receta.index', compact('recetas'))
             ->with('i', (request()->input('page', 1) - 1) * $recetas->perPage());
@@ -50,7 +61,7 @@ class RecetaController extends Controller
         $receta = Receta::create($request->all());
 
         return redirect()->route('recetas.index')
-            ->with('success', 'Receta created successfully.');
+            ->with('success', 'Receta creada satisfactoriamente.');
     }
 
     /**
@@ -93,7 +104,7 @@ class RecetaController extends Controller
         $receta->update($request->all());
 
         return redirect()->route('recetas.index')
-            ->with('success', 'Receta updated successfully');
+            ->with('success', 'Receta actualizada satisfactoriamente');
     }
 
     /**
@@ -119,6 +130,6 @@ class RecetaController extends Controller
         $receta = Receta::find($id)->delete();
 
         return redirect()->route('recetas.index')
-            ->with('success', 'Receta deleted successfully');
+            ->with('success', 'Receta eliminada satisfactoriamente');
     }
 }

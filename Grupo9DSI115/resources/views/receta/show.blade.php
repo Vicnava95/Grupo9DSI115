@@ -11,8 +11,8 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <strong>Consulta Id:</strong>
-                            {{ $receta->consulta }}
+                            <strong>Consulta:</strong>
+                            {{ $receta->consulta->id }}
                         </div>
                         <div class="form-group">
                             <strong>Fecha:</strong>
@@ -23,7 +23,7 @@
                             {{ $receta->descripcion }}
                         </div>
                         <div class="form-group">
-                            <strong>Proximacita:</strong>
+                            <strong>Proxima cita:</strong>
                             {{ $receta->proximaCita }}
                         </div>
                         <div class="form-group">
