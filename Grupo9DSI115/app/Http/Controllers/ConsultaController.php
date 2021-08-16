@@ -58,7 +58,7 @@ class ConsultaController extends Controller
         $consulta = Consulta::create($request->all());
 
         return redirect()->route('consultas.index')
-            ->with('success', 'Consulta created successfully.');
+            ->with('success', 'Consulta creada exitosamente.');
     }
 
     /**
@@ -101,7 +101,7 @@ class ConsultaController extends Controller
         $consulta->update($request->all());
 
         return redirect()->route('consultas.index')
-            ->with('success', 'Consulta updated successfully');
+            ->with('success', 'Consulta actualizada exitosamente');
     }
 
     /**
@@ -127,6 +127,6 @@ class ConsultaController extends Controller
         $consulta = Consulta::find($id)->delete();
 
         return redirect()->route('consultas.index')
-            ->with('success', 'Consulta deleted successfully');
+            ->with('success', 'Consulta eliminada exitosamente');
     }
 }
