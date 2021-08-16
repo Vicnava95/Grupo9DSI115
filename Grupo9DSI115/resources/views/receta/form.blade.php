@@ -10,7 +10,7 @@
                 <div class="form-group">
                     {{ Form::label('fecha receta') }}
                     <div class="input-group date">
-                        {{ Form::text('fecha', !empty($receta->fecha) ? $receta->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha','id'=>'inputFecha']) }}
+                        {{ Form::text('fecha', !empty($receta->fecha) ? $receta->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     {{ Form::label('proximaCita') }}
                     <div class="input-group date">
-                        {{ Form::text('proximaCita', !empty($receta->proximaCita) ? $receta->proximaCita: '', ['class' => 'form-control' . ($errors->has('proximaCita') ? ' is-invalid' : ''), 'placeholder' =>  'Proximacita', 'id' = 'inputFecha']) }}
+                        {{ Form::text('proximaCita', !empty($receta->proximaCita) ? $receta->proximaCita: '', ['class' => 'form-control' . ($errors->has('proximaCita') ? ' is-invalid' : ''), 'placeholder' =>  'Proximacita', 'id' => 'inputFecha']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>

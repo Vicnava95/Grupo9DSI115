@@ -7,7 +7,7 @@
         <form method="POST" id="formEdit" action="{{ route('recetas.update', $receta->id) }}"  role="form" enctype="multipart/form-data">
             {{ method_field('PATCH') }}
             @csrf
-            @include('receta.form')¡
+            @include('receta.form')
         </form>
     </div>
 </div>

@@ -87,7 +87,7 @@ Registrar Receta
 
                                             <td>{{ $receta->fecha }}</td>
                                             <td>{{ $receta->consulta_id }}</td>
-											<td>{ !! Str::words($receta->descripcion, 4, ' ...') !!}</td>
+											<td>{!! Str::words($receta->descripcion, 4, ' ...') !!}</td>
 											<td>{{ $receta->proximaCita }}</td>
 											<td>{{ $receta->Paciente->apellidos }}, {{ $receta->Paciente->nombres }}</td>
 
@@ -102,7 +102,7 @@ Registrar Receta
                                                     <i class="fa fa-fw fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                    data-target="#mediumModal" data-attr="{{ route('receta.delete', $receta->id) }}">
+                                                    data-target="#mediumModal" data-attr="{{ route('recetas.delete', $receta->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
 
