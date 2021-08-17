@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use App\Models\Consulta;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 /**
@@ -42,7 +43,9 @@ class ConsultaController extends Controller
     public function create()
     {
         $consulta = new Consulta();
-        return view('consulta.create', compact('consulta'));
+        $pacientes = Paciente::all();
+        $personas = Persona::all();
+        return view('consulta.create', compact('consulta','pacientes', 'personas'));
     }
 
     /**

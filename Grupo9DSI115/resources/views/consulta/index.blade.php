@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Paciente
+Registrar Consultas
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Paciente
+Registrar Consultas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -31,7 +31,7 @@ Registrar Paciente
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('consultas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="codigo de paciente" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Código de paciente" name="texto" aria-label="default input">
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
@@ -227,19 +227,19 @@ Registrar Paciente
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar paciente";
+                    b.innerHTML = "Registrar consulta";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar paciente";
+                    b.innerHTML = "Editar consulta";
                     break;
                 
                 case 'r':
-                    b.innerHTML = "Eliminar paciente";
+                    b.innerHTML = "Eliminar consulta";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar paciente";
+                    b.innerHTML = "Mostrar consulta";
                     break;
             }
         }
