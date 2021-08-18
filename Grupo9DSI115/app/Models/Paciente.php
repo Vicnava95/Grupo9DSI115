@@ -36,7 +36,7 @@ class Paciente extends Model
         'dui'=>'nullable|size:10|string',
         'telefonoCasa'=>'nullable|size:9|string',
         'telefonoCelular'=>'required|size:9|string',
-        'fechaDeNacimiento'=>'required|date|before:today',
+        'fechaDeNacimiento'=>'required|date|before_or_equal:today',
         'direccion'=>'required|string',
         'referenciaPersonal'=>'nullable|max:255|string',
         'telReferenciaPersonal'=>'nullable|size:9|string',

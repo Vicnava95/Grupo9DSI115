@@ -20,10 +20,18 @@ class CreateConsultasTable extends Migration
             //llave foranea
             //paciente
             $table->unsignedBigInteger('paciente_id')->require();
-            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('paciente_id')
+                    ->references('id')
+                    ->on('pacientes')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             //persona
             $table->unsignedBigInteger('persona_id')->require();
-            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->foreign('persona_id')
+                    ->references('id')
+                    ->on('personas')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
             $table->timestamps();
         });

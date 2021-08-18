@@ -26,7 +26,7 @@ class Consulta extends Model
     
     static $rules = [
 		'descripcion' => 'required|max:255|string',
-		'fecha' => 'required|date|after:yesterday',
+		'fecha' => 'required|date',
 		'paciente_id' => 'required|integer|exists:pacientes,id',
 		'persona_id' => 'required|integer|exists:personas,id',
     ];
@@ -64,6 +64,8 @@ class Consulta extends Model
     {
         return $this->hasMany('App\Models\Receta', 'consulta_id', 'id');
     }
+
+    
     
 
 }

@@ -8,6 +8,24 @@
                     {!! $errors->first('consulta_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
+            <div class="col-md-6 col-12">
+                <div class="form-group">
+                    {{ Form::label('paciente_id*') }}
+                    {{ Form::text('paciente_id', $receta->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
+                    {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    {{ Form::label('Descripcion*') }}
+                    {{ Form::textarea('descripcion', $receta->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'rows'=>'6']) }}
+                    {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('Fecha receta*') }}
@@ -19,36 +37,10 @@
                     </div>
                     {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
-                <script type="text/javascript"> //revisar
-                    $(function () {
-                        $("#inputFecha").datetimepicker({
-                            format: 'YYYY-MM-DD'
-
-                        });
-                    });
-                </script>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    {{ Form::label('Descripcion*') }}
-                    {{ Form::textarea('descripcion', $receta->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
-                    {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    {{ Form::label('paciente_id*') }}
-                    {{ Form::text('paciente_id', $receta->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
-                    {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    {{ Form::label('ProximaCita*') }}
+                    {{ Form::label('Proxima Cita') }}
                     <div class="input-group date">
                         {{ Form::text('proximaCita', !empty($receta->proximaCita) ? $receta->proximaCita: '', ['class' => 'form-control' . ($errors->has('proximaCita') ? ' is-invalid' : ''), 'placeholder' =>  'Proximacita', 'id' => 'inputFecha2']) }}
                         <div class="input-group-addon input-group-prepend">
@@ -59,9 +51,18 @@
                 </div>
                 <script type="text/javascript">
                     $(function () {
-                        $("#inputFecha2").datetimepicker({
-                            format: 'YYYY-MM-DD'
-
+                        $('#inputFecha').datetimepicker({
+                            format: 'YYYY-MM-DD',
+                        });
+                        $('#inputFecha2').datetimepicker({
+                            useCurrent: false,
+                            format: 'YYYY-MM-DD', //Important! See issue #1075
+                    });
+                        $("#inputFecha").on("dp.change", function (e) {
+                            $('#inputFecha2').data("DateTimePicker").minDate(e.date);
+                        });
+                        $("#inputFecha2").on("dp.change", function (e) {
+                            //$('#inputFecha').data("DateTimePicker").minDate(e.date);
                         });
                     });
                 </script>

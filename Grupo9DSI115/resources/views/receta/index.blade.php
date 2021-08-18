@@ -70,12 +70,12 @@ Registrar Receta
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
+                                        <th>Paciente</th>
                                         <th>Fecha</th>
                                         <th>Consulta</th>
-										<th>Descripcion</th>
-										<th>Proximacita</th>
-										<th>Paciente</th>
+										{{--<th>Descripcion</th>
+										<th>Proximacita</th>--}}
+										
 
                                         <th></th>
                                     </tr>
@@ -84,12 +84,17 @@ Registrar Receta
                                     @foreach ($recetas as $receta)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
+                                            <td>{{ $receta->Consulta->Paciente->apellidos }}, {{ $receta->Consulta->Paciente->nombres }}</td>
                                             <td>{{ $receta->fecha }}</td>
-                                            <td>{{ $receta->consulta_id }}</td>
-											<td>{!! Str::words($receta->descripcion, 2, ' ...') !!}</td>
-											<td>{{ $receta->proximaCita }}</td>
-											<td>{{ $receta->Paciente->apellidos }}, {{ $receta->Paciente->nombres }}</td>
+                                            <td>
+                                                <a href="#" class="link-primary" id="mediumButton" data-toggle="modal"
+                                                data-target="#mediumModal" data-attr="{{ route('consultas.show', $receta->Paciente->id) }}">
+                                                    {!! Str::words($receta->Consulta->descripcion, 6, ' ...') !!}
+                                                </a>
+                                            </td>
+											{{--<td>{!! Str::words($receta->descripcion, 2, ' ...') !!}</td>
+											<td>{{ $receta->proximaCita }}</td>--}}
+											
 
                                             <td>
 

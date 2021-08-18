@@ -1,11 +1,11 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD DOCTOR GENERAL
+    EXPEDIENTE
 @endsection
 
 @section('titulo')
-    DASHBOARD DOCTOR GENERAL
+    EXPEDIENTE
 @endsection
 
 @section('descripcion')

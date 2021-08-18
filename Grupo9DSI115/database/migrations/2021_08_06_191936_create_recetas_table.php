@@ -21,10 +21,18 @@ class CreateRecetasTable extends Migration
             //llave foranea
             //consulta
             $table->unsignedBigInteger('consulta_id')->require();
-            $table->foreign('consulta_id')->references('id')->on('consultas');
+            $table->foreign('consulta_id')
+                    ->references('id')
+                    ->on('consultas')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             //paciente
             $table->unsignedBigInteger('paciente_id')->require();
-            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('paciente_id')
+                    ->references('id')
+                    ->on('pacientes')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
             $table->timestamps();
         });
