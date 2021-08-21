@@ -17,9 +17,12 @@ use App\Sexo;
 }); */
 
 //prueba
-Route::get('/citas', function () {
+/*Route::get('/citas', function () {
     return view('DoctoraDental.DashboardDoctoraDental');
-});
+});*/
+//cita
+Route::resource('citas', 'CitaController');
+Route::get('citas/{cita}/borrar', 'CitaController@delete')->name('citas.delete');
 
 Route::get('/expediente', function () {
     return view('Expediente.index');

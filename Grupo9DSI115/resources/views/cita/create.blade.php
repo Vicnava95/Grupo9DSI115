@@ -1,30 +1,22 @@
-@extends('layouts.app')
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
 
-@section('template_title')
-    Create Cita
-@endsection
+            @includeif('partials.errors')
 
-@section('content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <span class="card-title">Crear Cita</span>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('citas.store') }}"  role="form" enctype="multipart/form-data">
+                        @csrf
 
-                @includeif('partials.errors')
+                        @include('cita.form')
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Create Cita</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('citas.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-
-                            @include('cita.form')
-
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+    </div>
+</section>
