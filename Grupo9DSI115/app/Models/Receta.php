@@ -25,10 +25,11 @@ class Receta extends Model
 {
     
     static $rules = [
-		'descripcion' => 'required',
-		'fecha' => 'required',
-		'consulta_id' => 'required',
-		'paciente_id' => 'required',
+		'descripcion' => 'required|max:255|string',
+		'fecha' => 'required|date',
+        'proximaCita'=> 'nullable|date|after_or_equal:fecha',
+		'consulta_id' => 'required|integer|exists:consultas,id',
+		'paciente_id' => 'required|integer|exists:pacientes,id',
     ];
 
     protected $perPage = 20;

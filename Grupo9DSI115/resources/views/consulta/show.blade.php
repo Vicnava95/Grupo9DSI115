@@ -16,7 +16,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Doctor:</strong>
-                            {{ $consulta->persona_id }}
+                            {{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>

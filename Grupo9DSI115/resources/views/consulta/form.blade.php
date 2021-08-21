@@ -4,29 +4,33 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     {{ Form::label('Paciente*') }}                    
-                    <select class="custom-select custom-select-m bg-dark" style="color:lightgray">
+                    {{--<select class="custom-select custom-select-m bg-dark" style="color:lightgray">
                         <option selected >Seleccione un paciente</option>
                         @foreach ($pacientes as $paciente)
                             <option value="{{ $paciente['id'] }}"> {{ $paciente['nombres'] }} </option>
                         @endforeach
-                    </select>
-                    {{-- Form::text('paciente_id', $consulta->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) --}}
+                    </select> --}}
+                    {{ Form::text('paciente_id', $consulta->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-4 col-12">
-                
                 <div class="form-group">
                     {{ Form::label('Doctor*') }}
-                    <select class="custom-select custom-select-m bg-dark" style="color:lightgray">
-                        <option selected >Seleccione un doctor</option>
-                        @foreach ($personas as $persona)
-                            <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} </option>
-                        @endforeach
-                    </select>
-                    {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
-
+                       <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
+                         <option  >Seleccione un doctor</option>
+                         @foreach ($personas as $persona)
+                          @if ($consulta->paciente_id)
+                          <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                          @else
+                          <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                          @endif
+                          
+                         @endforeach
+                        </select>
+                      {{-- Form::text('persona_id', $consulta->persona_id, ['class' => 'form-control' . ($errors->has('persona_id') ? ' is-invalid' : ''), 'placeholder' => 'Persona Id']) --}}
+                     {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
+                  </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">

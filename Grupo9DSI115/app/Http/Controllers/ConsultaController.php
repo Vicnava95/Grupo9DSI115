@@ -21,7 +21,6 @@ class ConsultaController extends Controller
     public function index(Request $request)
     {
         $texto =trim($request->get('texto'));
-        //$doctores = Persona::all();
         if($texto==''){
             $consultas = Consulta::paginate();
         } else{
@@ -86,8 +85,8 @@ class ConsultaController extends Controller
     public function edit($id)
     {
         $consulta = Consulta::find($id);
-
-        return view('consulta.edit', compact('consulta'));
+        $personas = Persona::all();
+        return view('consulta.edit', compact('consulta','personas'));
     }
 
     /**

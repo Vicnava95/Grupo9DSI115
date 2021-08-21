@@ -25,7 +25,7 @@ class RecetaTableSeeder extends Seeder
             'descripcion' => 'Sertralina ALMUS , Comprimidos recubiertos con pelicula EFG, 25 mg los primeros 2 dias, luego 50 mg durante 5 dias.',
             'fecha' => '2021-08-16',
             'proximaCita' => '2021-08-23',
-            'consulta_id' => '1',
+            'consulta_id' => '2',
             'paciente_id' => '1'
         ]);
 

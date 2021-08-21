@@ -75,7 +75,7 @@ Registrar Consultas
                                         <th>Paciente</th>
 										<th>Doctor</th>
                                         <th>Fecha</th>
-										<th>Descripcion</th>
+										{{--<th>Descripcion</th>--}}
 										
                                         <th></th>
                                     </tr>
@@ -87,12 +87,9 @@ Registrar Consultas
 
                                             {{--<td>{{ $consulta->paciente_id }}</td>--}}
                                             <td>{{ $consulta->Paciente->apellidos }}, {{ $consulta->Paciente->nombres }}</td>
-											<td>{{ $consulta->persona_id }}</td>
-                                            
+											<td>{{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}</td>
                                             <td>{{ $consulta->fecha }}</td>
-                                            <td>{!! Str::words($consulta->descripcion, 4, ' ...') !!}</td>
-											
-											
+                                            {{--<td>{!! Str::words($consulta->descripcion, 3, ' ...') !!}</td>--}}
 											
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
