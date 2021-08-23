@@ -23,13 +23,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Receta extends Model
 {
-    
+
     static $rules = [
 		'descripcion' => 'required|max:255|string',
 		'fecha' => 'required|date',
         'proximaCita'=> 'nullable|date|after_or_equal:fecha',
 		'consulta_id' => 'required|integer|exists:consultas,id',
-		'paciente_id' => 'required|integer|exists:pacientes,id',
     ];
 
     protected $perPage = 20;
@@ -39,7 +38,7 @@ class Receta extends Model
      *
      * @var array
      */
-    protected $fillable = ['descripcion','fecha','proximaCita','consulta_id','paciente_id'];
+protected $fillable = ['descripcion','fecha','proximaCita','consulta_id'/*,'paciente_id'*/];
 
 
     /**
@@ -49,14 +48,8 @@ class Receta extends Model
     {
         return $this->hasOne('App\Models\Consulta', 'id', 'consulta_id');
     }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function paciente()
-    {
-        return $this->hasOne('App\Models\Paciente', 'id', 'paciente_id');
-    }
-    
+
+
+
 
 }

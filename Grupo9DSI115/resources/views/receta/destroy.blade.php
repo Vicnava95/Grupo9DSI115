@@ -7,7 +7,7 @@
                 <div class="modal-body" id="mediumBody">
                     <div>
                         <!-- the result to be displayed apply here -->
-                        ¿Desea eliminar la receta del paciente <b>{{$paciente->apellidos}}, {{$paciente->nombres}}</b>  en el dia <b>{{ $receta->fecha }}</b>?
+                        ¿Desea eliminar la receta de la consulta realizada el dia <b>{{ $receta->consulta->fecha }}</b>?
                     </div>
                 </div>
 

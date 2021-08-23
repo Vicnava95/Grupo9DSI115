@@ -75,7 +75,7 @@ Registrar Receta
                                         <th>Consulta</th>
 										{{--<th>Descripcion</th>
 										<th>Proximacita</th>--}}
-										
+
 
                                         <th></th>
                                     </tr>
@@ -88,13 +88,13 @@ Registrar Receta
                                             <td>{{ $receta->fecha }}</td>
                                             <td>
                                                 <a href="#" class="link-primary" id="mediumButton" data-toggle="modal"
-                                                data-target="#mediumModal" data-attr="{{ route('consultas.show', $receta->Paciente->id) }}">
+                                                data-target="#mediumModal" data-attr="{{ route('consultas.show', $receta->Consulta->Paciente->id) }}">
                                                     {!! Str::words($receta->Consulta->descripcion, 6, ' ...') !!}
                                                 </a>
                                             </td>
 											{{--<td>{!! Str::words($receta->descripcion, 2, ' ...') !!}</td>
 											<td>{{ $receta->proximaCita }}</td>--}}
-											
+
 
                                             <td>
 

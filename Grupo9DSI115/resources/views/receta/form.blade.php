@@ -8,13 +8,6 @@
                     {!! $errors->first('consulta_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    {{ Form::label('paciente_id*') }}
-                    {{ Form::text('paciente_id', $receta->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
-                    {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-12">

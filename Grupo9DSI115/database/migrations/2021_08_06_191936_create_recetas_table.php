@@ -26,13 +26,6 @@ class CreateRecetasTable extends Migration
                     ->on('consultas')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            //paciente
-            $table->unsignedBigInteger('paciente_id')->require();
-            $table->foreign('paciente_id')
-                    ->references('id')
-                    ->on('pacientes')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
 
             $table->timestamps();
         });

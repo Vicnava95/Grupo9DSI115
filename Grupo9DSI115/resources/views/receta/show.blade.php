@@ -11,10 +11,6 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <strong>Paciente:</strong>
-                            {{ $receta->Paciente->apellidos }}, {{ $receta->Paciente->nombres }}
-                        </div>
-                        <div class="form-group">
                             <strong>Consulta:</strong>
                             {{ $receta->Consulta->descripcion }}
                         </div>
@@ -30,7 +26,7 @@
                             <strong>Proxima cita:</strong>
                             {{ $receta->proximaCita }}
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

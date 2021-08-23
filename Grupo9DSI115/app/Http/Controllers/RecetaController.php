@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Receta;
 use App\Model\Consulta;
-use App\Models\Paciente;
+//use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 /**
@@ -116,8 +116,7 @@ class RecetaController extends Controller
     public function delete($id)
     {
         $receta = Receta::find($id);
-        $paciente = Paciente::find($receta->paciente_id);
-        return view('receta.destroy', compact('receta', 'paciente'));
+    return view('receta.destroy', compact('receta'));
     }
 
     /**
