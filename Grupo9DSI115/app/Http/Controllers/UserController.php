@@ -127,8 +127,9 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        $user = User::find($id);
-        return view('user.destroy', compact('user'));
+        $consulta = $this->Consulta::find($id);
+        $paciente = Paciente::find($user->paciente_id);
+        return view('user.destroy', compact('consulta', 'paciente'));
     }
 
     /**

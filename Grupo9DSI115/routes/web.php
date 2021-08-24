@@ -15,6 +15,21 @@ use App\Sexo;
 /* Route::get('/', function () {
     return view('welcome');
 }); */
+
+//prueba
+Route::get('/citas', function () {
+    return view('DoctoraDental.DashboardDoctoraDental');
+});
+
+Route::get('/expediente', function () {
+    return view('Expediente.index');
+});
+//consulta
+Route::resource('consultas', 'ConsultaController');
+Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
+//recetas
+Route::resource('recetas', 'RecetaController');
+
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
     Sexo::firstOrCreate(['nombre'=>'Femenino']);*/
