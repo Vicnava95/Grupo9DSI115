@@ -9,7 +9,7 @@
                     <span class="card-title">Registrar Consultas</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formCreate" action="{{ route('consultas.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formCreate" action="{{ route('consultas.store', ['urlView' => $urlView]) }}"  role="form" enctype="multipart/form-data">
                         @csrf
                         @include('consulta.form')
                     </form>

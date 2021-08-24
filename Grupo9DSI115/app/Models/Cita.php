@@ -28,9 +28,9 @@ class Cita extends Model
     static $rules = [
 		'fecha' => 'required',
 		'hora' => 'required',
-		'paciente_id' => 'required',
-		'persona_id' => 'required',
-		'estadoCita_id' => 'required',
+		'paciente_id' => 'required|integer|exists:pacientes,id',
+		'persona_id' => 'required|integer|exists:personas,id',
+		'estadoCita_id' => 'required|integer|exists:estado_citas,id'
     ];
 
     protected $perPage = 20;

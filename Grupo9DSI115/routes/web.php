@@ -23,13 +23,18 @@ use App\Sexo;
 //cita
 Route::resource('citas', 'CitaController');
 Route::get('citas/{cita}/borrar', 'CitaController@delete')->name('citas.delete');
+Route::post('citas/{urlView}', 'CitaController@store')->name('citas.store');
 
-Route::get('/expediente', function () {
-    return view('Expediente.index');
-});
+
+//citas doctor general
+Route::get('/citasdg', 'DoctorGeneralController@index')->name('citasdg.index');
+
 //consulta
 Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
+Route::get('consultas/create/{citaRef}', 'ConsultaController@createByDashboard')->name('consultasByDashboard.create');
+Route::post('consultas/{urlView}', 'ConsultaController@store')->name('consultas.store');
+
 //recetas
 Route::resource('recetas', 'RecetaController');
 Route::get('recetas/{receta}/borrar', 'RecetaController@delete')->name('recetas.delete');

@@ -16,15 +16,12 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-2 col-12 d-flex justify-content-center align-items-center">
-                    <a class="btn btn-primary" href="#" role="button">Crear paciente</a>
-                </div>
-                <div class="col-md-8 col-12 d-flex justify-content-center align-items-center">
+                <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
 
                     <form class="w-100 d-flex justify-content-center align-items-center" method="POST" id="formEdit" action="" role="form" enctype="multipart/form-data">
                         <div class="container">
                             <div class="row">
-                                <div class="form-group col-md-6 col-12">
+                                <div class="form-group col-md-5 col-12">
                                     <label for="fechaInicio">Fecha de inicio</label>
                                     <div class='input-group date'>
                                         <input type='text' class="form-control" id='fechaInicio' name='fechaInicio'/>
@@ -33,7 +30,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 col-12">
+                                <div class="form-group col-md-5 col-12">
                                     <label for="fechaFin">Fecha de fin</label>
                                     <div class='input-group date'>
                                         <input type='text' class="form-control" id='fechaFin' name='fechaFin'/>
@@ -42,18 +39,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-12 d-flex justify-content-center align-items-center">
-                                    <a class="btn btn-primary" href="#" role="button">Consultar fechas</a>
+                                <div class="form-group col-md-2 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary " href="#" role="button">Consultar fechas</a>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </form>
-
-                </div>
-                <div class="col-md-2 col-12 d-flex justify-content-center align-items-center">
-                    <a class="btn btn-primary" href="#" role="button">Crear paciente</a>
                 </div>
                 
                 <script type="text/javascript">
@@ -74,21 +65,33 @@
                     });
                 </script>
             </div>
+            <div class="row">
+                <div class="col-md-6 col-12 p-1 d-flex justify-content-center align-items-end">
+                    <a class="btn btn-primary" href="#" role="button">Crear paciente</a>
+                </div>
+                <div class="col-md-6 col-12 p-1 d-flex justify-content-center align-items-end">
+                    <a class="btn btn-primary" href="#" role="button">Crear paciente</a>
+                </div>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <h2 class="text-center">Citas programadas para este dia</h2>
             <div class="row mt-4">
                 <div class="col-12">
 
+                    <!-- Targeta -->
                     <div class="bg-dark rounded mb-4">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    Collapsible Group Item #1
-                                </button>
-                            </h2>
+                        <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
+                            <h3 class="mb-0 d-block">
+                                <a href="" class="btn btn-link text-white">Mario neta</a>
+                            </h3>
+                            <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                <i class="fas fa-arrow-down text-white"></i>
+                            </button>
+                            
                         </div>
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
                             </div>
@@ -96,14 +99,50 @@
                     </div>    
                     
                     <div class="bg-dark rounded mb-4">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
-                                    Collapsible Group Item #2
-                                </button>
-                            </h2>
+                        <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
+                            <h3 class="mb-0 d-block">
+                                <a href="" class="btn btn-link text-white">Mario neta</a>
+                            </h3>
+                            <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <i class="fas fa-arrow-down text-white"></i>
+                            </button>
+                            
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapse2" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="bg-dark rounded mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
+                            <h3 class="mb-0 d-block">
+                                <a href="" class="btn btn-link text-white">Mario neta</a>
+                            </h3>
+                            <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                <i class="fas fa-arrow-down text-white"></i>
+                            </button>
+                            
+                        </div>
+                        <div id="collapse3" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+                            </div>
+                        </div>
+                    </div>    
+                    
+                    <div class="bg-dark rounded mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
+                            <h3 class="mb-0 d-block">
+                                <a href="" class="btn btn-link text-white">Mario neta</a>
+                            </h3>
+                            <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                <i class="fas fa-arrow-down text-white"></i>
+                            </button>
+                            
+                        </div>
+                        <div id="collapse4" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
                             </div>

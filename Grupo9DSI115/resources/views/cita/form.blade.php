@@ -3,9 +3,25 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
+                    {{ Form::label('paciente_id') }}
+                    {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
+                    {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('persona_id') }}
+                    {{ Form::text('persona_id', $cita->persona_id, ['class' => 'form-control' . ($errors->has('persona_id') ? ' is-invalid' : ''), 'placeholder' => 'Persona Id']) }}
+                    {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
                     {{ Form::label('fecha') }}
                     <div class="input-group date">
-                        {{ Form::text('fecha', !empty($cita->fecha) ? $citaa->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
+                        {{ Form::text('fecha', !empty($cita->fecha) ? $cita->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
@@ -24,26 +40,23 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('hora') }}
-                    {{ Form::text('hora', $cita->hora, ['class' => 'form-control' . ($errors->has('hora') ? ' is-invalid' : ''), 'placeholder' => 'Hora']) }}
-                    {!! $errors->first('hora', '<div class="invalid-feedback">:message</p>') !!}
+                    <div class="input-group date">
+                        {{ Form::text('hora', $cita->hora, ['id'=>'hora', 'class' => 'form-control' . ($errors->has('hora') ? ' is-invalid' : ''), 'placeholder' => 'Hora']) }}
+                        {!! $errors->first('hora', '<div class="invalid-feedback">:message</p>') !!}
+                                <div class="input-group-addon input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                </div>
+                            </div>    
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('paciente_id') }}
-                    {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
-                    {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('persona_id') }}
-                    {{ Form::text('persona_id', $cita->persona_id, ['class' => 'form-control' . ($errors->has('persona_id') ? ' is-invalid' : ''), 'placeholder' => 'Persona Id']) }}
-                    {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#hora").datetimepicker({
+                            format: 'HH:mm',
+                            stepping: 30
+                        });
+                    });
+                 </script>
             </div>
         </div>
         <div class="row">

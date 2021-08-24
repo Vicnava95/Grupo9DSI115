@@ -73,11 +73,9 @@ Registrar Citas
                                         <th>No</th>
                                         
                                         <th>Paciente</th>
-										<th>Doctor</th>
                                         <th>Fecha</th>
-										<th>Descripcion</th>
-										
-                                        <th></th>
+										<th>Hora</th>
+                                        <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,10 +85,11 @@ Registrar Citas
 
                                             {{--<td>{{ $cita->paciente_id }}</td>--}}
                                             <td>{{ $cita->Paciente->apellidos }}, {{ $cita->Paciente->nombres }}</td>
-											<td>{{ $cita->persona_id }}</td>
+											{{--<td>{{ $cita->Persona->apellidoPersonas }}, {{ $cita->Persona->nombrePersonas }}</td> --}}
                                             
                                             <td>{{ $cita->fecha }}</td>
-                                            <td>{!! Str::words($cita->descripcion, 4, ' ...') !!}</td>
+                                            <td>{{ $cita->hora }}</td>
+                                            <td>{{ $cita->EstadoCita->nombre }}</td>
 											
 											
 											
@@ -161,7 +160,6 @@ Registrar Citas
     </div>
 
     <script>
-        
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
             mostrarModal(href)

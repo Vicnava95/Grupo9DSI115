@@ -1,31 +1,24 @@
-@extends('layouts.app')
+<section class="content container-fluid">
+    <div class="">
+        <div class="col-md-12">
 
-@section('template_title')
-    Update Cita
-@endsection
+            @includeif('partials.errors')
 
-@section('content')
-    <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <span class="card-title">Update Cita</span>
+                </div>
+                <div class="card-body">
+                    <form method="POST" id="formEdit" action="{{ route('citas.update', $cita->id) }}"  role="form" enctype="multipart/form-data">
+                        {{ method_field('PATCH') }}
+                        @csrf
 
-                @includeif('partials.errors')
+                        @include('cita.form')
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Update Cita</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('citas.update', $cita->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
-
-                            @include('cita.form')
-
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+    </div>
+</section>
+    

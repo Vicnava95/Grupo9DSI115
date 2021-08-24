@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paciente;
-use App\Models\Consulta;
+use App\Models\Cita;
 use App\Models\Persona;
+use App\Models\Consulta;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 /**
@@ -39,27 +40,41 @@ class ConsultaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
+        $url = url()->previous();
+        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
+        $cita = new Cita();
         $consulta = new Consulta();
         $pacientes = Paciente::all();
         $personas = Persona::all();
-        return view('consulta.create', compact('consulta','pacientes', 'personas'));
+        return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
+    } 
+
+    public function createByDashboard(Cita $citaRef)
+    {
+        $url = url()->previous();
+        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
+        $cita = $citaRef;
+        $consulta = new Consulta();
+        $pacientes = Paciente::all();
+        $personas = Persona::all();
+        return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
     }
 
     /**
-     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $urlView)
     {
         request()->validate(Consulta::$rules);
 
         $consulta = Consulta::create($request->all());
 
-        return redirect()->route('consultas.index')
+        return redirect()->route($urlView)
             ->with('success', 'Consulta creada exitosamente.');
     }
 

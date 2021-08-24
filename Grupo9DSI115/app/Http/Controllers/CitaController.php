@@ -11,11 +11,17 @@ use Illuminate\Http\Request;
  */
 class CitaController extends Controller
 {
+
+    const urlRedirect = [
+        'cita.create',
+        'citasdg.index'
+    ];
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $citas = Cita::paginate();
@@ -29,10 +35,20 @@ class CitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /* 
+        
+    */
+    /**
+      * $bandera
+        0 == index,
+        0 != otro
+      */
+    public function create(Request $request)
     {
         $cita = new Cita();
-        return view('cita.create', compact('cita'));
+        $url = url()->previous();
+        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
+        return view('cita.create', compact('cita','urlView'));
     }
 
     /**
@@ -41,13 +57,13 @@ class CitaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $urlView)
     {
         request()->validate(Cita::$rules);
-
+        
         $cita = Cita::create($request->all());
 
-        return redirect()->route('citas.index')
+        return redirect()->route($urlView)
             ->with('success', 'Cita created successfully.');
     }
 

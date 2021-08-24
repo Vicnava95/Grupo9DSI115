@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PersonaTableSeeder::class]);
         $this->call([ConsultaSeeder::class]);
         $this->call([RecetaTableSeeder::class]);
+        $this->call([EstadoCitaSeeder::class]);
+        $this->call([CitaSeeder::class]);
     }
 }

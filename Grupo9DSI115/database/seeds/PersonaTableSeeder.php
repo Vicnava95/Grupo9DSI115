@@ -15,8 +15,8 @@ class PersonaTableSeeder extends Seeder
     public function run()
     {
         DB::table('personas')->insert([
-            'nombrePersonas'=> 'Gustavo Heriberto',
-            'apellidoPersonas'=>'Coto Caballero',
+            'nombrePersonas'=> 'Adolf',
+            'apellidoPersonas'=>'Hitler',
             'dui'=>'05148656-8',
             'telefono'=>'7450-9297',
             'fechaDeNacimiento'=>'1988-01-01',

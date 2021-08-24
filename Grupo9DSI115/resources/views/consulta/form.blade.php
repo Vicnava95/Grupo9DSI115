@@ -10,7 +10,7 @@
                             <option value="{{ $paciente['id'] }}"> {{ $paciente['nombres'] }} </option>
                         @endforeach
                     </select> --}}
-                    {{ Form::text('paciente_id', $consulta->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
+                    {{ Form::text('paciente_id', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
@@ -22,6 +22,8 @@
                          @foreach ($personas as $persona)
                           @if ($consulta->paciente_id)
                           <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                          @elseif ($cita->persona_id == $persona->id)
+                          <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>    
                           @else
                           <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
                           @endif
@@ -36,7 +38,7 @@
                 <div class="form-group">
                     {{ Form::label('Fecha*') }}
                     <div class="input-group date">
-                        {{ Form::text('fecha', !empty($consulta->fecha) ? $consulta->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
+                        {{ Form::text('fecha', empty($cita->fecha) ? $consulta->fecha: $cita->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
