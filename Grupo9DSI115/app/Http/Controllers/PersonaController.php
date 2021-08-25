@@ -92,6 +92,7 @@ class PersonaController extends Controller
         $persona = Persona::find($id);
         $sexos = Sexo::pluck('nombre','id');
         $roles = Rolpersona::pluck('nombreRolPersona','id');
+
         return view('persona.edit', compact('persona','sexos','roles'));
     }
 

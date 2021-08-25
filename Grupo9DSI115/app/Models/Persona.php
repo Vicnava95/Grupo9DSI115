@@ -59,7 +59,7 @@ class Persona extends Model
      */
     public function sexo()
     {
-        return $this->belongsTo('App\Models\Sexo', 'id', 'sexo_id');
+        return $this->hasOne('App\Models\Sexo', 'id', 'sexo_id');
     }
     
 

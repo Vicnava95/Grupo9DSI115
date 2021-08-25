@@ -181,9 +181,23 @@ Personas
             setTimeout(function(){
                 @foreach ($persona->getAttributes() as $key => $value)
                     @error($key)
-                        $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
-                    @enderror
-                    $("[name='{{$key}}']").val('{{ old($key) }}')
+                        @if ($key == 'sexo_id')
+                            $("[name='{{$key}}']").addClass('is-invalid').parent().parent().parent().append('<div class="invalid-feedback d-block"><p>{{$message}}</p></div>')
+                        @else
+                            $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
+                        @endif
+                    @enderror 
+
+                    @if ($key == 'sexo_id')
+                        @if (old($key)==1)
+                            $("[name='{{$key}}'][value=1]").attr('checked', true)
+                        @endif
+                        @if (old($key)==2)
+                            $("[name='{{$key}}'][value=2]").attr('checked', true)
+                        @endif
+                    @else
+                        $("[name='{{$key}}']").val('{{ old($key) }}')
+                    @endif
                 @endforeach
             },500)
         @endif

@@ -73,11 +73,11 @@
                     {{ Form::label('Sexo*') }}
                     <div class="selectgroup w-100">
                         <label class="selectgroup-item">
-                            {{ Form::radio('sexo_id', 1, !empty($paciente->sexo_id) && $paciente->sexo->id == 1 ? true : false, ['class' => 'selectgroup-input' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'value' => '1']) }}
+                            {{ Form::radio('sexo_id', 1, !empty($persona->sexo_id) && $persona->sexo->id == 1 ? true : false, ['class' => 'selectgroup-input' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'value' => '1']) }}
                             <span class="selectgroup-button">Hombre</span>
                         </label>
                         <label class="selectgroup-item">
-                            {{ Form::radio('sexo_id', 2, !empty($paciente->sexo_id) && $paciente->sexo->id == 2 ? true : false, ['class' => 'selectgroup-input' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'value' => '2']) }}
+                            {{ Form::radio('sexo_id', 2, !empty($persona->sexo_id) && $persona->sexo->id == 2 ? true : false, ['class' => 'selectgroup-input' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'value' => '2']) }}
                             <span class="selectgroup-button">Mujer</span>
                         </label>
                     </div>
