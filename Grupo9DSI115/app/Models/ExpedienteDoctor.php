@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpedienteDoctor extends Model
 {
-    //
+    protected $fillable = ['description'];
+
+    public function paciente(){
+        return $this->hasOne(Paciente::class);
+    }
+
+    public function consultas(){
+        return $this->belongsToMany(Consulta::class, ['consulta_expedienteDoctor']);
+    }
 }
