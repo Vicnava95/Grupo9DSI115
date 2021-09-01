@@ -14,7 +14,7 @@ class ExpedienteDoctorController extends Controller
      */
     public function index()
     {
-        //
+        return view('DoctorGeneral.ExpedientePacienteDoctorGeneral');
     }
 
     /**

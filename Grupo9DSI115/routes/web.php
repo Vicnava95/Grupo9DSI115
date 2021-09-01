@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function (){
 
     //Rutas asignadas para el Doctor General (SOLO PARA EL DOCTOR)
     Route::group(['middleware' => 'DoctorGeneralMiddleware'],function(){
+        Route::get('/expedientePaciente','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor'); 
         Route::get('/doctorGeneral',function(){
             return view('Prueba.doctorGeneral');
         })->name('doctorGeneral');
