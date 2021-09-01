@@ -52,7 +52,6 @@ class DashboardController extends Controller
 
     }
 
-
     public function doctorDentalIndex(Request $request){
         $fechaInicio = trim($request->get('fechaInicio'));
         $fechaFin = trim($request->get('fechaFin'));

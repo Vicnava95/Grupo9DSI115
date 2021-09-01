@@ -89,13 +89,13 @@
                             </a>
                             @break
                         @case(2)
-                            <a href="{{route('doctorGeneral')}}">
+                            <a href="{{route('dshDoctorGaneral.index')}}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Dashboard</p>
                             </a>
                             @break
                         @case(3)
-                            <a href="{{route('doctoraDental')}}">
+                            <a href="{{route('dshDoctorDental.index')}}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Dashboard</p>
                             </a>

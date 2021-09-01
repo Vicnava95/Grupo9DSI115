@@ -27,9 +27,9 @@ Route::post('citas/{urlView}', 'CitaController@store')->name('citas.store');
 
 
 //citas doctor general
-Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('citasdg.index');
+Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGaneral.index');
 //citas doctor dental
-Route::get('/dashboardDoctorDental', 'DashboardController@doctorGeneralIndex')->name('citasdg.index');
+Route::get('/dashboardDoctorDental', 'DashboardController@doctorDentalIndex')->name('dshDoctorDental.index');
 
 //consulta
 Route::resource('consultas', 'ConsultaController');

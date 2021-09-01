@@ -5,8 +5,7 @@
 @endsection
 
 @section('titulo')
-    DASHBOARD DOCTOR DENTAL    
-    @endforeach
+    DASHBOARD DOCTOR DENTAL
 @endsection
 
 @section('descripcion')
@@ -18,7 +17,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
-                    <form class="w-100 d-flex justify-content-center align-items-center" method="GET" action="{{ route('citasdg.index') }}">
+                    <form class="w-100 d-flex justify-content-center align-items-center" method="GET" action="{{ route('dshDoctorDental.index') }}">
                         <div class="container">
                             <div class="row">
                                 <div class="form-group col-md-5 col-12">
