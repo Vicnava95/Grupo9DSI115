@@ -1,11 +1,12 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD DOCTOR GENERAL
+    DASHBOARD DOCTOR DENTAL
 @endsection
 
 @section('titulo')
-    DASHBOARD DOCTOR GENERAL
+    DASHBOARD DOCTOR DENTAL    
+    @endforeach
 @endsection
 
 @section('descripcion')
@@ -119,6 +120,10 @@
                     </div>
                     @endforeach
                     <!-- Targeta -->
+                        
+                    
+                    
+
                 </div>
             </div>
         </div>

@@ -24,12 +24,12 @@
                        <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
                          <option  >Seleccione un doctor</option>
                          @foreach ($personas as $persona)
-                          @if ($consulta->paciente_id)
-                          <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                          @if ($consulta->paciente_id == $persona->id)
+                            <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>
                           @elseif ($cita->persona_id == $persona->id)
-                          <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>    
+                            <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>    
                           @else
-                          <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                            <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
                           @endif
                           
                          @endforeach

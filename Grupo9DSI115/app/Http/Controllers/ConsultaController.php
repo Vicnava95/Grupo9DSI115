@@ -49,7 +49,10 @@ class ConsultaController extends Controller
         $cita = new Cita();
         $consulta = new Consulta();
         $pacientes = Paciente::all();
-        $personas = Persona::all();
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
         return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
     } 
 
@@ -60,7 +63,10 @@ class ConsultaController extends Controller
         $cita = $citaRef;
         $consulta = new Consulta();
         $pacientes = Paciente::all();
-        $personas = Persona::all();
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
         return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
     }
 
@@ -101,8 +107,12 @@ class ConsultaController extends Controller
     public function edit($id)
     {
         $consulta = Consulta::find($id);
-        $personas = Persona::all();
-        return view('consulta.edit', compact('consulta','personas'));
+        $cita = new Cita();
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        return view('consulta.edit', compact('consulta','personas','cita'));
     }
 
     /**
