@@ -88,4 +88,9 @@
             searchPaciente(paciente);
             console.log(paciente); 
         });
+
+        $(document).on('click', 'li', function(){  
+        $('#paciente_id').val($(this).text());   
+        $('#listaPacientes').fadeOut();
+    });
 </script>
