@@ -34,6 +34,7 @@ Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 Route::get('consultas/create/{citaRef}', 'ConsultaController@createByDashboard')->name('consultasByDashboard.create');
 Route::post('consultas/{urlView}', 'ConsultaController@store')->name('consultas.store');
+Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
 
 //recetas
 Route::resource('recetas', 'RecetaController');

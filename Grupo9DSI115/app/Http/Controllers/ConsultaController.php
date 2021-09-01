@@ -7,6 +7,7 @@ use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use DB;
 
 /**
  * Class ConsultaController
@@ -145,5 +146,22 @@ class ConsultaController extends Controller
 
         return redirect()->route('consultas.index')
             ->with('success', 'Consulta eliminada exitosamente');
+    }
+
+    public function searchPaciente($name){
+        if($name != ''){
+            $data = DB::table('pacientes')
+                ->where('nombres','LIKE',"%{$name}%")
+                ->get();//obtenemos el data si cumple la restricción
+            
+                $output = '<ul id="listP" class="dropdown-menu" style="display:block; position:relative">';
+            foreach($data as $row)
+            {
+                $output .= 
+                '<li value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.'+'.$row->apellidos.'</li>';
+            }
+            $output .= '</ul><br>';
+            echo $output;    
+        }
     }
 }
