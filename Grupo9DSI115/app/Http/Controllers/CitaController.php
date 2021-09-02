@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cita;
+use App\Models\ExpedienteDoctor;
+use App\Models\ExpedienteDoctoraDental;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 /**
@@ -62,7 +65,51 @@ class CitaController extends Controller
         request()->validate(Cita::$rules);
         
         $cita = Cita::create($request->all());
+        //Busco al doctor o doctora que fue asignada a la cita y obtengo el objeto
+        $persona = Persona::find($request->persona_id);
+        //dd($persona);
 
+        //Obtengo el tipo de doctor que es la persona 
+        //Es un if para conocer que de doctor se va abrir el expediente
+        // 2-Doctor General
+        // 3-Doctora Dental 
+        if($persona->rolpersona_id == 2){
+            //Doctor General
+            $expedientePaciente_Doctor = ExpedienteDoctor::where('paciente_id',$cita->paciente_id)->get();
+            //dd($expedientePaciente_Doctor);
+            
+            if($expedientePaciente_Doctor->isEmpty()){
+                //Crear expediente
+                $crearExpedientePaciente_Doctor = ExpedienteDoctor::create([
+                    'paciente_id' => $cita->paciente_id
+                ]);
+                $crearExpedientePaciente_Doctor->save();
+                //dd($crearExpedientePaciente_Doctor);
+
+            }else{
+                //dd('La paciente ya existe'); //El expediente de ese paciente ya existe
+            }
+            
+
+        }else{
+            //Doctora Dental
+            $expedientePaciente_DoctoraDental = ExpedienteDoctoraDental::where('paciente_id',$cita->paciente_id)->get();
+            //dd($expedientePaciente_DoctoraDental);
+            
+            if($expedientePaciente_DoctoraDental->isEmpty()){
+                //Crear expediente
+                $crearExpedientePaciente_Doctor = ExpedienteDoctoraDental::create([
+                    'paciente_id' => $cita->paciente_id
+                ]);
+                $crearExpedientePaciente_Doctor->save();
+                //dd($crearExpedientePaciente_Doctor);
+
+            }else{
+                //dd('La paciente ya existe Doctora'); //El expediente de ese paciente ya existe
+            }
+            
+
+        }
         return redirect()->route($urlView)
             ->with('success', 'Cita created successfully.');
     }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpedienteDoctor extends Model
 {
-    protected $fillable = ['description'];
+    protected $fillable = ['paciente_id','description'];
 
     public function paciente(){
         return $this->hasOne(Paciente::class);
