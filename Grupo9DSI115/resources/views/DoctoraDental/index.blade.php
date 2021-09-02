@@ -66,14 +66,9 @@
                 </script>
             </div>
             <div class="row">
-                <div class="col-md-6 col-12 p-1 d-flex justify-content-center align-items-end">
+                <div class="col-md-12 col-12 p-1 d-flex justify-content-center align-items-end">
                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
                     data-attr="{{ route('citas.create') }}">Crear Cita</a>
-                </div>
-                <div class="col-md-6 col-12 p-1 d-flex justify-content-center align-items-end">
-                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
-                    data-attr="{{ route('pacientes.create') }}">Crear paciente</a>
-                </div>
                 </div>
             </div>
         </div>

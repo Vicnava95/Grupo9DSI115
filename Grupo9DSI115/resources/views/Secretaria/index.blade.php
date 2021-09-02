@@ -1,11 +1,11 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD DOCTOR GENERAL
+    DASHBOARD SECRETARIA
 @endsection
 
 @section('titulo')
-    DASHBOARD DOCTOR GENERAL
+    DASHBOARD SECRETARIA
 @endsection
 
 @section('descripcion')
@@ -16,56 +16,6 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
-                    <form class="w-100 d-flex justify-content-center align-items-center" method="GET" action="{{ route('dshDoctorGaneral.index') }}">
-                        <div class="container">
-                            <div class="row">
-                                <div class="form-group col-md-5 col-12">
-                                    <label for="fechaInicio">Fecha de inicio</label>
-                                    <div class='input-group date'>
-                                        <input type='text' class="form-control" id='fechaInicio' name='fechaInicio'/>
-                                        <div class="input-group-addon input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-5 col-12">
-                                    <label for="fechaFin">Fecha de fin</label>
-                                    <div class='input-group date'>
-                                        <input type='text' class="form-control" id='fechaFin' name='fechaFin'/>
-                                        <div class="input-group-addon input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-2 col-12 d-flex justify-content-center align-items-end">
-                                    <input class="btn btn-primary" type="submit" value="Consultar fechas">
-                                    
-                                </div>
-                            </div> 
-                        </div>
-                    </form>
-                </div>
-                
-                <script type="text/javascript">
-                    $(function () {
-                        $('#fechaInicio').datetimepicker({
-                            format: 'YYYY/MM/DD',
-                        });
-                        $('#fechaFin').datetimepicker({
-                            useCurrent: false,
-                            format: 'YYYY/MM/DD', //Important! See issue #1075
-                    });
-                        $("#fechaInicio").on("dp.change", function (e) {
-                            $('#fechaFin').data("DateTimePicker").minDate(e.date);
-                        });
-                        $("#fechaFin").on("dp.change", function (e) {
-                            $('#fechaInicio').data("DateTimePicker").maxDate(e.date);
-                        });
-                    });
-                </script>
-            </div>
-            <div class="row">
                 <div class="col-md-12 col-12 p-1 d-flex justify-content-center align-items-end">
                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
                     data-attr="{{ route('citas.create') }}">Crear Cita</a>
@@ -73,12 +23,7 @@
             </div>
         </div>
         <div class="card-body">
-            @if ($fechaInicio && $fechaFin)
-                <h2 class="text-center">Citas programadas entre las fechas: {{ $fechaInicio }} - {{ $fechaFin }}</h2>
-                @if (count($citas)<=0)
-                    <h2 class="text-center">No hay citas programadas</h2>
-                @endif
-            @elseif (count($citas)<=0)
+            @if (count($citas)<=0)
                 <h2 class="text-center">No hay citas programadas</h2>
             @else
                 <h2 class="text-center">Citas programadas para este dia</h2>

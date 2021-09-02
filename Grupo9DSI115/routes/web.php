@@ -30,6 +30,10 @@ Route::post('citas/{urlView}', 'CitaController@store')->name('citas.store');
 Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGaneral.index');
 //citas doctor dental
 Route::get('/dashboardDoctorDental', 'DashboardController@doctorDentalIndex')->name('dshDoctorDental.index');
+//citas secretaria
+Route::get('/dashboardSecretaria', 'DashboardController@secretariaIndex')->name('dshSecretaria.index');
+//citas administrador
+Route::get('/dashboardAdministrador', 'DashboardController@administradorIndex')->name('dshAdministrador.index');
 
 //consulta
 Route::resource('consultas', 'ConsultaController');

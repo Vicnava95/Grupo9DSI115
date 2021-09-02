@@ -83,7 +83,7 @@
                 <li class="nav-item">
                     @switch(Auth::user()->rols_fk)
                         @case(1)
-                            <a href="{{route('admin')}}">
+                            <a href="{{route('dshAdministrador.index')}}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -102,7 +102,7 @@
                             @break
 
                         @default
-                            <a href="{{route('secretaria')}}">
+                            <a href="{{route('dshSecretaria.index')}}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Dashboard</p>
                             </a>
