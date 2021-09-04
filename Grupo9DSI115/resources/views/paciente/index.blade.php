@@ -248,19 +248,19 @@ Pacientes
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar paciente";
+                    b.innerHTML = "";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar paciente";
+                    b.innerHTML = "";
                     break;
                 
                 case 'r':
-                    b.innerHTML = "Eliminar paciente";
+                    b.innerHTML = "";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar paciente";
+                    b.innerHTML = "";
                     break;
             }
         }

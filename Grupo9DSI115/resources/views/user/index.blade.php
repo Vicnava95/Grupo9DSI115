@@ -221,19 +221,19 @@ Registrar Usuario
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar Usuario";
+                    b.innerHTML = "";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar Usuario";
+                    b.innerHTML = "";
                     break;
 
                 case 'r':
-                    b.innerHTML = "Eliminar paciente";
+                    b.innerHTML = "";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar Usuario";
+                    b.innerHTML = "";
                     break;
             }
         }

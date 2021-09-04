@@ -253,19 +253,19 @@ Personas
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar persona";
+                    b.innerHTML = "";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar persona";
+                    b.innerHTML = "";
                     break;
                 
                 case 'r':
-                    b.innerHTML = "Eliminar persona";
+                    b.innerHTML = "";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar persona";
+                    b.innerHTML = "";
                     break;
             }
         }

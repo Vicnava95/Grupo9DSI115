@@ -206,19 +206,19 @@ Roles
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar rol";
+                    b.innerHTML = "";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar rol";
+                    b.innerHTML = "";
                     break;
                 
                 case 'r':
-                    b.innerHTML = "Eliminar rol";
+                    b.innerHTML = "";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar rol";
+                    b.innerHTML = "";
                     break;
             }
         }
