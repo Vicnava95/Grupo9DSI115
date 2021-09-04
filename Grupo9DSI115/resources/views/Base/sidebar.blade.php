@@ -95,7 +95,7 @@
                             </a>
                             @break
                         @case(3)
-                            <a href="{{route('doctorDental')}}">
+                            <a href="{{route('doctoraDental')}}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Dashboard DocDental</p>
                             </a>
