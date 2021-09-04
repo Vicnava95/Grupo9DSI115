@@ -21,7 +21,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('DUI') }}
-                    {{ Form::text('dui', !empty($paciente->dui) ? $paciente->dui : '', ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'DUI']) }}
+                    {{ Form::text('dui', !empty($paciente->dui) ? $paciente->dui : '', ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => '########-#']) }}
                     {!! $errors->first('dui', '<div class="invalid-feedback"><p>:message</p></div>') !!}
                 </div>
             </div>

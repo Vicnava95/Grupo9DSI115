@@ -68,9 +68,6 @@ Route::middleware(['auth'])->group(function (){
 
     /******* INICIO RUTAS COMPARTIDAS ********************/
     /******* El único requisito es que este logeado ****/
-    Route::get('/prueba',function(){
-        return view('Prueba.prueba');
-    })->name('prueba');
     Route::resource('pacientes', 'PacienteController');
     Route::get('pacientes/{paciente}/borrar', 'PacienteController@delete')->name('pacientes.delete');
     Route::resource('personas', 'PersonaController');

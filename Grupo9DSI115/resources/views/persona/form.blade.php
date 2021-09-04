@@ -22,7 +22,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('DUI') }}
-                    {{ Form::text('dui', $persona->dui, ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'DUI']) }}
+                    {{ Form::text('dui', $persona->dui, ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => '########-#', 'id' => 'dui']) }}
                     {!! $errors->first('dui', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="col-md-6 col-sm-12">    
                 <div class="form-group">
                     {{ Form::label('Teléfono*') }}
-                    {{ Form::text('telefono', !empty($persona->telefono) ? $persona->telefono : '', ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Teléfono']) }}
+                    {{ Form::text('telefono', !empty($persona->telefono) ? $persona->telefono : '', ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => '####-####' , 'id' => 'telef']) }}
                     {!! $errors->first('telefono', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
@@ -61,7 +61,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('NIT') }}
-                    {{ Form::text('nitPersona', $persona->nitPersona, ['class' => 'form-control' . ($errors->has('nitPersona') ? ' is-invalid' : ''), 'placeholder' => 'NIT']) }}
+                    {{ Form::text('nitPersona', $persona->nitPersona, ['class' => 'form-control' . ($errors->has('nitPersona') ? ' is-invalid' : ''), 'placeholder' => '####-######-###-#' , 'id' => 'nitPersona']) }}
                     {!! $errors->first('nitPersona', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
@@ -93,8 +93,13 @@
                 </div>
             </div>
         </div>
-
-
     </div>
   
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("input[id='nitPersona']").mask('0000-000000-000-0');
+        $("input[id='telef']").mask('0000-0000');
+        $("input[id='dui']").mask('00000000-0');
+    });
+</script>
