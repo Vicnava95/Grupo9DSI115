@@ -83,29 +83,30 @@
                 <li class="nav-item">
                     @switch(Auth::user()->rols_fk)
                         @case(1)
-                            <a href="{{route('admin')}}">
+                            <a href="{{route('dshAdministrador.index')}}">
                                 <i class="fas fa-layer-group"></i>
-                                <p>Dashboard Admin</p>
+                                <p>Dashboard</p>
                             </a>
                             @break
                         @case(2)
-                            <a href="{{route('doctorGeneral')}}">
+                            <a href="{{route('dshDoctorGaneral.index')}}">
                                 <i class="fas fa-layer-group"></i>
-                                <p>Dashboard DocGeneral</p>
+                                <p>Dashboard</p>
                             </a>
                             @break
                         @case(3)
                             <a href="{{route('doctoraDental')}}">
                                 <i class="fas fa-layer-group"></i>
-                                <p>Dashboard DocDental</p>
+                                <p>Dashboard</p>
                             </a>
                             @break
 
                         @default
-                            <a href="{{route('secretaria')}}">
+                            <a href="{{route('dshSecretaria.index')}}">
                                 <i class="fas fa-layer-group"></i>
-                                <p>Dashboard Secretaria</p>
+                                <p>Dashboard</p>
                             </a>
+
 
                     @endswitch
                 </li>
@@ -129,27 +130,46 @@
                 @endif
                 <!-- Expedientes Clinicos-->
                 @if(!(Auth::user()->rols_fk==4))
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
-                        <i class="fas fa-layer-group"></i>
-                        <p>Expedientes</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="base">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="components/avatars.html">
-                                    <span class="sub-item">Clinicos</span>
+                    @switch(Auth::user()->rols_fk)
+                        @case(1)
+                            <li class="nav-item">
+                                <a data-toggle="collapse" href="#base">
+                                    <i class="fas fa-layer-group"></i>
+                                    <p>Expedientes</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="base">
+                                    <ul class="nav nav-collapse">
+                                        <li>
+                                            <a href=" ">
+                                                <span class="sub-item">Clinicos</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href=" ">
+                                                <span class="sub-item">Dentales</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            @break
+                        @case(2)
+                            <li class="nav-item">
+                                <a href=" ">
+                                    <i class="fas fa-layer-group"></i>
+                                    <p>Expedientes</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="components/avatars.html">
-                                    <span class="sub-item">Dentales</span>
+                            @break
+                        @default
+                            <li class="nav-item">
+                                <a href=" ">
+                                    <i class="fas fa-layer-group"></i>
+                                    <p>Expedientes</p>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
+                    @endswitch
                 @endif
                 <!-- Pacientes-->
                 <li class="nav-item">

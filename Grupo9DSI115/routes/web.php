@@ -27,13 +27,20 @@ Route::post('citas/{urlView}', 'CitaController@store')->name('citas.store');
 
 
 //citas doctor general
-Route::get('/citasdg', 'DoctorGeneralController@index')->name('citasdg.index');
+Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGaneral.index');
+//citas doctor dental
+Route::get('/dashboardDoctorDental', 'DashboardController@doctorDentalIndex')->name('dshDoctorDental.index');
+//citas secretaria
+Route::get('/dashboardSecretaria', 'DashboardController@secretariaIndex')->name('dshSecretaria.index');
+//citas administrador
+Route::get('/dashboardAdministrador', 'DashboardController@administradorIndex')->name('dshAdministrador.index');
 
 //consulta
 Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 Route::get('consultas/create/{citaRef}', 'ConsultaController@createByDashboard')->name('consultasByDashboard.create');
 Route::post('consultas/{urlView}', 'ConsultaController@store')->name('consultas.store');
+Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
 
 //recetas
 Route::resource('recetas', 'RecetaController');

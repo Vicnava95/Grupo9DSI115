@@ -19,7 +19,7 @@ class ConsultaSeeder extends Seeder
             'descripcion'=> 'El paciente es hipocondriaco y al mismo tiempo pragmático, con una gran capacidad intelectual y de raciocinio y a la vez vital',
             'fecha'=>'2021-08-23',
             'paciente_id'=>'1',
-            'persona_id'=>'1'
+            'persona_id'=>'2'
         ]);
         
         DB::table('consultas')->insert([
@@ -40,7 +40,7 @@ class ConsultaSeeder extends Seeder
             'descripcion'=> 'Problemas de vista, le cuesta ver objetivos medianamente pequeños',
             'fecha'=>'2021-08-25',
             'paciente_id'=>'4',
-            'persona_id'=>'4'
+            'persona_id'=>'3'
         ]);
 
         DB::table('consultas')->insert([
@@ -54,7 +54,7 @@ class ConsultaSeeder extends Seeder
             'descripcion'=> 'Nauceas y vertigo, nivel alto de azucar',
             'fecha'=>'2021-08-24',
             'paciente_id'=>'6',
-            'persona_id'=>'4'
+            'persona_id'=>'2'
         ]);
     }
 }
