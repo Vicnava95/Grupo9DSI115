@@ -47,82 +47,115 @@
                 </div>
             </div>
         </div>
-
-        <div class="card-body" >
-            <div class="card">
-                <h2 class="text-center">Información "Paciente"</h2>
-                <div class="form-group">
-                    
-                    <div class="col-lg-12">
-                    <textarea name="contenido" id="contenido" class="form-control" rows="4" placeholder="Información del paciente: (Nombre, télefono)" ></textarea>
+    </div>
+    <div class="card-body" >
+        <h2 class="text">Información personal</h2>
+        <div class="card">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Nombre:</label>
+                    </div>
+                    <div class="form-group col-md-3 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Apellido:</label>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Celular:</label>
+                    </div>
+                    <div class="form-group col-md-3 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Fecha de nacimiento:</label>
                     </div>
                 </div>
-            </div>
-
-            <div class="card">
-                <h2 class="text-center">Detalles de la consulta (Actual)</h2>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
-                            <label class="text-center">Fecha:</label>
-                        </div>
-                        <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
-                            <label class="text-center">Presión:</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
-                            <label class="text-center">Tipo:</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <textarea name="contenido" id="contenido" class="form-control" rows="4" placeholder="Detalles consulta actual" ></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2 class="text-center">Detalles de las citas realizadas</h2>
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="bg-dark2 rounded mb-4">
-                            <div class="card-header" id="headingOne">
-                                <div class="row">
-                                    <div class="col-10">
-                                        <div class="row">
-                                            <div class="col-4">1</div>
-                                            <div class="col-4">2</div>
-                                            <div class="col-4">3</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-2">
-                                        <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
-                                            <i class="fas fa-arrow-down text-white"></i>
-                                        </button>
-                                    </div>
-                                </div>                        
-
-                            
-                                
-                            </div>
-                            <div id="collapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <select name="" id="">
-                                        <option>Finalizada</option>
-                                        <option>Cancelada</option>
-                                        <option>Reprogramada</option>
-                                    </select>
-                                    <input type="submit" value="Enviar">
-                                </div>
-                            </div>
-                        </div>
-
+                <div class="row">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Dirección:</label>
                     </div>
                 </div>
             </div>
         </div>
+        <h2 class="text">Detalles de la consulta (Actual)</h2>
+        <div class="card">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="form-group col-md-4 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Fecha:</label>
+                    </div>
+                    <div class="form-group col-md-4 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Presión:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Tipo:</label>
+                    </div>
+                </div>
+                
+                <label class="text">Detalle:</label>
+                <div class="bg-dark p-4 mb-4">
+                        <div class="row">
+                            <div class="col-12">
+                                Descripcion: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae ea amet doloribus error dicta voluptate, porro rerum voluptatum exercitationem modi praesentium ex molestias harum. Alias ea tempore vel blanditiis voluptatibus!
+                            </div>
+                        </div>
+                </div>
+                
+                    <!-- <div class="col-lg-12">
+                        <textarea name="contenido" id="contenido" class="form-control" rows="4" placeholder="Detalles consulta actual" ></textarea>
+                    </div> -->
+                
+            </div>
+        </div>
+
+        <h2 class="text">Detalle de las citas</h2>
+        <div class="card">
+            <div class="form-group col-md-4 col-12 d-flex justify-content align-items-end">
+                <label class="text-center">Cantidad de citas: 35</label>
+            </div>
+            <div class=" p-4 mb-4">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>27/08/2021</td>
+                                    <td>Limpieza</td>
+                                    <td>Muy dañado necesita otra</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>27/08/2021</td>
+                                    <td>Relleno</td>
+                                    <td>En la pieza 18</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>27/08/2021</td>
+                                    <td>Extracción</td>
+                                    <td>Cordal superior</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
+    
+    
     
 
     <!-- Modal Registrar/Editar/Eliminar -->
