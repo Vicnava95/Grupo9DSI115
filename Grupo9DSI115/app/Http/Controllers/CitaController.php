@@ -6,6 +6,7 @@ use App\Models\Cita;
 use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
+use App\Models\EstadoCita;
 use Illuminate\Http\Request;
 use DB;
 
@@ -49,16 +50,20 @@ class CitaController extends Controller
       */
     public function create(Request $request)
     {
+        $estadocita = EstadoCita::pluck('nombre','id');
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
         $cita = new Cita();
         $url = url()->previous();
         $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        $consulta = new Consulta();
         $pacientes = Paciente::all();
         $personas = Persona::select('*')
                 ->where('rolpersona_id',2)
                 ->orWhere('rolpersona_id',3)
                 ->get();
-        return view('cita.create', compact('cita', 'pacientes', 'personas', 'consulta', 'urlView'));
+        return view('cita.create', compact('cita', 'pacientes', 'personas', 'urlView','estadocita'));
     }
 
     /**
@@ -70,11 +75,10 @@ class CitaController extends Controller
     public function store(Request $request, $urlView)
     {
         request()->validate(Cita::$rules);
-        
         $cita = Cita::create($request->all());
-
         return redirect()->route($urlView)
-            ->with('success', 'Cita created successfully.');
+            ->with('success', 'Cita created successfully.')
+            ->withInput($request->input());
     }
 
     /**
@@ -86,7 +90,6 @@ class CitaController extends Controller
     public function show($id)
     {
         $cita = Cita::find($id);
-
         return view('cita.show', compact('cita'));
     }
 
@@ -98,9 +101,13 @@ class CitaController extends Controller
      */
     public function edit($id)
     {
+        $estadocita = EstadoCita::pluck('nombre','id');
         $cita = Cita::find($id);
-
-        return view('cita.edit', compact('cita'));
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        return view('cita.edit', compact('cita','estadocita','personas'));
     }
 
     /**

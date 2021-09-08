@@ -8,8 +8,8 @@
                     {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
                     --}}
                     
-                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id_hid']) }}
-                    {{ Form::hidden('paciente_id', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
+                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? '' : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id_hid']) }}
+                    {{ Form::hidden('paciente_id', empty($cita->paciente_id) ? '' : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
                     
                     
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
@@ -20,16 +20,14 @@
                     {{ Form::label('persona_id') }}
                     
                     <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
-                         <option  >Seleccione una persona</option>
+                         <option>Seleccione una persona</option>
                          @foreach ($personas as $persona)
-                          @if ($consulta->paciente_id == $persona->id)
-                            <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>
-                          @elseif ($cita->persona_id == $persona->id)
-                            <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>    
-                          @else
-                            <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
-                          @endif
-                          
+                             @if ($cita->persona_id == $persona->id)
+                                <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>
+                            @else
+                                <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                            @endif
+                            
                          @endforeach
                         </select>
 
@@ -53,7 +51,6 @@
                     $(function () {
                         $("#inputFecha").datetimepicker({
                             format: 'YYYY-MM-DD'
-
                         });
                     });
                 </script>
@@ -84,8 +81,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('estadoCita_id') }}
-                    {{ Form::text('estadoCita_id', $cita->estadoCita_id, ['class' => 'form-control' . ($errors->has('estadoCita_id') ? ' is-invalid' : ''), 'placeholder' => 'Estadocita Id']) }}
-                    {!! $errors->first('estadoCita_id', '<div class="invalid-feedback">:message</p>') !!}
+                    {{ Form::select('estadoCita_id', $estadocita , $cita->estadoCita_id,['class' => 'form-control' . ($errors->has('estadoCita_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un estado de la cita']) }}
                 </div>
             </div>    
         </div>        

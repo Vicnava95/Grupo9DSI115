@@ -175,14 +175,12 @@
 
 
     <script>
-        
-
+    
         @if (count($errors) > 0)
-
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
                 setTimeout(function(){
-                @foreach ($errors->getMessages() as $key => $value)
+                @foreach ($cita->getAttributes() as $key => $value)
                     @error($key)
                         $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror
@@ -191,14 +189,12 @@
             },500);
         @endif
 
-        
-        
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            mostrarModal(href)
             localStorage.setItem('formulario', href);
+            mostrarModal(href)
         });
 
         function mostrarModal(href) {
