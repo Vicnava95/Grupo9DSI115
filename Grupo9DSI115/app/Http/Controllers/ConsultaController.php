@@ -159,19 +159,21 @@ class ConsultaController extends Controller
     }
 
     public function searchPaciente($name){
-        if($name != ''){
+        if($name != '' || $name != ' '){
             $data = DB::table('pacientes')
                 ->where('nombres','LIKE',"%{$name}%")
                 ->get();//obtenemos el data si cumple la restricción
             
-                $output = '<ul id="listP" class="dropdown-menu" style="display:block; position:relative">';
+                $output = '<ul id="listP" class="dropdown-menu modal-body bg-dark text-white" style="display:block; position:relative">';
             foreach($data as $row)
             {
                 $output .= 
-                '<li value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.'+'.$row->apellidos.'</li>';
+                '<li id="cadena" class="modal-body bg-dark text-white" value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.' '.$row->apellidos.'</li>';
             }
             $output .= '</ul><br>';
             echo $output;    
         }
+        
     }
+
 }

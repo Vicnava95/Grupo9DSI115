@@ -4,14 +4,35 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('paciente_id') }}
+                    {{--
                     {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
+                    --}}
+                    
+                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id_hid']) }}
+                    {{ Form::hidden('paciente_id', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
+                    
+                    
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('persona_id') }}
-                    {{ Form::text('persona_id', $cita->persona_id, ['class' => 'form-control' . ($errors->has('persona_id') ? ' is-invalid' : ''), 'placeholder' => 'Persona Id']) }}
+                    
+                    <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
+                         <option  >Seleccione una persona</option>
+                         @foreach ($personas as $persona)
+                          @if ($consulta->paciente_id == $persona->id)
+                            <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>
+                          @elseif ($cita->persona_id == $persona->id)
+                            <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>    
+                          @else
+                            <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                          @endif
+                          
+                         @endforeach
+                        </select>
+
                     {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
@@ -70,4 +91,34 @@
         </div>        
     </div>
 </div>
+
+<script>
+    function searchPaciente(name){
+            $.ajax({
+                method:'GET',
+                url:'searchPaciente/'+ name,
+                success:function(data){
+                    $('#listaPacientes').fadeIn();  
+                    $('#listaPacientes').html(data);
+                    console.log(data); 
+                }
+            });  
+    }
+    
+    $('#paciente_id_hid').keyup(function(){
+        var paciente = $('#paciente_id_hid').val();
+        searchPaciente(paciente);
+        console.log(paciente); 
+    });
+
+    $(document).on('click', 'li', function(){
+        $('#paciente_id_hid').val($(this).text());
+        $('#listaPacientes').fadeOut();
+        var a = this.value;
+        console.log(a);
+        document.getElementById('paciente_id').innerHTML = 5;
+        $("#paciente_id").val(a);
+    });
+
+</script>
 

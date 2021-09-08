@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cita;
+use App\Models\Persona;
+use App\Models\Consulta;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
+use DB;
 
 /**
  * Class CitaController
@@ -48,7 +52,13 @@ class CitaController extends Controller
         $cita = new Cita();
         $url = url()->previous();
         $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        return view('cita.create', compact('cita','urlView'));
+        $consulta = new Consulta();
+        $pacientes = Paciente::all();
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        return view('cita.create', compact('cita', 'pacientes', 'personas', 'consulta', 'urlView'));
     }
 
     /**
@@ -121,5 +131,24 @@ class CitaController extends Controller
 
         return redirect()->route('citas.index')
             ->with('success', 'Cita deleted successfully');
+    }
+
+
+    public function searchPaciente($name){
+        if($name != '' || $name != ' '){
+            $data = DB::table('pacientes')
+                ->where('nombres','LIKE',"%{$name}%")
+                ->get();//obtenemos el data si cumple la restricción
+            
+                $output = '<ul id="listP" class="dropdown-menu modal-body bg-dark text-white" style="display:block; position:relative">';
+            foreach($data as $row)
+            {
+                $output .= 
+                '<li id="cadena" class="modal-body bg-dark text-white" value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.' '.$row->apellidos.'</li>';
+            }
+            $output .= '</ul><br>';
+            echo $output;    
+        }
+        
     }
 }

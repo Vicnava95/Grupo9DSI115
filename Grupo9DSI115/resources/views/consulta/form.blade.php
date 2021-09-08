@@ -11,7 +11,10 @@
                         @endforeach
                     </select> --}}
 
-                    {{ Form::text('paciente_id', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
+                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id_hid']) }}
+                    
+                    {{ Form::hidden('paciente_id', empty($cita->paciente_id) ? $consulta->paciente_id : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
+                    
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
                     <div id="listaPacientes" class="listaPacientes">  
                     </div>
@@ -73,7 +76,6 @@
     function searchPaciente(name){
             $.ajax({
                 method:'GET',
-                //url:'https://mvm-machinery.com/dashboard/public/autocomplete/fetch/'+name,
                 url:'searchPaciente/'+ name,
                 success:function(data){
                     $('#listaPacientes').fadeIn();  
@@ -81,16 +83,23 @@
                     console.log(data); 
                 }
             });  
-        }
+    }
     
-        $('#paciente_id').keyup(function(){
-        var paciente = $('#paciente_id').val();
-            searchPaciente(paciente);
-            console.log(paciente); 
-        });
-
-        $(document).on('click', 'li', function(){  
-        $('#paciente_id').val($(this).text());   
-        $('#listaPacientes').fadeOut();
+    $('#paciente_id_hid').keyup(function(){
+        var paciente = $('#paciente_id_hid').val();
+        searchPaciente(paciente);
+        console.log(paciente); 
     });
+
+    $(document).on('click', 'li', function(){
+        $('#paciente_id_hid').val($(this).text());
+        $('#listaPacientes').fadeOut();
+        var a = this.value;
+        console.log(a);
+        document.getElementById('paciente_id').innerHTML = 5;
+        $("#paciente_id").val(a);
+    });
+
+    
+
 </script>

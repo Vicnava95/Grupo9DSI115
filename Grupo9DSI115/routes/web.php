@@ -24,6 +24,7 @@ use App\Sexo;
 Route::resource('citas', 'CitaController');
 Route::get('citas/{cita}/borrar', 'CitaController@delete')->name('citas.delete');
 Route::post('citas/{urlView}', 'CitaController@store')->name('citas.store');
+Route::get('searchPaciente/{name}','CitaController@searchPaciente')->name('citas.searchPaciente'); 
 
 
 //citas doctor general
