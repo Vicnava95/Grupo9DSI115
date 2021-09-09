@@ -1,9 +1,9 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="{{(Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6': ''}} col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('paciente_id') }}
+                    {{ Form::label('Paciente') }}
                     {{--
                     {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
                     --}}
@@ -15,25 +15,27 @@
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    {{ Form::label('persona_id') }}
-                    
-                    <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
-                         <option>Seleccione una persona</option>
-                         @foreach ($personas as $persona)
-                             @if ($cita->persona_id == $persona->id)
-                                <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>
-                            @else
-                                <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
-                            @endif
-                            
-                         @endforeach
-                        </select>
+            @if ((Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2))
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('Doctor') }}
+                        <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
+                            <option>Seleccione una persona</option>
+                            @foreach ($personas as $persona)
+                                @if ($cita->persona_id == $persona->id)
+                                    <option selected value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }}  {{ $persona['apellidoPersonas'] }} </option>
+                                @else
+                                    <option value="{{ $persona['id'] }}"> {{ $persona['nombrePersonas'] }} {{ $persona['apellidoPersonas'] }} </option>
+                                @endif
+                                
+                            @endforeach
+                            </select>
 
-                    {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
-            </div>
+                        {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
+                    </div>
+                </div>        
+            @endif
+            
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -80,7 +82,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('estadoCita_id') }}
+                    {{ Form::label('Estado de la cita') }}
                     {{ Form::select('estadoCita_id', $estadocita , $cita->estadoCita_id,['class' => 'form-control' . ($errors->has('estadoCita_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un estado de la cita']) }}
                 </div>
             </div>    

@@ -45,7 +45,7 @@ class DashboardController extends Controller
             } else {
                 $citas =  Cita::select('*')
                 ->where('persona_id',$personas)
-                ->where('fecha', Carbon::now()->format('Y-m-d'))
+                ->where('fecha', Carbon::today('America/El_Salvador')->format('Y-m-d'))
                 ->where('estadoCita_id','!=','1')
                 ->orderBy('fecha','ASC')
                 ->orderBy('hora','ASC')
@@ -84,7 +84,7 @@ class DashboardController extends Controller
             } else {
                 $citas =  Cita::select('*')
                 ->where('persona_id',$personas)
-                ->where('fecha', Carbon::now()->format('Y-m-d'))
+                ->where('fecha', Carbon::today('America/El_Salvador')->format('Y-m-d'))
                 ->where('estadoCita_id','!=','1')
                 ->orderBy('fecha','ASC')
                 ->orderBy('hora','ASC')
@@ -121,7 +121,7 @@ class DashboardController extends Controller
             } else {
                 $citas =  Cita::select('*')
                 ->where('estadoCita_id','!=','1')
-                ->where('fecha', Carbon::now()->format('Y-m-d'))
+                ->where('fecha', Carbon::today('America/El_Salvador')->format('Y-m-d'))
                 ->orderBy('fecha','ASC')
                 ->orderBy('hora','ASC')
                 ->get();
@@ -142,7 +142,7 @@ class DashboardController extends Controller
             'paciente_id' => 0,
             'estadoCita_id' => 0,
             'hora' => '00:00',
-            'fecha' => Carbon::now()->format('Y-m-d')
+            'fecha' => Carbon::today()->format('Y-m-d')
         ]);
         $rolUsuario = Auth::user()->rols_fk;
         if($rolUsuario == 4){   
@@ -157,7 +157,7 @@ class DashboardController extends Controller
             } else {
                 $citas =  Cita::select('*')
                 ->where('estadoCita_id','!=','1')
-                ->where('fecha', Carbon::now()->format('Y-m-d'))
+                ->where('fecha', Carbon::today('America/El_Salvador')->format('Y-m-d'))
                 ->orderBy('fecha','ASC')
                 ->orderBy('hora','ASC')
                 ->get();

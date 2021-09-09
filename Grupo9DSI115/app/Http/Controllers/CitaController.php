@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Cita;
 use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class CitaController
@@ -74,10 +75,16 @@ class CitaController extends Controller
      */
     public function store(Request $request, $urlView)
     {
-        request()->validate(Cita::$rules);
+        if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            request()->validate(Cita::$rulesWithoutPersona);   
+        }
+        else{
+            request()->validate(Cita::$rules);
+        }
         $cita = Cita::create($request->all());
         return redirect()->route($urlView)
-            ->with('success', 'Cita created successfully.')
+            ->with('success', 'Cita creada satisfactoriamente.')
             ->withInput($request->input());
     }
 
@@ -124,7 +131,7 @@ class CitaController extends Controller
         $cita->update($request->all());
 
         return redirect()->route('citas.index')
-            ->with('success', 'Cita updated successfully');
+            ->with('success', 'Cita actualizada satisfactoriamente');
     }
 
     /**
@@ -137,9 +144,8 @@ class CitaController extends Controller
         $cita = Cita::find($id)->delete();
 
         return redirect()->route('citas.index')
-            ->with('success', 'Cita deleted successfully');
+            ->with('success', 'Cita eliminada satisfactoriamente');
     }
-
 
     public function searchPaciente($name){
         if($name != '' || $name != ' '){

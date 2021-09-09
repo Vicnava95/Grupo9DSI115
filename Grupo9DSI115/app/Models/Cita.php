@@ -33,6 +33,14 @@ class Cita extends Model
 		'estadoCita_id' => 'required|integer|exists:estado_citas,id'
     ];
 
+    static $rulesWithoutPersona = [
+		'fecha' => 'required',
+		'hora' => 'required',
+		'paciente_id' => 'required|integer|exists:pacientes,id',
+		'estadoCita_id' => 'required|integer|exists:estado_citas,id'
+    ];
+
+
     protected $perPage = 20;
 
     /**
