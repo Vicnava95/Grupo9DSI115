@@ -44,30 +44,13 @@ class ConsultaController extends Controller
 
     public function create()
     {
-        $url = url()->previous();
-        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        $cita = new Cita();
         $consulta = new Consulta();
         $pacientes = Paciente::all();
         $personas = Persona::select('*')
                 ->where('rolpersona_id',2)
                 ->orWhere('rolpersona_id',3)
                 ->get();
-        return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
-    } 
-
-    public function createByDashboard(Cita $citaRef)
-    {
-        $url = url()->previous();
-        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        $cita = $citaRef;
-        $consulta = new Consulta();
-        $pacientes = Paciente::all();
-        $personas = Persona::select('*')
-                ->where('rolpersona_id',2)
-                ->orWhere('rolpersona_id',3)
-                ->get();
-        return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
+        return view('consulta.create', compact('consulta','pacientes', 'personas'));
     }
 
     /**
@@ -75,13 +58,11 @@ class ConsultaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $urlView)
+    public function store(Request $request)
     {
         request()->validate(Consulta::$rules);
-
         $consulta = Consulta::create($request->all());
-
-        return redirect()->route($urlView)
+        return redirect()->route('consultas.index')
             ->with('success', 'Consulta creada exitosamente.');
     }
 
@@ -107,12 +88,11 @@ class ConsultaController extends Controller
     public function edit($id)
     {
         $consulta = Consulta::find($id);
-        $cita = new Cita();
         $personas = Persona::select('*')
                 ->where('rolpersona_id',2)
                 ->orWhere('rolpersona_id',3)
                 ->get();
-        return view('consulta.edit', compact('consulta','personas','cita'));
+        return view('consulta.edit', compact('consulta','personas'));
     }
 
     /**

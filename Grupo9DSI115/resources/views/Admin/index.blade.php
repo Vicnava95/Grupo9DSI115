@@ -90,7 +90,7 @@
                     <div class="bg-dark2 rounded mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
                             <h3 class="mb-0 d-block">
-                                <a class="btn btn-link text-white" id="mediumButton" href="#" role="button" .createdata-toggle="modal" data-target="#mediumModal" data-attr="{{ route('consultasByDashboard.create', $cita) }}">
+                                <a class="btn btn-link text-white" id="" href="#" role="button">
                                     {{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}
                                     <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}} 
                                     <i class="fa fa-clock text-white ml-5 mr-1"></i> {{$cita->hora}}
@@ -114,10 +114,6 @@
                     </div>
                     @endforeach
                     <!-- Targeta -->
-                        
-                    
-                    
-
                 </div>
             </div>
         </div>
@@ -221,7 +217,6 @@
                 timeout: 0
 
             })
-
             var letra = href.charAt(href.length - 1);
             var b = document.getElementById('exampleModalLongTitle').innerHTML = "Registrar";
         }
