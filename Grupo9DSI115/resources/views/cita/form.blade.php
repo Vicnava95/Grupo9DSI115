@@ -8,7 +8,7 @@
                     {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
                     --}}
                     
-                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? '' : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id_hid']) }}
+                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? '' : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Nombre' , 'id' => 'paciente_id_hid']) }}
                     {{ Form::hidden('paciente_id', empty($cita->paciente_id) ? '' : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
                     
                     
