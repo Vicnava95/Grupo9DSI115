@@ -104,7 +104,7 @@
                         <div id="collapse{{ $cita->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body mx-auto col-ms-12 col-md-4">
                                 <label class="">Estado de la cita:</label>
-                                <select id="" class="{{ ($cita->estadoCita_id==2)? 'bg-secondary border border-dark' : '' }}{{ ($cita->estadoCita_id==3)? 'bg-dark2' : ''}} form-control custom-select custom-select-m  mediumButton2" style="color:lightgray" name="persona_id">
+                                <select id="" class="{{ ($cita->estadoCita_id==2)? 'bg-primary border border-dark' : '' }}{{ ($cita->estadoCita_id==3)? 'bg-dark2' : ''}} form-control custom-select custom-select-m  mediumButton2" style="color:lightgray" name="persona_id">
                                     @foreach ($estadocitas as $estadocita)
                                         <option {{($cita->estadoCita_id == $estadocita->id)? 'selected' : ''}} value="{{ ($estadocita->id==1)? route('citas.finalizada', $cita->id) : '' }}{{ ($estadocita->id==2)? route('citas.cancelada', $cita->id) : '' }}{{ ($estadocita->id==3)? route('citas.programada', $cita->id) : '' }}"> {{ $estadocita->nombre }}
                                         </option>

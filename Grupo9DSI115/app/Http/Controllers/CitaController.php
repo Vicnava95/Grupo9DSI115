@@ -219,13 +219,13 @@ class CitaController extends Controller
         ]);
         $cita->update($request->all());
         if(Auth::user()->rols_fk==1)
-            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
         if(Auth::user()->rols_fk==2)
-            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
         if(Auth::user()->rols_fk==3)
-            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
         if(Auth::user()->rols_fk==4)
-            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
     }
 
 }

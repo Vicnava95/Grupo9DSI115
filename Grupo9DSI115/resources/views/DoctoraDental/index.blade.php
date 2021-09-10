@@ -85,39 +85,37 @@
             @endif
             <div class="row mt-4">
                 <div class="col-12">
-
                     @foreach ($citas as $cita)
-                    <div class="bg-dark2 rounded mb-4">
+                    <div class="{{ ($cita->estadoCita_id==2)? 'bg-primary' : '' }}{{ ($cita->estadoCita_id==3)? 'bg-dark2' : ''}} rounded mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
                             <h3 class="mb-0 d-block">
-                                <a class="btn btn-link text-white" id="mediumButton" href="#" role="button" .createdata-toggle="modal" data-target="#mediumModal" data-attr="{{ route('consultasByDashboard.create', $cita) }}">
+                                <a class="btn btn-link text-white" id="" href="#" role="button">
                                     {{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}
                                     <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}} 
                                     <i class="fa fa-clock text-white ml-5 mr-1"></i> {{$cita->hora}}
                                 </a>
                             </h3>
+                            <span class="ml-auto d-block mb-0 text-center badge badge-light">{{ ($cita->estadoCita_id==2)? 'Cancelado' : '' }}{{ ($cita->estadoCita_id==3)? 'Programado' : ''}}</span>
                             <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse{{ $cita->id }}" aria-expanded="false" aria-controls="collapse{{ $cita->id }}">
                                 <i class="fas fa-arrow-down text-white"></i>
                             </button>
                             
                         </div>
                         <div id="collapse{{ $cita->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <select name="" id="">
-                                    <option>Finalizada</option>
-                                    <option>Cancelada</option>
-                                    <option>Reprogramada</option>
+                            <div class="card-body mx-auto col-ms-12 col-md-4">
+                                <label class="">Estado de la cita:</label>
+                                <select id="" class="{{ ($cita->estadoCita_id==2)? 'bg-primary border border-dark' : '' }}{{ ($cita->estadoCita_id==3)? 'bg-dark2' : ''}} form-control custom-select custom-select-m  mediumButton2" style="color:lightgray" name="persona_id">
+                                    @foreach ($estadocitas as $estadocita)
+                                        <option {{($cita->estadoCita_id == $estadocita->id)? 'selected' : ''}} value="{{ ($estadocita->id==1)? route('citas.finalizada', $cita->id) : '' }}{{ ($estadocita->id==2)? route('citas.cancelada', $cita->id) : '' }}{{ ($estadocita->id==3)? route('citas.programada', $cita->id) : '' }}"> {{ $estadocita->nombre }}
+                                        </option>
+                                        
+                                    @endforeach
                                 </select>
-                                <input type="submit" value="Enviar">
                             </div>
                         </div>
                     </div>
                     @endforeach
                     <!-- Targeta -->
-                        
-                    
-                    
-
                 </div>
             </div>
         </div>
@@ -144,6 +142,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
+                    <button type="submit" form="formEstadoCita" class="btn btn-primary" id="estadoCita">Enviar</button>
                     <!--<button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                     <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Eliminar</button> -->
                 </div>
@@ -175,7 +174,6 @@
 
 
     <script>
-    
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
@@ -188,19 +186,27 @@
                 @endforeach
             },500);
         @endif
-
+        
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            localStorage.setItem('formulario', href);
             mostrarModal(href)
+            localStorage.setItem('formulario', href);
+        });
+
+        $(document).ready(function(){ 
+            $('.mediumButton2').change(function() { 
+                let href = $(this).val();
+                mostrarModal(href)
+                localStorage.setItem('formulario', href);
+            });
         });
 
         function mostrarModal(href) {
-            /*document.getElementById('registrar').style.display = 'block';
-            document.getElementById('editar').style.display = 'block';
-            document.getElementById('eliminar').style.display = 'block';*/
+            document.getElementById('registrar').style.display = 'block';
+            document.getElementById('estadoCita').style.display = 'block';
+
             $.ajax({
                 url: href,
                 beforeSend: function() {
@@ -222,9 +228,16 @@
                 timeout: 0
 
             })
-
-            var letra = href.charAt(href.length - 1);
-            var b = document.getElementById('exampleModalLongTitle').innerHTML = "Registrar";
+            var letra = href.charAt(href.length - 2);
+            var b = document.getElementById('exampleModalLongTitle');
+            if (letra == 't') {
+                document.getElementById('estadoCita').style.display = 'none';
+                b.innerHTML = "Registrar cita";
+            } 
+            else{
+                document.getElementById('registrar').style.display = 'none';
+                b.innerHTML = "Estado de la cita";
+            }
         }
     </script>
 @endsection

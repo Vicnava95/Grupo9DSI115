@@ -24,6 +24,7 @@ class DashboardController extends Controller
         $fechaInicio = trim($request->get('fechaInicio'));
         $fechaFin = trim($request->get('fechaFin'));
         $consulta = new Consulta();
+        $estadocitas = EstadoCita::all();
         $rolUsuario = Auth::user()->rols_fk;
         $cita = new Cita([
             'persona_id'=> 0,
@@ -52,7 +53,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('doctorGeneral.index', compact('citas', 'consulta','fechaInicio', 'fechaFin', 'personas','cita'));
+            return view('doctorGeneral.index', compact('citas', 'consulta','fechaInicio', 'fechaFin', 'personas','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -63,6 +64,7 @@ class DashboardController extends Controller
         $fechaInicio = trim($request->get('fechaInicio'));
         $fechaFin = trim($request->get('fechaFin'));
         $consulta = new Consulta();
+        $estadocitas = EstadoCita::all();
         $cita = new Cita([
             'persona_id'=> 0,
             'paciente_id' => 0,
@@ -91,7 +93,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('doctoraDental.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita'));
+            return view('doctoraDental.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -139,6 +141,7 @@ class DashboardController extends Controller
         $fechaInicio = trim($request->get('fechaInicio'));
         $fechaFin = trim($request->get('fechaFin'));
         $consulta = new Consulta();
+        $estadocitas = EstadoCita::all();
         $cita = new Cita([
             'persona_id'=> 0,
             'paciente_id' => 0,
@@ -164,7 +167,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('secretaria.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita'));
+            return view('secretaria.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
