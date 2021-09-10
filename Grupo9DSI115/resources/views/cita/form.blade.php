@@ -29,7 +29,7 @@
                                 @endif
                                 
                             @endforeach
-                            </select>
+                        </select>
 
                         {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
                     </div>

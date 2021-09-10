@@ -162,6 +162,70 @@ class CitaController extends Controller
             $output .= '</ul><br>';
             echo $output;    
         }
-        
     }
+
+    public function finalizada($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.finalizada', compact('cita'));
+    }
+
+    public function finished($id)
+    {
+        $cita = Cita::find($id);
+        $cita->update(['estadoCita_id'=>1]);
+        if(Auth::user()->rols_fk==1)
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+        if(Auth::user()->rols_fk==2)
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+        if(Auth::user()->rols_fk==3)
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+        if(Auth::user()->rols_fk==4)
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');    
+    }
+
+    public function cancelada($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.cancelada', compact('cita'));
+    }
+
+    public function cancelled($id)
+    {
+        $cita = Cita::find($id);
+        $cita->update(['estadoCita_id'=>2]);
+        if(Auth::user()->rols_fk==1)
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==2)
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==3)
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==4)
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+    }
+
+    public function programada($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.programada', compact('cita'));
+    }
+
+    public function programated(Request $request, Cita $cita)
+    {
+        $request->request->add(['estadoCita_id'=>3]);
+        $request->validate([
+            'fecha' => 'required',
+		    'hora' => 'required',
+        ]);
+        $cita->update($request->all());
+        if(Auth::user()->rols_fk==1)
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==2)
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==3)
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==4)
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+    }
+
 }

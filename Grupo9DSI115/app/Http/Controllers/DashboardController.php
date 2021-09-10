@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cita;
 use App\Models\Persona;
 use App\Models\Consulta;
+use App\Models\EstadoCita;
 use App\Models\Rolpersona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -100,6 +101,7 @@ class DashboardController extends Controller
     public function administradorIndex(Request $request){
         $fechaInicio = trim($request->get('fechaInicio'));
         $fechaFin = trim($request->get('fechaFin'));
+        $estadocitas = EstadoCita::all();
         $consulta = new Consulta();
         $cita = new Cita([
             'persona_id'=> 0,
@@ -126,7 +128,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('admin.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita'));
+            return view('admin.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
