@@ -108,6 +108,11 @@
     $('#paciente_id_hid').keyup(function(){
         var paciente = $('#paciente_id_hid').val();
         searchPaciente(paciente);
+
+        if (paciente==' ' || paciente == ''){
+            $('#listaPacientes').fadeOut();
+        }
+        
         console.log(paciente); 
     });
 

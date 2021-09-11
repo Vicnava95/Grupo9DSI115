@@ -152,7 +152,7 @@ class ConsultaController extends Controller
             }
             $output .= '</ul><br>';
             echo $output;    
-        }
+        } 
         
     }
 
