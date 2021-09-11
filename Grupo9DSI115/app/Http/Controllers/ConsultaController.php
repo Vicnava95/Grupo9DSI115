@@ -61,6 +61,7 @@ class ConsultaController extends Controller
     public function store(Request $request)
     {
         request()->validate(Consulta::$rules);
+        request()->request->remove('paciente_id_hid');
         $consulta = Consulta::create($request->all());
         return redirect()->route('consultas.index')
             ->with('success', 'Consulta creada exitosamente.');

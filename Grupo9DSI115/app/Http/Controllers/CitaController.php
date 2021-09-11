@@ -82,10 +82,10 @@ class CitaController extends Controller
         else{
             request()->validate(Cita::$rules);
         }
+        request()->request->remove('paciente_id_hid');
         $cita = Cita::create($request->all());
         return redirect()->route($urlView)
-            ->with('success', 'Cita creada satisfactoriamente.')
-            ->withInput($request->input());
+            ->with('success', 'Cita creada satisfactoriamente.');
     }
 
     /**
@@ -126,10 +126,15 @@ class CitaController extends Controller
      */
     public function update(Request $request, Cita $cita)
     {
-        request()->validate(Cita::$rules);
-
+        if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            request()->validate(Cita::$rulesWithoutPersona);   
+        }
+        else{
+            request()->validate(Cita::$rules);
+        }
+        request()->request->remove('paciente_id_hid');
         $cita->update($request->all());
-
         return redirect()->route('citas.index')
             ->with('success', 'Cita actualizada satisfactoriamente');
     }
