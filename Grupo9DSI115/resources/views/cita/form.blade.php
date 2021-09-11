@@ -13,6 +13,8 @@
                     
                     
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
+                    <div id="listaPacientes" class="listaPacientes">  
+                    </div>
                 </div>
             </div>
             @if ((Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2))
