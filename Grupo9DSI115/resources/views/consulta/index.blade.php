@@ -169,8 +169,8 @@ Registrar Consultas
                     @enderror
                     $("[name='{{$key}}']").val('{{ old($key) }}');
                 @endforeach
+                $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
-            $("[name='{{paciente_id}}']").val('{{old('paciente_id_hid')}}');
         @endif
         
 

@@ -105,7 +105,7 @@ class ConsultaController extends Controller
     public function update(Request $request, Consulta $consulta)
     {
         request()->validate(Consulta::$rules);
-
+        request()->request->remove('paciente_id_hid');
         $consulta->update($request->all());
 
         return redirect()->route('consultas.index')
