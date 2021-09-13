@@ -199,7 +199,7 @@
                 <!-- Recurso Humano-->
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item">
-                    <a href="{{ route('personas.index') }} ">
+                    <a href=" ">
                         <i class="fas fa-layer-group"></i>
                         <p>Recuso humano</p>
                     </a>
@@ -226,7 +226,7 @@
 
 
 
-            <!--
+
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
@@ -273,7 +273,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>-->
+                </li>
 
             </ul>
         </div>
