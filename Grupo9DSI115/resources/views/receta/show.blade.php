@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Mostrar Receta</span>
+                            <span class="card-title">Receta</span>
                         </div>
                     </div>
 

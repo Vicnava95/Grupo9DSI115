@@ -41,8 +41,8 @@ class CitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /* 
-        
+    /*
+
     */
     /**
       * $bandera
@@ -77,7 +77,7 @@ class CitaController extends Controller
     {
         if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
             $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
-            request()->validate(Cita::$rulesWithoutPersona);   
+            request()->validate(Cita::$rulesWithoutPersona);
         }
         else{
             request()->validate(Cita::$rules);
@@ -128,7 +128,7 @@ class CitaController extends Controller
     {
         if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
             $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
-            request()->validate(Cita::$rulesWithoutPersona);   
+            request()->validate(Cita::$rulesWithoutPersona);
         }
         else{
             request()->validate(Cita::$rules);
@@ -139,6 +139,17 @@ class CitaController extends Controller
             ->with('success', 'Cita actualizada satisfactoriamente');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.destroy', compact('cita'));
+    }
     /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
@@ -157,15 +168,15 @@ class CitaController extends Controller
             $data = DB::table('pacientes')
                 ->where('nombres','LIKE',"%{$name}%")
                 ->get();//obtenemos el data si cumple la restricción
-            
+
                 $output = '<ul id="listP" class="dropdown-menu modal-body bg-dark text-white" style="display:block; position:relative">';
             foreach($data as $row)
             {
-                $output .= 
+                $output .=
                 '<li id="cadena" class="modal-body bg-dark text-white" value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.' '.$row->apellidos.'</li>';
             }
             $output .= '</ul><br>';
-            echo $output;    
+            echo $output;
         }
     }
 
@@ -186,7 +197,7 @@ class CitaController extends Controller
         if(Auth::user()->rols_fk==3)
             return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
         if(Auth::user()->rols_fk==4)
-            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');    
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
     }
 
     public function cancelada($id)
