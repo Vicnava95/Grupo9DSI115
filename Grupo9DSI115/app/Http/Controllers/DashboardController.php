@@ -36,7 +36,7 @@ class DashboardController extends Controller
             'fecha' => Carbon::now()->format('Y-m-d')
         ]);
         if($rolUsuario == 2){
-            $personas = Persona::select('*')->where('rolPersona_id',$rolUsuario)->get();
+            $personas = Persona::select('*')->where('rolPersona_id',$rolUsuario)->get()->toArray();
             if($fechaInicio && $fechaFin ){
                 $citas = Cita::select('*')
                     ->where('persona_id',$personas)
@@ -76,7 +76,7 @@ class DashboardController extends Controller
         ]);
         $rolUsuario = Auth::user()->rols_fk;
         if($rolUsuario == 3){
-            $personas = Persona::select('*')->where('rolPersona_id',$rolUsuario)->get();
+            $personas = Persona::select('*')->where('rolPersona_id',$rolUsuario)->get()->toArray();
             if($fechaInicio && $fechaFin ){
                 $citas = Cita::select('*')
                     ->where('persona_id',$personas)
