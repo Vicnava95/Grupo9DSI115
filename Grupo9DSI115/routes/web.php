@@ -24,7 +24,13 @@ use App\Sexo;
 Route::resource('citas', 'CitaController');
 Route::get('citas/{cita}/borrar', 'CitaController@delete')->name('citas.delete');
 Route::post('citas/{urlView}', 'CitaController@store')->name('citas.store');
-
+Route::get('searchPaciente/{name}','CitaController@searchPaciente')->name('citas.searchPaciente');
+Route::get('citas/{cita}/finalizada', 'CitaController@finalizada')->name('citas.finalizada');
+Route::get('citas/{cita}/finished', 'CitaController@finished')->name('citas.finished');
+Route::get('citas/{cita}/cancelada', 'CitaController@cancelada')->name('citas.cancelada');
+Route::get('citas/{cita}/cancelled', 'CitaController@cancelled')->name('citas.cancelled');
+Route::get('citas/{cita}/programada', 'CitaController@programada')->name('citas.programada');
+Route::get('citas/{cita}/programated', 'CitaController@programated')->name('citas.programated');
 
 //citas doctor general
 Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGaneral.index');
@@ -39,8 +45,6 @@ Route::get('/dashboardAdministrador', 'DashboardController@administradorIndex')-
 //consulta
 Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
-Route::get('consultas/create/{citaRef}', 'ConsultaController@createByDashboard')->name('consultasByDashboard.create');
-Route::post('consultas/{urlView}', 'ConsultaController@store')->name('consultas.store');
 Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
 
 //recetas

@@ -23,7 +23,6 @@ Registrar Consultas
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
                             <span id="card_title">
                                 {{ __('Consulta') }}
                             </span>
@@ -169,6 +168,7 @@ Registrar Consultas
                     @enderror
                     $("[name='{{$key}}']").val('{{ old($key) }}');
                 @endforeach
+                $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
         

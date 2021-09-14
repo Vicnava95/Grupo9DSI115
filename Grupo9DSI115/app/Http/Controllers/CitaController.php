@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Cita;
 use App\Models\ExpedienteDoctor;
 use App\Models\ExpedienteDoctoraDental;
 use App\Models\Persona;
+use App\Models\Consulta;
+use App\Models\Paciente;
+use App\Models\EstadoCita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class CitaController
@@ -38,8 +43,8 @@ class CitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /* 
-        
+    /*
+
     */
     /**
       * $bandera
@@ -48,10 +53,20 @@ class CitaController extends Controller
       */
     public function create(Request $request)
     {
+        $estadocita = EstadoCita::pluck('nombre','id');
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
         $cita = new Cita();
         $url = url()->previous();
         $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        return view('cita.create', compact('cita','urlView'));
+        $pacientes = Paciente::all();
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        return view('cita.create', compact('cita', 'pacientes', 'personas', 'urlView','estadocita'));
     }
 
     /**
@@ -62,8 +77,14 @@ class CitaController extends Controller
      */
     public function store(Request $request, $urlView)
     {
-        request()->validate(Cita::$rules);
-        
+        if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            request()->validate(Cita::$rulesWithoutPersona);
+        }
+        else{
+            request()->validate(Cita::$rules);
+        }
+        request()->request->remove('paciente_id_hid');
         $cita = Cita::create($request->all());
         //Busco al doctor o doctora que fue asignada a la cita y obtengo el objeto
         $persona = Persona::find($request->persona_id);
@@ -111,7 +132,7 @@ class CitaController extends Controller
 
         }
         return redirect()->route($urlView)
-            ->with('success', 'Cita created successfully.');
+            ->with('success', 'Cita creada satisfactoriamente.');
     }
 
     /**
@@ -123,7 +144,6 @@ class CitaController extends Controller
     public function show($id)
     {
         $cita = Cita::find($id);
-
         return view('cita.show', compact('cita'));
     }
 
@@ -135,9 +155,13 @@ class CitaController extends Controller
      */
     public function edit($id)
     {
+        $estadocita = EstadoCita::pluck('nombre','id');
         $cita = Cita::find($id);
-
-        return view('cita.edit', compact('cita'));
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        return view('cita.edit', compact('cita','estadocita','personas'));
     }
 
     /**
@@ -149,14 +173,30 @@ class CitaController extends Controller
      */
     public function update(Request $request, Cita $cita)
     {
-        request()->validate(Cita::$rules);
-
+        if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            request()->validate(Cita::$rulesWithoutPersona);
+        }
+        else{
+            request()->validate(Cita::$rules);
+        }
+        request()->request->remove('paciente_id_hid');
         $cita->update($request->all());
-
         return redirect()->route('citas.index')
-            ->with('success', 'Cita updated successfully');
+            ->with('success', 'Cita actualizada satisfactoriamente');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.destroy', compact('cita'));
+    }
     /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
@@ -167,6 +207,88 @@ class CitaController extends Controller
         $cita = Cita::find($id)->delete();
 
         return redirect()->route('citas.index')
-            ->with('success', 'Cita deleted successfully');
+            ->with('success', 'Cita eliminada satisfactoriamente');
     }
+
+    public function searchPaciente($name){
+        if($name != '' || $name != ' '){
+            $data = DB::table('pacientes')
+                ->where('nombres','LIKE',"%{$name}%")
+                ->get();//obtenemos el data si cumple la restricción
+
+                $output = '<ul id="listP" class="dropdown-menu modal-body bg-dark text-white" style="display:block; position:relative">';
+            foreach($data as $row)
+            {
+                $output .=
+                '<li id="cadena" class="modal-body bg-dark text-white" value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.' '.$row->apellidos.'</li>';
+            }
+            $output .= '</ul><br>';
+            echo $output;
+        }
+    }
+
+    public function finalizada($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.finalizada', compact('cita'));
+    }
+
+    public function finished($id)
+    {
+        $cita = Cita::find($id);
+        $cita->update(['estadoCita_id'=>1]);
+        if(Auth::user()->rols_fk==1)
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+        if(Auth::user()->rols_fk==2)
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+        if(Auth::user()->rols_fk==3)
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+        if(Auth::user()->rols_fk==4)
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+    }
+
+    public function cancelada($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.cancelada', compact('cita'));
+    }
+
+    public function cancelled($id)
+    {
+        $cita = Cita::find($id);
+        $cita->update(['estadoCita_id'=>2]);
+        if(Auth::user()->rols_fk==1)
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==2)
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==3)
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+        if(Auth::user()->rols_fk==4)
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+    }
+
+    public function programada($id)
+    {
+        $cita = Cita::find($id);
+        return view('cita.programada', compact('cita'));
+    }
+
+    public function programated(Request $request, Cita $cita)
+    {
+        $request->request->add(['estadoCita_id'=>3]);
+        $request->validate([
+            'fecha' => 'required',
+		    'hora' => 'required',
+        ]);
+        $cita->update($request->all());
+        if(Auth::user()->rols_fk==1)
+            return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
+        if(Auth::user()->rols_fk==2)
+            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
+        if(Auth::user()->rols_fk==3)
+            return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
+        if(Auth::user()->rols_fk==4)
+            return redirect()->route('dshSecretaria.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
+    }
+
 }

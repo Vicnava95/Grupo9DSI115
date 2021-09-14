@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <span class="card-title">Show Cita</span>
+                        <span class="card-title">Cita</span>
                     </div>
                 </div>
 
@@ -34,4 +34,3 @@
         </div>
     </div>
 </section>
-    

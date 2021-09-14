@@ -1,25 +1,14 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('Consulta*') }}
                     {{ Form::text('consulta_id', $receta->consulta_id, ['class' => 'form-control' . ($errors->has('consulta_id') ? ' is-invalid' : ''), 'placeholder' => 'Consulta Id']) }}
                     {!! $errors->first('consulta_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    {{ Form::label('Descripcion*') }}
-                    {{ Form::textarea('descripcion', $receta->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'rows'=>'6']) }}
-                    {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('Fecha receta*') }}
                     <div class="input-group date">
@@ -31,7 +20,7 @@
                     {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
-            <div class="col-md-6 col-12">
+            <div class="col-md-4 col-12">
                 <div class="form-group">
                     {{ Form::label('Proxima Cita') }}
                     <div class="input-group date">
@@ -61,6 +50,14 @@
                 </script>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    {{ Form::label('Descripcion*') }}
+                    {{ Form::textarea('descripcion', $receta->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'rows'=>'6']) }}
+                    {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
         </div>
     </div>
     {{--<div class="box-footer mt20">

@@ -170,6 +170,7 @@ Registrar Citas
                     @enderror
                     $("[name='{{$key}}']").val('{{ old($key) }}');
                 @endforeach
+                $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
         

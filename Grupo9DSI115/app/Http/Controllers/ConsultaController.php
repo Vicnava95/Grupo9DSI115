@@ -44,30 +44,13 @@ class ConsultaController extends Controller
 
     public function create()
     {
-        $url = url()->previous();
-        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        $cita = new Cita();
         $consulta = new Consulta();
         $pacientes = Paciente::all();
         $personas = Persona::select('*')
                 ->where('rolpersona_id',2)
                 ->orWhere('rolpersona_id',3)
                 ->get();
-        return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
-    } 
-
-    public function createByDashboard(Cita $citaRef)
-    {
-        $url = url()->previous();
-        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        $cita = $citaRef;
-        $consulta = new Consulta();
-        $pacientes = Paciente::all();
-        $personas = Persona::select('*')
-                ->where('rolpersona_id',2)
-                ->orWhere('rolpersona_id',3)
-                ->get();
-        return view('consulta.create', compact('consulta','pacientes', 'personas', 'cita','urlView'));
+        return view('consulta.create', compact('consulta','pacientes', 'personas'));
     }
 
     /**
@@ -75,13 +58,12 @@ class ConsultaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $urlView)
+    public function store(Request $request)
     {
         request()->validate(Consulta::$rules);
-
+        request()->request->remove('paciente_id_hid');
         $consulta = Consulta::create($request->all());
-
-        return redirect()->route($urlView)
+        return redirect()->route('consultas.index')
             ->with('success', 'Consulta creada exitosamente.');
     }
 
@@ -107,12 +89,11 @@ class ConsultaController extends Controller
     public function edit($id)
     {
         $consulta = Consulta::find($id);
-        $cita = new Cita();
         $personas = Persona::select('*')
                 ->where('rolpersona_id',2)
                 ->orWhere('rolpersona_id',3)
                 ->get();
-        return view('consulta.edit', compact('consulta','personas','cita'));
+        return view('consulta.edit', compact('consulta','personas'));
     }
 
     /**
@@ -125,7 +106,7 @@ class ConsultaController extends Controller
     public function update(Request $request, Consulta $consulta)
     {
         request()->validate(Consulta::$rules);
-
+        request()->request->remove('paciente_id_hid');
         $consulta->update($request->all());
 
         return redirect()->route('consultas.index')
@@ -159,19 +140,21 @@ class ConsultaController extends Controller
     }
 
     public function searchPaciente($name){
-        if($name != ''){
+        if($name != '' || $name != ' '){
             $data = DB::table('pacientes')
                 ->where('nombres','LIKE',"%{$name}%")
                 ->get();//obtenemos el data si cumple la restricción
             
-                $output = '<ul id="listP" class="dropdown-menu" style="display:block; position:relative">';
+                $output = '<ul id="listP" class="dropdown-menu modal-body bg-dark text-white" style="display:block; position:relative">';
             foreach($data as $row)
             {
                 $output .= 
-                '<li value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.'+'.$row->apellidos.'</li>';
+                '<li id="cadena" class="modal-body bg-dark text-white" value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.' '.$row->apellidos.'</li>';
             }
             $output .= '</ul><br>';
             echo $output;    
-        }
+        } 
+        
     }
+
 }

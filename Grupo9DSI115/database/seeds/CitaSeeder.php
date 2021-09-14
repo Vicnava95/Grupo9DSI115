@@ -12,8 +12,10 @@ class CitaSeeder extends Seeder
      */
     public function run()
     {
+        $fecha = Carbon::today('America/El_Salvador')->format('Y-m-d');
+
         DB::table('citas')->insert([
-            'fecha'=> Carbon::now()->format('Y-m-d'),
+            'fecha'=> $fecha,
             'paciente_id'=>'1',
             'persona_id'=>'2',
             'estadoCita_id'=>'3',
@@ -21,7 +23,7 @@ class CitaSeeder extends Seeder
         ]);
         
         DB::table('citas')->insert([
-            'fecha'=> Carbon::now()->format('Y-m-d'),
+            'fecha'=> $fecha,
             'paciente_id'=>'2',
             'persona_id'=>'2',
             'estadoCita_id'=>'3',
@@ -29,7 +31,7 @@ class CitaSeeder extends Seeder
         ]);
 
         DB::table('citas')->insert([
-            'fecha'=> Carbon::now()->format('Y-m-d'),
+            'fecha'=> $fecha,
             'paciente_id'=>'3',
             'persona_id'=>'3',
             'estadoCita_id'=>'3',
@@ -37,7 +39,7 @@ class CitaSeeder extends Seeder
         ]);
         
         DB::table('citas')->insert([
-            'fecha'=> Carbon::now()->format('Y-m-d'),
+            'fecha'=> $fecha,
             'paciente_id'=>'4',
             'persona_id'=>'3',
             'estadoCita_id'=>'3',
@@ -45,7 +47,7 @@ class CitaSeeder extends Seeder
         ]);
 
         DB::table('citas')->insert([
-            'fecha'=> Carbon::now()->format('Y-m-d'),
+            'fecha'=> $fecha,
             'paciente_id'=>'5',
             'persona_id'=>'3',
             'estadoCita_id'=>'3',
@@ -53,7 +55,7 @@ class CitaSeeder extends Seeder
         ]);
         
         DB::table('citas')->insert([
-            'fecha'=> Carbon::now()->format('Y-m-d'),
+            'fecha'=> $fecha,
             'paciente_id'=>'6',
             'persona_id'=>'2',
             'estadoCita_id'=>'3',

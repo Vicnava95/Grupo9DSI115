@@ -29,6 +29,7 @@ class Consulta extends Model
 		'fecha' => 'required|date',
 		'paciente_id' => 'required|integer|exists:pacientes,id',
 		'persona_id' => 'required|integer|exists:personas,id',
+        'paciente_id_hid' => 'required|string'
     ];
 
     protected $perPage = 20;
@@ -38,7 +39,7 @@ class Consulta extends Model
      *
      * @var array
      */
-    protected $fillable = ['descripcion','fecha','paciente_id','persona_id'];
+    protected $fillable = ['descripcion','fecha','paciente_id','persona_id','paciente_id_hid'];
 
 
     /**

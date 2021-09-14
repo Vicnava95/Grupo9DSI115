@@ -6,7 +6,7 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Registrar Receta</span>
+                    <span class="card-title">Receta</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" id="formCreate" action="{{ route('recetas.store') }}"  role="form" enctype="multipart/form-data">

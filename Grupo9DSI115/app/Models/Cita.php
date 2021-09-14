@@ -30,8 +30,18 @@ class Cita extends Model
 		'hora' => 'required',
 		'paciente_id' => 'required|integer|exists:pacientes,id',
 		'persona_id' => 'required|integer|exists:personas,id',
-		'estadoCita_id' => 'required|integer|exists:estado_citas,id'
+		'estadoCita_id' => 'required|integer|exists:estado_citas,id',
+    'paciente_id_hid' => 'required|string'
     ];
+
+    static $rulesWithoutPersona = [
+		'fecha' => 'required',
+		'hora' => 'required',
+		'paciente_id' => 'required|integer|exists:pacientes,id',
+		'estadoCita_id' => 'required|integer|exists:estado_citas,id',
+    'paciente_id_hid' => 'required|string'
+    ];
+
 
     protected $perPage = 20;
 
@@ -40,7 +50,7 @@ class Cita extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','hora','paciente_id','persona_id','estadoCita_id'];
+    protected $fillable = ['fecha','hora','paciente_id','persona_id','estadoCita_id','paciente_id_hid'];
 
 
     /**
