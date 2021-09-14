@@ -95,7 +95,7 @@
                             </a>
                             @break
                         @case(3)
-                            <a href="{{route('doctoraDental.index')}}">
+                            <a href="{{route('dshDoctorDental.index')}}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -141,12 +141,12 @@
                                 <div class="collapse" id="base">
                                     <ul class="nav nav-collapse">
                                         <li>
-                                            <a href=" ">
+                                            <a href=" {{ route('expedientesGeneral') }} ">
                                                 <span class="sub-item">Clinicos</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href=" ">
+                                            <a href="{{ route('expedientesDentales') }} ">
                                                 <span class="sub-item">Dentales</span>
                                             </a>
                                         </li>
@@ -156,7 +156,7 @@
                             @break
                         @case(2)
                             <li class="nav-item">
-                                <a href=" ">
+                                <a href=" {{ route('expedientesGeneral') }}">
                                     <i class="fas fa-layer-group"></i>
                                     <p>Expedientes</p>
                                 </a>
@@ -164,7 +164,7 @@
                             @break
                         @default
                             <li class="nav-item">
-                                <a href=" ">
+                                <a href="{{ route('expedientesDentales') }} ">
                                     <i class="fas fa-layer-group"></i>
                                     <p>Expedientes</p>
                                 </a>

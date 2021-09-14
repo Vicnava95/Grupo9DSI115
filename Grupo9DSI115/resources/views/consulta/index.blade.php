@@ -70,12 +70,12 @@ Registrar Consultas
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
                                         <th>Paciente</th>
 										<th>Doctor</th>
                                         <th>Fecha</th>
 										{{--<th>Descripcion</th>--}}
-										
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -89,7 +89,7 @@ Registrar Consultas
 											<td>{{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}</td>
                                             <td>{{ $consulta->fecha }}</td>
                                             {{--<td>{!! Str::words($consulta->descripcion, 3, ' ...') !!}</td>--}}
-											
+
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
@@ -157,7 +157,7 @@ Registrar Consultas
     </div>
 
     <script>
-        
+
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
@@ -171,7 +171,7 @@ Registrar Consultas
                 $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
-        
+
 
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
@@ -230,7 +230,7 @@ Registrar Consultas
                 case 't':
                     b.innerHTML = "Editar consulta";
                     break;
-                
+
                 case 'r':
                     b.innerHTML = "Eliminar consulta";
                     break;
