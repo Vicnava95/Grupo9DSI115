@@ -55,7 +55,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('doctorGeneral.index', compact('citas', 'consulta','fechaInicio', 'fechaFin', 'personas','cita','estadocitas'));
+            return view('DoctorGeneral.index', compact('citas', 'consulta','fechaInicio', 'fechaFin', 'personas','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -95,7 +95,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('doctoraDental.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
+            return view('DoctoraDental.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
