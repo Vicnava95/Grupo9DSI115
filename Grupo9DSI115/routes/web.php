@@ -33,7 +33,7 @@ Route::get('citas/{cita}/programada', 'CitaController@programada')->name('citas.
 Route::get('citas/{cita}/programated', 'CitaController@programated')->name('citas.programated');
 
 //citas doctor general
-Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGaneral.index');
+Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGeneral.index');
 //citas doctor dental
 Route::get('/dashboardDoctorDental', 'DashboardController@doctorDentalIndex')->name('dshDoctorDental.index');
 //citas secretaria
