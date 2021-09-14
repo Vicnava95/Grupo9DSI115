@@ -53,8 +53,8 @@
         <div class="card">
             <div class="container">
                 
-                <div class="row">
-                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end" style="margin-top:10px;">
+                <div class="row" style="margin-top:10px;">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
                         <label class="text-center">Nombre: {{$paciente->nombres}}</label>
                     </div>
                     <div class="form-group col-md-3 col-12 d-flex justify-content align-items-end">
@@ -78,7 +78,7 @@
         </div>
         <h2 class="text">Detalles de la consulta (Actual)</h2>
         {{-- Formulario para crear una consulta --}}
-        <form  method="POST" action="{{route('crearConsulta')}}">
+        <form  method="POST" action="{{route('crearConsultaDoctora')}}">
             @csrf
             <div class="card">
                 <div class="container">

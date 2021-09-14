@@ -1,11 +1,11 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD DOCTOR GENERAL
+    Expediente {{$paciente->nombres}}
 @endsection
 
 @section('titulo')
-    DASHBOARD DOCTOR GENERAL
+    Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
 @endsection
 
 @section('descripcion')
@@ -17,107 +17,111 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
-                    <form class="w-100 d-flex justify-content-center align-items-center" method="GET" action="{{ route('dshDoctorGaneral.index') }}">
+                    
                         <div class="container">
-                            <div class="row">
-                                <div class="form-group col-md-5 col-12">
-                                    <label for="fechaInicio">Fecha de inicio</label>
-                                    <div class='input-group date'>
-                                        <input type='text' class="form-control" id='fechaInicio' name='fechaInicio'/>
-                                        <div class="input-group-addon input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-5 col-12">
-                                    <label for="fechaFin">Fecha de fin</label>
-                                    <div class='input-group date'>
-                                        <input type='text' class="form-control" id='fechaFin' name='fechaFin'/>
-                                        <div class="input-group-addon input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-2 col-12 d-flex justify-content-center align-items-end">
-                                    <input class="btn btn-primary" type="submit" value="Consultar fechas">
-                                    
-                                </div>
-                            </div> 
-                        </div>
-                    </form>
-                </div>
-                
-                <script type="text/javascript">
-                    $(function () {
-                        $('#fechaInicio').datetimepicker({
-                            format: 'YYYY/MM/DD',
-                        });
-                        $('#fechaFin').datetimepicker({
-                            useCurrent: false,
-                            format: 'YYYY/MM/DD', //Important! See issue #1075
-                    });
-                        $("#fechaInicio").on("dp.change", function (e) {
-                            $('#fechaFin').data("DateTimePicker").minDate(e.date);
-                        });
-                        $("#fechaFin").on("dp.change", function (e) {
-                            $('#fechaInicio').data("DateTimePicker").maxDate(e.date);
-                        });
-                    });
-                </script>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-12 p-1 d-flex justify-content-center align-items-end">
-                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
-                    data-attr="{{ route('citas.create') }}">Crear Cita</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            @if ($fechaInicio && $fechaFin)
-                <h2 class="text-center">Citas programadas entre las fechas: {{ $fechaInicio }} - {{ $fechaFin }}</h2>
-                @if (count($citas)<=0)
-                    <h2 class="text-center">No hay citas programadas</h2>
-                @endif
-            @elseif (count($citas)<=0)
-                <h2 class="text-center">No hay citas programadas</h2>
-            @else
-                <h2 class="text-center">Citas programadas para este dia</h2>
-            @endif
-            <div class="row mt-4">
-                <div class="col-12">
-
-                    @foreach ($citas as $cita)
-                    <div class="bg-dark2 rounded mb-4">
-                        <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
-                            <h3 class="mb-0 d-block">
-                                <a class="btn btn-link text-white"  href="{{route('ExpedientePacienteDoctor',$cita)}}" >
-                                    {{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}
-                                    <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}} 
-                                    <i class="fa fa-clock text-white ml-5 mr-1"></i> {{$cita->hora}}
-                                </a>
-                            </h3>
-                            <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse{{ $cita->id }}" aria-expanded="false" aria-controls="collapse{{ $cita->id }}">
-                                <i class="fas fa-arrow-down text-white"></i>
-                            </button>
                             
-                        </div>
-                        <div id="collapse{{ $cita->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <select name="" id="">
-                                    <option>Finalizada</option>
-                                    <option>Cancelada</option>
-                                    <option>Reprogramada</option>
-                                </select>
-                                <input type="submit" value="Enviar">
+                            <div class="text-center">
+                                <h2></h2>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    data-attr="{{ route('citas.create') }}">Tratamientos</a>
+                                </div>
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    data-attr="{{ route('citas.create') }}">Crear Cita</a>
+                                </div>
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    data-attr="{{ route('citas.create') }}">Recetas</a>
+                                </div>
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    data-attr="{{ route('citas.create') }}">Pagos</a>
+                                </div>
+                                
                             </div>
                         </div>
-                    </div>
-                    @endforeach
-                    <!-- Targeta -->
+                    
                 </div>
             </div>
         </div>
     </div>
+    <div class="card-body" >
+        <h2 class="text">Información personal</h2>
+        <div class="card">
+            <div class="container">
+                
+                <div class="row" style="margin-top:10px;">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Nombre: {{$paciente->nombres}}</label>
+                    </div>
+                    <div class="form-group col-md-3 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Apellido: {{$paciente->apellidos}}</label>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Celular: {{$paciente->telefonoCelular}}</label>
+                    </div>
+                    <div class="form-group col-md-3 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Fecha de nacimiento: {{$paciente->fechaDeNacimiento}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
+                        <label class="text-center">Dirección: {{$paciente->direccion}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text">Detalle de las consultas</h2>
+        <div class="card">
+            <div class="form-group col-md-4 col-12 d-flex justify-content align-items-end" style="margin-top:10px;">
+                <label class="text-center">Cantidad de citas: {{$cantidadConsultas}}</label>
+            </div>
+            @if ($cantidadConsultas == 0)
+                <div class=" p-4 mb-4">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h3>No hay consultas registradas</h3>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class=" p-4 mb-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">N°</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($collecionConsultas as $collecionConsulta)
+                                    <tr>
+                                        <th scope="row">{{ ++$i }}</th>
+                                        <td>{{$collecionConsulta['fecha']}}</td>
+                                        <td>{{$collecionConsulta['descripcion']}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+        
+    </div>
+    
+    
+    
 
     <!-- Modal Registrar/Editar/Eliminar -->
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"

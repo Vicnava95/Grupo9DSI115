@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Cita;
 use App\Models\Persona;
 use App\Models\Consulta;
+use App\Models\ExpedienteDoctor;
 use App\Models\Rolpersona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class DashboardController extends Controller
 {

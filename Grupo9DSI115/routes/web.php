@@ -34,6 +34,7 @@ Route::get('/dashboardDoctorDental', 'DashboardController@doctorDentalIndex')->n
 Route::get('/dashboardSecretaria', 'DashboardController@secretariaIndex')->name('dshSecretaria.index');
 //citas administrador
 Route::get('/dashboardAdministrador', 'DashboardController@administradorIndex')->name('dshAdministrador.index');
+//Autocomplete
 
 //consulta
 Route::resource('consultas', 'ConsultaController');
@@ -99,7 +100,12 @@ Route::middleware(['auth'])->group(function (){
 
     //Rutas asignadas para el Doctor General (SOLO PARA EL DOCTOR)
     Route::group(['middleware' => 'DoctorGeneralMiddleware'],function(){
-        Route::get('/expedientePaciente','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor'); 
+        Route::get('/expedientePaciente/{cita}','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor'); 
+        Route::post('/crearConsulta','ExpedienteDoctorController@crearConsulta')->name('crearConsulta');
+        Route::get('/expedientesGeneral','ExpedienteDoctorController@expedientes')->name('expedientesGeneral');
+        Route::get('mostrarExpedienteGeneral/{id}','ExpedienteDoctorController@showExpediente')->name('showExpedienteGeneral'); 
+        Route::get('/eliminarExpedienteGeneral/{id}/borrar','ExpedienteDoctorController@deleteExpediente')->name('deleteExpedienteGeneral');
+        Route::delete('destroyExpedienteGeneral/{id}','ExpedienteDoctorController@destroy')->name('destroyExpedienteGeneral');
         Route::get('/doctorGeneral',function(){
             return view('Prueba.doctorGeneral');
         })->name('doctorGeneral');
@@ -107,10 +113,13 @@ Route::middleware(['auth'])->group(function (){
 
     //Rutas asignadas para la Doctora Dental (SOLO PARA LA DOCTORA)
     Route::group(['middleware' => 'DoctoraDentalMiddleware'],function(){
+        Route::get('/expedientePaciente/{cita}','ExpedienteDoctoraDentalController@index')->name('ExpedientePacienteDoctoraDental'); 
+        Route::post('/crearConsultaD','ExpedienteDoctoraDentalController@crearConsulta')->name('crearConsultaDoctora');
+        Route::get('/expedientesDentales','ExpedienteDoctoraDentalController@expedientes')->name('expedientesDentales');
+        Route::get('/mostrarExpediente/{id}','ExpedienteDoctoraDentalController@showExpediente')->name('showExpediente'); 
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
-
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)

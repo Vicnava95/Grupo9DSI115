@@ -1,11 +1,11 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD DOCTOR DENTAL
+    DASHBOARD DOCTORA DENTAL
 @endsection
 
 @section('titulo')
-    DASHBOARD DOCTOR DENTAL
+    DASHBOARD DOCTORA DENTAL
 @endsection
 
 @section('descripcion')
@@ -90,7 +90,7 @@
                     <div class="bg-dark2 rounded mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
                             <h3 class="mb-0 d-block">
-                                <a class="btn btn-link text-white" id="mediumButton" href="#" role="button" .createdata-toggle="modal" data-target="#mediumModal" data-attr="{{ route('consultasByDashboard.create', $cita) }}">
+                                <a class="btn btn-link text-white" href="{{route('ExpedientePacienteDoctoraDental',$cita)}}">
                                     {{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}
                                     <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}} 
                                     <i class="fa fa-clock text-white ml-5 mr-1"></i> {{$cita->hora}}
