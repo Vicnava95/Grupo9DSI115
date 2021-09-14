@@ -132,7 +132,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('admin.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
+            return view('Admin.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -169,7 +169,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('secretaria.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
+            return view('Secretaria.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
