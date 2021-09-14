@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    
+
                     <div class="form-group">
                         <strong>Nombres:</strong>
                         {{ $persona->nombrePersonas }}
@@ -34,11 +34,11 @@
                         @foreach ($sexos as $sexo)
                             @if ($sexo->id == $persona->sexo_id)
                                 {{ $sexo->nombre }}
-                            @endif 
+                            @endif
                         @endforeach
                     </div>
                     <div class="form-group">
-                        <strong>Rolpersona:</strong>
+                        <strong>Rol persona:</strong>
                         @foreach ($roles as $rol)
                             @if ($rol->id == $persona->rolpersona_id)
                                 <td>{{ $rol->nombreRolPersona }}</td>

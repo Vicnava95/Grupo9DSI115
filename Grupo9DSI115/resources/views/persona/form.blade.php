@@ -1,6 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('nombres*') }}
             {{ Form::text('nombrePersonas', !empty($persona->nombrePersonas) ? $persona->nombrePersonas : '', ['class' => 'form-control' . ($errors->has('nombrePersonas') ? ' is-invalid' : ''), 'placeholder' => 'Nombres']) }}
@@ -12,7 +12,7 @@
             {!! $errors->first('apellidoPersonas', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('DUI') }}
+            {{ Form::label('DUI*') }}
             {{ Form::text('dui', $persona->dui, ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'DUI']) }}
             {!! $errors->first('dui', '<div class="invalid-feedback">:message</p>') !!}
         </div>
@@ -44,7 +44,7 @@
                     })
                 </script>
         <div class="form-group">
-            {{ Form::label('NIT') }}
+            {{ Form::label('NIT*') }}
             {{ Form::text('nitPersona', $persona->nitPersona, ['class' => 'form-control' . ($errors->has('nitPersona') ? ' is-invalid' : ''), 'placeholder' => 'NIT']) }}
             {!! $errors->first('nitPersona', '<div class="invalid-feedback">:message</p>') !!}
         </div>
@@ -62,5 +62,5 @@
         </div>
 
     </div>
-  
+
 </div>

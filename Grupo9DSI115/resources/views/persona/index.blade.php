@@ -72,7 +72,7 @@ Personas
                           </div>
                         </div>
                       </div>
-                        
+
                         <!--
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
@@ -86,9 +86,9 @@ Personas
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Nombre</th>
-										<th>Apellido</th>
+
+										<th>Nombres</th>
+										<th>Apellidos</th>
 										<th>Telefono</th>
 										<th>Fecha de nacimiento</th>
 										<th>Rol</th>
@@ -100,7 +100,7 @@ Personas
                                     @foreach ($personas as $persona)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $persona->nombrePersonas }}</td>
 											<td>{{ $persona->apellidoPersonas }}</td>
 											<td>{{ $persona->telefono }}</td>
@@ -126,7 +126,7 @@ Personas
                                                     {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         href="{{ route("persona.show", $persona->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i></a> --}}
-                                                    
+
                                                     <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
                                                         data-attr="{{ route('personas.delete', $persona->id) }}">
@@ -245,7 +245,7 @@ Personas
                 case 't':
                     b.innerHTML = "Editar persona";
                     break;
-                
+
                 case 'r':
                     b.innerHTML = "Eliminar persona";
                     break;
