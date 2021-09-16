@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Consultas
+CONSULTAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Consultas
+Listado de Consultas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->

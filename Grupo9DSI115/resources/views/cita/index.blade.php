@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Citas
+CITAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Citas
+Listado de Citas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -71,7 +71,7 @@ Registrar Citas
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
                                         <th>Paciente</th>
                                         <th>Fecha</th>
 										<th>Hora</th>
@@ -86,13 +86,13 @@ Registrar Citas
                                             {{--<td>{{ $cita->paciente_id }}</td>--}}
                                             <td>{{ $cita->Paciente->apellidos }}, {{ $cita->Paciente->nombres }}</td>
 											{{--<td>{{ $cita->Persona->apellidoPersonas }}, {{ $cita->Persona->nombrePersonas }}</td> --}}
-                                            
+
                                             <td>{{ $cita->fecha }}</td>
                                             <td>{{ $cita->hora }}</td>
                                             <td>{{ $cita->EstadoCita->nombre }}</td>
-											
-											
-											
+
+
+
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
@@ -173,7 +173,7 @@ Registrar Citas
                 $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
-        
+
 
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
@@ -232,7 +232,7 @@ Registrar Citas
                 case 't':
                     b.innerHTML = "Editar Cita";
                     break;
-                
+
                 case 'r':
                     b.innerHTML = "Eliminar Cita";
                     break;

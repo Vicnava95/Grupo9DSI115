@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Personas
+PERSONAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Personas
+Listado de Personas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -186,7 +186,7 @@ Personas
                         @else
                             $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                         @endif
-                    @enderror 
+                    @enderror
 
                     @if ($key == 'sexo_id')
                         @if (old($key)==1)
@@ -253,20 +253,21 @@ Personas
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Registrar persona";
+                break;
 
                 case 't':
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Editar persona";
+                break;
 
                 case 'r':
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Eliminar persona";
+                break;
 
                 default:
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Mostrar persona";
+                break;
+
             }
         }
     </script>
