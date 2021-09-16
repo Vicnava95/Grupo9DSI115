@@ -94,7 +94,7 @@ Listado de Citas
                                             <td>{{ $cita->hora }}</td>
                                             <td>{{ $cita->EstadoCita->nombre }}</td>
                                         @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
-                                            <td>{{ $cita->persona->nombrePersonas }}</td>
+                                            <td>{{ $cita->persona->nombrePersonas }} {{ $cita->persona->apellidoPersonas }}</td>
                                         @endif
 
 

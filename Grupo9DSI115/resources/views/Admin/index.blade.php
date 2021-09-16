@@ -93,7 +93,7 @@
                                     {{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}
                                     <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}}
                                     <i class="fa fa-clock text-white ml-5 mr-1"></i> {{$cita->hora}}
-                                    <i class="text-white ml-5 mr-1"></i> {{$cita->persona->nombrePersonas}}
+                                    <i class="text-white ml-5 mr-1"></i> Doctor:{{$cita->persona->nombrePersonas}} {{$cita->persona->apellidoPersonas}}
                                 </a>
                             </h3>
                             <span class="ml-auto d-block mb-0 text-center badge badge-light">{{ ($cita->estadoCita_id==2)? 'Cancelado' : '' }}{{ ($cita->estadoCita_id==3)? 'Programado' : ''}}</span>
