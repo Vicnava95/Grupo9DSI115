@@ -76,6 +76,9 @@ Listado de Citas
                                         <th>Fecha</th>
 										<th>Hora</th>
                                         <th>Estado</th>
+                                    @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                        <th>Doctor</th>
+                                    @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,6 +93,9 @@ Listado de Citas
                                             <td>{{ $cita->fecha }}</td>
                                             <td>{{ $cita->hora }}</td>
                                             <td>{{ $cita->EstadoCita->nombre }}</td>
+                                        @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                            <td>{{ $cita->persona->nombrePersonas }}</td>
+                                        @endif
 
 
 

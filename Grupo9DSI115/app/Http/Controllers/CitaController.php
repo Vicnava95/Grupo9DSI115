@@ -32,7 +32,22 @@ class CitaController extends Controller
 
     public function index()
     {
-        $citas = Cita::paginate();
+        //$citas = Cita::paginate();
+        $rol = Auth::user()->rols_fk;
+        switch($rol){
+            case 2:
+                $citas = Cita::select('*')
+                    ->where('persona_id', '=', 2)
+                    ->paginate(10);
+                break;
+            case 3:
+                $citas = Cita::select('*')
+                    ->where('persona_id', '=', 3)
+                    ->paginate(10);
+                break;
+            default:
+                $citas = Cita::paginate();
+        }
 
         return view('cita.index', compact('citas'))
             ->with('i', (request()->input('page', 1) - 1) * $citas->perPage());
@@ -90,15 +105,15 @@ class CitaController extends Controller
         $persona = Persona::find($request->persona_id);
         //dd($persona);
 
-        //Obtengo el tipo de doctor que es la persona 
+        //Obtengo el tipo de doctor que es la persona
         //Es un if para conocer que de doctor se va abrir el expediente
         // 2-Doctor General
-        // 3-Doctora Dental 
+        // 3-Doctora Dental
         if($persona->rolpersona_id == 2){
             //Doctor General
             $expedientePaciente_Doctor = ExpedienteDoctor::where('paciente_id',$cita->paciente_id)->get();
             //dd($expedientePaciente_Doctor);
-            
+
             if($expedientePaciente_Doctor->isEmpty()){
                 //Crear expediente
                 $crearExpedientePaciente_Doctor = ExpedienteDoctor::create([
@@ -110,13 +125,13 @@ class CitaController extends Controller
             }else{
                 //dd('La paciente ya existe'); //El expediente de ese paciente ya existe
             }
-            
+
 
         }else{
             //Doctora Dental
             $expedientePaciente_DoctoraDental = ExpedienteDoctoraDental::where('paciente_id',$cita->paciente_id)->get();
             //dd($expedientePaciente_DoctoraDental);
-            
+
             if($expedientePaciente_DoctoraDental->isEmpty()){
                 //Crear expediente
                 $crearExpedientePaciente_Doctor = ExpedienteDoctoraDental::create([
@@ -128,7 +143,7 @@ class CitaController extends Controller
             }else{
                 //dd('La paciente ya existe Doctora'); //El expediente de ese paciente ya existe
             }
-            
+
 
         }
         return redirect()->route($urlView)
