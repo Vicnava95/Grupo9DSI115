@@ -72,7 +72,9 @@ Listado de Consultas
                                         <th>No</th>
 
                                         <th>Paciente</th>
-										<th>Doctor</th>
+									@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                        <th>Doctor</th>
+                                    @endif
                                         <th>Fecha</th>
 										{{--<th>Descripcion</th>--}}
 
@@ -86,7 +88,9 @@ Listado de Consultas
 
                                             {{--<td>{{ $consulta->paciente_id }}</td>--}}
                                             <td>{{ $consulta->Paciente->apellidos }}, {{ $consulta->Paciente->nombres }}</td>
-											<td>{{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}</td>
+										@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                            <td>{{ $cita->persona->nombrePersonas }} {{ $cita->persona->apellidoPersonas }}</td>
+                                        @endif
                                             <td>{{ $consulta->fecha }}</td>
                                             {{--<td>{!! Str::words($consulta->descripcion, 3, ' ...') !!}</td>--}}
 

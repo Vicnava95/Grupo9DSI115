@@ -7,6 +7,7 @@ use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 /**
@@ -22,6 +23,7 @@ class ConsultaController extends Controller
      */
     public function index(Request $request)
     {
+        /* Buscar
         $texto =trim($request->get('texto'));
         if($texto==''){
             $consultas = Consulta::paginate();
@@ -30,6 +32,22 @@ class ConsultaController extends Controller
                         ->where('paciente_id', '=' ,$texto)
                         ->orderByDesc('fecha')
                         ->paginate(10);
+        }*/
+
+        $rol = Auth::user()->rols_fk;
+        switch ($rol) {
+            case 2:
+                $consultas= Consulta::select('*')
+                    ->where('persona_id', '=', 2)
+                    ->paginate(10);
+                break;
+            case 3:
+                $consultas = Consulta::select('*')
+                    ->where('persona_id', '=', 3)
+                    ->paginate(10);
+                break;
+            default:
+                $consultas = Consulta::paginate();
         }
 
         return view('consulta.index', compact('consultas'))
@@ -144,17 +162,17 @@ class ConsultaController extends Controller
             $data = DB::table('pacientes')
                 ->where('nombres','LIKE',"%{$name}%")
                 ->get();//obtenemos el data si cumple la restricción
-            
+
                 $output = '<ul id="listP" class="dropdown-menu modal-body bg-dark text-white" style="display:block; position:relative">';
             foreach($data as $row)
             {
-                $output .= 
+                $output .=
                 '<li id="cadena" class="modal-body bg-dark text-white" value="'.$row->id.' "onclick="searchPhase('.$row->id.')">'.$row->nombres.' '.$row->apellidos.'</li>';
             }
             $output .= '</ul><br>';
-            echo $output;    
-        } 
-        
+            echo $output;
+        }
+
     }
 
 }
