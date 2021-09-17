@@ -20,8 +20,11 @@
                             </div>
                             <script type="text/javascript">
                                 $(function () {
+                                    var hoy = new Date();
+                                    hoy.setDate(hoy.getDate() - 1);
                                     $("#inputFecha").datetimepicker({
-                                        format: 'YYYY-MM-DD'
+                                        format: 'YYYY-MM-DD',
+                                        minDate: hoy
                                     });
                                 });
                             </script>
