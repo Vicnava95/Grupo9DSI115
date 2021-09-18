@@ -12,7 +12,7 @@ Listado de Citas
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-
+    
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -31,7 +31,7 @@ Listado de Citas
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('citas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Código de paciente" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Código o nombre del paciente" name="texto" aria-label="default input">
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>

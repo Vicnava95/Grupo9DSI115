@@ -12,7 +12,6 @@ Listado de Consultas
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -30,7 +29,7 @@ Listado de Consultas
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('consultas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Código de paciente" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Código o nombre del paciente" name="texto" aria-label="default input">
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
@@ -89,7 +88,7 @@ Listado de Consultas
                                             {{--<td>{{ $consulta->paciente_id }}</td>--}}
                                             <td>{{ $consulta->Paciente->apellidos }}, {{ $consulta->Paciente->nombres }}</td>
 										@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
-                                            <td>{{ $cita->persona->nombrePersonas }} {{ $cita->persona->apellidoPersonas }}</td>
+                                            <td>{{ $consulta->Persona->nombrePersonas }}, {{ $consulta->Persona->apellidoPersonas }}</td>
                                         @endif
                                             <td>{{ $consulta->fecha }}</td>
                                             {{--<td>{!! Str::words($consulta->descripcion, 3, ' ...') !!}</td>--}}

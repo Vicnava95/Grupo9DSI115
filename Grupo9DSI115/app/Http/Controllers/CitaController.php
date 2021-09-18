@@ -30,23 +30,58 @@ class CitaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        //$citas = Cita::paginate();
         $rol = Auth::user()->rols_fk;
-        switch($rol){
-            case 2:
+        $texto =trim($request->get('texto'));
+        if($texto==''){
+            switch($rol){
+                case 2:
+                    $citas = Cita::select('*')
+                        ->where('persona_id', 2)
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+                    break;
+                case 3:
+                    $citas = Cita::select('*')
+                        ->where('persona_id', 3)
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+                    break;
+                default:
+                    $citas = Cita::paginate();
+            }
+        }
+        else{
+            $pacientes = Paciente::select('*')
+                ->where('id', $texto)
+                ->orWhere('nombres','LIKE',$texto.'%')
+                ->orWhere('apellidos','LIKE',$texto.'%')
+                ->get()
+                ->toArray();
+            
+            switch($rol){
+                case 2:
+                    $citas = Cita::select('*')
+                        ->where('persona_id', 2)
+                        ->where('paciente_id', $pacientes)
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+                    break;
+                case 3:
+                    $citas = Cita::select('*')
+                        ->where('persona_id', 3)
+                        ->where('paciente_id', $pacientes)
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+                    break;
+                default:
                 $citas = Cita::select('*')
-                    ->where('persona_id', '=', 2)
-                    ->paginate(10);
-                break;
-            case 3:
-                $citas = Cita::select('*')
-                    ->where('persona_id', '=', 3)
-                    ->paginate(10);
-                break;
-            default:
-                $citas = Cita::paginate();
+                        ->where('paciente_id', $pacientes)
+                        ->orderByDesc('fecha')
+                        ->paginate(10);
+                    break;
+            }
         }
 
         return view('cita.index', compact('citas'))

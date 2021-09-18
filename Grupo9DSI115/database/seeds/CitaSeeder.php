@@ -61,5 +61,21 @@ class CitaSeeder extends Seeder
             'estadoCita_id'=>'3',
             'hora'=>'14:00:00'
         ]);
+
+        DB::table('citas')->insert([
+            'fecha'=> $fecha,
+            'paciente_id'=>'7',
+            'persona_id'=>'3',
+            'estadoCita_id'=>'3',
+            'hora'=>'15:00:00'
+        ]);
+
+        DB::table('citas')->insert([
+            'fecha'=> $fecha,
+            'paciente_id'=>'8',
+            'persona_id'=>'2',
+            'estadoCita_id'=>'3',
+            'hora'=>'16:00:00'
+        ]);
     }
 }

@@ -23,32 +23,53 @@ class ConsultaController extends Controller
      */
     public function index(Request $request)
     {
-        /* Buscar
+        $rol = Auth::user()->rols_fk;
         $texto =trim($request->get('texto'));
         if($texto==''){
-            $consultas = Consulta::paginate();
-        } else{
-            $consultas = Consulta::select('*')
-                        ->where('paciente_id', '=' ,$texto)
-                        ->orderByDesc('fecha')
+            switch ($rol) {
+                case 2:
+                    $consultas = Consulta::select('*')
+                        ->where('persona_id', '=', 2)
                         ->paginate(10);
-        }*/
-
-        $rol = Auth::user()->rols_fk;
-        switch ($rol) {
-            case 2:
-                $consultas= Consulta::select('*')
-                    ->where('persona_id', '=', 2)
-                    ->paginate(10);
-                break;
-            case 3:
-                $consultas = Consulta::select('*')
-                    ->where('persona_id', '=', 3)
-                    ->paginate(10);
-                break;
-            default:
-                $consultas = Consulta::paginate();
+                    break;
+                case 3:
+                    $consultas = Consulta::select('*')
+                        ->where('persona_id', '=', 3)
+                        ->paginate(10);
+                    break;
+                default:
+                    $consultas = Consulta::paginate();
+            }
         }
+        else{
+            $pacientes = Paciente::select('*')
+                ->where('id', $texto)
+                ->orWhere('nombres','LIKE',$texto.'%')
+                ->orWhere('apellidos','LIKE',$texto.'%')
+                ->get()
+                ->toArray();
+
+            switch($rol){
+                case 2:
+                    $consultas = Consulta::select('*')
+                        ->where('persona_id', 2)
+                        ->where('paciente_id', $pacientes)
+                        ->paginate(10);
+                    break;
+                case 2:
+                    $consultas = Consulta::select('*')
+                        ->where('persona_id', 3)
+                        ->where('paciente_id', $pacientes)
+                        ->paginate(10);
+                    break;
+                default:
+                    $consultas = Consulta::select('*')
+                        ->where('paciente_id', $pacientes)
+                        ->paginate(10);
+                    break;
+            }
+        }
+        
 
         return view('consulta.index', compact('consultas'))
             ->with('i', (request()->input('page', 1) - 1) * $consultas->perPage());
