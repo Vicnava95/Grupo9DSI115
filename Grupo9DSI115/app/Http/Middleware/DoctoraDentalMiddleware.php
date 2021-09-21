@@ -17,9 +17,9 @@ class DoctoraDentalMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->user() && $request->user()->rols_fk != '3'){
-            return new Response(view('home'));
+        if($request->user()->rols_fk == '1' || $request->user()->rols_fk == '3'){
+            return $next($request);
         }
-        return $next($request);
+        return new Response(view('home'));
     }
 }

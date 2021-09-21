@@ -1,11 +1,11 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD ADMINISTRATOR
+    DASHBOARD ADMINISTRADOR
 @endsection
 
 @section('titulo')
-    DASHBOARD ADMINISTRATOR
+    DASHBOARD ADMINISTRADOR
 @endsection
 
 @section('descripcion')

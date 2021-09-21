@@ -5,6 +5,8 @@
 @endsection
 
 @section('titulo')
+    <a href="{{route('expedientesGeneral')}}"><i class="fas fa-chevron-circle-left"></i></a>    
+    <br>
     Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
 @endsection
 
@@ -13,41 +15,6 @@
 @endsection
 
 @section('cuerpo')
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
-                    
-                        <div class="container">
-                            
-                            <div class="text-center">
-                                <h2></h2>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Tratamientos</a>
-                                </div>
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Crear Cita</a>
-                                </div>
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Recetas</a>
-                                </div>
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Pagos</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="card-body" >
         <h2 class="text">Información personal</h2>
         <div class="card">

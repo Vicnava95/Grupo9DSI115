@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\ExpedienteDoctor;
+use App\Models\ExpedienteDoctoraDental;
 use App\Models\Cita;
 use App\Models\Paciente;
 use App\Models\Consulta;
+use App\Models\EstadoCita;
+use App\Models\Persona;
 use DB;
 class ExpedienteDoctorController extends Controller
 {
@@ -51,6 +55,13 @@ class ExpedienteDoctorController extends Controller
         ]);
         $consulta->save(); 
 
+        $idCita = request('idCita');
+        $cita = Cita::find($idCita);
+
+        $cita->update([
+            'estadoCita_id' => 1
+        ]); 
+
         $expedientePaciente = ExpedienteDoctor::where('paciente_id',$idPaciente)->first();
         //dd($expedientePaciente);
         $pivotTable = DB::table('consulta_expedientedoctor')->insert([
@@ -90,59 +101,45 @@ class ExpedienteDoctorController extends Controller
         return view('DoctorGeneral.ExpedienteGeneralShow',compact('i','paciente','collecionConsultas','cantidadConsultas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function crearCitaDoctor($idPaciente){
+        $estadocita = EstadoCita::pluck('nombre','id');
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        $cita = new Cita();
+        $url = url()->previous();
+        $urlView = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
+        //dd($urlView);
+        $pacientes = Paciente::all();
+        $paciente = Paciente::find($idPaciente);
+        //dd($paciente->id); 
+        $personas = Persona::select('*')
+                ->where('rolpersona_id',2)
+                ->orWhere('rolpersona_id',3)
+                ->get();
+        return view('DoctorGeneral.create',compact('cita', 'pacientes','paciente','personas', 'urlView','estadocita')); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function storeCita(Request $request, $urlView)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ExpedienteDoctor  $expedienteDoctor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ExpedienteDoctor $expedienteDoctor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ExpedienteDoctor  $expedienteDoctor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ExpedienteDoctor $expedienteDoctor)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExpedienteDoctor  $expedienteDoctor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ExpedienteDoctor $expedienteDoctor)
-    {
-        //
+        //dd($request);
+        if(Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            //request()->validate(Cita::$rulesWithoutPersona);
+        }
+        else{
+            //request()->validate(Cita::$rules);
+        }
+        $cita = DB::table('citas')->insert([
+            'fecha' => $request->fecha,
+            'hora' => $request->hora,
+            'paciente_id' => $request->paciente_id_hid,
+            'persona_id'=> 2,
+            'estadoCita_id' => $request->estadoCita_id
+        ]); 
+        return redirect()->route('dshDoctorGaneral.index')
+            ->with('success', 'Cita creada satisfactoriamente.');
     }
 
     public function deleteExpediente($id){
@@ -151,11 +148,33 @@ class ExpedienteDoctorController extends Controller
         return view('DoctorGeneral.destroy',compact('expedientePaciente','paciente'));
     }
 
-
     public function destroy($id)
     {
         $expedientePaciente = ExpedienteDoctor::find($id);
         $expedientePaciente->delete(); 
         return redirect()->route('expedientesGeneral');
+    }
+
+    public function createPaciente()
+    {
+        $paciente = new Paciente();
+        return view('DoctorGeneral.pacienteCreate', compact('paciente'));
+    }
+
+    public function storePaciente(Request $request)
+    {
+        //Paciente::create($request->validate());// valida con las reglas establecidas en app/Http/Request/ValidatePacienteFormRequest
+        /*return redirect()->route('pacientes.index');*/
+        request()->validate(Paciente::$rules);
+
+        $paciente = Paciente::create($request->all());
+        $crearExpedientePaciente_Doctor = ExpedienteDoctor::create([
+            'paciente_id' => $paciente->id
+        ]);
+        $crearExpedientePaciente_Doctor->save();
+
+
+        return redirect()->route('expedientesGeneral')
+            ->with('success', 'Expediente creado satisfactoriamente');
     }
 }

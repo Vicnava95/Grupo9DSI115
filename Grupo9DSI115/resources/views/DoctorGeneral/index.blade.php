@@ -1,11 +1,11 @@
 @extends('Base.base')
 
 @section('tituloPagnia')
-    DASHBOARD GENERAL
+    DASHBOARD DOCTOR GENERAL
 @endsection
 
 @section('titulo')
-    DASHBOARD GENERAL
+    DASHBOARD DOCTOR GENERAL
 @endsection
 
 @section('descripcion')
@@ -23,7 +23,7 @@
                                 <div class="form-group col-md-5 col-12">
                                     <label for="fechaInicio">Fecha de inicio</label>
                                     <div class='input-group date'>
-                                        <input type='text' class="form-control" id='fechaInicio' name='fechaInicio'/>
+                                        <input type='text' class="form-control" id='fechaInicio' name='fechaInicio' autocomplete='off'/>
                                         <div class="input-group-addon input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
@@ -32,7 +32,7 @@
                                 <div class="form-group col-md-5 col-12">
                                     <label for="fechaFin">Fecha de fin</label>
                                     <div class='input-group date'>
-                                        <input type='text' class="form-control" id='fechaFin' name='fechaFin'/>
+                                        <input type='text' class="form-control" id='fechaFin' name='fechaFin' autocomplete='off'/>
                                         <div class="input-group-addon input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
