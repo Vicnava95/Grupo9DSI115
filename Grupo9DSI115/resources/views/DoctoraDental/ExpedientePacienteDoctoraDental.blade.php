@@ -5,6 +5,8 @@
 @endsection
 
 @section('titulo')
+    <a href="{{route('dshDoctorDental.index')}}"><i class="fas fa-chevron-circle-left"></i></a>    
+    <br>
     Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
 @endsection
 
@@ -25,19 +27,19 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    <a class="btn btn-primary disabled" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('citas.create') }}">Tratamientos</a>
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Crear Cita</a>
+                                    data-attr="{{ route('crearCitaDoctoraDental',$citaPaciente->paciente_id) }}">Crear Cita</a>
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('citas.create') }}">Recetas</a>
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    <a class="btn btn-primary disabled" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('citas.create') }}">Pagos</a>
                                 </div>
                                 
@@ -84,12 +86,13 @@
                 <div class="container">
                     <br>
                     <label class="text">Detalle:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="descripcionConsulta" ></textarea>              
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="descripcionConsulta" maxlength="250"></textarea>              
                 </div>
                 <div class="row container">
                     <input type="text" name="idPaciente" value="{{$citaPaciente->paciente_id}}" hidden>
                     <input type="text" name="idPersona" value="{{$citaPaciente->persona_id}}" hidden>
                     <input type="text" name="fechaConsulta" value="{{$citaPaciente->fecha}}" hidden>
+                    <input type="text" name="idCita" value="{{$citaPaciente->id}}" hidden>
                     <button class="btn btn-primary" type="submit" style="margin:15px;">Crear consulta</button>
                 </div>
             </div>

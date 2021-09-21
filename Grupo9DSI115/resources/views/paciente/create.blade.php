@@ -6,13 +6,13 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Registrar paciente</span>
+                    <span class="card-title">Paciente</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" id="formCreate" action="{{ route('pacientes.store') }}" role="form"
                         enctype="multipart/form-data">
                         @csrf
-                        
+
                         @include('paciente.form')
                     </form>
                 </div>

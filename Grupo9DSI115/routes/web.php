@@ -33,7 +33,7 @@ Route::get('citas/{cita}/programada', 'CitaController@programada')->name('citas.
 Route::get('citas/{cita}/programated', 'CitaController@programated')->name('citas.programated');
 
 //citas doctor general
-Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGaneral.index');
+Route::get('/dashboardDoctorGeneral', 'DashboardController@doctorGeneralIndex')->name('dshDoctorGeneral.index');
 //citas doctor dental
 Route::get('/dashboardDoctorDental', 'DashboardController@doctorDentalIndex')->name('dshDoctorDental.index');
 //citas secretaria
@@ -104,12 +104,16 @@ Route::middleware(['auth'])->group(function (){
 
     //Rutas asignadas para el Doctor General (SOLO PARA EL DOCTOR)
     Route::group(['middleware' => 'DoctorGeneralMiddleware'],function(){
-        Route::get('/expedientePaciente/{cita}','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor'); 
+        Route::get('/expedientePacienteGeneral/{cita}','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor'); 
         Route::post('/crearConsulta','ExpedienteDoctorController@crearConsulta')->name('crearConsulta');
         Route::get('/expedientesGeneral','ExpedienteDoctorController@expedientes')->name('expedientesGeneral');
         Route::get('mostrarExpedienteGeneral/{id}','ExpedienteDoctorController@showExpediente')->name('showExpedienteGeneral'); 
         Route::get('/eliminarExpedienteGeneral/{id}/borrar','ExpedienteDoctorController@deleteExpediente')->name('deleteExpedienteGeneral');
         Route::delete('destroyExpedienteGeneral/{id}','ExpedienteDoctorController@destroy')->name('destroyExpedienteGeneral');
+        Route::get('/crearCitaDoctor/{idPaciente}','ExpedienteDoctorController@crearCitaDoctor')->name('crearCitaDoctor');
+        Route::post('storeCitaDoctor/{urlView}','ExpedienteDoctorController@storeCita')->name('storeCitaDoctor');
+        Route::get('/expedienteGeneralCrearPaciente', 'ExpedienteDoctorController@createPaciente')->name('expedienteGeneralCrearPaciente');
+        Route::post('/expedienteGeneralStorePaciente', 'ExpedienteDoctorController@storePaciente')->name('expedienteGeneralStorePaciente');
         Route::get('/doctorGeneral',function(){
             return view('Prueba.doctorGeneral');
         })->name('doctorGeneral');
@@ -121,6 +125,12 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/crearConsultaD','ExpedienteDoctoraDentalController@crearConsulta')->name('crearConsultaDoctora');
         Route::get('/expedientesDentales','ExpedienteDoctoraDentalController@expedientes')->name('expedientesDentales');
         Route::get('/mostrarExpediente/{id}','ExpedienteDoctoraDentalController@showExpediente')->name('showExpediente'); 
+        Route::get('/eliminarExpedienteDental/{id}/borrar','ExpedienteDoctoraDentalController@deleteExpediente')->name('deleteExpedienteDental');
+        Route::delete('destroyExpedienteDental/{id}','ExpedienteDoctoraDentalController@destroy')->name('destroyExpedienteDental');
+        Route::get('/crearCitaDoctora/{idPaciente}','ExpedienteDoctoraDentalController@crearCitaDoctora')->name('crearCitaDoctoraDental');
+        Route::post('storeCitaDoctora/{urlView}','ExpedienteDoctoraDentalController@storeCita')->name('storeCitaDoctoraDental');
+        Route::get('/expedienteDentalCrearPaciente', 'ExpedienteDoctoraDentalController@createPaciente')->name('expedienteDentalCrearPaciente');
+        Route::post('/expedienteDentalStorePaciente', 'ExpedienteDoctoraDentalController@storePaciente')->name('expedienteDentalStorePaciente');
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');

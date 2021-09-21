@@ -12,7 +12,7 @@ Registrar Receta
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-
+    
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -73,10 +73,6 @@ Registrar Receta
                                         <th>Paciente</th>
                                         <th>Fecha</th>
                                         <th>Consulta</th>
-										{{--<th>Descripcion</th>
-										<th>Proximacita</th>--}}
-
-
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -92,12 +88,7 @@ Registrar Receta
                                                     {!! Str::words($receta->Consulta->descripcion, 6, ' ...') !!}
                                                 </a>
                                             </td>
-											{{--<td>{!! Str::words($receta->descripcion, 2, ' ...') !!}</td>
-											<td>{{ $receta->proximaCita }}</td>--}}
-
-
                                             <td>
-
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.show', $receta->id) }}">
                                                     <i class="fa fa-fw fa-eye"></i>
@@ -110,17 +101,6 @@ Registrar Receta
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.delete', $receta->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
-
-                                                {{--
-                                                <form action="{{ route('recetas.destroy',$receta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('recetas.show',$receta->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('recetas.edit',$receta->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
-                                                --}}
-
                                             </td>
                                         </tr>
                                     @endforeach

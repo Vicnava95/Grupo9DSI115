@@ -2,17 +2,17 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Citas
+CITAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Citas
+Listado de Citas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-
+    
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -31,7 +31,7 @@ Registrar Citas
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('citas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Código de paciente" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Código o nombre del paciente" name="texto" aria-label="default input">
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
@@ -71,11 +71,14 @@ Registrar Citas
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
                                         <th>Paciente</th>
                                         <th>Fecha</th>
 										<th>Hora</th>
                                         <th>Estado</th>
+                                    @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                        <th>Doctor</th>
+                                    @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,13 +89,16 @@ Registrar Citas
                                             {{--<td>{{ $cita->paciente_id }}</td>--}}
                                             <td>{{ $cita->Paciente->apellidos }}, {{ $cita->Paciente->nombres }}</td>
 											{{--<td>{{ $cita->Persona->apellidoPersonas }}, {{ $cita->Persona->nombrePersonas }}</td> --}}
-                                            
+
                                             <td>{{ $cita->fecha }}</td>
                                             <td>{{ $cita->hora }}</td>
                                             <td>{{ $cita->EstadoCita->nombre }}</td>
-											
-											
-											
+                                        @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                            <td>{{ $cita->persona->nombrePersonas }} {{ $cita->persona->apellidoPersonas }}</td>
+                                        @endif
+
+
+
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
@@ -173,7 +179,7 @@ Registrar Citas
                 $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
-        
+
 
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
@@ -232,7 +238,7 @@ Registrar Citas
                 case 't':
                     b.innerHTML = "Editar Cita";
                     break;
-                
+
                 case 'r':
                     b.innerHTML = "Eliminar Cita";
                     break;

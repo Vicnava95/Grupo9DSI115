@@ -43,7 +43,7 @@ Expedientes
                             <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
-                                    data-attr="{{ route('personas.create') }}" title="Create a project">
+                                    data-attr="{{ route('expedienteGeneralCrearPaciente') }}" title="Create a project">
                                     Registrar persona
                                 </a>
                             </div>
@@ -165,7 +165,7 @@ Expedientes
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
             setTimeout(function(){
-                @foreach ($persona->getAttributes() as $key => $value)
+                @foreach ($paciente->getAttributes() as $key => $value)
                     @error($key)
                         @if ($key == 'sexo_id')
                             $("[name='{{$key}}']").addClass('is-invalid').parent().parent().parent().append('<div class="invalid-feedback d-block"><p>{{$message}}</p></div>')

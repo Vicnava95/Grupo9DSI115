@@ -6,14 +6,12 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Cita </span>
+                    <span class="card-title">Crear Cita </span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formCreate" action="{{ route('citas.store', ['urlView' => $urlView]) }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formCreate" action="{{ route('storeCitaDoctoraDental', ['urlView' => $urlView]) }}"  role="form" enctype="multipart/form-data">
                         @csrf
-
-                        @include('cita.form')
-
+                        @include('DoctoraDental.form')
                     </form>
                 </div>
             </div>

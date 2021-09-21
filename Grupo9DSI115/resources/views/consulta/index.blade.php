@@ -2,17 +2,16 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Consultas
+CONSULTAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Consultas
+Listado de Consultas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -30,7 +29,7 @@ Registrar Consultas
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('consultas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Código de paciente" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Código o nombre del paciente" name="texto" aria-label="default input">
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
@@ -70,12 +69,14 @@ Registrar Consultas
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
                                         <th>Paciente</th>
-										<th>Doctor</th>
+									@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                        <th>Doctor</th>
+                                    @endif
                                         <th>Fecha</th>
 										{{--<th>Descripcion</th>--}}
-										
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -86,10 +87,12 @@ Registrar Consultas
 
                                             {{--<td>{{ $consulta->paciente_id }}</td>--}}
                                             <td>{{ $consulta->Paciente->apellidos }}, {{ $consulta->Paciente->nombres }}</td>
-											<td>{{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}</td>
+										@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
+                                            <td>{{ $consulta->Persona->nombrePersonas }}, {{ $consulta->Persona->apellidoPersonas }}</td>
+                                        @endif
                                             <td>{{ $consulta->fecha }}</td>
                                             {{--<td>{!! Str::words($consulta->descripcion, 3, ' ...') !!}</td>--}}
-											
+
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
@@ -157,7 +160,7 @@ Registrar Consultas
     </div>
 
     <script>
-        
+
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
@@ -171,7 +174,7 @@ Registrar Consultas
                 $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
-        
+
 
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
@@ -230,7 +233,7 @@ Registrar Consultas
                 case 't':
                     b.innerHTML = "Editar consulta";
                     break;
-                
+
                 case 'r':
                     b.innerHTML = "Eliminar consulta";
                     break;
