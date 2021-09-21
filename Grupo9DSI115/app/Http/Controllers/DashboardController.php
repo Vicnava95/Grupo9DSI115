@@ -36,7 +36,7 @@ class DashboardController extends Controller
             'fecha' => Carbon::now()->format('Y-m-d')
         ]);
         if($rolUsuario == 2){
-            $personas = Persona::select('*')->where('rolPersona_id',$rolUsuario)->get()->pluck('id')->toArray();
+            $personas = Persona::select('*')->where('rolpersona_id',$rolUsuario)->get()->toArray();
             if($fechaInicio && $fechaFin ){
                 $citas = Cita::select('*')
                     ->where('persona_id',$personas)
@@ -55,7 +55,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('doctorGeneral.index', compact('citas', 'consulta','fechaInicio', 'fechaFin', 'personas','cita','estadocitas'));
+            return view('DoctorGeneral.index', compact('citas', 'consulta','fechaInicio', 'fechaFin', 'personas','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -76,7 +76,7 @@ class DashboardController extends Controller
         ]);
         $rolUsuario = Auth::user()->rols_fk;
         if($rolUsuario == 3){
-            $personas = Persona::select('*')->where('rolPersona_id',$rolUsuario)->get()->pluck('id')->toArray();
+            $personas = Persona::select('*')->where('rolpersona_id',$rolUsuario)->get()->toArray();
             if($fechaInicio && $fechaFin ){
                 $citas = Cita::select('*')
                     ->where('persona_id',$personas)
@@ -95,7 +95,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('doctoraDental.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
+            return view('DoctoraDental.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -132,7 +132,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('admin.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
+            return view('Admin.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();
@@ -169,7 +169,7 @@ class DashboardController extends Controller
                 ->orderBy('hora','ASC')
                 ->get();
             }
-            return view('secretaria.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
+            return view('Secretaria.index', compact('citas', 'consulta','fechaInicio', 'fechaFin','cita','estadocitas'));
         }
         else{
             return redirect()->back();

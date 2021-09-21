@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Pacientes
+PACIENTES
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Pacientes
+Listado de Pacientes
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -104,7 +104,7 @@ Pacientes
 											<td>{{ $paciente->sexo->nombre }}</td> --}}
 
                                             <td>
-                                                
+
                                                     <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
                                                         data-attr="{{ route('pacientes.show', $paciente->id) }}">
@@ -119,7 +119,7 @@ Pacientes
                                                     {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         href="{{ route("pacientes.show", $paciente->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i></a> --}}
-                                                    
+
                                                     <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
                                                         data-attr="{{ route('pacientes.delete', $paciente->id) }}">
@@ -172,7 +172,7 @@ Pacientes
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
             setTimeout(function(){
-            
+
 
                 @foreach ($paciente->getAttributes() as $key => $value)
                     @error($key)
@@ -248,20 +248,20 @@ Pacientes
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Registrar paciente";
+                break;
 
                 case 't':
-                    b.innerHTML = "";
-                    break;
-                
+                b.innerHTML = "Editar paciente";
+                break;
+
                 case 'r':
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Eliminar paciente";
+                break;
 
                 default:
-                    b.innerHTML = "";
-                    break;
+                b.innerHTML = "Mostrar paciente";
+                break;
             }
         }
     </script>

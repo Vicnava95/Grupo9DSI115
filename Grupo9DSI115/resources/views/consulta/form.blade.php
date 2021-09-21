@@ -52,7 +52,6 @@
                     $(function () {
                         $("#inputFecha").datetimepicker({
                             format: 'YYYY-MM-DD'
-
                         });
                     });
                 </script>

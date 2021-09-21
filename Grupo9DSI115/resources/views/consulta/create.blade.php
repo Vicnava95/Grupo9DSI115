@@ -6,7 +6,7 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Registrar Consultas</span>
+                    <span class="card-title">Consulta</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" id="formCreate" action="{{ route('consultas.store') }}"  role="form" enctype="multipart/form-data">
@@ -16,5 +16,5 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </section>

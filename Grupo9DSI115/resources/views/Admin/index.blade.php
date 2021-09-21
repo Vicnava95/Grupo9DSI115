@@ -9,7 +9,7 @@
 @endsection
 
 @section('descripcion')
-    
+
 @endsection
 
 @section('cuerpo')
@@ -40,13 +40,13 @@
                                 </div>
                                 <div class="form-group col-md-2 col-12 d-flex justify-content-center align-items-end">
                                     <input class="btn btn-primary" type="submit" value="Consultar fechas">
-                                    
+
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </form>
                 </div>
-                
+
                 <script type="text/javascript">
                     $(function () {
                         $('#fechaInicio').datetimepicker({
@@ -91,15 +91,16 @@
                             <h3 class="mb-0 d-block">
                                 <a class="btn btn-link text-white" id="" href="#" role="button">
                                     {{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}
-                                    <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}} 
+                                    <i class="fa fa-calendar text-white ml-5 mr-1"></i> {{$cita->fecha}}
                                     <i class="fa fa-clock text-white ml-5 mr-1"></i> {{$cita->hora}}
+                                    <i class="text-white ml-5 mr-1"></i> Doctor:{{$cita->persona->nombrePersonas}} {{$cita->persona->apellidoPersonas}}
                                 </a>
                             </h3>
                             <span class="ml-auto d-block mb-0 text-center badge badge-light">{{ ($cita->estadoCita_id==2)? 'Cancelado' : '' }}{{ ($cita->estadoCita_id==3)? 'Programado' : ''}}</span>
                             <button class="btn btn-link text-left collapsed text-white-50" type="button" data-toggle="collapse" data-target="#collapse{{ $cita->id }}" aria-expanded="false" aria-controls="collapse{{ $cita->id }}">
                                 <i class="fas fa-arrow-down text-white"></i>
                             </button>
-                            
+
                         </div>
                         <div id="collapse{{ $cita->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body mx-auto col-ms-12 col-md-4">
@@ -108,7 +109,7 @@
                                     @foreach ($estadocitas as $estadocita)
                                         <option {{($cita->estadoCita_id == $estadocita->id)? 'selected' : ''}} value="{{ ($estadocita->id==1)? route('citas.finalizada', $cita->id) : '' }}{{ ($estadocita->id==2)? route('citas.cancelada', $cita->id) : '' }}{{ ($estadocita->id==3)? route('citas.programada', $cita->id) : '' }}"> {{ $estadocita->nombre }}
                                         </option>
-                                        
+
                                     @endforeach
                                 </select>
                             </div>
@@ -186,7 +187,7 @@
                 @endforeach
             },500);
         @endif
-        
+
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
@@ -195,8 +196,8 @@
             localStorage.setItem('formulario', href);
         });
 
-        $(document).ready(function(){ 
-            $('.mediumButton2').change(function() { 
+        $(document).ready(function(){
+            $('.mediumButton2').change(function() {
                 let href = $(this).val();
                 mostrarModal(href)
                 localStorage.setItem('formulario', href);
@@ -233,7 +234,7 @@
             if (letra == 't') {
                 document.getElementById('estadoCita').style.display = 'none';
                 b.innerHTML = "Registrar cita";
-            } 
+            }
             else{
                 document.getElementById('registrar').style.display = 'none';
                 b.innerHTML = "Estado de la cita";

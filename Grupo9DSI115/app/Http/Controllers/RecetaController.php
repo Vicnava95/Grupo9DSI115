@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cita;
 use App\Models\Receta;
-use App\Model\Consulta;
-//use App\Models\Paciente;
+use App\Models\Consulta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class RecetaController
@@ -20,18 +21,24 @@ class RecetaController extends Controller
      */
     public function index(Request $request)
     {
+        $rol = Auth::user()->rols_fk;
         $texto =trim($request->get('texto'));
         if($texto==''){
-            $recetas = Receta::paginate();
-        }else{
-            $recetas = Receta::select('*')
-                        ->where('consulta_id', '=' ,$texto)
-                        //->orwhere('paciente_id','=',$texto) // verificar luego
-                        ->orderByDesc('fecha')
-                        ->paginate(10);
+            if($rol==2 || $rol==3){
+                $consultas = Consulta::select('id')
+                    ->where('persona_id', $rol)
+                    ->orderByDesc('fecha')
+                    ->get();
 
+                $recetas = Receta::select('*')
+                    ->whereIn('consulta_id',$consultas)
+                    ->orderByDesc('fecha')
+                    ->paginate(10);
+            }
+            else{
+                $recetas = Receta::paginate();
+            }
         }
-
 
         return view('receta.index', compact('recetas'))
             ->with('i', (request()->input('page', 1) - 1) * $recetas->perPage());
