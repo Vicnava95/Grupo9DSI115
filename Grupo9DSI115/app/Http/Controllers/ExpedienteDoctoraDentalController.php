@@ -10,6 +10,7 @@ use App\Models\Paciente;
 use App\Models\Consulta;
 use App\Models\EstadoCita;
 use App\Models\Persona;
+use App\Models\Receta;
 use DB;
 
 class ExpedienteDoctoraDentalController extends Controller
@@ -33,10 +34,10 @@ class ExpedienteDoctoraDentalController extends Controller
         if($cantidadConsultas != 0){
             foreach ($consultasExpediente as $consulta){
                 $consultas = Consulta::where('id', $consulta->consulta_id)->get();
-                $collecionConsultas [] = ['fecha' => $consultas[0]->fecha , 'descripcion' => $consultas[0]->descripcion];
+                $collecionConsultas [] = ['fecha' => $consultas[0]->fecha , 'descripcion' => $consultas[0]->descripcion, 'id' =>$consultas[0]->id];
             }
         }else{
-            $collecionConsultas [] = ['fecha' => 0 , 'descripcion' => 0];
+            $collecionConsultas [] = ['fecha' => 0 , 'descripcion' => 0, 'id' => 0];
         }
         //dd($collecionConsultas);
         
@@ -142,50 +143,6 @@ class ExpedienteDoctoraDentalController extends Controller
             ->with('success', 'Cita creada satisfactoriamente.');
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ExpedienteDoctoraDental  $expedienteDoctoraDental
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ExpedienteDoctoraDental $expedienteDoctoraDental)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ExpedienteDoctoraDental  $expedienteDoctoraDental
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ExpedienteDoctoraDental $expedienteDoctoraDental)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExpedienteDoctoraDental  $expedienteDoctoraDental
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ExpedienteDoctoraDental $expedienteDoctoraDental)
-    {
-        //
-    }
-
     public function deleteExpediente($id){
         $expedientePaciente = ExpedienteDoctoraDental::find($id);
         $paciente = Paciente::find($expedientePaciente->paciente_id);
@@ -218,5 +175,20 @@ class ExpedienteDoctoraDentalController extends Controller
         $crearExpedientePaciente_Doctor->save();
         return redirect()->route('expedientesDentales')
             ->with('success', 'Expediente creado satisfactoriamente');
+    }
+
+    public function createReceta($idCita)
+    {
+        $receta = new Receta();
+        return view('DoctoraDental.createReceta', compact('receta','idCita'));
+    }
+
+    public function storeReceta(Request $request)
+    {
+        request()->validate(Receta::$rules);
+
+        $receta = Receta::create($request->all());
+        return redirect()->back()
+            ->with('success', 'Receta creada satisfactoriamente.');
     }
 }

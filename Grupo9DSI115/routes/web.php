@@ -114,6 +114,8 @@ Route::middleware(['auth'])->group(function (){
         Route::post('storeCitaDoctor/{urlView}','ExpedienteDoctorController@storeCita')->name('storeCitaDoctor');
         Route::get('/expedienteGeneralCrearPaciente', 'ExpedienteDoctorController@createPaciente')->name('expedienteGeneralCrearPaciente');
         Route::post('/expedienteGeneralStorePaciente', 'ExpedienteDoctorController@storePaciente')->name('expedienteGeneralStorePaciente');
+        Route::get('/crearRecetaExpedienteGeneral/{idCita}','ExpedienteDoctorController@createReceta')->name('crearRecetaExpedienteGeneral');
+        Route::post('/storeRecetaExpedienteGeneral','ExpedienteDoctorController@storeReceta')->name('storeRecetaExpedienteGeneral');
         Route::get('/doctorGeneral',function(){
             return view('Prueba.doctorGeneral');
         })->name('doctorGeneral');
@@ -131,6 +133,8 @@ Route::middleware(['auth'])->group(function (){
         Route::post('storeCitaDoctora/{urlView}','ExpedienteDoctoraDentalController@storeCita')->name('storeCitaDoctoraDental');
         Route::get('/expedienteDentalCrearPaciente', 'ExpedienteDoctoraDentalController@createPaciente')->name('expedienteDentalCrearPaciente');
         Route::post('/expedienteDentalStorePaciente', 'ExpedienteDoctoraDentalController@storePaciente')->name('expedienteDentalStorePaciente');
+        Route::get('/crearRecetaExpedienteDental/{idCita}','ExpedienteDoctoraDentalController@createReceta')->name('crearRecetaExpedienteDental');
+        Route::post('/storeRecetaExpedienteDental','ExpedienteDoctoraDentalController@storeReceta')->name('storeRecetaExpedienteDental');
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
