@@ -29,12 +29,14 @@ class ConsultaController extends Controller
             switch ($rol) {
                 case 2:
                     $consultas = Consulta::select('*')
-                        ->where('persona_id', '=', 2)
+                        ->where('persona_id', 2)
+                        ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
                 case 3:
                     $consultas = Consulta::select('*')
-                        ->where('persona_id', '=', 3)
+                        ->where('persona_id', 3)
+                        ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
                 default:
@@ -43,28 +45,30 @@ class ConsultaController extends Controller
         }
         else{
             $pacientes = Paciente::select('*')
-                ->where('id', $texto)
-                ->orWhere('nombres','LIKE',$texto.'%')
+                ->where('nombres','LIKE',$texto.'%')
                 ->orWhere('apellidos','LIKE',$texto.'%')
-                ->get()
-                ->toArray();
+                ->pluck('id')
+                ->all();
 
             switch($rol){
                 case 2:
                     $consultas = Consulta::select('*')
                         ->where('persona_id', 2)
-                        ->where('paciente_id', $pacientes)
+                        ->whereIn('paciente_id', $pacientes)
+                        ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
-                case 2:
+                case 3:
                     $consultas = Consulta::select('*')
                         ->where('persona_id', 3)
-                        ->where('paciente_id', $pacientes)
+                        ->whereIn('paciente_id', $pacientes)
+                        ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
                 default:
                     $consultas = Consulta::select('*')
-                        ->where('paciente_id', $pacientes)
+                        ->whereIn('paciente_id', $pacientes)
+                        ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
             }

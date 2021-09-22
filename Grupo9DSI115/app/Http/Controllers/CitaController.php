@@ -54,30 +54,29 @@ class CitaController extends Controller
         }
         else{
             $pacientes = Paciente::select('*')
-                ->where('id', $texto)
-                ->orWhere('nombres','LIKE',$texto.'%')
+                ->where('nombres','LIKE',$texto.'%')
                 ->orWhere('apellidos','LIKE',$texto.'%')
-                ->get()
-                ->toArray();
+                ->pluck('id')
+                ->all();
             
             switch($rol){
                 case 2:
                     $citas = Cita::select('*')
                         ->where('persona_id', 2)
-                        ->where('paciente_id', $pacientes)
+                        ->whereIn('paciente_id', $pacientes)
                         ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
                 case 3:
                     $citas = Cita::select('*')
                         ->where('persona_id', 3)
-                        ->where('paciente_id', $pacientes)
+                        ->whereIn('paciente_id', $pacientes)
                         ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
                 default:
-                $citas = Cita::select('*')
-                        ->where('paciente_id', $pacientes)
+                    $citas = Cita::select('*')
+                        ->whereIn('paciente_id', $pacientes)
                         ->orderByDesc('fecha')
                         ->paginate(10);
                     break;
