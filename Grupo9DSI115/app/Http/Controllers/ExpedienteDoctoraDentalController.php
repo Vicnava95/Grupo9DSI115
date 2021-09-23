@@ -26,7 +26,7 @@ class ExpedienteDoctoraDentalController extends Controller
         $citaPaciente = Cita::find($cita); 
         $paciente = Paciente::find($citaPaciente->paciente_id);
         $expedientePaciente = ExpedienteDoctoraDental::where('paciente_id',$paciente->id)->first();
-        $consultasExpediente = DB::table('consulta_expedientedoctora')
+        $consultasExpediente = DB::table('consulta_expedienteDoctora')
                     ->where('expedienteDoctora_id', $expedientePaciente->id)
                     ->get();
         $cantidadConsultas = count($consultasExpediente); 
@@ -65,7 +65,7 @@ class ExpedienteDoctoraDentalController extends Controller
 
         $expedientePaciente = ExpedienteDoctoraDental::where('paciente_id',$idPaciente)->first();
         //dd($expedientePaciente);
-        $pivotTable = DB::table('consulta_expedientedoctora')->insert([
+        $pivotTable = DB::table('consulta_expedienteDoctora')->insert([
             'consulta_id' => $consulta->id,
             'expedienteDoctora_id' => $expedientePaciente->id,
         ]);
@@ -84,7 +84,7 @@ class ExpedienteDoctoraDentalController extends Controller
         $i = 1;
         $paciente = Paciente::find($id);
         $expedientePaciente = ExpedienteDoctoraDental::where('paciente_id',$paciente->id)->first();
-        $consultasExpediente = DB::table('consulta_expedientedoctora')
+        $consultasExpediente = DB::table('consulta_expedienteDoctora')
                     ->where('expedienteDoctora_id', $expedientePaciente->id)
                     ->get();
         $cantidadConsultas = count($consultasExpediente); 
