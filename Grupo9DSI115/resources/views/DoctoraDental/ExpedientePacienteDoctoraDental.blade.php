@@ -121,6 +121,7 @@
                                         <th scope="col">N°</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Descripción</th>
+                                        <th scope="col">Receta</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,6 +130,12 @@
                                         <th scope="row">{{ ++$i }}</th>
                                         <td>{{$collecionConsulta['fecha']}}</td>
                                         <td>{{$collecionConsulta['descripcion']}}</td>
+                                        <td>
+                                            <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                    data-target="#mediumModal" data-attr="{{ route('crearRecetaExpedienteDental',$collecionConsulta['id']) }}">
+                                                    <i class="fas fa-file-medical-alt"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -7,7 +7,7 @@
                 <div class="modal-body" id="mediumBody">
                     <div>
                         <!-- the result to be displayed apply here -->
-                        ¿Desea eliminar la cita del paciente <b>{{$paciente->apellidos}}, {{$paciente->nombres}}</b>  en el dia <b>{{ $consulta->fecha }}</b>?
+                        ¿Desea eliminar la consulta del paciente <b>{{$paciente->apellidos}}, {{$paciente->nombres}}</b>  en el dia <b>{{ $consulta->fecha }}</b>?
                     </div>
                 </div>
                 

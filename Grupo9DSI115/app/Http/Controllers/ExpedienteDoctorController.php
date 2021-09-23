@@ -11,6 +11,7 @@ use App\Models\Paciente;
 use App\Models\Consulta;
 use App\Models\EstadoCita;
 use App\Models\Persona;
+use App\Models\Receta;
 use DB;
 class ExpedienteDoctorController extends Controller
 {
@@ -33,10 +34,10 @@ class ExpedienteDoctorController extends Controller
         if($cantidadConsultas != 0){
             foreach ($consultasExpediente as $consulta){
                 $consultas = Consulta::where('id', $consulta->consulta_id)->get();
-                $collecionConsultas [] = ['fecha' => $consultas[0]->fecha , 'descripcion' => $consultas[0]->descripcion];
+                $collecionConsultas [] = ['fecha' => $consultas[0]->fecha , 'descripcion' => $consultas[0]->descripcion, 'id' => $consultas[0]->id];
             }
         }else{
-            $collecionConsultas [] = ['fecha' => 0 , 'descripcion' => 0];
+            $collecionConsultas [] = ['fecha' => 0 , 'descripcion' => 0, 'id' =>0];
         }
         //dd($collecionConsultas);
         
@@ -176,5 +177,22 @@ class ExpedienteDoctorController extends Controller
 
         return redirect()->route('expedientesGeneral')
             ->with('success', 'Expediente creado satisfactoriamente');
+    }
+
+    public function createReceta($idCita)
+    {
+        $receta = new Receta();
+        return view('DoctorGeneral.createReceta', compact('receta','idCita'));
+    }
+
+    public function storeReceta(Request $request)
+    {
+        request()->validate(Receta::$rules);
+
+        $receta = Receta::create($request->all());
+        
+
+        return redirect()->back()
+            ->with('success', 'Receta creada satisfactoriamente.');
     }
 }
