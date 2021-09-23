@@ -84,26 +84,26 @@
                     @switch(Auth::user()->rols_fk)
                         @case(1)
                             <a href="{{route('dshAdministrador.index')}}">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="fas fa-columns"></i>
                                 <p>Dashboard</p>
                             </a>
                             @break
                         @case(2)
                             <a href="{{route('dshDoctorGeneral.index')}}">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="fas fa-columns"></i>
                                 <p>Dashboard</p>
                             </a>
                             @break
                         @case(3)
                             <a href="{{route('dshDoctorDental.index')}}">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="fas fa-columns"></i>
                                 <p>Dashboard</p>
                             </a>
                             @break
 
                         @default
                             <a href="{{route('dshSecretaria.index')}}">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="fas fa-columns"></i>
                                 <p>Dashboard</p>
                             </a>
 
@@ -115,7 +115,7 @@
                 <!-- Citas-->
                 <li class="nav-item">
                     <a href="{{route('citas.index')}}">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="far fa-calendar-alt"></i>
                         <p>Citas</p>
                     </a>
                 </li>
@@ -123,7 +123,7 @@
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item">
                     <a href="{{route('consultas.index')}}">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-stethoscope"></i>
                         <p>Consultas</p>
                     </a>
                 </li>
@@ -134,7 +134,7 @@
                         @case(1)
                             <li class="nav-item">
                                 <a data-toggle="collapse" href="#base">
-                                    <i class="fas fa-layer-group"></i>
+                                    <i class="fas fa-id-card-alt"></i>
                                     <p>Expedientes</p>
                                     <span class="caret"></span>
                                 </a>
@@ -142,11 +142,13 @@
                                     <ul class="nav nav-collapse">
                                         <li>
                                             <a href=" {{ route('expedientesGeneral') }} ">
+                                                <i class="fas fa-user-md"></i>
                                                 <span class="sub-item">Clinicos</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{ route('expedientesDentales') }} ">
+                                                <i class="fas fa-tooth"></i>
                                                 <span class="sub-item">Dentales</span>
                                             </a>
                                         </li>
@@ -157,7 +159,7 @@
                         @case(2)
                             <li class="nav-item">
                                 <a href=" {{ route('expedientesGeneral') }}">
-                                    <i class="fas fa-layer-group"></i>
+                                    <i class="fas fa-id-card-alt"></i>
                                     <p>Expedientes</p>
                                 </a>
                             </li>
@@ -165,7 +167,7 @@
                         @default
                             <li class="nav-item">
                                 <a href="{{ route('expedientesDentales') }} ">
-                                    <i class="fas fa-layer-group"></i>
+                                    <i class="fas fa-id-card-alt"></i>
                                     <p>Expedientes</p>
                                 </a>
                             </li>
@@ -174,24 +176,15 @@
                 <!-- Pacientes-->
                 <li class="nav-item">
                     <a href="{{route('pacientes.index')}}">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-user-plus"></i>
                         <p>Pacientes</p>
                     </a>
                 </li>
-                <!-- Pagos-->
-                @if(!(Auth::user()->rols_fk==4))
-                <li class="nav-item">
-                    <a href=" ">
-                        <i class="fas fa-layer-group"></i>
-                        <p>Pagos</p>
-                    </a>
-                </li>
-                @endif
                 <!-- Recetas-->
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item">
                     <a href="{{route('recetas.index')}}">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="far fa-edit"></i>
                         <p>Recetas</p>
                     </a>
                 </li>
@@ -200,17 +193,8 @@
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item">
                     <a href=" {{ route('personas.index') }}">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-user-alt"></i>
                         <p>Recuso humano</p>
-                    </a>
-                </li>
-                @endif
-                <!-- Tratamientos-->
-                @if(!(Auth::user()->rols_fk==4))
-                <li class="nav-item">
-                    <a href=" ">
-                        <i class="fas fa-layer-group"></i>
-                        <p>Tratamientos</p>
                     </a>
                 </li>
                 @endif
@@ -218,13 +202,30 @@
                 @if (Auth::user()->rols_fk==1)
                 <li class="nav-item">
                     <a href="{{route('usuarios.index')}}">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-users"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 @endif
-
-
+                <!-- Tratamientos-->
+                @if(!(Auth::user()->rols_fk==4))
+                <li class="nav-item" >
+                    <a href=" ">
+                        <i class="fas fa-procedures"></i>
+                        <p>Tratamientos</p>
+                    </a>
+                </li>
+                @endif
+                <!-- Pagos-->
+                @if(!(Auth::user()->rols_fk==4))
+                <li class="nav-item">
+                    <a href=" ">
+                        <i class="far fa-money-bill-alt"></i>
+                        <p>Pagos</p>
+                    </a>
+                </li>
+                @endif
+                 
 
                 <!--
                 <li class="nav-item">
