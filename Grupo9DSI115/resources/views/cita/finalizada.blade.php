@@ -7,7 +7,7 @@
                 <div class="modal-body" id="mediumBody">
                     <div>
                         <!-- the result to be displayed apply here -->
-                        ¿Quieres finalizar dar por finalizado la cita de <b>{{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}</b> programado en el dia <b>{{ $cita->fecha }}</b>, a la hora de <b>{{ $cita->hora }}</b>?
+                        ¿Quieres dar por finalizado la cita de <b>{{$cita->Paciente->apellidos}}, {{$cita->Paciente->nombres}}</b> programado en el dia <b>{{ $cita->fecha }}</b>, a la hora de <b>{{ $cita->hora }}</b>?
                     </div>
                 </div>
                 

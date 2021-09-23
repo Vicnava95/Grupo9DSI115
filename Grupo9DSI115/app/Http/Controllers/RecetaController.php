@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cita;
 use App\Models\Receta;
 use App\Models\Consulta;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,10 +26,10 @@ class RecetaController extends Controller
         $texto =trim($request->get('texto'));
         if($texto==''){
             if($rol==2 || $rol==3){
-                $consultas = Consulta::select('id')
+                $consultas = Consulta::select('*')
                     ->where('persona_id', $rol)
-                    ->orderByDesc('fecha')
-                    ->get();
+                    ->pluck('id')
+                    ->all();
 
                 $recetas = Receta::select('*')
                     ->whereIn('consulta_id',$consultas)
@@ -37,6 +38,38 @@ class RecetaController extends Controller
             }
             else{
                 $recetas = Receta::paginate();
+            }
+        }
+        else{
+
+            $pacientes = Paciente::select('*')
+                ->where('nombres','LIKE',$texto.'%')
+                ->orWhere('apellidos','LIKE',$texto.'%')
+                ->pluck('id')
+                ->all();
+
+            if($rol==2 || $rol==3){
+                $consultas = Consulta::select('*')
+                    ->where('persona_id', $rol)
+                    ->whereIn('paciente_id', $pacientes)
+                    ->pluck('id')
+                    ->all();
+
+                $recetas = Receta::select('*')
+                    ->whereIn('consulta_id',$consultas)
+                    ->orderByDesc('fecha')
+                    ->paginate(10);
+            }
+            else{
+                $consultas = Consulta::select('*')
+                    ->whereIn('paciente_id', $pacientes)
+                    ->pluck('id')
+                    ->all();
+
+                $recetas = Receta::select('*')
+                    ->whereIn('consulta_id',$consultas)
+                    ->orderByDesc('fecha')
+                    ->paginate(10);
             }
         }
 
