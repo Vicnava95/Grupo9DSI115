@@ -11,20 +11,16 @@
                             <div class="form-group">
                                 {{ Form::label('fecha') }}
                                 <div class="input-group date">
-                                    {{ Form::text('fecha', !empty($cita->fecha) ? $cita->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
+                                    {{ Form::text('fecha', $cita->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
                                     <div class="input-group-addon input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                     </div>
                                 </div>
-                                {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
                             </div>
                             <script type="text/javascript">
                                 $(function () {
-                                    var hoy = new Date();
-                                    hoy.setDate(hoy.getDate() - 1);
                                     $("#inputFecha").datetimepicker({
-                                        format: 'YYYY-MM-DD',
-                                        minDate: hoy
+                                        format: 'YYYY-MM-DD'
                                     });
                                 });
                             </script>

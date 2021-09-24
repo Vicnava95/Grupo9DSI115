@@ -207,10 +207,11 @@
                     </a>
                 </li>
                 @endif
+                {{--
                 <!-- Tratamientos-->
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item" >
-                    <a href=" ">
+                    <a href="#">
                         <i class="fas fa-procedures"></i>
                         <p>Tratamientos</p>
                     </a>
@@ -219,13 +220,13 @@
                 <!-- Pagos-->
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item">
-                    <a href=" ">
+                    <a href="#">
                         <i class="far fa-money-bill-alt"></i>
                         <p>Pagos</p>
                     </a>
                 </li>
                 @endif
-                 
+                --}}
 
                 <!--
                 <li class="nav-item">
