@@ -29,7 +29,7 @@ Listado de Pacientes
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('pacientes.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Nombre, apellido o ID" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Nombre, apellido o ID" name="texto" aria-label="default input"  autocomplete='off'>
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>

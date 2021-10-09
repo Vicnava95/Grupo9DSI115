@@ -30,7 +30,7 @@ Expedientes Dentales
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('personas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Nombre o apellido" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="Nombre o apellido" name="texto" aria-label="default input" autocomplete= 'off'>
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>

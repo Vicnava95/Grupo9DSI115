@@ -7,7 +7,7 @@ Registrar Receta
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Receta
+Recetas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -31,16 +31,16 @@ Registrar Receta
                             <div class="flex-fill bd-highlight ml-5">
                                 <form action="{{ route('recetas.index') }}"
                                     method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="codigo de receta, codigo de consulta o nombre de paciente" name="texto" aria-label="default input">
+                                        <input class="form-control" type="text" placeholder="codigo de receta, codigo de consulta o nombre de paciente" name="texto" aria-label="default input" autocomplete= 'off'>
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
-                            <div class="float-right ml-5">
+                           <!--  <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
                                     data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
                                     Registrar receta
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
