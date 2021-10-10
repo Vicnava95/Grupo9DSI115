@@ -8,7 +8,7 @@
                     {{ Form::text('paciente_id', $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
                     --}}
 
-                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? '' : $cita->Paciente->apellidos.' '.$cita->Paciente->nombres, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => '&#xf002;Buscar Paciente' , 'id' => 'paciente_id_hid', 'autocomplete' => 'off']) }}
+                    {{ Form::text('paciente_id_hid', empty($cita->paciente_id) ? '' : $cita->Paciente->apellidos.' '.$cita->Paciente->nombres, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Buscar Paciente' , 'id' => 'paciente_id_hid', 'autocomplete' => 'off']) }}
                     {{ Form::hidden('paciente_id', empty($cita->paciente_id) ? '' : $cita->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id' , 'id' => 'paciente_id']) }}
                     {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</p>') !!}
                     <div id="listaPacientes" class="listaPacientes">
@@ -85,13 +85,20 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                    {{ Form::label('Estado de la cita*') }}
-                    {{ Form::select('estadoCita_id', $estadocita , $cita->estadoCita_id,['class' => 'form-control' . ($errors->has('estadoCita_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un estado de la cita']) }}
+                    {{ Form::hidden('Estado de la cita*') }}
+                    {{ Form::hidden('estadoCita_id',3, ['class' => 'form-control' ]) }}
+                    {{-- {{ Form::select('estadoCita_id', $estadocita , $cita->estadoCita_id,['class' => 'form-control' . ($errors->has('estadoCita_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un estado de la cita']) }} --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    #paciente_id_hid {
+    
+}
+</style>
 
 <script>
     function searchPaciente(name){
