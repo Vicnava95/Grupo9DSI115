@@ -48,8 +48,8 @@ class PersonaTableSeeder extends Seeder
             ]);  
 
         DB::table('personas')->insert([
-            'nombrePersonas'=> 'Carlos Alfredo',
-            'apellidoPersonas'=>'Caceres Coto',
+            'nombrePersonas'=> 'Maria Carmen',
+            'apellidoPersonas'=>'Dolores Pilar',
             'dui'=>'',
             'telefono'=>'7635-2268',   
             'fechaDeNacimiento'=>'1995-01-01',

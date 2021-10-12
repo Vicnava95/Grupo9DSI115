@@ -23,37 +23,30 @@ class UserTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name'=> 'Víctor Navarrete',
-            'email'=>'victor@ues.edu.sv',
-            'password'=>Hash::make('victor123'),
+            'name'=> 'admin',
+            'email'=>'admin@ues.edu.sv',
+            'password'=>Hash::make('admin123'),
             'rols_fk'=>'1',
         ]);
 
         DB::table('users')->insert([
-            'name'=> 'Edwin López',
-            'email'=>'edwin@ues.edu.sv',
-            'password'=>Hash::make('edwin123'),
-            'rols_fk'=>'1',
-        ]);
-
-        DB::table('users')->insert([
-            'name'=> 'Abraham Campos',
-            'email'=>'abraham@ues.edu.sv',
-            'password'=>Hash::make('abraham123'),
+            'name'=> 'Gustavo Heriberto Coto Caballero',
+            'email'=>'gustavo@ues.edu.sv',
+            'password'=>Hash::make('gustavo123'),
             'rols_fk'=>'2',
         ]);
 
         DB::table('users')->insert([
-            'name'=> 'Carlos Cáceres',
-            'email'=>'carlos@ues.edu.sv',
-            'password'=>Hash::make('carlos123'),
+            'name'=> 'Sandra Coto Caballero',
+            'email'=>'sandra@ues.edu.sv',
+            'password'=>Hash::make('sandra123'),
             'rols_fk'=>'3',
         ]);
 
         DB::table('users')->insert([
-            'name'=> 'Christian Hernández',
-            'email'=>'christian@ues.edu.sv',
-            'password'=> Hash::make('christian123'),
+            'name'=> 'Maria Carmen Dolores Pilar',
+            'email'=>'maria@ues.edu.sv',
+            'password'=> Hash::make('maria123'),
             'rols_fk'=>'4',
         ]);
 
