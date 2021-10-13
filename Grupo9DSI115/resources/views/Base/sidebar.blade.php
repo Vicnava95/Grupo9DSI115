@@ -199,7 +199,7 @@
                 </li>
                 @endif
                 <!-- Usuarios-->
-                @if (Auth::user()->rols_fk==1)
+                @if (Auth::user()->rols_fk!=4)
                 <li class="nav-item">
                     <a href="{{route('usuarios.index')}}">
                         <i class="fas fa-users"></i>

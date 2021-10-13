@@ -23,10 +23,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Consulta extends Model
 {
-    
+
     static $rules = [
 		'descripcion' => 'required|max:255|string',
 		'fecha' => 'required|date',
+        'peso'=>'required',
+        'presion'=>'required',
+        'temperatura'=>'required',
+        'frecuencia_cardiaca'=>'required',
+        'frecuencia_respiratoria'=>'required',
 		'paciente_id' => 'required|integer|exists:pacientes,id',
 		'persona_id' => 'required|integer|exists:personas,id',
         'paciente_id_hid' => 'required|string'
@@ -39,7 +44,7 @@ class Consulta extends Model
      *
      * @var array
      */
-    protected $fillable = ['descripcion','fecha','paciente_id','persona_id','paciente_id_hid'];
+    protected $fillable = ['descripcion','fecha', 'peso','presion','temperatura','frecuencia_cardiaca','frecuencia_respiratoria','paciente_id','persona_id','paciente_id_hid'];
 
 
     /**
@@ -49,7 +54,7 @@ class Consulta extends Model
     {
         return $this->hasOne('App\Models\Paciente', 'id', 'paciente_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -57,7 +62,7 @@ class Consulta extends Model
     {
         return $this->hasOne('App\Models\Persona', 'id', 'persona_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -66,7 +71,7 @@ class Consulta extends Model
         return $this->hasMany('App\Models\Receta', 'consulta_id', 'id');
     }
 
-    
-    
+
+
 
 }

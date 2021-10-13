@@ -12,7 +12,7 @@ Recetas
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-    
+
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -73,6 +73,7 @@ Recetas
                                         <th>Paciente</th>
                                         <th>Fecha</th>
                                         <th>Consulta</th>
+                                        <th>Doctor</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -82,12 +83,14 @@ Recetas
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $receta->Consulta->Paciente->apellidos }}, {{ $receta->Consulta->Paciente->nombres }}</td>
                                             <td>{{ $receta->fecha }}</td>
+
                                             <td>
                                                 <a href="#" class="link-primary" id="mediumButton" data-toggle="modal"
                                                 data-target="#mediumModal" data-attr="{{ route('consultas.show', $receta->Consulta->Paciente->id) }}">
                                                     {!! Str::words($receta->Consulta->descripcion, 6, ' ...') !!}
                                                 </a>
                                             </td>
+                                            <td>{{ $receta->Consulta->Persona->nombrePersonas }}{{ $receta->Consulta->Persona->apellidoPersonas }}</td>
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.show', $receta->id) }}">

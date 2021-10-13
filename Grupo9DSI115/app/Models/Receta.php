@@ -29,6 +29,7 @@ class Receta extends Model
 		'fecha' => 'required|date',
         'proximaCita'=> 'nullable|date|after_or_equal:fecha',
 		'consulta_id' => 'required|integer|exists:consultas,id',
+        'estadoReceta_id' => 'required|integer|exists:estado_recetas,id',
     ];
 
     protected $perPage = 20;
@@ -38,7 +39,7 @@ class Receta extends Model
      *
      * @var array
      */
-protected $fillable = ['descripcion','fecha','proximaCita','consulta_id'/*,'paciente_id'*/];
+protected $fillable = ['descripcion','fecha','proximaCita','consulta_id', 'estadoReceta_id'/*,'paciente_id'*/];
 
 
     /**
@@ -47,6 +48,11 @@ protected $fillable = ['descripcion','fecha','proximaCita','consulta_id'/*,'paci
     public function consulta()
     {
         return $this->hasOne('App\Models\Consulta', 'id', 'consulta_id');
+    }
+
+    public function estadoReceta()
+    {
+        return $this->hasOne('App\Models\EstadoReceta', 'id', 'estadoReceta_id');
     }
 
 
