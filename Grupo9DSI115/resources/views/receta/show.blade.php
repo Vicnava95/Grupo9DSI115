@@ -26,6 +26,14 @@
                             <strong>Proxima cita:</strong>
                             {{ $receta->proximaCita }}
                         </div>
+                        <div class="form-group">
+                            <strong>Estado Receta:</strong>
+                            {{ $receta->estadoReceta->nombre}}
+                        </div>
+                        <div class="form-group">
+                            <strong>Extendida por:</strong>
+                            Doctor {{ $receta->Consulta->Persona->nombrePersonas }}{{ $receta->Consulta->Persona->apellidoPersonas }}
+                        </div>
 
                     </div>
                 </div>

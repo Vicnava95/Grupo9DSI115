@@ -17,6 +17,11 @@ class CreateConsultasTable extends Migration
             $table->id();
             $table->String('descripcion')->require();
             $table->Date('fecha')->require();
+            $table->String('peso')->require();
+            $table->String('presion')->require();
+            $table->String('temperatura')->require();
+            $table->String('frecuencia_cardiaca')->require();
+            $table->string('frecuencia_respiratoria')->require();
             //llave foranea
             //paciente
             $table->unsignedBigInteger('paciente_id')->require();
