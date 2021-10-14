@@ -103,7 +103,13 @@ class ConsultaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Consulta::$rules);
+        if (Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            request()->validate(Consulta::$rulesWithoutPersona);
+        }
+        else {
+            request()->validate(Consulta::$rules);
+        }
         request()->request->remove('paciente_id_hid');
         $consulta = Consulta::create($request->all());
         return redirect()->route('consultas.index')
@@ -148,7 +154,13 @@ class ConsultaController extends Controller
      */
     public function update(Request $request, Consulta $consulta)
     {
-        request()->validate(Consulta::$rules);
+        if (Auth::user()->rols_fk==3 || Auth::user()->rols_fk==2){
+            $request->request->add(['persona_id'=> strval(Auth::user()->rols_fk)]);
+            request()->validate(Consulta::$rulesWithoutPersona);
+        }
+        else {
+            request()->validate(Consulta::$rules);
+        }
         request()->request->remove('paciente_id_hid');
         $consulta->update($request->all());
 

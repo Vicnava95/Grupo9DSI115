@@ -37,6 +37,18 @@ class Consulta extends Model
         'paciente_id_hid' => 'required|string'
     ];
 
+    static $rulesWithoutPersona = [
+        'descripcion' => 'required|max:255|string',
+		'fecha' => 'required|date',
+        'peso'=>'required',
+        'presion'=>'required',
+        'temperatura'=>'required',
+        'frecuencia_cardiaca'=>'required',
+        'frecuencia_respiratoria'=>'required',
+		'paciente_id' => 'required|integer|exists:pacientes,id',
+        'paciente_id_hid' => 'required|string'
+    ];    
+
     protected $perPage = 20;
 
     /**

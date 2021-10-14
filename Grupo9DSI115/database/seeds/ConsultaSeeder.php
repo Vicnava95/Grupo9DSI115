@@ -28,9 +28,6 @@ class ConsultaSeeder extends Seeder
             'frecuencia_respiratoria'=>'18 respiraciones/minuto',
             'paciente_id'=>'1',
             'persona_id'=>'2'
-
-
-
         ]);
 
         DB::table('consultas')->insert([

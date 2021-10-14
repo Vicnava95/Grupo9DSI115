@@ -1,7 +1,7 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="row">
-            <div class="col-md-4 col-12">
+            <div class=" {{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-12' : 'col-md-8' }} col-12">
                 <div class="form-group">
                     {{ Form::label('Paciente*') }}
                     {{--<select class="custom-select custom-select-m bg-dark" style="color:lightgray">
@@ -20,7 +20,8 @@
                 </div>
 
             </div>
-            <div class="col-md-4 col-12">
+            @if (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)
+            <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-4' }} col-12">
                 <div class="form-group">
                     {{ Form::label('Doctor*') }}
                        <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
@@ -33,11 +34,13 @@
                             @endif
                          @endforeach
                         </select>
-                      {{-- Form::text('persona_id', $consulta->persona_id, ['class' => 'form-control' . ($errors->has('persona_id') ? ' is-invalid' : ''), 'placeholder' => 'Persona Id']) --}}
+                     
                      {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
-                  </div>
+                </div>
             </div>
-            <div class="col-md-4 col-12">
+            @endif
+            
+            <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-4' }} col-12">
                 <div class="form-group">
                     {{ Form::label('Fecha*') }}
                     <div class="input-group date">
