@@ -30,14 +30,14 @@ class UserTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name'=> 'Gustavo Heriberto Coto Caballero',
+            'name'=> 'Gustavo Coto',
             'email'=>'gustavo@ues.edu.sv',
             'password'=>Hash::make('gustavo123'),
             'rols_fk'=>'2',
         ]);
 
         DB::table('users')->insert([
-            'name'=> 'Sandra Coto Caballero',
+            'name'=> 'Sandra Coto',
             'email'=>'sandra@ues.edu.sv',
             'password'=>Hash::make('sandra123'),
             'rols_fk'=>'3',
