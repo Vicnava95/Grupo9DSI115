@@ -96,6 +96,8 @@ class RecetaController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $request->request->add(['estadoReceta_id'=> strval(1)]);
         request()->validate(Receta::$rules);
 
         $receta = Receta::create($request->all());
