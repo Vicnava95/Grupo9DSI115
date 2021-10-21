@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Examene
+ *
+ * @property $id
+ * @property $imagen
+ * @property $fecha
+ * @property $descripcion
+ * @property $consulta_id
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Consulta $consulta
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
+class Examene extends Model
+{
+    
+    static $rules = [
+		'imagen' => 'required',
+		'fecha' => 'required',
+		'descripcion' => 'required',
+		'consulta_id' => 'required',
+    ];
+
+    protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['imagen','fecha','descripcion','consulta_id'];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function consulta()
+    {
+        return $this->hasOne('App\Models\Consulta', 'id', 'consulta_id');
+    }
+    
+
+}

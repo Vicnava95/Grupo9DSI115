@@ -20,6 +20,16 @@ use App\Sexo;
 /*Route::get('/citas', function () {
     return view('DoctoraDental.DashboardDoctoraDental');
 });*/
+
+Route::resource('abonos', 'AbonoController');
+Route::get('abonos/{abono}/borrar', 'AbonoController@delete')->name('abonos.delete');
+
+Route::resource('examenes', 'ExameneController');
+Route::get('examenes/{examen}/borrar', 'ExameneController@delete')->name('examenes.delete');
+
+Route::resource('pagos', 'PagoController');
+Route::get('pagos/{pago}/borrar', 'PagoController@delete')->name('pagos.delete');
+
 //cita
 Route::resource('citas', 'CitaController');
 Route::get('citas/{cita}/borrar', 'CitaController@delete')->name('citas.delete');
