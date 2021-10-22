@@ -26,23 +26,18 @@
                                 <h2>{{$citaPaciente->fecha}}</h2>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary disabled" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Tratamientos</a>
-                                </div>
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('crearCitaDoctoraDental',$citaPaciente->paciente_id) }}">Crear Cita</a>
                                 </div>
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('citas.create') }}">Recetas</a>
                                 </div>
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary disabled" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('citas.create') }}">Pagos</a>
                                 </div>
-                                
                             </div>
                         </div>
                     
@@ -78,72 +73,161 @@
                 </div>
             </div>
         </div>
-        <h2 class="text">Detalles de la consulta (Actual)</h2>
-        {{-- Formulario para crear una consulta --}}
-        <form  method="POST" action="{{route('crearConsultaDoctora')}}">
-            @csrf
+        <h2 class="text">Odontrograma</h2>
             <div class="card">
                 <div class="container">
                     <br>
-                    <label class="text">Detalle:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="descripcionConsulta" maxlength="250"></textarea>              
-                </div>
-                <div class="row container">
-                    <input type="text" name="idPaciente" value="{{$citaPaciente->paciente_id}}" hidden>
-                    <input type="text" name="idPersona" value="{{$citaPaciente->persona_id}}" hidden>
-                    <input type="text" name="fechaConsulta" value="{{$citaPaciente->fecha}}" hidden>
-                    <input type="text" name="idCita" value="{{$citaPaciente->id}}" hidden>
-                    <button class="btn btn-primary" type="submit" style="margin:15px;">Crear consulta</button>
-                </div>
-            </div>
-        </form>
-
-        <h2 class="text">Detalle de las consultas</h2>
-        <div class="card">
-            <div class="form-group col-md-4 col-12 d-flex justify-content align-items-end" style="margin-top:10px;">
-                <label class="text-center">Cantidad de citas: {{$cantidadConsultas}}</label>
-            </div>
-            @if ($cantidadConsultas == 0)
-                <div class=" p-4 mb-4">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h3>No hay consultas registradas</h3>
+                        <div class="col columna1" >
+                            <button type="button" class="btn btn-outline-primary">18</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">17</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">16</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">15</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">14</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">13</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">12</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">11</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">21</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">22</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">23</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">24</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">25</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">26</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">27</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">28</button>
                         </div>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col columna1">
+                            <button type="button" class="btn btn-outline-primary">48</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">47</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">46</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">45</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">44</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">43</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">42</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">41</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">31</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">32</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">33</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">34</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">35</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">36</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">37</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary">38</button>
+                        </div>
+                    </div>
+                    <br>             
                 </div>
-            @else
+            </div>
+            <div class="row">
+                <div class="col" style="text-align:center;">
+                    <a class="btn btn-primary" href="#" role="button">Registro de Tratamientos</a>
+                </div>
+                <div class="col" style="text-align:center;">
+                    <a class="btn btn-primary" href="#" role="button">Registro de Recetas</a>
+                </div>
+            </div>
+        <h2 class="text">Registro de Pagos</h2>
+        <div class="card">
+            
                 <div class=" p-4 mb-4">
                     <div class="row">
                         <div class="col-12">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">N°</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Descripción</th>
-                                        <th scope="col">Receta</th>
+                                        <th scope="col">Costo</th>
+                                        <th scope="col">Abono</th>
+                                        <th scope="col">Restante</th>
+                                        <th scope="col">Pago</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($collecionConsultas as $collecionConsulta)
+                                    
                                     <tr>
-                                        <th scope="row">{{ ++$i }}</th>
-                                        <td>{{$collecionConsulta['fecha']}}</td>
-                                        <td>{{$collecionConsulta['descripcion']}}</td>
+                                        <th scope="row">07/10/2021</th>
+                                        <td>Relleno en los dientes 44 y 42</td>
+                                        <td>$500</td>
+                                        <td>$300</td>
+                                        <td>$200</td>
                                         <td>
                                             <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                    data-target="#mediumModal" data-attr="{{ route('crearRecetaExpedienteDental',$collecionConsulta['id']) }}">
-                                                    <i class="fas fa-file-medical-alt"></i>
+                                                    data-target="#mediumModal" data-attr="#">
+                                                    <i class="fas fa-hand-holding-usd"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            @endif
+            
         </div>
         
     </div>
@@ -259,4 +343,14 @@
             var b = document.getElementById('exampleModalLongTitle').innerHTML = "Registrar";
         }
     </script>
+    <style>
+        .btn-outline-primary{
+            padding: 5px;
+        }
+        .col{
+            padding: 0px 15px 15px 15px;
+        }
+        
+
+    </style>
 @endsection

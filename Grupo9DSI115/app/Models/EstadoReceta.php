@@ -40,4 +40,9 @@ class EstadoReceta extends Model
     {
         return $this->hasMany('App\Models\Receta', 'estadoReceta_id', 'id');
     }
+
+    public function recetasDentales()
+    {
+        return $this->hasMany('App\Models\RecetasDentales', 'estadoReceta_id', 'id');
+    }
 }
