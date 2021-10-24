@@ -6,7 +6,7 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Update Pago</span>
+                    <span class="card-title">Pago</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" id="formEdit" action="{{ route('pagos.update', $pago->id) }}"  role="form" enctype="multipart/form-data">

@@ -2,24 +2,29 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="float-left">
+                        <span class="card-title">Pago</span>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <strong>Expediente Doctora Dental Id:</strong>
+                                <strong>Expediente Doctora Dental:</strong>
                                 {{ $pago->expediente_doctora_dental_id }}
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <strong>Estado Pago Id:</strong>
-                                {{ $pago->estado_pago_id }}
+                                <strong>Estado:</strong>
+                                {{ $pago->EstadoPago->nombre }}
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <strong>Costo:</strong>
-                                {{ $pago->costo }}
+                                ${{ $pago->costo }}
                             </div>
                         </div>
                         <div class="col-12 col-md-6">

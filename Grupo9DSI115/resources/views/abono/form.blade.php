@@ -7,8 +7,8 @@
             {!! $errors->first('monto', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('pago_id') }}
-            {{ Form::text('pago_id', $abono->pago_id, ['class' => 'form-control' . ($errors->has('pago_id') ? ' is-invalid' : ''), 'placeholder' => 'Pago Id']) }}
+            {{ Form::label('pago') }}
+            {{ Form::text('pago_id', $abono->pago_id, ['class' => 'form-control' . ($errors->has('pago_id') ? ' is-invalid' : ''), 'placeholder' => 'Pago']) }}
             {!! $errors->first('pago_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 

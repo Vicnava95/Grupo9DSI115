@@ -13,7 +13,7 @@ class CreateEstadoPagoTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_pago', function (Blueprint $table) {
+        Schema::create('estado_pagos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->required();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateEstadoPagoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_pago');
+        Schema::dropIfExists('estado_pagos');
     }
 }

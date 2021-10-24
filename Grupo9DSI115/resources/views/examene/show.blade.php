@@ -2,11 +2,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="float-left">
+                        <span class="card-title">Examen</span>
+                    </div>
+                </div>
                 <div class="card-body">
-                    
                     <div class="form-group">
                         <strong>Imagen:</strong>
-                        {{ $examene->imagen }}
+                        @empty(!$examene->imagen)
+                                <a href="/examenesImagenes/{{ $examene->imagen }}" target="_blank">
+                                    <img name="imagenActual" src="/examenesImagenes/{{ $examene->imagen }}" class="mt-2 img-fluid">
+                                </a>
+                        @endempty
+                        @empty($examene->imagen)
+                            No hay imagen
+                        @endempty
                     </div>
                     <div class="form-group">
                         <strong>Fecha:</strong>
@@ -17,7 +28,7 @@
                         {{ $examene->descripcion }}
                     </div>
                     <div class="form-group">
-                        <strong>Consulta Id:</strong>
+                        <strong>Consulta:</strong>
                         {{ $examene->consulta_id }}
                     </div>
 

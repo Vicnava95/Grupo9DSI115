@@ -24,13 +24,13 @@ class CreatePagosTable extends Migration
             $table->unsignedBigInteger('estado_pago_id');
             $table->foreign('estado_pago_id')
                     ->references('id')
-                    ->on('estado_pago')
+                    ->on('estado_pagos')
                     ->onDelete('cascade');
 
             $table->unsignedBigInteger('expediente_doctora_dental_id');
             $table->foreign('expediente_doctora_dental_id')
                     ->references('id')
-                    ->on('expediente_doctors')
+                    ->on('expediente_doctora_dentals')
                     ->onDelete('cascade');
         });
     }

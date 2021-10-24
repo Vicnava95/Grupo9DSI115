@@ -68,8 +68,8 @@ Listado de pagos
 										<th>Descripcion</th>
 										<th>Costo</th>
 										<th>Fecha</th>
-										<th>Estado Pago Id</th>
-										<th>Expediente Doctora Dental Id</th>
+										<th>Estado</th>
+										<th>Expediente Dental</th>
 
                                         <th></th>
                                     </tr>
@@ -80,9 +80,9 @@ Listado de pagos
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $pago->descripcion }}</td>
-											<td>{{ $pago->costo }}</td>
+											<td>${{ $pago->costo }}</td>
 											<td>{{ $pago->fecha }}</td>
-											<td>{{ $pago->estado_pago_id }}</td>
+											<td>{{ $pago->EstadoPago->nombre }}</td>
 											<td>{{ $pago->expediente_doctora_dental_id }}</td>
 
                                             <td>

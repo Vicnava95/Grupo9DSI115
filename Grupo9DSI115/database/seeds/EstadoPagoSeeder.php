@@ -11,11 +11,11 @@ class EstadoPagoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('estado_pago')->insert([
+        DB::table('estado_pagos')->insert([
             'nombre' => 'Completo'
         ]);
 
-        DB::table('estado_pago')->insert([
+        DB::table('estado_pagos')->insert([
             'nombre' => 'Incompleto'
         ]);
     }

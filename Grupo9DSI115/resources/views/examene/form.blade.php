@@ -1,10 +1,20 @@
 <div class="box box-info padding-1">
     <div class="box-body">
+
+        @empty(!$examene->imagen)
+            <div class="form-group">
+                <label for="imagenActual">Imagen actual:</label>
+                <a href="/examenesImagenes/{{ $examene->imagen }}" target="_blank">
+                    <img name="imagenActual" src="/examenesImagenes/{{ $examene->imagen }}" class="mt-2 img-fluid">
+                </a>
+            </div>
+        @endempty 
         
         <div class="form-group">
             {{ Form::label('imagen') }}
-            {{ Form::text('imagen', $examene->imagen, ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : ''), 'placeholder' => 'Imagen']) }}
-            {!! $errors->first('imagen', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::file('imagen', ['class' => 'form-control ' . ($errors->has('imagen') ? ' is-invalid' : ''),
+            'id' => 'imagen', 'lang'=> 'es']) }}
+            {!! $errors->first('imagen', '<div class="invalid-feedback">:message</p>') !!}    
         </div>
         <div class="form-group">
             {{ Form::label('fecha') }}
@@ -33,8 +43,8 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('consulta_id') }}
-            {{ Form::text('consulta_id', $examene->consulta_id, ['class' => 'form-control' . ($errors->has('consulta_id') ? ' is-invalid' : ''), 'placeholder' => 'Consulta Id']) }}
+            {{ Form::label('consulta') }}
+            {{ Form::text('consulta_id', $examene->consulta_id, ['class' => 'form-control' . ($errors->has('consulta_id') ? ' is-invalid' : ''), 'placeholder' => 'Consulta']) }}
             {!! $errors->first('consulta_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 

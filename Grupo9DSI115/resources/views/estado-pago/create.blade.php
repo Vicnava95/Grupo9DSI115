@@ -1,20 +1,25 @@
+@extends('layouts.app')
 
+@section('template_title')
+    Create Estado Pago
+@endsection
+
+@section('content')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Abono</span>
+                        <span class="card-title">Create Estado Pago</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" id="formEdit" action="{{ route('abonos.update', $abono->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('estado-pagos.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('abono.form')
+                            @include('estado-pago.form')
 
                         </form>
                     </div>
@@ -22,3 +27,4 @@
             </div>
         </div>
     </section>
+@endsection

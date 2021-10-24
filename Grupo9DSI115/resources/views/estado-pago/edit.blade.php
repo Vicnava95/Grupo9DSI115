@@ -1,4 +1,10 @@
+@extends('layouts.app')
 
+@section('template_title')
+    Update Estado Pago
+@endsection
+
+@section('content')
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">
@@ -7,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Abono</span>
+                        <span class="card-title">Update Estado Pago</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" id="formEdit" action="{{ route('abonos.update', $abono->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('estado-pagos.update', $estadoPago->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('abono.form')
+                            @include('estado-pago.form')
 
                         </form>
                     </div>
@@ -22,3 +28,4 @@
             </div>
         </div>
     </section>
+@endsection

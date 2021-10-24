@@ -29,8 +29,8 @@ class Pago extends Model
 		'descripcion' => 'required',
 		'costo' => 'required',
 		'fecha' => 'required',
-		'estado_pago_id' => 'required',
-		'expediente_doctora_dental_id' => 'required',
+		'estado_pago_id' => 'required|integer|exists:estado_pagos,id',
+		'expediente_doctora_dental_id' => 'required|integer|exists:expediente_doctora_dentals,id',
     ];
 
     protected $perPage = 20;

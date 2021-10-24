@@ -3,26 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\EstadoPago;
 
 /**
- * Class Abono
+ * Class EstadoPago
  *
  * @property $id
- * @property $monto
- * @property $pago_id
+ * @property $nombre
  * @property $created_at
  * @property $updated_at
  *
- * @property Pago $pago
+ * @property Pago[] $pagos
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Abono extends Model
+class EstadoPago extends Model
 {
     
     static $rules = [
-		'monto' => 'required',
-		'pago_id' => 'required|integer|exists:pagos,id'
+		'nombre' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,15 +31,15 @@ class Abono extends Model
      *
      * @var array
      */
-    protected $fillable = ['monto','pago_id'];
+    protected $fillable = ['nombre'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pago()
+    public function pagos()
     {
-        return $this->hasOne('App\Models\Pago', 'id', 'pago_id');
+        return $this->hasMany('App\Models\Pago', 'estado_pago_id', 'id');
     }
     
 

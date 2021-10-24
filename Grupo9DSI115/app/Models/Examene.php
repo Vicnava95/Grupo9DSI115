@@ -23,10 +23,10 @@ class Examene extends Model
 {
     
     static $rules = [
-		'imagen' => 'required',
+		'imagen' => 'required|image|mimes:jpeg,png,jpg',//'required',
 		'fecha' => 'required',
 		'descripcion' => 'required',
-		'consulta_id' => 'required',
+		'consulta_id' => 'required|integer|exists:consultas,id',
     ];
 
     protected $perPage = 20;

@@ -76,7 +76,7 @@ Listado de abonos
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $abono->monto }}</td>
+											<td>${{ $abono->monto }}</td>
 											<td>{{ $abono->Pago->descripcion }}</td>
 
                                             <td>

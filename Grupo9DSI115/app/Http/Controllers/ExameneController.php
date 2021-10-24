@@ -45,7 +45,16 @@ class ExameneController extends Controller
     {
         request()->validate(Examene::$rules);
 
-        $examene = Examene::create($request->all());
+        $input = $request->all();
+
+        if ($imagen = $request->file('imagen')) {
+            $direccionDestino = 'examenesImagenes/';
+            $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($direccionDestino, $imagenExamen);
+            $input['imagen'] = "$imagenExamen";
+        }
+
+        $examene = Examene::create($input);
 
         return redirect()->route('examenes.index')
             ->with('success', 'Examene created successfully.');
@@ -88,7 +97,17 @@ class ExameneController extends Controller
     {
         request()->validate(Examene::$rules);
 
-        $examene->update($request->all());
+        $input = $request->all();
+        if ($imagen = $request->file('imagen')) {
+            $direccionDestino = 'examenesImagenes/';
+            $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($direccionDestino, $imagenExamen);
+            $input['imagen'] = "$imagenExamen";
+        }else{
+            unset($input['imagen']);
+        }
+
+        $examene->update($input);
 
         return redirect()->route('examenes.index')
             ->with('success', 'Examene updated successfully');

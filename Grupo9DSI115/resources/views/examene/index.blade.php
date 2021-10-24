@@ -68,7 +68,7 @@ Listado de examenes
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>
-										<th>Consulta Id</th>
+										<th>Consulta</th>
 
                                         <th></th>
                                     </tr>
@@ -78,7 +78,7 @@ Listado de examenes
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $examen->imagen }}</td>
+											<td><a href="/examenesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
 											<td>{{ $examen->fecha }}</td>
 											<td>{{ $examen->descripcion }}</td>
 											<td>{{ $examen->consulta_id }}</td>
@@ -146,7 +146,7 @@ Listado de examenes
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
                 setTimeout(function(){
-                @foreach ($pago->getAttributes() as $key => $value)
+                @foreach ($examen->getAttributes() as $key => $value)
                     @error($key)
                         $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror

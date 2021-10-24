@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\EstadoPago;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +33,8 @@ class PagoController extends Controller
     public function create()
     {
         $pago = new Pago();
-        return view('pago.create', compact('pago'));
+        $estadosPago = EstadoPago::pluck('nombre','id');
+        return view('pago.create', compact('pago','estadosPago'));
     }
 
     /**
@@ -73,8 +75,8 @@ class PagoController extends Controller
     public function edit($id)
     {
         $pago = Pago::find($id);
-
-        return view('pago.edit', compact('pago'));
+        $estadosPago = EstadoPago::pluck('nombre','id');
+        return view('pago.edit', compact('pago','estadosPago'));
     }
 
     /**

@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    {{ Form::label('expediente_doctora_dental_id') }}
-                    {{ Form::text('expediente_doctora_dental_id', $pago->expediente_doctora_dental_id, ['class' => 'form-control' . ($errors->has('expediente_doctora_dental_id') ? ' is-invalid' : ''), 'placeholder' => 'Expediente Doctora Dental Id']) }}
+                    {{ Form::label('expediente_doctora_dental') }}
+                    {{ Form::text('expediente_doctora_dental_id', $pago->expediente_doctora_dental_id, ['class' => 'form-control' . ($errors->has('expediente_doctora_dental_id') ? ' is-invalid' : ''), 'placeholder' => 'Expediente Doctora Dental']) }}
                     {!! $errors->first('expediente_doctora_dental_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
@@ -39,8 +39,8 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    {{ Form::label('estado_pago_id') }}
-                    {{ Form::text('estado_pago_id', $pago->estado_pago_id, ['class' => 'form-control' . ($errors->has('estado_pago_id') ? ' is-invalid' : ''), 'placeholder' => 'Estado Pago Id']) }}
+                    {{ Form::label('estado_pago') }}
+                    {{ Form::select('estado_pago_id', $estadosPago,$pago->estado_pago_id, ['class' => 'form-control' . ($errors->has('estado_pago_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un estado de pago']) }}
                     {!! $errors->first('estado_pago_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>

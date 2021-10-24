@@ -2,15 +2,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="float-left">
+                        <span class="card-title">Abono</span>
+                    </div>
+                </div>
                 <div class="card-body">
-                    
                     <div class="form-group">
                         <strong>Monto:</strong>
-                        {{ $abono->monto }}
+                        ${{ $abono->monto }}
                     </div>
                     <div class="form-group">
-                        <strong>Pago Id:</strong>
-                        {{ $abono->pago_id }}
+                        <strong>Pago:</strong>
+                        {{ $abono->Pago->descripcion }}
                     </div>
 
                 </div>
