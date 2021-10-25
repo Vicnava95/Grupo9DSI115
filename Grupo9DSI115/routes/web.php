@@ -135,6 +135,7 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/expedienteDentalStorePaciente', 'ExpedienteDoctoraDentalController@storePaciente')->name('expedienteDentalStorePaciente');
         Route::get('/crearRecetaExpedienteDental/{idCita}','ExpedienteDoctoraDentalController@createReceta')->name('crearRecetaExpedienteDental');
         Route::post('/storeRecetaExpedienteDental','ExpedienteDoctoraDentalController@storeReceta')->name('storeRecetaExpedienteDental');
+        Route::resource('rDentales', 'RecetasDentaleController');
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
