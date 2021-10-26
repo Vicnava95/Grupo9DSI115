@@ -12,6 +12,9 @@
                     <form method="POST" id="formCreate" action="{{ route('recetas.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
                         @include('receta.form')
+                        <script>
+                            document.getElementById('estado').style.display = 'none';
+                        </script>
                     </form>
                 </div>
             </div>

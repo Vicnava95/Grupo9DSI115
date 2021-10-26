@@ -35,12 +35,12 @@ Recetas
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
-                           <!--  <div class="float-right ml-5">
+                           <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
                                     data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
                                     Registrar receta
                                 </a>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -79,6 +79,7 @@ Recetas
                                 </thead>
                                 <tbody>
                                     @foreach ($recetas as $receta)
+                                    @if ($receta->estadoReceta_id != 2)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $receta->Consulta->Paciente->apellidos }}, {{ $receta->Consulta->Paciente->nombres }}</td>
@@ -96,16 +97,17 @@ Recetas
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.show', $receta->id) }}">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.edit', $receta->id) }}">
                                                     <i class="fa fa-fw fa-edit"></i>
-                                                </a>
+                                                </a> --}}
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.delete', $receta->id) }}">
-                                                    <i class="fa fa-fw fa-trash"></i>
+                                                    <i class="fas fa-window-close"></i>
                                                 </a>
                                             </td>
                                         </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -139,7 +141,7 @@ Recetas
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
-                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Eliminar</button>
+                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
                 </div>
             </div>
         </div>
@@ -219,7 +221,7 @@ Recetas
                         break;
 
                     case 'r':
-                        b.innerHTML = "Eliminar receta";
+                        b.innerHTML = "Anular receta";
                         break;
 
                     default:
