@@ -20,32 +20,47 @@
                         </div>
                         <div class="form-group">
                             <strong>Peso del paciente:</strong>
-                            {{ $consulta->peso }}
+                            {{ $consulta->peso }} Kg
+                        </div>
+                        <div class="form-group">
+                            <strong>Estatura del paciente:</strong>
+                            {{ $consulta->estatura }} m
+                        </div>
+                        <div class="form-group">
+                            <strong>IMC:</strong>
+                            {{ $consulta->imc }} Kg/m²
                         </div>
                         <div class="form-group">
                             <strong>Presión arterial del paciente:</strong>
-                            {{ $consulta->presion }}
+                            {{ $consulta->presion }} mmHg
                         </div>
                         <div class="form-group">
-                            <strong>Temperatura del paciente:</strong>
-                            {{ $consulta->temperatura }}
+                            <strong>Temperatura corporal del paciente:</strong>
+                            {{ $consulta->temperatura }} ºC
                         </div>
                         <div class="form-group">
                             <strong>Frecuencia cardiaca del paciente:</strong>
-                            {{ $consulta->frecuencia_cardiaca }}
+                            {{ $consulta->frecuencia_cardiaca }} pulsaciones/minuto
                         </div>
                         <div class="form-group">
                             <strong>Frecuencia respiratoria del paciente:</strong>
-                            {{ $consulta->frecuencia_respiratoria }}
+                            {{ $consulta->frecuencia_respiratoria }} respiraciones/minuto
                         </div>
+
+
                         <div class="form-group">
-                            <strong>Descripcion:</strong>
+                            <strong>Descripcion consulta:</strong>
                             {{ $consulta->descripcion }}
                         </div>
 
                         <div class="form-group">
+                            <strong>Examenes solicitados:</strong>
+                            {{ $consulta->solicitud_examen }}
+                        </div>
+
+                        <div class="form-group">
                             <strong>Doctor:</strong>
-                            {{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}
+                            {{ $consulta->Persona->nombrePersonas }} {{ $consulta->Persona->apellidoPersonas }}
                         </div>
                     </div>
                 </div>
