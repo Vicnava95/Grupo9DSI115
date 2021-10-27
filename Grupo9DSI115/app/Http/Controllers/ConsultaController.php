@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Carbon\Carbon;
 use App\Models\Cita;
 use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
 
 /**
  * Class ConsultaController
@@ -127,6 +129,14 @@ class ConsultaController extends Controller
         $consulta = Consulta::find($id);
 
         return view('consulta.show', compact('consulta'));
+    }
+
+    public function imprimir($id)
+    {
+        $consulta = Consulta::find($id);
+        $fecha = Carbon::now()->format('Y-m-d');
+        $pdf = PDF::loadView('pdf.consulta', compact('consulta', 'fecha'));
+        return $pdf->stream();
     }
 
     /**

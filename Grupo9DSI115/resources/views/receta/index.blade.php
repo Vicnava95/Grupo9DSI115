@@ -104,6 +104,9 @@ Recetas
                                                     data-target="#mediumModal" data-attr="{{ route('recetas.delete', $receta->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" href="{{ route('recetas.imprimir', $receta->id) }}" target="_blank">
+                                                    <i class="fa fa-fw fa-print"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
