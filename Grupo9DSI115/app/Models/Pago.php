@@ -27,9 +27,9 @@ class Pago extends Model
     
     static $rules = [
 		'descripcion' => 'required',
-		'costo' => 'required',
+		'costo' => 'required|integer|min:0',
 		'fecha' => 'required',
-		'estado_pago_id' => 'required|integer|exists:estado_pagos,id',
+		//'estado_pago_id' => 'required|integer|exists:estado_pagos,id',
 		'expediente_doctora_dental_id' => 'required|integer|exists:expediente_doctora_dentals,id',
     ];
 

@@ -20,10 +20,10 @@
                     {{ Form::label('Fecha') }}
                     <div class="input-group date">
                         {{ Form::text('fecha', $pago->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id'=>'inputFecha']) }}
-                    <div class="input-group-addon input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        <div class="input-group-addon input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        </div>
                     </div>
-                </div>
                     {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
                         <script type="text/javascript">
                             $(function () {
@@ -37,13 +37,13 @@
                         </script>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            {{-- <div class="col-12 col-md-6">
                 <div class="form-group">
                     {{ Form::label('estado_pago') }}
                     {{ Form::select('estado_pago_id', $estadosPago,$pago->estado_pago_id, ['class' => 'form-control' . ($errors->has('estado_pago_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un estado de pago']) }}
                     {!! $errors->first('estado_pago_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="form-group">
             {{ Form::label('descripcion') }}

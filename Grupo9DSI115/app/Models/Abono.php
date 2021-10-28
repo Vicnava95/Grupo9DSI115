@@ -21,7 +21,7 @@ class Abono extends Model
 {
     
     static $rules = [
-		'monto' => 'required',
+		'monto' => 'required|integer|min:0',
 		'pago_id' => 'required|integer|exists:pagos,id'
     ];
 

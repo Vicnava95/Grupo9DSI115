@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\Abono;
 use App\Models\EstadoPago;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class PagoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Pago::$rules);
-
+        $request->request->add(['estado_pago_id'=> strval(2)]);
         $pago = Pago::create($request->all());
 
         return redirect()->route('pagos.index')
@@ -89,11 +90,19 @@ class PagoController extends Controller
     public function update(Request $request, Pago $pago)
     {
         request()->validate(Pago::$rules);
-
-        $pago->update($request->all());
-
+        $abonos = Abono::select('*')->where('pago_id',$pago->id)->get()->sum('monto');
+        if($request->get('costo')>=$abonos){
+            $pago->update($request->all());
+            if($request->get('costo')==$abonos)
+                $pago->update(['estado_pago_id'=>'1']);
+            else
+                $pago->update(['estado_pago_id'=>'2']);
+            return redirect()->route('pagos.index')
+                ->with('success', 'Pago updated successfully');
+        } else{
         return redirect()->route('pagos.index')
-            ->with('success', 'Pago updated successfully');
+            ->with('error', 'El pago no se puede actualizar. El total de abono es de $'.$abonos);
+        }  
     }
 
     public function delete($id)

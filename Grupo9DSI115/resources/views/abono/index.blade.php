@@ -37,7 +37,7 @@ Listado de abonos
                               </div>
                         </div>
                     </div>
-                    @if ($message = Session::get('success'))
+                    
                         <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content bg-dark">
@@ -52,11 +52,21 @@ Listado de abonos
                                             }, 5000);
                                         </script>
                                     @endif
+                                    
+                                    @if ($message = Session::get('error'))
+                                        <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
+                                        <p class="text-white text-center">{{ $message }}</p>
+                                        <script type="text/javascript">
+                                            $('#modalSuccess').modal('show');
+                                            setTimeout(function(){
+                                                $('#modalSuccess').modal('hide')
+                                            }, 8000);
+                                        </script>
+                                    @endif
                                 </div>
                             </div>
                             </div>
                         </div>
-                    @endif
 
                     <div class="card-body">
                         <div class="table-responsive">
