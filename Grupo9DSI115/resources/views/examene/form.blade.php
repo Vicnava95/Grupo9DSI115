@@ -4,8 +4,8 @@
         @empty(!$examene->imagen)
             <div class="form-group">
                 <label for="imagenActual">Imagen actual:</label>
-                <a href="/examenesImagenes/{{ $examene->imagen }}" target="_blank">
-                    <img name="imagenActual" src="/examenesImagenes/{{ $examene->imagen }}" class="mt-2 img-fluid">
+                <a href="/examenesGeneralesImagenes/{{ $examene->imagen }}" target="_blank">
+                    <img name="imagenActual" src="/examenesGeneralesImagenes/{{ $examene->imagen }}" class="mt-2 img-fluid">
                 </a>
             </div>
         @endempty 

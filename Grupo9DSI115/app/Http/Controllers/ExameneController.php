@@ -48,7 +48,7 @@ class ExameneController extends Controller
         $input = $request->all();
 
         if ($imagen = $request->file('imagen')) {
-            $direccionDestino = 'examenesImagenes/';
+            $direccionDestino = 'examenesGeneralesImagenes/';
             $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
             $imagen->move($direccionDestino, $imagenExamen);
             $input['imagen'] = "$imagenExamen";
@@ -56,7 +56,7 @@ class ExameneController extends Controller
 
         $examene = Examene::create($input);
 
-        return redirect()->route('examenes.index')
+        return redirect()->route('examenesGeneral.index')
             ->with('success', 'Examene created successfully.');
     }
 
@@ -93,13 +93,13 @@ class ExameneController extends Controller
      * @param  Examene $examene
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examene $examene)
+    public function update(Request $request, Examene $examenesGeneral)
     {
         request()->validate(Examene::$rules);
 
         $input = $request->all();
         if ($imagen = $request->file('imagen')) {
-            $direccionDestino = 'examenesImagenes/';
+            $direccionDestino = 'examenesGeneralesImagenes/';
             $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
             $imagen->move($direccionDestino, $imagenExamen);
             $input['imagen'] = "$imagenExamen";
@@ -107,9 +107,9 @@ class ExameneController extends Controller
             unset($input['imagen']);
         }
 
-        $examene->update($input);
+        $examenesGeneral->update($input);
 
-        return redirect()->route('examenes.index')
+        return redirect()->route('examenesGeneral.index')
             ->with('success', 'Examene updated successfully');
     }
 
@@ -128,7 +128,7 @@ class ExameneController extends Controller
     {
         $examene = Examene::find($id)->delete();
 
-        return redirect()->route('examenes.index')
+        return redirect()->route('examenesGeneral.index')
             ->with('success', 'Examene deleted successfully');
     }
 }

@@ -23,7 +23,7 @@ class Examene extends Model
 {
     
     static $rules = [
-		'imagen' => 'required|image|mimes:jpeg,png,jpg',//'required',
+		'imagen' => 'nullable|image|mimes:jpeg,png,jpg',//'required',
 		'fecha' => 'required',
 		'descripcion' => 'required',
 		'consulta_id' => 'required|integer|exists:consultas,id',

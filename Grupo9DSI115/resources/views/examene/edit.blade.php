@@ -9,7 +9,7 @@
                     <span class="card-title">Examen</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formEdit" action="{{ route('examenes.update', $examene->id) }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formEdit" action="{{ route('examenesGeneral.update', $examene->id) }}"  role="form" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         @csrf
 

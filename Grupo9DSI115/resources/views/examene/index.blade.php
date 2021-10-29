@@ -31,7 +31,7 @@ Listado de examenes
                              <div class="float-right">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
-                                    data-attr="{{ route('examenes.create') }}" title="Create a project">
+                                    data-attr="{{ route('examenesGeneral.create') }}" title="Create a project">
                                     Registrar examen
                                 </a>
                               </div>
@@ -78,7 +78,7 @@ Listado de examenes
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td><a href="/examenesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
+											<td><a href="/examenesGeneralesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
 											<td>{{ $examen->fecha }}</td>
 											<td>{{ $examen->descripcion }}</td>
 											<td>{{ $examen->consulta_id }}</td>
@@ -86,17 +86,17 @@ Listado de examenes
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('examenes.show', $examen->id) }}">
+                                                        data-attr="{{ route('examenesGeneral.show', $examen->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('examenes.edit', $examen->id) }}">
+                                                        data-attr="{{ route('examenesGeneral.edit', $examen->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                     id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                    data-attr="{{ route('examenes.delete', $examen->id) }}">
+                                                    data-attr="{{ route('examenesGeneral.delete', $examen->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
                                             </td>

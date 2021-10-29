@@ -9,7 +9,7 @@
                     <span class="card-title">Examen</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formCreate" action="{{ route('examenes.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formCreate" action="{{ route('examenesGeneral.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
 
                         @include('examene.form')

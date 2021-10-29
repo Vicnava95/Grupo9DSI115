@@ -11,8 +11,8 @@
                     <div class="form-group">
                         <strong>Imagen:</strong>
                         @empty(!$examene->imagen)
-                                <a href="/examenesImagenes/{{ $examene->imagen }}" target="_blank">
-                                    <img name="imagenActual" src="/examenesImagenes/{{ $examene->imagen }}" class="mt-2 img-fluid">
+                                <a href="/examenesGeneralesImagenes/{{ $examene->imagen }}" target="_blank">
+                                    <img name="imagenActual" src="/examenesGeneralesImagenes/{{ $examene->imagen }}" class="mt-2 img-fluid">
                                 </a>
                         @endempty
                         @empty($examene->imagen)
