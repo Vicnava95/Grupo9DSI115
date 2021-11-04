@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Examenes
+Examenes doctor dental
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de examenes
+Examenes doctor dental
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -25,13 +25,13 @@ Listado de examenes
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Examen') }}
+                                {{ __('Examenes Doctora Dental') }}
                             </span>
 
                              <div class="float-right">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
-                                    data-attr="{{ route('examenesGenerales.create') }}" title="Create a project">
+                                    data-attr="{{ route('examenesDentales.create') }}" title="Create a project">
                                     Registrar examen
                                 </a>
                               </div>
@@ -57,7 +57,6 @@ Listado de examenes
                             </div>
                         </div>
                     @endif
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -68,35 +67,34 @@ Listado de examenes
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>
-										<th>Consulta</th>
+										<th>Expediente</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($examenes as $examen)
+                                    @foreach ($examenesDoctoraDentals as $examenesDoctoraDental)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td><a href="/examenesGeneralesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
-											<td>{{ $examen->fecha }}</td>
-											<td>{{ $examen->descripcion }}</td>
-											<td>{{ $examen->consulta_id }}</td>
+                                            <td><a href="/examenesDentalesImagenes/{{ $examenesDoctoraDental->imagen }}" target="_blank">{{ $examenesDoctoraDental->imagen }}</a></td>
+											<td>{{ $examenesDoctoraDental->fecha }}</td>
+											<td>{{ $examenesDoctoraDental->descripcion }}</td>
+											<td>{{ $examenesDoctoraDental->expediente_doctora_dental_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('examenesGenerales.show', $examen->id) }}">
+                                                        data-attr="{{ route('examenesDentales.show', $examenesDoctoraDental->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('examenesGenerales.edit', $examen->id) }}">
+                                                        data-attr="{{ route('examenesDentales.edit', $examenesDoctoraDental->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                     id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                    data-attr="{{ route('examenesGenerales.delete', $examen->id) }}">
+                                                    data-attr="{{ route('examenesDentales.delete', $examenesDoctoraDental->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
                                             </td>
@@ -107,11 +105,10 @@ Listado de examenes
                         </div>
                     </div>
                 </div>
-                {!! $examenes->links() !!}
+                {!! $examenesDoctoraDentals->links() !!}
             </div>
         </div>
     </div>
-
 
     <!-- Modal Registrar/Editar/Eliminar -->
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
@@ -225,5 +222,4 @@ Listado de examenes
             }
         }
     </script>
-
 @endsection

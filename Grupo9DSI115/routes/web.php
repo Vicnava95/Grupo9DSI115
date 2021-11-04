@@ -24,8 +24,13 @@ use App\Sexo;
 Route::resource('abonos', 'AbonoController');
 Route::get('abonos/{abono}/borrar', 'AbonoController@delete')->name('abonos.delete');
 
-Route::resource('examenesGeneral', 'ExameneController');
-Route::get('examenesGeneral/{examenesGeneral}/borrar', 'ExameneController@delete')->name('examenesGeneral.delete');
+//examenes doctor general
+Route::resource('examenesGenerales', 'ExameneController');
+Route::get('examenesGenerales/{examenesGenerales}/borrar', 'ExameneController@delete')->name('examenesGenerales.delete');
+
+//examenes doctor dental
+Route::resource('examenesDentales', 'ExamenesDoctoraDentalController');
+Route::get('examenesDentales/{examenesDentale}/borrar', 'ExamenesDoctoraDentalController@delete')->name('examenesDentales.delete');
 
 Route::resource('pagos', 'PagoController');
 Route::get('pagos/{pago}/borrar', 'PagoController@delete')->name('pagos.delete');

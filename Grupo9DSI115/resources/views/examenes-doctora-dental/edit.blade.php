@@ -6,14 +6,14 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Examen</span>
+                    <span class="card-title">Update Examenes Doctora Dental</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formEdit" action="{{ route('examenesGenerales.update', $examene->id) }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formEdit" action="{{ route('examenesDentales.update', $examenesDoctoraDental->id) }}"  role="form" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         @csrf
 
-                        @include('examene.form')
+                        @include('examenes-doctora-dental.form')
 
                     </form>
                 </div>

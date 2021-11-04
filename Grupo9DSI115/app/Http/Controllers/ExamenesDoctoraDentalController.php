@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Examene;
+use App\Models\ExamenesDoctoraDental;
 use Illuminate\Http\Request;
 
 /**
- * Class ExameneController
+ * Class ExamenesDoctoraDentalController
  * @package App\Http\Controllers
  */
-class ExameneController extends Controller
+class ExamenesDoctoraDentalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class ExameneController extends Controller
      */
     public function index()
     {
-        $examenes = Examene::paginate();
+        $examenesDoctoraDentals = ExamenesDoctoraDental::paginate();
 
-        return view('examene.index', compact('examenes'))
-            ->with('i', (request()->input('page', 1) - 1) * $examenes->perPage());
+        return view('examenes-doctora-dental.index', compact('examenesDoctoraDentals'))
+            ->with('i', (request()->input('page', 1) - 1) * $examenesDoctoraDentals->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class ExameneController extends Controller
      */
     public function create()
     {
-        $examene = new Examene();
-        return view('examene.create', compact('examene'));
+        $examenesDoctoraDental = new ExamenesDoctoraDental();
+        return view('examenes-doctora-dental.create', compact('examenesDoctoraDental'));
     }
 
     /**
@@ -43,21 +43,21 @@ class ExameneController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Examene::$rules);
+        request()->validate(ExamenesDoctoraDental::$rules);
 
         $input = $request->all();
 
         if ($imagen = $request->file('imagen')) {
-            $direccionDestino = 'examenesGeneralesImagenes/';
+            $direccionDestino = 'examenesDentalesImagenes/';
             $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
             $imagen->move($direccionDestino, $imagenExamen);
             $input['imagen'] = "$imagenExamen";
         }
 
-        $examene = Examene::create($input);
+        $examenesDoctoraDental = ExamenesDoctoraDental::create($input);
 
-        return redirect()->route('examenesGenerales.index')
-            ->with('success', 'Examene created successfully.');
+        return redirect()->route('examenesDentales.index')
+            ->with('success', 'ExamenesDoctoraDental created successfully.');
     }
 
     /**
@@ -68,9 +68,9 @@ class ExameneController extends Controller
      */
     public function show($id)
     {
-        $examene = Examene::find($id);
+        $examenesDoctoraDental = ExamenesDoctoraDental::find($id);
 
-        return view('examene.show', compact('examene'));
+        return view('examenes-doctora-dental.show', compact('examenesDoctoraDental'));
     }
 
     /**
@@ -81,25 +81,25 @@ class ExameneController extends Controller
      */
     public function edit($id)
     {
-        $examene = Examene::find($id);
+        $examenesDoctoraDental = ExamenesDoctoraDental::find($id);
 
-        return view('examene.edit', compact('examene'));
+        return view('examenes-doctora-dental.edit', compact('examenesDoctoraDental'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Examene $examene
+     * @param  ExamenesDoctoraDental $examenesDoctoraDental
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examene $examenesGenerale)
+    public function update(Request $request, ExamenesDoctoraDental $examenesDentale)
     {
-        request()->validate(Examene::$rules);
+        request()->validate(ExamenesDoctoraDental::$rules);
 
         $input = $request->all();
         if ($imagen = $request->file('imagen')) {
-            $direccionDestino = 'examenesGeneralesImagenes/';
+            $direccionDestino = 'examenesDentalesImagenes/';
             $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
             $imagen->move($direccionDestino, $imagenExamen);
             $input['imagen'] = "$imagenExamen";
@@ -107,16 +107,16 @@ class ExameneController extends Controller
             unset($input['imagen']);
         }
 
-        $examenesGenerale->update($input);
+        $examenesDentale->update($input);
 
-        return redirect()->route('examenesGenerales.index')
-            ->with('success', 'Examene updated successfully');
+        return redirect()->route('examenesDentales.index')
+            ->with('success', 'ExamenesDoctoraDental updated successfully');
     }
 
     public function delete($id)
     {
-        $examen = Examene::find($id);
-        return view('examene.destroy', compact('examen'));
+        $examenesDentale = ExamenesDoctoraDental::find($id);
+        return view('examenes-doctora-dental.destroy', compact('examenesDentale'));
     }
 
     /**
@@ -126,9 +126,9 @@ class ExameneController extends Controller
      */
     public function destroy($id)
     {
-        $examene = Examene::find($id)->delete();
+        $examenesDoctoraDental = ExamenesDoctoraDental::find($id)->delete();
 
-        return redirect()->route('examenesGenerales.index')
-            ->with('success', 'Examene deleted successfully');
+        return redirect()->route('examenesDentales.index')
+            ->with('success', 'ExamenesDoctoraDental deleted successfully');
     }
 }

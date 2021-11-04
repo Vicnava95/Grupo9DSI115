@@ -1,20 +1,18 @@
 <section class="content container-fluid">
-    <div class="">
+    <div class="row">
         <div class="col-md-12">
 
             @includeif('partials.errors')
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Examen</span>
+                    <span class="card-title">Create Examenes Doctora Dental</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formEdit" action="{{ route('examenesGenerales.update', $examene->id) }}"  role="form" enctype="multipart/form-data">
-                        {{ method_field('PATCH') }}
+                    <form method="POST" id="formCreate" action="{{ route('examenesDentales.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
 
-                        @include('examene.form')
-
+                        @include('examenes-doctora-dental.form')
                     </form>
                 </div>
             </div>

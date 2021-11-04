@@ -1,5 +1,5 @@
 
-        <form id="formDelete" action="{{ route('examenesGenerales.destroy', $examen->id) }}" method="POST">
+        <form id="formDelete" action="{{ route('examenesDentales.destroy', $examenesDentale->id) }}" method="POST">
             @csrf
             @method("DELETE")
             <div class="modal-content bg-dark">
