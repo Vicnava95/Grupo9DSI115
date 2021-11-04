@@ -75,7 +75,7 @@ class ConsultaController extends Controller
                     break;
             }
         }
-        
+
 
         return view('consulta.index', compact('consultas'))
             ->with('i', (request()->input('page', 1) - 1) * $consultas->perPage());
@@ -112,6 +112,20 @@ class ConsultaController extends Controller
         else {
             request()->validate(Consulta::$rules);
         }
+
+        //Calculo de IMC antes de guardar
+
+        if($request->input('estatura') > 0){
+            $peso = $request->input('peso');
+            $estatura = $request->input('estatura');
+            $imc = round($peso / ($estatura * $estatura), 2, PHP_ROUND_HALF_EVEN);
+        }else{
+            $imc = 0;
+        }
+
+        $request->request->add(['imc'=>$imc]);
+        // Fin del calculo
+
         request()->request->remove('paciente_id_hid');
         $consulta = Consulta::create($request->all());
         return redirect()->route('consultas.index')
@@ -171,6 +185,20 @@ class ConsultaController extends Controller
         else {
             request()->validate(Consulta::$rules);
         }
+
+        //Calculo de IMC antes de guardar
+
+        if ($request->input('estatura') > 0) {
+            $peso = $request->input('peso');
+            $estatura = $request->input('estatura');
+            $imc = round($peso / ($estatura * $estatura), 2, PHP_ROUND_HALF_EVEN);
+        } else {
+            $imc = 0;
+        }
+
+        $request->request->add(['imc' => $imc]);
+        // Fin del calculo
+
         request()->request->remove('paciente_id_hid');
         $consulta->update($request->all());
 

@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Receta
+Recetas Dentales
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Recetas
+Recetas Dentales
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -15,7 +15,6 @@ Recetas
 
 @endsection
 
-<!-- Agregar contenido de la pagina web-->
 @section('cuerpo')
     <div class="container-fluid">
         <div class="row">
@@ -23,46 +22,20 @@ Recetas
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
                             <span id="card_title">
-                                {{ __('Receta') }}
+                                Recetas Dentales
                             </span>
-
-                            <div class="flex-fill bd-highlight ml-5">
-                                <form action="{{ route('recetas.index') }}"
-                                    method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="codigo de receta, codigo de consulta o nombre de paciente" name="texto" aria-label="default input" autocomplete= 'off'>
-                                        <button type="submit" class="btn btn-primary">Buscar</button>
-                                </form>
-                            </div>
-                            @if(!(Auth::user()->rols_fk==4 || Auth::user()->rols_fk==1))
-                           <div class="float-right ml-5">
+                             {{-- <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
-                                    data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
+                                    data-target="#mediumModal" data-attr="{{ route('rDentales.create') }}" title="Create a project">
                                     Registrar receta
                                 </a>
-                            </div>
-                            @endif
+                            </div> --}}
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
-                        <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content bg-dark">
-                                    <div class="modal-body py-5">
-                                        @if($message = Session::get('success'))
-                                            <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
-                                            <p class="text-white text-center">{{ $message }}</p>
-                                            <script type="text/javascript">
-                                                $('#modalSuccess').modal('show');
-                                                setTimeout(function(){
-                                                $('#modalSuccess').modal('hide')
-                                                }, 5000);
-                                            </script>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
                         </div>
                     @endif
 
@@ -73,59 +46,60 @@ Recetas
                                     <tr>
                                         <th>No</th>
                                         <th>Paciente</th>
-                                        <th>Fecha</th>
-                                        <th>Consulta</th>
-                                        <th>Doctor</th>
+										<th>Descripción</th>
+										<th>Fecha</th>
+										{{-- <th>Proxima Cita</th> --}}
+										<th>Estado</th>
+                                        <th>Doctora</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recetas as $receta)
-                                    @if ($receta->estadoReceta_id != 2)
+                                    @foreach ($recetasDentales as $recetasDentale)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $receta->Consulta->Paciente->apellidos }}, {{ $receta->Consulta->Paciente->nombres }}</td>
-                                            <td>{{ $receta->fecha }}</td>
-
-                                            <td>
-                                                <a href="#" class="link-primary" id="mediumButton" data-toggle="modal"
-                                                data-target="#mediumModal" data-attr="{{ route('consultas.show', $receta->Consulta->Paciente->id) }}">
-                                                    {!! Str::words($receta->Consulta->descripcion, 6, ' ...') !!}
-                                                </a>
-                                            </td>
-                                            <td>{{ $receta->Consulta->Persona->nombrePersonas }}{{ $receta->Consulta->Persona->apellidoPersonas }}</td>
+                                            @foreach ($expedientes as $expediente)
+                                                @if ($expediente->id == $recetasDentale->expedienteDental_id)
+                                                    @foreach ($pacientes as $paciente)
+                                                        @if ($expediente->paciente_id == $paciente->id)
+                                                            <td>{{ $paciente->nombres}}{{$paciente->apellidos}}</td>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+											<td>{{ $recetasDentale->descripcion }}</td>
+											<td>{{ $recetasDentale->fecha }}</td>
+											{{-- <td>{{ $recetasDentale->proximaCita }}</td> --}}
+											<td>{{ $recetasDentale->estadoReceta->nombre  }}</td>
+                                            <td>Sandra Coto</td>
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                    data-target="#mediumModal" data-attr="{{ route('recetas.show', $receta->id) }}">
+                                                data-target="#mediumModal" data-attr="{{ route('rDentales.show',$recetasDentale->id) }}">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                                 {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                    data-target="#mediumModal" data-attr="{{ route('recetas.edit', $receta->id) }}">
+                                                    data-target="#mediumModal" data-attr="{{ route('rDentales.edit',$recetasDentale->id) }}">
                                                     <i class="fa fa-fw fa-edit"></i>
                                                 </a> --}}
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                    data-target="#mediumModal" data-attr="{{ route('recetas.delete', $receta->id) }}">
-                                                    <i class="fas fa-window-close"></i>
+                                                    data-target="#mediumModal" data-attr="{{route('rDentales.delete',$recetasDentale)}}">
+                                                    <i class="fa fa-fw fa-trash"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" href="{{ route('recetas.imprimir', $receta->id) }}" target="_blank">
-                                                    <i class="fa fa-fw fa-print"></i>
-                                                </a>
+
                                             </td>
                                         </tr>
-                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                {!! $recetas->links() !!}
+                {!! $recetasDentales->links() !!}
             </div>
         </div>
     </div>
-
-    <!-- Modal Registrar/Editar/Eliminar -->
-    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+        <!-- Modal Registrar/Editar/Eliminar -->
+        <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content bg-dark">
@@ -146,12 +120,11 @@ Recetas
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
-                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
+                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         @if (count($errors) > 0)
                 let href=localStorage.getItem('formulario');
@@ -226,7 +199,7 @@ Recetas
                         break;
 
                     case 'r':
-                        b.innerHTML = "Anular receta";
+                        b.innerHTML = "Eliminar receta";
                         break;
 
                     default:
@@ -235,5 +208,4 @@ Recetas
                 }
             }
     </script>
-
 @endsection

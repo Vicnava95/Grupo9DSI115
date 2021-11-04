@@ -21,11 +21,14 @@ class ConsultaSeeder extends Seeder
         DB::table('consultas')->insert([
             'descripcion'=> 'El paciente es hipocondriaco y al mismo tiempo pragmático, con una gran capacidad intelectual y de raciocinio y a la vez vital',
             'fecha' => $fecha,
-            'peso'=>'65 Kg',
-            'presion'=>'120 mm Hg',
-            'temperatura'=>'36.6 ºC',
-            'frecuencia_cardiaca'=>'60 latidos/minuto',
-            'frecuencia_respiratoria'=>'18 respiraciones/minuto',
+            'peso'=>'60',
+            'estatura' =>'1.69',
+            'presion'=>'120/80',
+            'temperatura'=>'36.6',
+            'frecuencia_cardiaca'=>'60',
+            'frecuencia_respiratoria'=>'18',
+            'imc'=>'21.00',
+            'solicitud_examen'=>'',
             'paciente_id'=>'1',
             'persona_id'=>'2'
         ]);
@@ -33,11 +36,14 @@ class ConsultaSeeder extends Seeder
         DB::table('consultas')->insert([
             'descripcion'=> 'El diagnóstico fue confirmado por biopsia. el paciente fue tratado con medios biológicos para estimular las defensas inmunológicas',
             'fecha' => $fecha,
-            'peso' => '70 Kg',
-            'presion' => '130 mm Hg',
-            'temperatura' => '36.8 ºC',
-            'frecuencia_cardiaca' => '50 latidos/minuto',
-            'frecuencia_respiratoria' => '18 respiraciones/minuto',
+            'peso' => '70',
+            'estatura'=>'1.70',
+            'presion' => '130/80',
+            'temperatura' => '36.8',
+            'frecuencia_cardiaca' => '50',
+            'frecuencia_respiratoria' => '18',
+            'imc'=>'24.22',
+            'solicitud_examen'=>'',
             'paciente_id'=>'2',
             'persona_id'=>'2'
         ]);
@@ -45,11 +51,14 @@ class ConsultaSeeder extends Seeder
         DB::table('consultas')->insert([
             'descripcion'=> 'Dolor de cabeza en la parte trasera de la cabeza',
             'fecha' => $fecha,
-            'peso' => '80 Kg',
-            'presion' => '90 mm Hg',
-            'temperatura' => '37.1 ºC',
-            'frecuencia_cardiaca' => '62 latidos/minuto',
-            'frecuencia_respiratoria' => '20 respiraciones/minuto',
+            'peso' => '80',
+            'estatura'=>'1.75',
+            'presion' => '90/80',
+            'temperatura' => '37.1',
+            'frecuencia_cardiaca' => '62',
+            'frecuencia_respiratoria' => '20',
+            'imc'=>'26.12',
+            'solicitud_examen'=>'Radiografia de craneo',
             'paciente_id'=>'3',
             'persona_id'=>'3'
         ]);
@@ -57,11 +66,14 @@ class ConsultaSeeder extends Seeder
         DB::table('consultas')->insert([
             'descripcion'=> 'Problemas de vista, le cuesta ver objetivos medianamente pequeños',
             'fecha' => $fecha,
-            'peso' => '55 Kg',
-            'presion' => '100 mm Hg',
-            'temperatura' => '37.2 ºC',
-            'frecuencia_cardiaca' => '55 latidos/minuto',
-            'frecuencia_respiratoria' => '17 respiraciones/minuto',
+            'peso' => '55',
+            'estatura'=>'1.50',
+            'presion' => '100/80',
+            'temperatura' => '37.2',
+            'frecuencia_cardiaca' => '55',
+            'frecuencia_respiratoria' => '17',
+            'imc'=>'24.44',
+            'solicitud_examen'=>'Examen de la vista',
             'paciente_id'=>'4',
             'persona_id'=>'3'
         ]);
@@ -69,11 +81,14 @@ class ConsultaSeeder extends Seeder
         DB::table('consultas')->insert([
             'descripcion'=> 'Quebradura de hueso en el brazo izquierdo',
             'fecha' => $fecha,
-            'peso' => '90 Kg',
-            'presion' => '125 mm Hg',
-            'temperatura' => '36.9 ºC',
-            'frecuencia_cardiaca' => '63 latidos/minuto',
-            'frecuencia_respiratoria' => '19 respiraciones/minuto',
+            'peso' => '90',
+            'estatura'=>'1.65',
+            'presion' => '125/80',
+            'temperatura' => '36.9',
+            'frecuencia_cardiaca' => '63',
+            'frecuencia_respiratoria' => '19',
+            'imc'=>'33.06',
+            'solicitud_examen'=>'Radiografia de uso',
             'paciente_id'=>'5',
             'persona_id'=>'3'
         ]);
@@ -81,11 +96,14 @@ class ConsultaSeeder extends Seeder
         DB::table('consultas')->insert([
             'descripcion'=> 'Nauceas y vertigo, nivel alto de azucar',
             'fecha' => $fecha,
-            'peso' => '75 Kg',
-            'presion' => '106 mm Hg',
-            'temperatura' => '35.8 ºC',
-            'frecuencia_cardiaca' => '60 latidos/minuto',
-            'frecuencia_respiratoria' => '20 respiraciones/minuto',
+            'peso' => '75',
+            'estatura'=>'1.73',
+            'presion' => '106/80',
+            'temperatura' => '35.8',
+            'frecuencia_cardiaca' => '60',
+            'frecuencia_respiratoria' => '20',
+            'imc'=>'25.06',
+            'solicitud_examen'=>'Examen de glucosa',
             'paciente_id'=>'6',
             'persona_id'=>'2'
         ]);

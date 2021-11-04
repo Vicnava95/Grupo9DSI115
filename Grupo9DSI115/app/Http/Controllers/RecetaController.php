@@ -6,6 +6,7 @@ use PDF;
 use Carbon\Carbon;
 use App\Models\Cita;
 use App\Models\Receta;
+use App\Models\EstadoReceta;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
@@ -87,7 +88,9 @@ class RecetaController extends Controller
     public function create()
     {
         $receta = new Receta();
-        return view('receta.create', compact('receta'));
+        $estadoRecetas = EstadoReceta::select('*')
+                ->get();
+        return view('receta.create', compact('receta', 'estadoRecetas'));
     }
 
     /**
@@ -98,6 +101,7 @@ class RecetaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->add(['estadoReceta_id'=> strval(1)]);
         request()->validate(Receta::$rules);
 
         $receta = Receta::create($request->all());
@@ -136,8 +140,10 @@ class RecetaController extends Controller
     public function edit($id)
     {
         $receta = Receta::find($id);
+        $estadoRecetas = EstadoReceta::select('*')
+                ->get();
 
-        return view('receta.edit', compact('receta'));
+        return view('receta.edit', compact('receta', 'estadoRecetas'));
     }
 
     /**
@@ -166,6 +172,7 @@ class RecetaController extends Controller
     public function delete($id)
     {
         $receta = Receta::find($id);
+
     return view('receta.destroy', compact('receta'));
     }
 
@@ -174,11 +181,12 @@ class RecetaController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, Receta $receta)
     {
-        $receta = Receta::find($id)->delete();
+        
+        $request->receta->update(['estadoReceta_id'=> strval(2)]);
 
         return redirect()->route('recetas.index')
-            ->with('success', 'Receta eliminada satisfactoriamente');
+            ->with('success', 'Receta anulada satisfactoriamente');
     }
 }

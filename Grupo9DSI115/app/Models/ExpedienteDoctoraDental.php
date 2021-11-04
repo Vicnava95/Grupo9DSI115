@@ -15,4 +15,9 @@ class ExpedienteDoctoraDental extends Model
     public function consultas(){
         return $this->belongsToMany(Consulta::class, ['consulta_expedienteDoctora']);
     }
+    
+    public function recetasDentales()
+    {
+        return $this->hasMany('App\Models\RecetasDentales', 'estadoReceta_id', 'id');
+    }
 }

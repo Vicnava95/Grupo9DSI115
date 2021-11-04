@@ -15,13 +15,16 @@ class CreateConsultasTable extends Migration
     {
         Schema::create('consultas', function (Blueprint $table) {
             $table->id();
-            $table->String('descripcion')->require();
+            $table->string('descripcion')->require();
             $table->Date('fecha')->require();
-            $table->String('peso')->require();
-            $table->String('presion')->require();
-            $table->String('temperatura')->require();
-            $table->String('frecuencia_cardiaca')->require();
-            $table->string('frecuencia_respiratoria')->require();
+            $table->double('peso')->nullable();
+            $table->double('estatura')->nullable();
+            $table->string('presion')->nullable();
+            $table->double('temperatura')->nullable();
+            $table->integer('frecuencia_cardiaca')->nullable();
+            $table->integer('frecuencia_respiratoria')->nullable();
+            $table->double('imc')->nullable();
+            $table->string('solicitud_examen')->nullable();
             //llave foranea
             //paciente
             $table->unsignedBigInteger('paciente_id')->require();

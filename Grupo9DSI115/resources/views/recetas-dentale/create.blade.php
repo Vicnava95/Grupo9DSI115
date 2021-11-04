@@ -6,15 +6,14 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Receta</span>
+                    <span class="card-title">Create Recetas Dentale</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formCreate" action="{{ route('recetas.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST"   id="formCreate" action="{{ route('rDentales.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
-                        @include('receta.form')
-                        <script>
-                            document.getElementById('estado').style.display = 'none';
-                        </script>
+
+                        @include('recetas-dentale.form')
+
                     </form>
                 </div>
             </div>

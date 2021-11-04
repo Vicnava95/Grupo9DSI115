@@ -7,7 +7,8 @@
                 <div class="modal-body" id="mediumBody">
                     <div>
                         <!-- the result to be displayed apply here -->
-                        ¿Desea eliminar la receta emitida el:  <b>{{ $receta->fecha }}</b>?
+                        ¿Está por dar de baja la receta emitida el:  <b>{{ $receta->fecha }}</b>?<br>
+                        ¿Desea seguir?
                     </div>
                 </div>
 
