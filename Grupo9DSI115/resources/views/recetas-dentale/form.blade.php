@@ -3,7 +3,14 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="">Fecha</label>
+                    {{ Form::label('Fecha receta*') }}
+                    <div class="input-group date">
+                        {{ Form::text('fecha', !empty($recetasDentale->fecha) ? $recetasDentale->fecha: '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'id' => 'inputFecha']) }}
+                        <div class="input-group-addon input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\RecetasDentale;
+use App\Models\ExpedienteDoctoraDental;
+use App\Models\Paciente;
+use App\Models\Cita;
 use Illuminate\Http\Request;
 
 /**
@@ -19,8 +22,10 @@ class RecetasDentaleController extends Controller
     public function index()
     {
         $recetasDentales = RecetasDentale::paginate();
+        $expedientes = ExpedienteDoctoraDental::all();
+        $pacientes = Paciente::all();
 
-        return view('recetas-dentale.index', compact('recetasDentales'))
+        return view('recetas-dentale.index', compact('recetasDentales','expedientes','pacientes'))
             ->with('i', (request()->input('page', 1) - 1) * $recetasDentales->perPage());
     }
 
@@ -35,18 +40,26 @@ class RecetasDentaleController extends Controller
         return view('recetas-dentale.create', compact('recetasDentale'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+    public function createReceta($idCita){
+        $cita = Cita::find($idCita);
+        $expediente = ExpedienteDoctoraDental::where('paciente_id',$cita->paciente_id)->first();
+        $expedienteId = $expediente->paciente_id;
+        $recetasDentale = new RecetasDentale();
+        return view('DoctoraDental/createRecetaDental',compact('recetasDentale','cita','expedienteId'));
+    }
+
     public function store(Request $request)
     {
-        request()->validate(RecetasDentale::$rules);
         //dd($request); 
         $recetasDentale = RecetasDentale::create($request->all());
-        return redirect()->route('recetas-dentales.index')
+        return redirect()->route('rDentales.index')
+            ->with('success', 'RecetasDentale created successfully.');
+    }
+
+    public function storeExpediente(Request $request)
+    {
+        $recetasDentale = RecetasDentale::create($request->all());
+        return redirect()->route('ExpedientePacienteDoctoraDental',$request->idCita)
             ->with('success', 'RecetasDentale created successfully.');
     }
 
@@ -59,8 +72,9 @@ class RecetasDentaleController extends Controller
     public function show($id)
     {
         $recetasDentale = RecetasDentale::find($id);
-
-        return view('recetas-dentale.show', compact('recetasDentale'));
+        $expediente = ExpedienteDoctoraDental::find($recetasDentale->expedienteDental_id);
+        $paciente = Paciente::find($expediente->paciente_id);
+        return view('recetas-dentale.show', compact('recetasDentale','paciente'));
     }
 
     /**
@@ -85,11 +99,15 @@ class RecetasDentaleController extends Controller
      */
     public function update(Request $request, RecetasDentale $recetasDentale)
     {
-        request()->validate(RecetasDentale::$rules);
-
-        $recetasDentale->update($request->all());
-
-        return redirect()->route('recetas-dentales.index')
+        $recetasDentale->update([
+            'fecha' => request('fecha'),
+            'descripcion' => request('descripcion'),
+            'proximaCita' => request('proximaCita'),
+            'expedienteDental_id' => request('expedienteDental_id'),
+            'estadoReceta_id' => request('estadoReceta_id'),
+        ]);
+        $recetasDentale->save();
+        return redirect()->route('rDentales.index')
             ->with('success', 'RecetasDentale updated successfully');
     }
 
@@ -98,11 +116,17 @@ class RecetasDentaleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
+
+    public function delete($receta){
+        $rDentale = RecetasDentale::find($receta);
+        return view('recetas-dentale.destroy',compact('rDentale'));
+    }
+
     public function destroy($id)
     {
         $recetasDentale = RecetasDentale::find($id)->delete();
 
-        return redirect()->route('recetas-dentales.index')
+        return redirect()->route('rDentales.index')
             ->with('success', 'RecetasDentale deleted successfully');
     }
 }

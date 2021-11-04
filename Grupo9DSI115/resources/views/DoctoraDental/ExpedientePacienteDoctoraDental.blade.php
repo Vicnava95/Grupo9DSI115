@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Recetas</a>
+                                    data-attr="{{ route('rDentalesRecetasExp',$citaPaciente->id) }}">Recetas</a>
                                 </div>
                                 <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 

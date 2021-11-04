@@ -9,7 +9,7 @@
                     <span class="card-title">Create Recetas Dentale</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('rDentales.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST"   id="formCreate" action="{{ route('rDentales.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
 
                         @include('recetas-dentale.form')

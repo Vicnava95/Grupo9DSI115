@@ -181,11 +181,20 @@
                     </a>
                 </li>
                 <!-- Recetas-->
-                @if(!(Auth::user()->rols_fk==4))
+                @if((Auth::user()->rols_fk== 1 || Auth::user()->rols_fk==2 ))
                 <li class="nav-item">
                     <a href="{{route('recetas.index')}}">
                         <i class="far fa-edit"></i>
                         <p>Recetas</p>
+                    </a>
+                </li>
+                @endif
+                <!-- Recetas Dentales -->
+                @if((Auth::user()->rols_fk== 3))
+                <li class="nav-item">
+                    <a href="{{route('rDentales.index')}}">
+                        <i class="far fa-edit"></i>
+                        <p>Recetas Dentales</p>
                     </a>
                 </li>
                 @endif

@@ -3,36 +3,30 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="float-left">
-                        <span class="card-title">Show Recetas Dentale</span>
-                    </div>
-                    <div class="float-right">
-                        <a class="btn btn-primary" href="{{ route('rDentales.index') }}"> Back</a>
-                    </div>
-                </div>
-
                 <div class="card-body">
-                    
                     <div class="form-group">
-                        <strong>Descripcion:</strong>
-                        {{-- {{ $recetasDentale->descripcion }} --}}
+                        <strong>Doctora:</strong>
+                        Sandra Coto
+                    </div>
+                    <div class="form-group">
+                        <strong>Nombre Paciente:</strong>
+                        {{ $paciente->nombres }} {{ $paciente->apellidos }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Descripción:</strong>
+                        {{ $recetasDentale->descripcion }}
                     </div>
                     <div class="form-group">
                         <strong>Fecha:</strong>
-                        {{-- {{ $recetasDentale->fecha }} --}}
+                        {{ $recetasDentale->fecha }}
                     </div>
                     <div class="form-group">
-                        <strong>Proximacita:</strong>
-                        {{-- {{ $recetasDentale->proximaCita }} --}}
+                        <strong>Próxima Cita:</strong>
+                        {{ $recetasDentale->proximaCita }}
                     </div>
                     <div class="form-group">
-                        <strong>Expedientedental Id:</strong>
-                        {{-- {{ $recetasDentale->expedienteDental_id }} --}}
-                    </div>
-                    <div class="form-group">
-                        <strong>Estadoreceta Id:</strong>
-                        {{-- {{ $recetasDentale->estadoReceta_id }} --}}
+                        <strong>Estado Receta</strong>
+                        {{ $recetasDentale->estadoReceta->nombre }}
                     </div>
 
                 </div>

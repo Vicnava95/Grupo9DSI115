@@ -1,21 +1,20 @@
-
 <section class="content container-fluid">
-    <div class="">
+    <div class="row">
         <div class="col-md-12">
+
             @includeif('partials.errors')
+
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Update Recetas Dentale</span>
+                    <span class="card-title">Crear Receta Dental</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formEdit" action="{{ route('rDentales.update', $recetasDentale->id) }}"  role="form" enctype="multipart/form-data">
-                        {{ method_field('PATCH') }}
+                    <form method="POST" id="formCreate" action="{{ route('rDentalesRecetasExpPost') }}"  role="form" enctype="multipart/form-data">
                         @csrf
-                        @include('recetas-dentale.form')
+                        @include('DoctoraDental.formRecetaDental')
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
-

@@ -16,7 +16,7 @@ class CreateRecetasDentalesTable extends Migration
         Schema::create('recetas_dentales', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->String('descripcion')->required();
+            $table->String('descripcion')->nullable();
             $table->Date('fecha')->required();
             $table->Date('proximaCita')->nullable();
             //llave foranea

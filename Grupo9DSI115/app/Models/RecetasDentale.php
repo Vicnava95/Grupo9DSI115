@@ -24,13 +24,6 @@ use Illuminate\Database\Eloquent\Model;
 class RecetasDentale extends Model
 {
     
-    static $rules = [
-		'descripcion' => 'required|max:255|string',
-		'fecha' => 'required|date',
-		'expedienteDental_id' => 'required|integer|exists:expediente_doctora_dentals,id',
-		'estadoReceta_id' => 'required|integer|exists:estado_recetas,id',
-    ];
-
     protected $perPage = 20;
 
     /**

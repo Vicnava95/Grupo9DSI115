@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Receta
+Recetas Dentales
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Recetas
+Recetas Dentales
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -23,14 +23,14 @@ Recetas
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                Recetas 
+                                Recetas Dentales
                             </span>
-                             <div class="float-right ml-5">
+                             {{-- <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
                                     data-target="#mediumModal" data-attr="{{ route('rDentales.create') }}" title="Create a project">
                                     Registrar receta
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -45,11 +45,12 @@ Recetas
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-										<th>Descripcion</th>
+                                        <th>Paciente</th>
+										<th>Descripción</th>
 										<th>Fecha</th>
-										<th>Proximacita</th>
-										<th>Expedientedental Id</th>
-										<th>Estadoreceta Id</th>
+										{{-- <th>Proxima Cita</th> --}}
+										<th>Estado</th>
+                                        <th>Doctora</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -57,19 +58,34 @@ Recetas
                                     @foreach ($recetasDentales as $recetasDentale)
                                         <tr>
                                             <td>{{ ++$i }}</td>
+                                            @foreach ($expedientes as $expediente)
+                                                @if ($expediente->id == $recetasDentale->expedienteDental_id)
+                                                    @foreach ($pacientes as $paciente)
+                                                        @if ($expediente->paciente_id == $paciente->id)
+                                                            <td>{{ $paciente->nombres}}{{$paciente->apellidos}}</td>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
 											<td>{{ $recetasDentale->descripcion }}</td>
 											<td>{{ $recetasDentale->fecha }}</td>
-											<td>{{ $recetasDentale->proximaCita }}</td>
-											<td>{{ $recetasDentale->expedienteDental_id }}</td>
-											<td>{{ $recetasDentale->estadoReceta_id }}</td>
+											{{-- <td>{{ $recetasDentale->proximaCita }}</td> --}}
+											<td>{{ $recetasDentale->estadoReceta->nombre  }}</td>
+                                            <td>Sandra Coto</td>
                                             <td>
-                                                <form action="{{ route('rDentales.destroy',$recetasDentale->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('rDentales.show',$recetasDentale->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('rDentales.edit',$recetasDentale->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
+                                                <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                data-target="#mediumModal" data-attr="{{ route('rDentales.show',$recetasDentale->id) }}">
+                                                    <i class="fa fa-fw fa-eye"></i>
+                                                </a>
+                                                {{-- <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                    data-target="#mediumModal" data-attr="{{ route('rDentales.edit',$recetasDentale->id) }}">
+                                                    <i class="fa fa-fw fa-edit"></i>
+                                                </a> --}}
+                                                <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                    data-target="#mediumModal" data-attr="{{route('rDentales.delete',$recetasDentale)}}">
+                                                    <i class="fa fa-fw fa-trash"></i>
+                                                </a>
+
                                             </td>
                                         </tr>
                                     @endforeach
