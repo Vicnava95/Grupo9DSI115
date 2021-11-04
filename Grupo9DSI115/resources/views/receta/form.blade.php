@@ -59,6 +59,25 @@
                 </div>
             </div>
         </div>
+        {{--@if (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)--}}
+            <!-- <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-4' }} col-12"> -->
+                <div class="form-group" id="estado">
+                    {{ Form::label('Estado*') }}
+                       <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
+                         <option  >Seleccione estado</option>
+                         @foreach ($estadoRecetas as $estado)
+                            @if ($receta->estadoReceta_id == $estado->id)
+                                <option selected value="{{ $estado['id'] }}"> {{ $estado['nombre'] }} </option>
+                                @else
+                                <option  value="{{ $estado['id'] }}"> {{ $estado['nombre'] }}</option>
+                            @endif
+                         @endforeach
+                        </select>
+                     
+                     {!! $errors->first('estadoReceta_id', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            <!-- </div> -->
+        {{--@endif--}}
     </div>
     {{--<div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -27,11 +27,14 @@ class Consulta extends Model
     static $rules = [
 		'descripcion' => 'required|max:255|string',
 		'fecha' => 'required|date',
-        'peso'=>'required',
-        'presion'=>'required',
-        'temperatura'=>'required',
-        'frecuencia_cardiaca'=>'required',
-        'frecuencia_respiratoria'=>'required',
+        'peso'=>'nullable',
+        'estatura'=>'nullable',
+        'presion'=>'nullable',
+        'temperatura'=>'nullable',
+        'frecuencia_cardiaca'=>'nullable|integer',
+        'frecuencia_respiratoria'=>'nullable|integer',
+        'imc'=>'nullable',
+        'solicitud_examen'=>'nullable|string',
 		'paciente_id' => 'required|integer|exists:pacientes,id',
 		'persona_id' => 'required|integer|exists:personas,id',
         'paciente_id_hid' => 'required|string'
@@ -40,14 +43,23 @@ class Consulta extends Model
     static $rulesWithoutPersona = [
         'descripcion' => 'required|max:255|string',
 		'fecha' => 'required|date',
-        'peso'=>'required',
-        'presion'=>'required',
-        'temperatura'=>'required',
-        'frecuencia_cardiaca'=>'required',
-        'frecuencia_respiratoria'=>'required',
+        'peso' => 'nullable',
+        'estatura' => 'nullable',
+        'presion' => 'nullable',
+        'temperatura' => 'nullable',
+        'frecuencia_cardiaca' => 'nullable|integer',
+        'frecuencia_respiratoria' => 'nullable|integer',
+        'imc' => 'nullable',
+        'solicitud_examen' => 'nullable|string',
 		'paciente_id' => 'required|integer|exists:pacientes,id',
         'paciente_id_hid' => 'required|string'
-    ];    
+    ];
+    /*
+    static $message = [
+        'frecuencia'
+    ];*/
+
+
 
     protected $perPage = 20;
 
@@ -56,7 +68,7 @@ class Consulta extends Model
      *
      * @var array
      */
-    protected $fillable = ['descripcion','fecha', 'peso','presion','temperatura','frecuencia_cardiaca','frecuencia_respiratoria','paciente_id','persona_id','paciente_id_hid'];
+    protected $fillable = ['descripcion','fecha', 'peso','estatura','presion','temperatura','frecuencia_cardiaca','frecuencia_respiratoria','imc','solicitud_examen','paciente_id','persona_id','paciente_id_hid'];
 
 
     /**

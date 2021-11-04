@@ -1,7 +1,7 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="row">
-            <div class=" {{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-12' : 'col-md-8' }} col-12">
+            <div class=" {{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-12' : 'col-md-6' }} col-12">
                 <div class="form-group">
                     {{ Form::label('Paciente*') }}
                     {{--<select class="custom-select custom-select-m bg-dark" style="color:lightgray">
@@ -34,13 +34,13 @@
                             @endif
                          @endforeach
                         </select>
-                     
+
                      {!! $errors->first('persona_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>
             @endif
-            
-            <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-4' }} col-12">
+
+            <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-6' }} col-12">
                 <div class="form-group">
                     {{ Form::label('Fecha*') }}
                     <div class="input-group date">
@@ -61,39 +61,61 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-12">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
-                    {{ Form::label('Peso del paciente*') }}
-                    {{ Form::text('peso', !empty($consulta->peso) ? $consulta->peso: '' ,['class' =>'form-control' . ($errors->has('peso') ? 'is_invalid' : ''), 'placeholder' => 'peso en Kg']) }}
+                    {{ Form::label('Peso del paciente') }}
+                    {{ Form::text('peso', !empty($consulta->peso) ? $consulta->peso: '' ,['class' =>'form-control' .
+                    ($errors->has('peso') ? 'is_invalid' : ''), 'placeholder' => 'peso en Kg']) }}
+                    {!! $errors->first('peso', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    <h6 style="color: gray" align="right">solo digitar cantidad</h6>
                 </div>
             </div>
-            <div class="col-md-4 col-12">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
-                    {{ Form::label('Presion del paciente*') }}
-                    {{ Form::text('presion', !empty($consulta->presion) ? $consulta->presion: '' ,['class' =>'form-control' .
-                    ($errors->has('presion') ? 'is_invalid' : ''), 'placeholder' => 'presion en mm Hg']) }}
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="form-group">
-                    {{ Form::label('Temperatura del paciente*') }}
-                    {{ Form::text('temperatura', !empty($consulta->temperatura) ? $consulta->temperatura: '' ,['class' =>'form-control' .
-                    ($errors->has('temperatura') ? 'is_invalid' : ''), 'placeholder' => ' temperatura ºC']) }}
+                    {{ Form::label('Estatura del paciente') }}
+                    {{ Form::text('estatura', !empty($consulta->estatura) ? $consulta->estatura: '' ,['class' =>'form-control' .
+                    ($errors->has('estatura') ? 'is_invalid' : ''), 'placeholder' => 'estatura en metros']) }}
+                    {!! $errors->first('estatura', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    <h6 style="color: gray" align="right">solo digitar cantidad</h6>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    {{ Form::label('Frecuencia cardiaca del paciente*') }}
-                    {{ Form::text('frecuencia_cardiaca', !empty($consulta->frecuencia_cardiaca) ? $consulta->frecuencia_cardiaca: '' ,['class' =>'form-control' . ($errors->has('frecuencia_cardiaca') ? 'is_invalid' : ''), 'placeholder' => 'frecuencia cardiaca en latidos/minuto']) }}
+                    {{ Form::label('Presion del paciente') }}
+                    {{ Form::text('presion', !empty($consulta->presion) ? $consulta->presion: '' ,['class' =>'form-control' .
+                    ($errors->has('presion') ? 'is_invalid' : ''), 'placeholder' => 'presion en mmHg']) }}
+                    {!! $errors->first('presion', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    <h6 style="color: gray" align="right">solo digitar cantidad</h6>
                 </div>
             </div>
             <div class="col-md-6 col-12">
                 <div class="form-group">
-                    {{ Form::label('Frecuencia respiratoria del paciente*') }}
+                    {{ Form::label('Temperatura del paciente') }}
+                    {{ Form::text('temperatura', !empty($consulta->temperatura) ? $consulta->temperatura: '' ,['class' =>'form-control' .
+                    ($errors->has('temperatura') ? 'is_invalid' : ''), 'placeholder' => ' temperatura corporal en ºC']) }}
+                    {!! $errors->first('temperatura', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    <h6 style="color: gray" align="right" >solo digitar cantidad</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <div class="form-group">
+                    {{ Form::label('Frecuencia cardiaca del paciente') }}
+                    {{ Form::text('frecuencia_cardiaca', !empty($consulta->frecuencia_cardiaca) ? $consulta->frecuencia_cardiaca: '' ,['class' =>'form-control' .
+                    ($errors->has('frecuencia_cardiaca') ? 'is_invalid' : ''), 'placeholder' => 'latidos/minuto']) }}
+                    {!! $errors->first('temperatura', '<div class="invalid-feedback"><p>:message</p></div>') !!}
+                    <h6 style="color: gray" align="right">solo digitar cantidad</h6>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="form-group">
+                    {{ Form::label('Frecuencia respiratoria del paciente') }}
                     {{ Form::text('frecuencia_respiratoria', !empty($consulta->frecuencia_respiratoria) ? $consulta->frecuencia_respiratoria: '' ,['class' =>'form-control' .
-                    ($errors->has('frecuencia_respiratoria') ? 'is_invalid' : ''), 'placeholder' => 'frecuencia respiratoria en respiraciones/minuto']) }}
+                    ($errors->has('frecuencia_respiratoria') ? 'is_invalid' : ''), 'placeholder' => 'respiraciones/minuto']) }}
+                    <h6 style="color: gray" align="right">solo digitar cantidad</h6>
                 </div>
             </div>
         </div>
@@ -102,6 +124,15 @@
                 <div class="form-group">
                     {{ Form::label('Descripcion*') }}
                     {{ Form::textarea('descripcion', $consulta->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'rows'=>'6']) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    {{ Form::label('Examenes solicitados*') }}
+                    {{ Form::textarea('solicitud_examen', $consulta->solicitud_examen, ['class' => 'form-control' .
+                    ($errors->has('solicitud_examen') ? ' is-invalid' : ''), 'placeholder' => 'Listado de examenes solicitados', 'rows'=>'6']) }}
                 </div>
             </div>
         </div>
@@ -138,6 +169,17 @@
         console.log(a);
         document.getElementById('paciente_id').innerHTML = 5;
         $("#paciente_id").val(a);
+    });
+
+    $(document).ready(function(){
+        $("input[name='presion']").mask('000/000');
+        $("input[name='temperatura']").mask('00.0');
+        $("input[name='estatura']").mask('0.00');
+        $("input[name='peso']").mask('00.00');
+        $("input[name='frecuencia_respiratoria']").mask('000');
+        $("input[name='frecuencia_cardiaca']").mask('000');
+
+
     });
 
 
