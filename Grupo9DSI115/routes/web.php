@@ -155,6 +155,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('rDentales/{receta}/borrar', 'RecetasDentaleController@delete')->name('rDentales.delete');
         Route::get('rDentalesCreateExpediente/{idCita}','RecetasDentaleController@createReceta')->name('rDentalesRecetasExp');
         Route::post('rDentalesPostExpediente/','RecetasDentaleController@storeExpediente')->name('rDentalesRecetasExpPost');
+        Route::get('showRecetasPaciente/{idCita}','RecetasDentaleController@showRecetas')->name('showRecetasPaciente');
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
