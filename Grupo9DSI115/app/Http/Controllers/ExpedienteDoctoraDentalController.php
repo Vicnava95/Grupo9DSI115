@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Models\Cita;
+use App\Models\Pago;
+use App\Models\Abono;
+use App\Models\Receta;
+use App\Models\Persona;
+use App\Models\Consulta;
+use App\Models\Paciente;
+use App\Models\EstadoCita;
+use App\Models\EstadoPago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ExpedienteDoctoraDental;
-use App\Models\Cita;
-use App\Models\Paciente;
-use App\Models\Consulta;
-use App\Models\EstadoCita;
-use App\Models\Persona;
-use App\Models\Receta;
-use DB;
 
 class ExpedienteDoctoraDentalController extends Controller
 {
@@ -40,8 +43,15 @@ class ExpedienteDoctoraDentalController extends Controller
             $collecionConsultas [] = ['fecha' => 0 , 'descripcion' => 0, 'id' => 0];
         }
         //dd($collecionConsultas);
+
+        $pagos = Pago::where('expediente_doctora_dental_id', $expedientePaciente->id)->get();
+        foreach ($pagos as $pago) {
+            $pago['abono'] = Abono::select('*')->where('pago_id',$pago->id)->get()->sum('monto');
+        }
         
-        return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas'));
+
+        
+        return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas','pagos'));
     }
 
     public function crearConsulta(Request $request){
@@ -191,4 +201,64 @@ class ExpedienteDoctoraDentalController extends Controller
         return redirect()->back()
             ->with('success', 'Receta creada satisfactoriamente.');
     }
+
+    //Pago
+
+    public function createPago($idPaciente)
+    {
+        $pago = new Pago();
+        return view('DoctoraDental.createPago', compact('pago','idPaciente'));
+    }
+
+    public function storePago(Request $request, $idPaciente)
+    {
+        request()->validate(Pago::$rulesWithoutExpedienteDoctoraDental);
+        $request->request->add(['estado_pago_id'=> strval(2)]);
+
+        $expedienteDental = ExpedienteDoctoraDental::select('*')->where('paciente_id', $idPaciente)->first();
+        $request->request->add(['expediente_doctora_dental_id'=> $expedienteDental->id]);
+        
+        $pago = Pago::create($request->all());
+
+        return redirect()->back()
+            ->with('success', 'Pago creado satisfactoriamente.');
+    }
+
+    public function createAbono($idPaciente, $idPago)
+    {
+        $abono = new Abono();
+        return view('DoctoraDental.createAbono', compact('abono', 'idPaciente', 'idPago'));
+    }
+
+    public function storeAbono(Request $request, $idPaciente, $idPago)
+    {
+        request()->validate(Abono::$rulesWithoutPago);
+        $request->request->add(['pago_id'=> strval($idPago)]);
+        $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->get()->sum('monto');
+        $totalAbonos = $abonos + $request->get('monto');
+        $pago = Pago::where('id', $request->get('pago_id'))->first();
+        $pagoTotal = $pago->costo;
+        $faltante = $pagoTotal - $abonos;
+        if($abonos==$pagoTotal) {
+            return redirect()->back()
+            ->with('error', 'El pago esta cancelado por completado');
+        } elseif ($totalAbonos>$pagoTotal){
+            return redirect()->back()
+            ->with('error', 'El abono a agregar supera el pago total. Para completar el pago hace falta $'.$faltante);
+        }
+        else{
+            $abono = Abono::create($request->all());
+            if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
+            else $pago->update(['estado_pago_id'=>'2']);
+            return redirect()->back()
+            ->with('success', 'Abono created successfully.');
+        }
+    }
+    
+    public function showAbonos(Request $request, $idPago)
+    {
+        $abonos = Abono::where('pago_id', $idPago)->get();
+        return view('DoctoraDental.showAbonos', compact('abonos'));
+    }
+
 }

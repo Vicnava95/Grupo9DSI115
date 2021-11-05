@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('citas.create') }}">Pagos</a>
+                                    data-attr="{{ route('createPagoExpedienteDental', $paciente->id) }}">Pagos</a>
                                 </div>
                             </div>
                         </div>
@@ -208,31 +208,36 @@
                                 </thead>
                                 <tbody>
                                     
-                                    <tr>
-                                        <th scope="row">07/10/2021</th>
-                                        <td>Relleno en los dientes 44 y 42</td>
-                                        <td>$500</td>
-                                        <td>$300</td>
-                                        <td>$200</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                    data-target="#mediumModal" data-attr="#">
-                                                    <i class="fas fa-hand-holding-usd"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    
+                                    @foreach ($pagos as $pago)
+                                        <tr>
+                                            <th scope="row">{{$pago->fecha}}</th>
+                                            <td>{{$pago->descripcion}}</td>
+                                            <td>${{$pago->costo}}</td>
+                                            <td>${{$pago->abono}}</td>
+                                            <td>${{$pago->costo - $pago->abono}}</td>
+                                            <td>
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                        data-target="#mediumModal"
+                                                        href="#" role="button"                                      data-attr="{{ route('createAbonoExpedienteDental',['idPaciente'=>$paciente->id,'idPago' => $pago->id]) }}"
+                                                        >
+                                                        <i class="fas fa-hand-holding-usd"></i>
+                                                </a>
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                        data-target="#mediumModal"
+                                                        href="#" role="button"                                      data-attr="{{ route('showAbonosExpedienteDental', $pago->id) }}"
+                                                        >
+                                                        <i class="fas fa-list-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            
         </div>
-        
     </div>
-    
-    
     
 
     <!-- Modal Registrar/Editar/Eliminar -->
@@ -264,26 +269,35 @@
     </div>
 
     <!-- modal de mensaje correto-->
-    @if ($message = Session::get('success'))
-        <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content bg-dark">
-                <div class="modal-body py-5">
-                    @if ($message = Session::get('success'))
-                        <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
-                        <p class="text-white text-center">{{ $message }}</p>
-                        <script type="text/javascript">
-                            $('#modalSuccess').modal('show');
-                            setTimeout(function(){
-                                $('#modalSuccess').modal('hide')
-                            }, 5000);
-                        </script>
-                    @endif
-                </div>
-            </div>
+    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-body py-5">
+                @if ($message = Session::get('success'))
+                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
+                    <p class="text-white text-center">{{ $message }}</p>
+                    <script type="text/javascript">
+                        $('#modalSuccess').modal('show');
+                        setTimeout(function(){
+                            $('#modalSuccess').modal('hide')
+                        }, 5000);
+                    </script>
+                @endif
+                
+                @if ($message = Session::get('error'))
+                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
+                    <p class="text-white text-center">{{ $message }}</p>
+                    <script type="text/javascript">
+                        $('#modalSuccess').modal('show');
+                        setTimeout(function(){
+                            $('#modalSuccess').modal('hide')
+                        }, 8000);
+                    </script>
+                @endif
             </div>
         </div>
-    @endif
+        </div>
+    </div>
 
 
     <script>

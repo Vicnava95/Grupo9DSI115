@@ -158,6 +158,18 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
+
+
+        Route::get('/createPagoExpedienteDental/{idPaciente}','ExpedienteDoctoraDentalController@createPago')->name('createPagoExpedienteDental');
+        
+        Route::post('/storePagoExpedienteDental/{idPaciente}','ExpedienteDoctoraDentalController@storePago')->name('storePagoExpedienteDental');
+        
+        Route::get('/createAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@createAbono')->name('createAbonoExpedienteDental');
+
+        Route::post('/storeAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@storeAbono')->name('storeAbonoExpedienteDental');
+        
+        Route::get('/showAbonosExpedienteDental/{idPago}','ExpedienteDoctoraDentalController@showAbonos')->name('showAbonosExpedienteDental');
+        
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)
