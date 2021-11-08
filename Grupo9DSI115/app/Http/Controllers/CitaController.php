@@ -7,6 +7,7 @@ use App\Models\Cita;
 use App\Models\ExpedienteDoctor;
 use App\Models\ExpedienteDoctoraDental;
 use App\Models\Persona;
+use App\Models\Diente;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
@@ -173,12 +174,37 @@ class CitaController extends Controller
                 ]);
                 $crearExpedientePaciente_Doctor->save();
                 //dd($crearExpedientePaciente_Doctor);
+                //Creación de dientes
+                /** Ya que se le van agregar los nombres, no se va a poder hacer por un for
+                 * Hay que hacerlo uno por uno, cada diente
+                 * va a variar el id y el nombre
+                 * Una solución puede ser: hacer un array de los nombres de los dientes y su respectivo número
+                 * y cuando sea igual, que se cree el diente
+                 */
 
+                //Hacer el listado de todos los dientes
+                $infoDientes =array(
+                    array("11","Nombre11"),
+                    array("12","Nombre12"),
+                    array("13","Nombre13"),
+                    array("14","Nombre14"),
+                    array("15","Nombre15"),
+                );
+
+                for($i = 11; $i <= 48; $i++){
+                    foreach ($infoDientes as $info){
+                        if($i == $info[0])
+                        $diente = Diente::create([
+                            'numeroDiente' =>$i,
+                            'nombreDiente' => $info[1],
+                            'expedienteDental_id' => $crearExpedientePaciente_Doctor->id
+                        ]);
+                        $diente->save();
+                    }
+                }
             }else{
                 //dd('La paciente ya existe Doctora'); //El expediente de ese paciente ya existe
             }
-
-
         }
         return redirect()->route($urlView)
             ->with('success', 'Cita creada satisfactoriamente.');
