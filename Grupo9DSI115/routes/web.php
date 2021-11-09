@@ -62,10 +62,12 @@ Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
 Route::get('consultas/{consulta}/imprimir', 'ConsultaController@imprimir')->name('consultas.imprimir');
+Route::get('consultas/{consulta}/descargar', 'ConsultaController@descargar')->name('consultas.descargar');
 //recetas
 Route::resource('recetas', 'RecetaController');
 Route::get('recetas/{receta}/borrar', 'RecetaController@delete')->name('recetas.delete');
 Route::get('recetas/{receta}/imprimir', 'RecetaController@imprimir')->name('recetas.imprimir');
+Route::get('recetas/{receta}/descargar', 'RecetaController@descargar')->name('recetas.descargar');
 
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
