@@ -3,24 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\EstadoPago;
 
 /**
- * Class EstadoCita
+ * Class EstadoPago
  *
  * @property $id
  * @property $nombre
  * @property $created_at
  * @property $updated_at
  *
- * @property Receta[] $recetas
+ * @property Pago[] $pagos
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class EstadoReceta extends Model
+class EstadoPago extends Model
 {
-
+    
     static $rules = [
-        'nombre' => 'required',
+		'nombre' => 'required',
     ];
 
     protected $perPage = 20;
@@ -36,13 +37,10 @@ class EstadoReceta extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function recetas()
+    public function pagos()
     {
-        return $this->hasMany('App\Models\Receta', 'estadoReceta_id', 'id');
+        return $this->hasMany('App\Models\Pago', 'estado_pago_id', 'id');
     }
+    
 
-    public function recetasDentales()
-    {
-        return $this->hasMany('App\Models\RecetasDentales', 'estadoReceta_id', 'id');
-    }
 }

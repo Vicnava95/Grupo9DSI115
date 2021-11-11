@@ -20,6 +20,21 @@ use App\Sexo;
 /*Route::get('/citas', function () {
     return view('DoctoraDental.DashboardDoctoraDental');
 });*/
+
+Route::resource('abonos', 'AbonoController');
+Route::get('abonos/{abono}/borrar', 'AbonoController@delete')->name('abonos.delete');
+
+//examenes doctor general
+Route::resource('examenesGenerales', 'ExameneController');
+Route::get('examenesGenerales/{examenesGenerales}/borrar', 'ExameneController@delete')->name('examenesGenerales.delete');
+
+//examenes doctor dental
+Route::resource('examenesDentales', 'ExamenesDoctoraDentalController');
+Route::get('examenesDentales/{examenesDentale}/borrar', 'ExamenesDoctoraDentalController@delete')->name('examenesDentales.delete');
+
+Route::resource('pagos', 'PagoController');
+Route::get('pagos/{pago}/borrar', 'PagoController@delete')->name('pagos.delete');
+
 //cita
 Route::resource('citas', 'CitaController');
 Route::get('citas/{cita}/borrar', 'CitaController@delete')->name('citas.delete');
@@ -46,10 +61,11 @@ Route::get('/dashboardAdministrador', 'DashboardController@administradorIndex')-
 Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
-
+Route::get('consultas/{consulta}/imprimir', 'ConsultaController@imprimir')->name('consultas.imprimir');
 //recetas
 Route::resource('recetas', 'RecetaController');
 Route::get('recetas/{receta}/borrar', 'RecetaController@delete')->name('recetas.delete');
+Route::get('recetas/{receta}/imprimir', 'RecetaController@imprimir')->name('recetas.imprimir');
 
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
@@ -135,6 +151,10 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/expedienteDentalStorePaciente', 'ExpedienteDoctoraDentalController@storePaciente')->name('expedienteDentalStorePaciente');
         Route::get('/crearRecetaExpedienteDental/{idCita}','ExpedienteDoctoraDentalController@createReceta')->name('crearRecetaExpedienteDental');
         Route::post('/storeRecetaExpedienteDental','ExpedienteDoctoraDentalController@storeReceta')->name('storeRecetaExpedienteDental');
+        Route::resource('rDentales', 'RecetasDentaleController');
+        Route::get('rDentales/{receta}/borrar', 'RecetasDentaleController@delete')->name('rDentales.delete');
+        Route::get('rDentalesCreateExpediente/{idCita}','RecetasDentaleController@createReceta')->name('rDentalesRecetasExp');
+        Route::post('rDentalesPostExpediente/','RecetasDentaleController@storeExpediente')->name('rDentalesRecetasExpPost');
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');

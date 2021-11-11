@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([CitaSeeder::class]);
         $this->call([ExpedientesDoctoraDental::class]);
         $this->call([ExpedientesDoctorGeneral::class]);
+        $this->call([EstadoPagoSeeder::class]);
 
     }
 }

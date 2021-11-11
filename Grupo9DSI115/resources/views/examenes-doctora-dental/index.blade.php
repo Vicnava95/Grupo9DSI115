@@ -2,16 +2,17 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-CONSULTAS
+Examenes doctor dental
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de Consultas
+Examenes doctor dental
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
+    
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -22,104 +23,80 @@ Listado de Consultas
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
+
                             <span id="card_title">
-                                {{ __('Consulta') }}
+                                {{ __('Examenes Doctora Dental') }}
                             </span>
 
-                            <div class="flex-fill bd-highlight ml-5">
-                                <form action="{{ route('consultas.index') }}"
-                                    method="GET" class="d-flex">
-                                        <input class="form-control" type="text" placeholder="Código o nombre del paciente" name="texto" aria-label="default input" autocomplete= 'off'>
-                                        <button type="submit" class="btn btn-primary">Buscar</button>
-                                </form>
-                            </div>
-                            <div class="float-right ml-5">
+                             <div class="float-right">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
-                                    data-attr="{{ route('consultas.create') }}" title="Create a project">
-                                    Registrar consultas
+                                    data-attr="{{ route('examenesDentales.create') }}" title="Create a project">
+                                    Registrar examen
                                 </a>
-                            </div>
+                              </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
-                    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content bg-dark">
-                            <div class="modal-body py-5">
-                                @if ($message = Session::get('success'))
-                                    <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
-                                    <p class="text-white text-center">{{ $message }}</p>
-                                    <script type="text/javascript">
-                                        $('#modalSuccess').modal('show');
-                                        setTimeout(function(){
-                                            $('#modalSuccess').modal('hide')
-                                        }, 5000);
-                                    </script>
-                                @endif
+                        <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-body py-5">
+                                    @if ($message = Session::get('success'))
+                                        <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/check.svg')}}"/>
+                                        <p class="text-white text-center">{{ $message }}</p>
+                                        <script type="text/javascript">
+                                            $('#modalSuccess').modal('show');
+                                            setTimeout(function(){
+                                                $('#modalSuccess').modal('hide')
+                                            }, 5000);
+                                        </script>
+                                    @endif
+                                </div>
                             </div>
-                          </div>
+                            </div>
                         </div>
-                      </div>
                     @endif
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-                                        <th>Paciente</th>
-									@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
-                                        <th>Doctor</th>
-                                    @endif
-                                        <th>Fecha</th>
-										{{--<th>Descripcion</th>--}}
+                                        
+										<th>Imagen</th>
+										<th>Fecha</th>
+										<th>Descripcion</th>
+										<th>Expediente</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($consultas as $consulta)
+                                    @foreach ($examenesDoctoraDentals as $examenesDoctoraDental)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-                                            {{--<td>{{ $consulta->paciente_id }}</td>--}}
-                                            <td>{{ $consulta->Paciente->apellidos }}, {{ $consulta->Paciente->nombres }}</td>
-										@if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
-                                            <td>{{ $consulta->Persona->nombrePersonas }}, {{ $consulta->Persona->apellidoPersonas }}</td>
-                                        @endif
-                                            <td>{{ $consulta->fecha }}</td>
-                                            {{--<td>{!! Str::words($consulta->descripcion, 3, ' ...') !!}</td>--}}
+                                            <td><a href="/examenesDentalesImagenes/{{ $examenesDoctoraDental->imagen }}" target="_blank">{{ $examenesDoctoraDental->imagen }}</a></td>
+											<td>{{ $examenesDoctoraDental->fecha }}</td>
+											<td>{{ $examenesDoctoraDental->descripcion }}</td>
+											<td>{{ $examenesDoctoraDental->expediente_doctora_dental_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('consultas.show', $consulta->id) }}">
+                                                        data-attr="{{ route('examenesDentales.show', $examenesDoctoraDental->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                                         id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                        data-attr="{{ route('consultas.edit', $consulta->id) }}">
+                                                        data-attr="{{ route('examenesDentales.edit', $examenesDoctoraDental->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                     id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                    data-attr="{{ route('consultas.delete', $consulta->id) }}">
+                                                    data-attr="{{ route('examenesDentales.delete', $examenesDoctoraDental->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" href="{{ route('consultas.imprimir', $consulta->id) }}" target="_blank">
-                                                    <i class="fa fa-fw fa-print"></i>
-                                                </a>
-                                                {{--
-                                                <form action="{{ route('consultas.destroy',$consulta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('consultas.show',$consulta->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('consultas.edit',$consulta->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -128,7 +105,7 @@ Listado de Consultas
                         </div>
                     </div>
                 </div>
-                {!! $consultas->links() !!}
+                {!! $examenesDoctoraDentals->links() !!}
             </div>
         </div>
     </div>
@@ -162,12 +139,11 @@ Listado de Consultas
     </div>
 
     <script>
-
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
                 setTimeout(function(){
-                @foreach ($consulta->getAttributes() as $key => $value)
+                @foreach ($examen->getAttributes() as $key => $value)
                     @error($key)
                         $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror
@@ -229,22 +205,21 @@ Listado de Consultas
 
             switch (letra) {
                 case 'e':
-                    b.innerHTML = "Registrar consulta";
+                    b.innerHTML = "Registrar Examen";
                     break;
 
                 case 't':
-                    b.innerHTML = "Editar consulta";
+                    b.innerHTML = "Editar Examen";
                     break;
 
                 case 'r':
-                    b.innerHTML = "Eliminar consulta";
+                    b.innerHTML = "Eliminar Examen";
                     break;
 
                 default:
-                    b.innerHTML = "Mostrar consulta";
+                    b.innerHTML = "Mostrar Examen";
                     break;
             }
         }
     </script>
-
 @endsection

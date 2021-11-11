@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use Carbon\Carbon;
 use App\Models\Cita;
 use App\Models\Receta;
 use App\Models\EstadoReceta;
@@ -119,6 +121,14 @@ class RecetaController extends Controller
         $receta = Receta::find($id);
 
         return view('receta.show', compact('receta'));
+    }
+
+    public function imprimir($id)
+    {
+        $receta = Receta::find($id);
+        $fecha = Carbon::now()->format('Y-m-d');
+        $pdf = PDF::loadView('pdf.receta', compact('receta', 'fecha'));
+        return $pdf->stream();
     }
 
     /**

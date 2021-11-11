@@ -172,7 +172,7 @@
     });
 
     $(document).ready(function(){
-        //$("input[name='presion']").mask('000/00');
+        $("input[name='presion']").mask('000/000');
         $("input[name='temperatura']").mask('00.0');
         $("input[name='estatura']").mask('0.00');
         $("input[name='peso']").mask('00.00');
