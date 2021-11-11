@@ -20,4 +20,9 @@ class ExpedienteDoctoraDental extends Model
     {
         return $this->hasMany('App\Models\RecetasDentales', 'estadoReceta_id', 'id');
     }
+
+    public function dientes()
+    {
+        return $this->hasMany('App\Models\Diente', 'expedienteDental_id', 'id');
+    }
 }

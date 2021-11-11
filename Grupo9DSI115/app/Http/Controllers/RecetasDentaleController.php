@@ -14,14 +14,11 @@ use Illuminate\Http\Request;
  */
 class RecetasDentaleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $recetasDentales = RecetasDentale::paginate();
+        $recetasDentales = RecetasDentale::where('estadoReceta_id',1)
+                            ->paginate();
         $expedientes = ExpedienteDoctoraDental::all();
         $pacientes = Paciente::all();
 
@@ -29,11 +26,6 @@ class RecetasDentaleController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $recetasDentales->perPage());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $recetasDentale = new RecetasDentale();
@@ -63,12 +55,6 @@ class RecetasDentaleController extends Controller
             ->with('success', 'RecetasDentale created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $recetasDentale = RecetasDentale::find($id);
@@ -77,12 +63,6 @@ class RecetasDentaleController extends Controller
         return view('recetas-dentale.show', compact('recetasDentale','paciente'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $recetasDentale = RecetasDentale::find($id);
@@ -90,13 +70,6 @@ class RecetasDentaleController extends Controller
         return view('recetas-dentale.edit', compact('recetasDentale'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  RecetasDentale $recetasDentale
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, RecetasDentale $recetasDentale)
     {
         $recetasDentale->update([
@@ -111,12 +84,6 @@ class RecetasDentaleController extends Controller
             ->with('success', 'RecetasDentale updated successfully');
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-
     public function delete($receta){
         $rDentale = RecetasDentale::find($receta);
         return view('recetas-dentale.destroy',compact('rDentale'));
@@ -124,9 +91,23 @@ class RecetasDentaleController extends Controller
 
     public function destroy($id)
     {
+        //Cambiar el estado de la receta
         $recetasDentale = RecetasDentale::find($id)->delete();
 
         return redirect()->route('rDentales.index')
             ->with('success', 'RecetasDentale deleted successfully');
+    }
+
+    public function showRecetas($idCita){
+        $i = 0;
+        $cita = Cita::find($idCita); 
+        $expediente = ExpedienteDoctoraDental::where('paciente_id',$cita->paciente_id)->first();
+        $paciente = Paciente::find($expediente->paciente_id);
+        $recetas = RecetasDentale::where('expedienteDental_id',$expediente->id)
+                                    ->where('estadoReceta_id',1)
+                                    ->orderBy('created_at','desc')
+                                    ->get();
+        //Falta mostrar el nombre del paciente
+        return view('DoctoraDental.showRecetas',compact('idCita','recetas','i','paciente'));
     }
 }
