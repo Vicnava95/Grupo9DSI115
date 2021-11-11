@@ -25,6 +25,11 @@ class Abono extends Model
 		'pago_id' => 'required|integer|exists:pagos,id'
     ];
 
+    static $rulesWithoutPago = [
+      'monto' => 'required|integer|min:0'
+    ];
+  
+
     protected $perPage = 20;
 
     /**

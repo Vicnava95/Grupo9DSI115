@@ -62,10 +62,12 @@ Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
 Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
 Route::get('consultas/{consulta}/imprimir', 'ConsultaController@imprimir')->name('consultas.imprimir');
+Route::get('consultas/{consulta}/descargar', 'ConsultaController@descargar')->name('consultas.descargar');
 //recetas
 Route::resource('recetas', 'RecetaController');
 Route::get('recetas/{receta}/borrar', 'RecetaController@delete')->name('recetas.delete');
 Route::get('recetas/{receta}/imprimir', 'RecetaController@imprimir')->name('recetas.imprimir');
+Route::get('recetas/{receta}/descargar', 'RecetaController@descargar')->name('recetas.descargar');
 
 Route::get('/index',function(){
     /*Sexo::firstOrCreate(['nombre'=>'masculino']);
@@ -155,9 +157,22 @@ Route::middleware(['auth'])->group(function (){
         Route::get('rDentales/{receta}/borrar', 'RecetasDentaleController@delete')->name('rDentales.delete');
         Route::get('rDentalesCreateExpediente/{idCita}','RecetasDentaleController@createReceta')->name('rDentalesRecetasExp');
         Route::post('rDentalesPostExpediente/','RecetasDentaleController@storeExpediente')->name('rDentalesRecetasExpPost');
+        Route::get('showRecetasPaciente/{idCita}','RecetasDentaleController@showRecetas')->name('showRecetasPaciente');
         Route::get('/doctoraDental',function(){
             return view('Prueba.doctoraDental');
         })->name('doctoraDental');
+
+
+        Route::get('/createPagoExpedienteDental/{idPaciente}','ExpedienteDoctoraDentalController@createPago')->name('createPagoExpedienteDental');
+        
+        Route::post('/storePagoExpedienteDental/{idPaciente}','ExpedienteDoctoraDentalController@storePago')->name('storePagoExpedienteDental');
+        
+        Route::get('/createAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@createAbono')->name('createAbonoExpedienteDental');
+
+        Route::post('/storeAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@storeAbono')->name('storeAbonoExpedienteDental');
+        
+        Route::get('/showAbonosExpedienteDental/{idPago}','ExpedienteDoctoraDentalController@showAbonos')->name('showAbonosExpedienteDental');
+        
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)

@@ -109,9 +109,6 @@ Listado de Consultas
                                                     data-attr="{{ route('consultas.delete', $consulta->id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" href="{{ route('consultas.imprimir', $consulta->id) }}" target="_blank">
-                                                    <i class="fa fa-fw fa-print"></i>
-                                                </a>
                                                 {{--
                                                 <form action="{{ route('consultas.destroy',$consulta->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('consultas.show',$consulta->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>

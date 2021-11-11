@@ -143,7 +143,7 @@ Examenes doctor dental
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
                 setTimeout(function(){
-                @foreach ($examen->getAttributes() as $key => $value)
+                @foreach ($examenesDoctoraDental->getAttributes() as $key => $value)
                     @error($key)
                         $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror

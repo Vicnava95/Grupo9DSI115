@@ -65,8 +65,6 @@ class AbonoController extends Controller
             return redirect()->route('abonos.index')
             ->with('success', 'Abono created successfully.');
         }
-
-        
     }
 
     /**
