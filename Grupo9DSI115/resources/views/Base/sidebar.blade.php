@@ -213,7 +213,7 @@
                 @case(2)
                 <li class="nav-item">
                     <a href=" {{ route('recetas.index') }}">
-                        <i class="fas fa-id-card-alt"></i>
+                        <i class="fas fa-receipt"></i>
                         <p>Recetas</p>
                     </a>
                 </li>
@@ -221,7 +221,7 @@
                 @default
                 <li class="nav-item">
                     <a href="{{ route('rDentales.index') }} ">
-                        <i class="fas fa-id-card-alt"></i>
+                        <i class="fas fa-receipt"></i>
                         <p>Recetas</p>
                     </a>
                 </li>
@@ -259,7 +259,7 @@
                 @case(2)
                 <li class="nav-item">
                     <a href=" {{ route('examenesGenerales.index') }}">
-                        <i class="fas fa-id-card-alt"></i>
+                        <i class="fas fa-file-medical-alt"></i>
                         <p>Examenes</p>
                     </a>
                 </li>
@@ -267,7 +267,7 @@
                 @default
                 <li class="nav-item">
                     <a href="{{ route('examenesDentales.index') }} ">
-                        <i class="fas fa-id-card-alt"></i>
+                        <i class="fas fa-file-medical-alt"></i>
                         <p>Examenes</p>
                     </a>
                 </li>
