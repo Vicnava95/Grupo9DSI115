@@ -7,7 +7,7 @@ CONSULTAS
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de Consultas
+Listado de Consultassssss
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
