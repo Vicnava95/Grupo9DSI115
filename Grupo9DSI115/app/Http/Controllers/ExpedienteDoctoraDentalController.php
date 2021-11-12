@@ -235,7 +235,7 @@ class ExpedienteDoctoraDentalController extends Controller
     {
         request()->validate(Abono::$rulesWithoutPago);
         $request->request->add(['pago_id'=> strval($idPago)]);
-        $request->request->add(['fecha'=> Carbon::now()->format('Y-m-d')]);
+        $request->request->add(['fecha'=> Carbon::today('America/El_Salvador')->format('Y-m-d')]);
         $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->get()->sum('monto');
         $totalAbonos = $abonos + $request->get('monto');
         $pago = Pago::where('id', $request->get('pago_id'))->first();
@@ -254,6 +254,35 @@ class ExpedienteDoctoraDentalController extends Controller
             else $pago->update(['estado_pago_id'=>'2']);
             return redirect()->back()
             ->with('success', 'Abono created successfully.');
+        }
+    }
+
+    public function editAbono($id)
+    {
+        $abono = Abono::find($id);
+
+        return view('DoctoraDental.editAbono', compact('abono'));
+    }
+
+    public function updateAbono(Request $request, Abono $abono)
+    {
+        request()->validate(Abono::$rulesWithoutPago);
+        $request->request->add(['fecha'=> Carbon::today('America/El_Salvador')->format('Y-m-d')]);
+        $request->request->add(['pago_id'=> $abono->pago_id]);
+        $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->where('id','!=',$abono->id)->get()->sum('monto');
+        $totalAbonos = $abonos + $request->get('monto');
+        $pago = Pago::where('id', $request->get('pago_id'))->first();
+        $pagoTotal = $pago->costo;
+        $faltante = $pagoTotal - $abonos;
+        if ($totalAbonos>$pagoTotal) {
+            return redirect()->back()
+            ->with('error', 'El abono a actualizar supera el pago total. Para completar el pago hace falta $'.$faltante);
+        }else{
+            $abono->update($request->all());
+            if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
+            else $pago->update(['estado_pago_id'=>'2']);
+            return redirect()->back()
+            ->with('success', 'Abono updated successfully');
         }
     }
     

@@ -170,6 +170,11 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/createAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@createAbono')->name('createAbonoExpedienteDental');
 
         Route::post('/storeAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@storeAbono')->name('storeAbonoExpedienteDental');
+
+        Route::get('/editAbonoExpedienteDental/{id}','ExpedienteDoctoraDentalController@editAbono')->name('editAbonoExpedienteDental');
+
+        Route::patch('/updateAbonoExpedienteDental/{abono}','ExpedienteDoctoraDentalController@updateAbono')->name('updateAbonoExpedienteDental');
+        
         
         Route::get('/showAbonosExpedienteDental/{idPago}','ExpedienteDoctoraDentalController@showAbonos')->name('showAbonosExpedienteDental');
         

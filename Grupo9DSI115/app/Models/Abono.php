@@ -22,12 +22,12 @@ class Abono extends Model
 {
     
     static $rules = [
-		'monto' => 'required|integer|min:0',
+		'monto' => 'required|regex:/^\d+(\.\d{1,2})?$/',
 		'pago_id' => 'required|integer|exists:pagos,id'
     ];
 
     static $rulesWithoutPago = [
-      'monto' => 'required|integer|min:0'
+      'monto' => 'required|regex:/^\d+(\.\d{1,2})?$/'
     ];
   
 

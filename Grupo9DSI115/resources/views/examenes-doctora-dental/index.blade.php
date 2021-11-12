@@ -67,7 +67,6 @@ Examenes doctor dental
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>
-										<th>Expediente</th>
 
                                         <th></th>
                                     </tr>
@@ -79,7 +78,6 @@ Examenes doctor dental
                                             <td><a href="/examenesDentalesImagenes/{{ $examenesDoctoraDental->imagen }}" target="_blank">{{ $examenesDoctoraDental->imagen }}</a></td>
 											<td>{{ $examenesDoctoraDental->fecha }}</td>
 											<td>{{ $examenesDoctoraDental->descripcion }}</td>
-											<td>{{ $examenesDoctoraDental->expediente_doctora_dental_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"

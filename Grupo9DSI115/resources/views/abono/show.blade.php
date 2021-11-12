@@ -16,6 +16,10 @@
                         <strong>Pago:</strong>
                         {{ $abono->Pago->descripcion }}
                     </div>
+                    <div class="form-group">
+                        <strong>Fecha:</strong>
+                        {{ $abono->fecha }}
+                    </div>
 
                 </div>
             </div>

@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <span class="card-title">Examen Doctora Dental</span>
+                        <span class="card-title">Examen</span>
                     </div>
                 </div>
 

@@ -76,9 +76,10 @@ Listado de pagos
                                         
 										<th>Descripcion</th>
 										<th>Costo</th>
+                                        <th>Abono</th>
+                                        <th>Restante</th>
 										<th>Fecha</th>
 										<th>Estado</th>
-										<th>Expediente Dental</th>
 
                                         <th></th>
                                     </tr>
@@ -90,9 +91,10 @@ Listado de pagos
                                             
 											<td>{{ $pago->descripcion }}</td>
 											<td>${{ $pago->costo }}</td>
+                                            <td>${{ $pago->abono }}</td>
+                                            <td>${{ $pago->costo - $pago->abono }}</td>
 											<td>{{ $pago->fecha }}</td>
 											<td>{{ $pago->EstadoPago->nombre }}</td>
-											<td>{{ $pago->expediente_doctora_dental_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
@@ -110,8 +112,10 @@ Listado de pagos
                                                     data-attr="{{route('pagos.delete', $pago->id)}}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                        data-target="#mediumModal" href="#" role="button" data-attr="{{ route('showAbonosExpedienteDental', $pago->id) }}">
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton2" data-toggle="modal"
+                                                        data-target="#mediumModal2"
+                                                        href="#" role="button"                                      data-attr="{{ route('showAbonosExpedienteDental', $pago->id) }}"
+                                                        >
                                                         <i class="fas fa-list-alt"></i>
                                                 </a>
                                             </td>
@@ -155,18 +159,75 @@ Listado de pagos
         </div>
     </div>
 
+    <!-- Modal mostrar lista de abono -->
+    <div class="modal fade" id="mediumModal2" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Editar abono
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mediumBody2">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Editar Abono -->
+    <div class="modal fade" id="mediumModal3" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Editar abono
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mediumBody3">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
-            mostrarModal(href)
+                console.log('{{$errors}}')    
+                @if ($errors->has('monto'))
+                    mostrarModal3(href)
+                @else
+                    mostrarModal(href)
+                @endif
+            
                 setTimeout(function(){
-                @foreach ($pago->getAttributes() as $key => $value)
+                @foreach ($errors->getMessages() as $key => $value)
                     @error($key)
                         $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror
                     $("[name='{{$key}}']").val('{{ old($key) }}');
                 @endforeach
-                $("[name='paciente_id_hid']").val("{{old('paciente_id_hid')}}");
             },500);
         @endif
 
@@ -178,6 +239,21 @@ Listado de pagos
             mostrarModal(href)
             localStorage.setItem('formulario', href);
         });
+
+        $(document).on('click', '#mediumButton2', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            mostrarModal2(href)
+            localStorage.setItem('formulario', href);
+        });
+
+        $(document).on('click', '#mediumButton3', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            mostrarModal3(href)
+            localStorage.setItem('formulario', href);
+        });
+
 
         function mostrarModal(href) {
             document.getElementById('registrar').style.display = 'block';
@@ -238,6 +314,57 @@ Listado de pagos
                     break;
             }
         }
+
+        function mostrarModal2(href) {
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#mediumModal2').modal("show");
+                    $('#mediumBody2').html(result).show();
+                    $('#mediumModal').modal("hide");
+                    
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 0
+            })
+        }
+
+        function mostrarModal3(href) {
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#mediumModal3').modal("show");
+                    $('#mediumBody3').html(result).show();
+                    $('#mediumModal2').modal("hide");
+                    
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 0
+            })
+        }
+
     </script>
 
 @endsection

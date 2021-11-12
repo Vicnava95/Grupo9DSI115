@@ -21,7 +21,10 @@ class PagoController extends Controller
     public function index()
     {
         $pagos = Pago::paginate();
-
+        
+        foreach ($pagos as $pago) {
+            $pago['abono'] = Abono::select('*')->where('pago_id',$pago->id)->get()->sum('monto');
+        }
         return view('pago.index', compact('pagos'))
             ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
     }

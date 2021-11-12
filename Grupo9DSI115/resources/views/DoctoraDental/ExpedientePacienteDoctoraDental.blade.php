@@ -222,8 +222,8 @@
                                                         >
                                                         <i class="fas fa-hand-holding-usd"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
-                                                        data-target="#mediumModal"
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton2" data-toggle="modal"
+                                                        data-target="#mediumModal2"
                                                         href="#" role="button"                                      data-attr="{{ route('showAbonosExpedienteDental', $pago->id) }}"
                                                         >
                                                         <i class="fas fa-list-alt"></i>
@@ -268,6 +268,58 @@
         </div>
     </div>
 
+    <!-- Modal mostrar lista de abono -->
+    <div class="modal fade" id="mediumModal2" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Editar abono
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mediumBody2">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Editar Abono -->
+    <div class="modal fade" id="mediumModal3" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Editar abono
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mediumBody3">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- modal de mensaje correto-->
     <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -301,12 +353,15 @@
 
 
     <script>
-        
-
         @if (count($errors) > 0)
-
             let href=localStorage.getItem('formulario');
-            mostrarModal(href)
+                console.log('{{$errors}}')    
+                @if ($errors->has('monto'))
+                    mostrarModal3(href)
+                @else
+                    mostrarModal(href)
+                @endif
+            
                 setTimeout(function(){
                 @foreach ($errors->getMessages() as $key => $value)
                     @error($key)
@@ -324,6 +379,20 @@
             event.preventDefault();
             let href = $(this).attr('data-attr');
             mostrarModal(href)
+            localStorage.setItem('formulario', href);
+        });
+
+        $(document).on('click', '#mediumButton2', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            mostrarModal2(href)
+            localStorage.setItem('formulario', href);
+        });
+
+        $(document).on('click', '#mediumButton3', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            mostrarModal3(href)
             localStorage.setItem('formulario', href);
         });
 
@@ -356,6 +425,57 @@
             var letra = href.charAt(href.length - 1);
             var b = document.getElementById('exampleModalLongTitle').innerHTML = "Registrar";
         }
+
+        function mostrarModal2(href) {
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#mediumModal2').modal("show");
+                    $('#mediumBody2').html(result).show();
+                    $('#mediumModal').modal("hide");
+                    
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 0
+            })
+        }
+
+        function mostrarModal3(href) {
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#mediumModal3').modal("show");
+                    $('#mediumBody3').html(result).show();
+                    $('#mediumModal2').modal("hide");
+                    
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 0
+            })
+        }
+
     </script>
     <style>
         .btn-outline-primary{
@@ -364,7 +484,5 @@
         .col{
             padding: 0px 15px 15px 15px;
         }
-        
-
     </style>
 @endsection
