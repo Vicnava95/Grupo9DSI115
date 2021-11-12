@@ -111,6 +111,22 @@
                     @endswitch
                 </li>
 
+                @if (Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
+                    <!-- Pagos -->
+                    <li class="nav-item">
+                        <a href="{{route('pagos.index')}}">
+                            <i class="fas fa-dollar-sign"></i>
+                            <p>Pagos</p>
+                        </a>
+                    </li>
+                    <!-- Abonos -->
+                    <li class="nav-item">
+                        <a href="{{route('abonos.index')}}">
+                            <i class="fas fa-list-alt"></i>
+                            <p>Abonos</p>
+                        </a>
+                    </li>
+                @endif
 
                 <!-- Citas-->
                 <li class="nav-item">
@@ -173,6 +189,53 @@
                             </li>
                     @endswitch
                 @endif
+
+                <!-- Examenes Clinicos-->
+                @if(!(Auth::user()->rols_fk==4))
+                    @switch(Auth::user()->rols_fk)
+                        @case(1)
+                            <li class="nav-item">
+                                <a data-toggle="collapse" href="#base2">
+                                    <i class="fas fa-notes-medical"></i>
+                                    <p>Examenes</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="base2">
+                                    <ul class="nav nav-collapse">
+                                        <li>
+                                            <a href=" {{ route('examenesGenerales.index') }} ">
+                                                <i class="fas fa-user-md"></i>
+                                                <span class="sub-item">Clinicos</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('examenesDentales.index') }} ">
+                                                <i class="fas fa-tooth"></i>
+                                                <span class="sub-item">Dentales</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            @break
+                        @case(2)
+                            <li class="nav-item">
+                                <a href=" {{ route('examenesGenerales.index') }}">
+                                    <i class="fas fa-notes-medical"></i>
+                                    <p>Examenes</p>
+                                </a>
+                            </li>
+                            @break
+                        @default
+                            <li class="nav-item">
+                                <a href="{{ route('examenesDentales.index') }} ">
+                                    <i class="fas fa-notes-medical"></i>
+                                    <p>Examenes</p>
+                                </a>
+                            </li>
+                    @endswitch
+                @endif
+
                 <!-- Pacientes-->
                 <li class="nav-item">
                     <a href="{{route('pacientes.index')}}">
