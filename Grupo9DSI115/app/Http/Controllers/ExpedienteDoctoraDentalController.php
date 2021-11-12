@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Carbon\Carbon;
 use App\Models\Cita;
 use App\Models\Pago;
 use App\Models\Abono;
@@ -234,6 +235,7 @@ class ExpedienteDoctoraDentalController extends Controller
     {
         request()->validate(Abono::$rulesWithoutPago);
         $request->request->add(['pago_id'=> strval($idPago)]);
+        $request->request->add(['fecha'=> Carbon::now()->format('Y-m-d')]);
         $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->get()->sum('monto');
         $totalAbonos = $abonos + $request->get('monto');
         $pago = Pago::where('id', $request->get('pago_id'))->first();

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $monto
  * @property $pago_id
+ * @property $fecha
  * @property $created_at
  * @property $updated_at
  *
@@ -37,7 +38,7 @@ class Abono extends Model
      *
      * @var array
      */
-    protected $fillable = ['monto','pago_id'];
+    protected $fillable = ['monto','pago_id','fecha'];
 
 
     /**

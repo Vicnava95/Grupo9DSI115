@@ -110,6 +110,10 @@ Listado de pagos
                                                     data-attr="{{route('pagos.delete', $pago->id)}}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                        data-target="#mediumModal" href="#" role="button" data-attr="{{ route('showAbonosExpedienteDental', $pago->id) }}">
+                                                        <i class="fas fa-list-alt"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

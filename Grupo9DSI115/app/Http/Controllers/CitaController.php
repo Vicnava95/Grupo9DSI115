@@ -342,7 +342,7 @@ class CitaController extends Controller
         if(Auth::user()->rols_fk==1)
             return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
         if(Auth::user()->rols_fk==2)
-            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
+            return redirect()->route('dshDoctorGeneral.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
         if(Auth::user()->rols_fk==3)
             return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a finalizado satisfactoriamente');
         if(Auth::user()->rols_fk==4)
@@ -362,7 +362,7 @@ class CitaController extends Controller
         if(Auth::user()->rols_fk==1)
             return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
         if(Auth::user()->rols_fk==2)
-            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
+            return redirect()->route('dshDoctorGeneral.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
         if(Auth::user()->rols_fk==3)
             return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a cancelado satisfactoriamente');
         if(Auth::user()->rols_fk==4)
@@ -386,7 +386,7 @@ class CitaController extends Controller
         if(Auth::user()->rols_fk==1)
             return redirect()->route('dshAdministrador.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
         if(Auth::user()->rols_fk==2)
-            return redirect()->route('dshDoctorGaneral.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
+            return redirect()->route('dshDoctorGeneral.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
         if(Auth::user()->rols_fk==3)
             return redirect()->route('dshDoctorDental.index')->with('success', 'Estado de la cita cambia a programado satisfactoriamente');
         if(Auth::user()->rols_fk==4)

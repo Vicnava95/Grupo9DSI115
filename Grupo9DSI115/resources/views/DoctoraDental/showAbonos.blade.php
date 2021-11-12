@@ -16,7 +16,7 @@
                             @foreach ($abonos as $abono)
                                 <tr>
                                     <th>${{ $abono->monto }}</th>
-                                    <th>{{ $abono->created_at->isoFormat('Y-M-d') }}</th>
+                                    <th>{{ $abono->fecha }}</th>
                                 </tr>
                             @endforeach
                     </table>

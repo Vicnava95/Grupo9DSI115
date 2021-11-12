@@ -139,7 +139,7 @@ class ExpedienteDoctorController extends Controller
             'persona_id'=> 2,
             'estadoCita_id' => $request->estadoCita_id
         ]); 
-        return redirect()->route('dshDoctorGaneral.index')
+        return redirect()->route('dshDoctorGeneral.index')
             ->with('success', 'Cita creada satisfactoriamente.');
     }
 

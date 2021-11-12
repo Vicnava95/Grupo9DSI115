@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Pago;
 use App\Models\Abono;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class AbonoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Abono::$rules);
-
+        $request->request->add(['fecha'=> Carbon::now()->format('Y-m-d')]);
         $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->get()->sum('monto');
         $totalAbonos = $abonos + $request->get('monto');
         $pago = Pago::where('id', $request->get('pago_id'))->first();
@@ -103,7 +104,7 @@ class AbonoController extends Controller
     public function update(Request $request, Abono $abono)
     {
         request()->validate(Abono::$rules);
-        
+        $request->request->add(['fecha'=> Carbon::now()->format('Y-m-d')]);
         $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->where('id','!=',$abono->id)->get()->sum('monto');
         $totalAbonos = $abonos + $request->get('monto');
         $pago = Pago::where('id', $request->get('pago_id'))->first();

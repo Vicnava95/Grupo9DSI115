@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Rol;
+use App\Models\User;
+use App\Models\Consulta;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -127,9 +129,9 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        $consulta = $this->Consulta::find($id);
-        $paciente = Paciente::find($user->paciente_id);
-        return view('user.destroy', compact('consulta', 'paciente'));
+        $user = User::find($id);
+        $consulta = Consulta::find($id);
+        return view('user.destroy', compact('consulta', 'user'));
     }
 
     /**

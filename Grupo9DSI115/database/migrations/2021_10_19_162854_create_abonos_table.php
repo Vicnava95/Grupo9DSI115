@@ -16,7 +16,7 @@ class CreateAbonosTable extends Migration
         Schema::create('abonos', function (Blueprint $table) {
             $table->id();
             $table->decimal('monto',$precision = 10, $scale = 2)->require();
-
+            $table->date('fecha')->required();
             //Foreing key
             $table->unsignedBigInteger('pago_id');
             $table->foreign('pago_id')
