@@ -111,7 +111,51 @@
                     @endswitch
                 </li>
 
-
+                <!-- Expedientes Clinicos-->
+                @if(!(Auth::user()->rols_fk==4))
+                @switch(Auth::user()->rols_fk)
+                @case(1)
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#base">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Expedientes</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="base">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href=" {{ route('expedientesGeneral') }} ">
+                                    <i class="fas fa-user-md"></i>
+                                    <span class="sub-item">Clinicos</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('expedientesDentales') }} ">
+                                    <i class="fas fa-tooth"></i>
+                                    <span class="sub-item">Dentales</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @break
+                @case(2)
+                <li class="nav-item">
+                    <a href=" {{ route('expedientesGeneral') }}">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Expedientes</p>
+                    </a>
+                </li>
+                @break
+                @default
+                <li class="nav-item">
+                    <a href="{{ route('expedientesDentales') }} ">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Expedientes</p>
+                    </a>
+                </li>
+                @endswitch
+                @endif
                 <!-- Citas-->
                 <li class="nav-item">
                     <a href="{{route('citas.index')}}">
@@ -120,7 +164,7 @@
                     </a>
                 </li>
                 <!-- Consultas-->
-                @if(!(Auth::user()->rols_fk==4))
+                @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==2)
                 <li class="nav-item">
                     <a href="{{route('consultas.index')}}">
                         <i class="fas fa-stethoscope"></i>
@@ -128,51 +172,119 @@
                     </a>
                 </li>
                 @endif
-                <!-- Expedientes Clinicos-->
-                @if(!(Auth::user()->rols_fk==4))
-                    @switch(Auth::user()->rols_fk)
-                        @case(1)
-                            <li class="nav-item">
-                                <a data-toggle="collapse" href="#base">
-                                    <i class="fas fa-id-card-alt"></i>
-                                    <p>Expedientes</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="base">
-                                    <ul class="nav nav-collapse">
-                                        <li>
-                                            <a href=" {{ route('expedientesGeneral') }} ">
-                                                <i class="fas fa-user-md"></i>
-                                                <span class="sub-item">Clinicos</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('expedientesDentales') }} ">
-                                                <i class="fas fa-tooth"></i>
-                                                <span class="sub-item">Dentales</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            @break
-                        @case(2)
-                            <li class="nav-item">
-                                <a href=" {{ route('expedientesGeneral') }}">
-                                    <i class="fas fa-id-card-alt"></i>
-                                    <p>Expedientes</p>
-                                </a>
-                            </li>
-                            @break
-                        @default
-                            <li class="nav-item">
-                                <a href="{{ route('expedientesDentales') }} ">
-                                    <i class="fas fa-id-card-alt"></i>
-                                    <p>Expedientes</p>
-                                </a>
-                            </li>
-                    @endswitch
+                <!-- Tratamientos-->
+                @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-procedures"></i>
+                        <p>Tratamientos</p>
+                    </a>
+                </li>
                 @endif
+
+                <!-- Recetas-->
+                @if(!(Auth::user()->rols_fk==4))
+                @switch(Auth::user()->rols_fk)
+                @case(1)
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#bases">
+                        <i class="fas fa-receipt"></i>
+                        <p>Recetas</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="bases">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href=" {{ route('recetas.index') }} ">
+                                    <i class="fas fa-user-md"></i>
+                                    <span class="sub-item">Medicas</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('rDentales.index') }} ">
+                                    <i class="fas fa-tooth"></i>
+                                    <span class="sub-item">Dentales</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @break
+                @case(2)
+                <li class="nav-item">
+                    <a href=" {{ route('recetas.index') }}">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Recetas</p>
+                    </a>
+                </li>
+                @break
+                @default
+                <li class="nav-item">
+                    <a href="{{ route('rDentales.index') }} ">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Recetas</p>
+                    </a>
+                </li>
+                @endswitch
+                @endif
+
+                <!-- Examenes-->
+                @if(!(Auth::user()->rols_fk==4))
+                @switch(Auth::user()->rols_fk)
+                @case(1)
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#baseExamenes">
+                        <i class="fas fa-file-medical-alt"></i>
+                        <p>Examenes</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="baseExamenes">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href=" {{ route('examenesGenerales.index') }} ">
+                                    <i class="fas fa-user-md"></i>
+                                    <span class="sub-item">Medicos</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('examenesDentales.index') }} ">
+                                    <i class="fas fa-tooth"></i>
+                                    <span class="sub-item">Dentales</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @break
+                @case(2)
+                <li class="nav-item">
+                    <a href=" {{ route('examenesGenerales.index') }}">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Examenes</p>
+                    </a>
+                </li>
+                @break
+                @default
+                <li class="nav-item">
+                    <a href="{{ route('examenesDentales.index') }} ">
+                        <i class="fas fa-id-card-alt"></i>
+                        <p>Examenes</p>
+                    </a>
+                </li>
+                @endswitch
+                @endif
+
+
+                <!-- Pagos-->
+                @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
+                <li class="nav-item">
+                    <a href="{{route('pagos.index')}}">
+                        <i class="far fa-money-bill-alt"></i>
+                        <p>Pagos</p>
+                    </a>
+                </li>
+                @endif
+
                 <!-- Pacientes-->
                 <li class="nav-item">
                     <a href="{{route('pacientes.index')}}">
@@ -180,24 +292,7 @@
                         <p>Pacientes</p>
                     </a>
                 </li>
-                <!-- Recetas-->
-                @if((Auth::user()->rols_fk== 1 || Auth::user()->rols_fk==2 ))
-                <li class="nav-item">
-                    <a href="{{route('recetas.index')}}">
-                        <i class="far fa-edit"></i>
-                        <p>Recetas</p>
-                    </a>
-                </li>
-                @endif
-                <!-- Recetas Dentales -->
-                @if((Auth::user()->rols_fk== 3))
-                <li class="nav-item">
-                    <a href="{{route('rDentales.index')}}">
-                        <i class="far fa-edit"></i>
-                        <p>Recetas Dentales</p>
-                    </a>
-                </li>
-                @endif
+
                 <!-- Recurso Humano-->
                 @if(!(Auth::user()->rols_fk==4))
                 <li class="nav-item">
@@ -216,26 +311,9 @@
                     </a>
                 </li>
                 @endif
-                {{--
-                <!-- Tratamientos-->
-                @if(!(Auth::user()->rols_fk==4))
-                <li class="nav-item" >
-                    <a href="#">
-                        <i class="fas fa-procedures"></i>
-                        <p>Tratamientos</p>
-                    </a>
-                </li>
-                @endif
-                <!-- Pagos-->
-                @if(!(Auth::user()->rols_fk==4))
-                <li class="nav-item">
-                    <a href="#">
-                        <i class="far fa-money-bill-alt"></i>
-                        <p>Pagos</p>
-                    </a>
-                </li>
-                @endif
-                --}}
+
+
+
 
                 <!--
                 <li class="nav-item">
