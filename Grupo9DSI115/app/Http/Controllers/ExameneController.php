@@ -57,7 +57,7 @@ class ExameneController extends Controller
         $examene = Examene::create($input);
 
         return redirect()->route('examenesGenerales.index')
-            ->with('success', 'Examene created successfully.');
+            ->with('success', 'Examen creado satisfactoriamente.');
     }
 
     /**
@@ -110,7 +110,7 @@ class ExameneController extends Controller
         $examenesGenerale->update($input);
 
         return redirect()->route('examenesGenerales.index')
-            ->with('success', 'Examene updated successfully');
+            ->with('success', 'Examen actualizado satisfactoriamente.');
     }
 
     public function delete($id)
@@ -129,6 +129,6 @@ class ExameneController extends Controller
         $examene = Examene::find($id)->delete();
 
         return redirect()->route('examenesGenerales.index')
-            ->with('success', 'Examene deleted successfully');
+            ->with('success', 'Examen eliminado satisfactoriamente.');
     }
 }

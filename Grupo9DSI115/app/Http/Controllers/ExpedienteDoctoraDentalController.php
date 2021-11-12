@@ -253,7 +253,7 @@ class ExpedienteDoctoraDentalController extends Controller
             if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
             else $pago->update(['estado_pago_id'=>'2']);
             return redirect()->back()
-            ->with('success', 'Abono created successfully.');
+            ->with('success', 'Abono creado satisfactoriamente.');
         }
     }
 
@@ -282,7 +282,7 @@ class ExpedienteDoctoraDentalController extends Controller
             if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
             else $pago->update(['estado_pago_id'=>'2']);
             return redirect()->back()
-            ->with('success', 'Abono updated successfully');
+            ->with('success', 'Abono actualizado satisfactoriamente');
         }
     }
     

@@ -64,7 +64,7 @@ class AbonoController extends Controller
             if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
             else $pago->update(['estado_pago_id'=>'2']);
             return redirect()->route('abonos.index')
-            ->with('success', 'Abono created successfully.');
+            ->with('success', 'Abono creado satisfactoriamente.');
         }
     }
 
@@ -118,7 +118,7 @@ class AbonoController extends Controller
             if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
             else $pago->update(['estado_pago_id'=>'2']);
             return redirect()->back()
-            ->with('success', 'Abono updated successfully');
+            ->with('success', 'Abono actualizado satisfactoriamente');
         }
     }
 
@@ -138,6 +138,6 @@ class AbonoController extends Controller
         $abono = Abono::find($id)->delete();
 
         return redirect()->route('abonos.index')
-            ->with('success', 'Abono deleted successfully');
+            ->with('success', 'Abono eliminado satisfactoriamente');
     }
 }
