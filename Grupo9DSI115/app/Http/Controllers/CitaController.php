@@ -220,13 +220,14 @@ class CitaController extends Controller
 
                 for($i = 11; $i <= 48; $i++){
                     foreach ($infoDientes as $info){
-                        if($i == $info[0])
-                        $diente = Diente::create([
-                            'numeroDiente' =>$i,
-                            'nombreDiente' => $info[1],
-                            'expedienteDental_id' => $crearExpedientePaciente_Doctor->id
-                        ]);
-                        $diente->save();
+                        if($i == $info[0]){
+                            $diente = Diente::create([
+                                'numeroDiente' =>$info[0],
+                                'nombreDiente' => $info[1],
+                                'expedienteDental_id' => $crearExpedientePaciente_Doctor->id
+                            ]);
+                            $diente->save();
+                        }
                     }
                 }
             }else{

@@ -35,14 +35,14 @@ Recetas
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
-                            @if(!(Auth::user()->rols_fk==4 || Auth::user()->rols_fk==1))
+                           <!--  @if(!(Auth::user()->rols_fk==4 || Auth::user()->rols_fk==1))
                            <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
                                     data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
                                     Registrar receta
                                 </a>
                             </div>
-                            @endif
+                            @endif -->
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -142,12 +142,58 @@ Recetas
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
-                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
+                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>                    
                     <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
+                    <!--- 
+                    <a class="btn btn-success"data-toggle="modal" id="nuevo"
+                        data-target="#mediumModal" data-attr="#myModal2" title="Create a project">
+                        Crear nueva versión
+                    </a>
+
+                    <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
+                        data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
+                        Registrar receta
+                    </a>
+                    --->
+                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.create') }}" 
+                        class="btn btn-success">Crear nueva versión
+                    </a>
+                    
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .modal:nth-of-type(even) {
+            z-index: 1052 !important;
+        }
+    </style>
+
+    <!--- Modal nueva version --->
+    <div class="modal fade" id="myModal2" data-backdrop="static">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+                        <---Titulo--->
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+        </div><div class="container"></div>
+            <div class="modal-body" id="mediumBody">
+                <div>
+                        <!-- the result to be displayed apply here -->
+                </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
+        </div>
+      </div>
+    </div>
+</div>
 
     <script>
         @if (count($errors) > 0)
@@ -176,6 +222,7 @@ Recetas
                 document.getElementById('registrar').style.display = 'block';
                 document.getElementById('editar').style.display = 'block';
                 document.getElementById('eliminar').style.display = 'block';
+                document.getElementById('nuevo').style.display = 'block';
                 $.ajax({
                     url: href,
                     beforeSend: function() {
@@ -191,7 +238,7 @@ Recetas
                     },
                     error: function(jqXHR, testStatus, error) {
                         console.log(error);
-                        alert("Page " + href + " cannot open. Error:" + error);
+                        alert("Pagina " + href + " no se puede abrir. Error:" + error);
                         $('#loader').hide();
                     },
                     timeout: 0
@@ -211,6 +258,7 @@ Recetas
 
                 if (letra != 'r') {
                     document.getElementById('eliminar').style.display = 'none';
+                    document.getElementById('nuevo').style.display = 'none';
                 }
 
                 switch (letra) {
@@ -224,6 +272,31 @@ Recetas
 
                     case 'r':
                         b.innerHTML = "Anular receta";
+                        
+                        var eliminar = document.getElementById("eliminar");
+                        var nuevo = document.getElementById("nuevo");
+                        var counter = 5;
+                        var newElement = document.createElement("p");
+                        var newElement2 = document.createElement("p");
+                        newElement.innerHTML = "Espere 5 segundos";
+                        newElement2.innerHTML = "";
+                        var id;
+
+                        eliminar.parentNode.replaceChild(newElement, eliminar);
+                        nuevo.parentNode.replaceChild(newElement2, nuevo);
+
+                        id = setInterval(function() {
+                            counter--;
+                            if(counter < 0) {
+                                newElement.parentNode.replaceChild(eliminar, newElement);
+                                newElement2.parentNode.replaceChild(nuevo, newElement2);
+                                clearInterval(id);
+                            } else {
+                                newElement.innerHTML = "Espere " + counter.toString() + " segundos.";
+                            }
+                        }, 1000);
+
+                        
                         break;
 
                     default:
@@ -231,6 +304,58 @@ Recetas
                         break;
                 }
             }
+
+            //Para modal de nuevo
+            $(document).on('click', '#nuevo', function(event) {
+                event.preventDefault();
+                let href = $(this).attr('data-attr');
+                mostrarModal2(href)
+                localStorage.setItem('formulario', href);
+            });
+
+            function mostrarModal2(href) {
+                document.getElementById('nuevo').style.display = 'block';
+                $.ajax({
+                    url: href,
+                    beforeSend: function() {
+                        $('#loader').show();
+                    },
+                    // return the result
+                    success: function(result) {
+                        $('#myModal2').modal("show");
+                        $('#mediumBody').html(result).show();
+                    },
+                    complete: function() {
+                        $('#loader').hide();
+                    },
+                    error: function(jqXHR, testStatus, error) {
+                        console.log(error);
+                        alert("Pagina " + href + " no se puede abrir. Error:" + error);
+                        $('#loader').hide();
+                    },
+                    timeout: 0
+
+                })
+
+                var letra = href.charAt(href.length - 1);
+                var b = document.getElementById('exampleModalLongTitle');
+
+                if (letra != 'e') {
+                    document.getElementById('registrar').style.display = 'none';
+                }
+
+                switch (letra) {
+                    case 'e':
+                        b.innerHTML = "Registrar receta";
+                        break;
+
+                    default:
+                        b.innerHTML = "Mostrar receta";
+                        break;
+                }
+            }
+
+            
     </script>
 
 @endsection

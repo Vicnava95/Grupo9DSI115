@@ -5,13 +5,13 @@
 @endsection
 
 @section('titulo')
-    <a href="{{route('expedientesGeneral')}}"><i class="fas fa-chevron-circle-left"></i></a>    
+    <a href="{{route('expedientesGeneral')}}"><i class="fas fa-chevron-circle-left"></i></a>
     <br>
     Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
 @endsection
 
 @section('descripcion')
-    
+
 @endsection
 
 @section('cuerpo')
@@ -19,7 +19,7 @@
         <h2 class="text">Información personal</h2>
         <div class="card">
             <div class="container">
-                
+
                 <div class="row" style="margin-top:10px;">
                     <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
                         <label class="text-center">Nombre: {{$paciente->nombres}}</label>
@@ -66,7 +66,10 @@
                                     <tr>
                                         <th scope="col">N°</th>
                                         <th scope="col">Fecha</th>
+                                        <th scope="col">Peso</th>
+                                        <th scope="col">Frecuencia cardiaca</th>
                                         <th scope="col">Descripción</th>
+                                        <th scope="col">Recetas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,6 +77,8 @@
                                     <tr>
                                         <th scope="row">{{ ++$i }}</th>
                                         <td>{{$collecionConsulta['fecha']}}</td>
+                                        <td>{{ $collecionConsulta['peso'] }} Kg</td>
+                                        <td>{{ $collecionConsulta['frecuencia_cardiaca'] }} latidos/minuto</td>
                                         <td>{{$collecionConsulta['descripcion']}}</td>
                                     </tr>
                                     @endforeach
@@ -84,11 +89,11 @@
                 </div>
             @endif
         </div>
-        
+
     </div>
-    
-    
-    
+
+
+
 
     <!-- Modal Registrar/Editar/Eliminar -->
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
@@ -142,7 +147,7 @@
 
 
     <script>
-        
+
 
         @if (count($errors) > 0)
 
@@ -158,8 +163,8 @@
             },500);
         @endif
 
-        
-        
+
+
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();

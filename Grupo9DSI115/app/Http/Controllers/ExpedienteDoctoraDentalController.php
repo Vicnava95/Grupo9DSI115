@@ -12,6 +12,8 @@ use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
+use App\Models\Diente;
+use App\Models\Tratamiento;
 use App\Models\EstadoPago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,10 +51,10 @@ class ExpedienteDoctoraDentalController extends Controller
         foreach ($pagos as $pago) {
             $pago['abono'] = Abono::select('*')->where('pago_id',$pago->id)->get()->sum('monto');
         }
-        
 
-        
-        return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas','pagos'));
+        $dientes = Diente::where('expedienteDental_id',$expedientePaciente->id)->get();
+        //dd($dientes); 
+        return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas','pagos','dientes'));
     }
 
     public function crearConsulta(Request $request){
@@ -290,6 +292,26 @@ class ExpedienteDoctoraDentalController extends Controller
     {
         $abonos = Abono::where('pago_id', $idPago)->get();
         return view('DoctoraDental.showAbonos', compact('abonos'));
+    }
+
+    //Diente - Tratamiento
+    public function showDiente($idDiente , $fecha){
+        $n = 1;
+        $diente = Diente::find($idDiente);
+        $tratamientos = Tratamiento::where('diente_id',$diente->id)->get();
+        //dd($tratamientos);
+        return view('DoctoraDental.modalDiente',compact('diente','tratamientos','fecha','n')); 
+    }
+
+    public function storeTratamiento(Request $request, $idDiente, $fecha){
+        $tratamiento = Tratamiento::create([
+            'descripcion' => request('descripcion'),
+            'diente_id' => $idDiente,
+            'fecha' => $fecha
+        ]);
+        $tratamiento->save(); 
+        return redirect()->back()
+            ->with('success', 'Tratamiento creado satisfactoriamente.');
     }
 
 }

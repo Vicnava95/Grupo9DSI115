@@ -7,8 +7,11 @@
                 <div class="modal-body" id="mediumBody">
                     <div>
                         <!-- the result to be displayed apply here -->
-                        ¿Está por dar de baja la receta emitida el:  <b>{{ $receta->fecha }}</b>?<br>
-                        ¿Desea seguir?
+                        Está por anular la receta emitida el:  <b>{{ $receta->fecha }}</b><br><br>
+                        
+                        Si desea cambiar la receta actual seleccione <b>Crear nueva versión</b> <br>
+                        Si solamente desea dar de baja la receta seleccionada presione <b>Anular</b>.
+                        
                     </div>
                 </div>
 

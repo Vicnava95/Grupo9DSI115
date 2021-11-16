@@ -60,7 +60,7 @@ class ConsultaSeeder extends Seeder
             'imc'=>'26.12',
             'solicitud_examen'=>'Radiografia de craneo',
             'paciente_id'=>'3',
-            'persona_id'=>'3'
+            'persona_id'=>'2'
         ]);
 
         DB::table('consultas')->insert([
@@ -75,7 +75,7 @@ class ConsultaSeeder extends Seeder
             'imc'=>'24.44',
             'solicitud_examen'=>'Examen de la vista',
             'paciente_id'=>'4',
-            'persona_id'=>'3'
+            'persona_id'=>'2'
         ]);
 
         DB::table('consultas')->insert([
@@ -90,7 +90,7 @@ class ConsultaSeeder extends Seeder
             'imc'=>'33.06',
             'solicitud_examen'=>'Radiografia de uso',
             'paciente_id'=>'5',
-            'persona_id'=>'3'
+            'persona_id'=>'2'
         ]);
 
         DB::table('consultas')->insert([
