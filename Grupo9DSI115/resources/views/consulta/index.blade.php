@@ -33,13 +33,13 @@ Listado de Consultas
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
-                            <div class="float-right ml-5">
+                            <!-- <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
                                     data-attr="{{ route('consultas.create') }}" title="Create a project">
                                     Registrar consultas
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
