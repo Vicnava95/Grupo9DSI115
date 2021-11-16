@@ -35,14 +35,14 @@ Recetas
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                 </form>
                             </div>
-                            @if(!(Auth::user()->rols_fk==4 || Auth::user()->rols_fk==1))
+                           <!--  @if(!(Auth::user()->rols_fk==4 || Auth::user()->rols_fk==1))
                            <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
                                     data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
                                     Registrar receta
                                 </a>
                             </div>
-                            @endif
+                            @endif -->
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
