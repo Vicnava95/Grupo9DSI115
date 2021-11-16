@@ -17,17 +17,16 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
-													 style="color: white">
+                                    style="color: white">
                                     <span class="link-collapse">
                                         {{ __('Cerrar sesion') }}
                                     </span>
                                 </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                             <li hidden>
                                 <a href="#edit">
@@ -46,10 +45,11 @@
             <ul class="nav nav-primary">
                 <li class="nav-item">
 
-                <!-- Button trigger modal -->
-                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modeloFormulario">
-                    Modelo de inputs para formulario
-                </button> --}}
+                    <!-- Button trigger modal -->
+                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modeloFormulario">
+                        Modelo de inputs para formulario
+                    </button> --}}
                 </li>
                 {{-- <li class="nav-item active">
                     <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
@@ -82,36 +82,34 @@
                 <!--Dashboar-->
                 <li class="nav-item">
                     @switch(Auth::user()->rols_fk)
-                        @case(1)
-                            <a href="{{route('dshAdministrador.index')}}">
-                                <i class="fas fa-columns"></i>
-                                <p>Dashboard</p>
-                            </a>
-                            @break
-                        @case(2)
-                            <a href="{{route('dshDoctorGeneral.index')}}">
-                                <i class="fas fa-columns"></i>
-                                <p>Dashboard</p>
-                            </a>
-                            @break
-                        @case(3)
-                            <a href="{{route('dshDoctorDental.index')}}">
-                                <i class="fas fa-columns"></i>
-                                <p>Dashboard</p>
-                            </a>
-                            @break
+                    @case(1)
+                    <a href="{{route('dshAdministrador.index')}}">
+                        <i class="fas fa-columns"></i>
+                        <p>Dashboard</p>
+                    </a>
+                    @break
+                    @case(2)
+                    <a href="{{route('dshDoctorGeneral.index')}}">
+                        <i class="fas fa-columns"></i>
+                        <p>Dashboard</p>
+                    </a>
+                    @break
+                    @case(3)
+                    <a href="{{route('dshDoctorDental.index')}}">
+                        <i class="fas fa-columns"></i>
+                        <p>Dashboard</p>
+                    </a>
+                    @break
 
-                        @default
-                            <a href="{{route('dshSecretaria.index')}}">
-                                <i class="fas fa-columns"></i>
-                                <p>Dashboard</p>
-                            </a>
-
-
+                    @default
+                    <a href="{{route('dshSecretaria.index')}}">
+                        <i class="fas fa-columns"></i>
+                        <p>Dashboard</p>
+                    </a>
                     @endswitch
                 </li>
 
-                <!-- Expedientes Clinicos-->
+                <!-- Expedientes-->
                 @if(!(Auth::user()->rols_fk==4))
                 @switch(Auth::user()->rols_fk)
                 @case(1)
@@ -126,7 +124,7 @@
                             <li>
                                 <a href=" {{ route('expedientesGeneral') }} ">
                                     <i class="fas fa-user-md"></i>
-                                    <span class="sub-item">Clinicos</span>
+                                    <span class="sub-item">Medicos</span>
                                 </a>
                             </li>
                             <li>
@@ -156,6 +154,7 @@
                 </li>
                 @endswitch
                 @endif
+
                 <!-- Citas-->
                 <li class="nav-item">
                     <a href="{{route('citas.index')}}">
@@ -163,6 +162,7 @@
                         <p>Citas</p>
                     </a>
                 </li>
+
                 <!-- Consultas-->
                 @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==2)
                 <li class="nav-item">
@@ -172,6 +172,7 @@
                     </a>
                 </li>
                 @endif
+
                 <!-- Tratamientos-->
                 @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
                 <li class="nav-item">
@@ -228,17 +229,17 @@
                 @endswitch
                 @endif
 
-                <!-- Examenes-->
+                <!---Examenes-->
                 @if(!(Auth::user()->rols_fk==4))
                 @switch(Auth::user()->rols_fk)
                 @case(1)
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#baseExamenes">
+                    <a data-toggle="collapse" href="#base2">
                         <i class="fas fa-file-medical-alt"></i>
                         <p>Examenes</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="baseExamenes">
+                    <div class="collapse" id="base2">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href=" {{ route('examenesGenerales.index') }} ">
@@ -246,56 +247,17 @@
                                     <span class="sub-item">Medicos</span>
                                 </a>
                             </li>
-                    @endswitch
-                @endif
-
-                <!-- Examenes Clinicos-->
-                @if(!(Auth::user()->rols_fk==4))
-                    @switch(Auth::user()->rols_fk)
-                        @case(1)
-                            <li class="nav-item">
-                                <a data-toggle="collapse" href="#base2">
-                                    <i class="fas fa-notes-medical"></i>
-                                    <p>Examenes</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="base2">
-                                    <ul class="nav nav-collapse">
-                                        <li>
-                                            <a href=" {{ route('examenesGenerales.index') }} ">
-                                                <i class="fas fa-user-md"></i>
-                                                <span class="sub-item">Clinicos</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('examenesDentales.index') }} ">
-                                                <i class="fas fa-tooth"></i>
-                                                <span class="sub-item">Dentales</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            @break
-                        @case(2)
-                            <li class="nav-item">
-                                <a href=" {{ route('examenesGenerales.index') }}">
-                                    <i class="fas fa-notes-medical"></i>
-                                    <p>Examenes</p>
-                                </a>
-                            </li>
-                            @break
-                        @default
-                            <li class="nav-item">
+                            <li>
                                 <a href="{{ route('examenesDentales.index') }} ">
-                                    <i class="fas fa-notes-medical"></i>
-                                    <p>Examenes</p>
+                                    <i class="fas fa-tooth"></i>
+                                    <span class="sub-item">Dentales</span>
                                 </a>
                             </li>
-                    @endswitch
-                @endif
-
-                <!-- Pacientes-->
+                        </ul>
+                    </div>
+                </li>
+                @break
+                @case(2)
                 <li class="nav-item">
                     <a href=" {{ route('examenesGenerales.index') }}">
                         <i class="fas fa-file-medical-alt"></i>
@@ -313,13 +275,22 @@
                 @endswitch
                 @endif
 
-
                 <!-- Pagos-->
                 @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
                 <li class="nav-item">
                     <a href="{{route('pagos.index')}}">
                         <i class="far fa-money-bill-alt"></i>
                         <p>Pagos</p>
+                    </a>
+                </li>
+                @endif
+
+                <!--Abonos-->
+                @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
+                <li class="nav-item">
+                    <a href="{{route('abonos.index')}}">
+                        <i class="fas fa-money-check-alt"></i>
+                        <p>Abonos</p>
                     </a>
                 </li>
                 @endif
@@ -354,7 +325,7 @@
 
 
 
-                <!--
+                            <!--
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
@@ -403,7 +374,7 @@
                     </div>
                 </li>-->
 
-            </ul>
+                        </ul>
+                    </div>
         </div>
     </div>
-</div>

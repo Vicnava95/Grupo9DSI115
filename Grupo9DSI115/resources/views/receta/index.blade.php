@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Receta
+RECETAS MEDICAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Recetas
+Recetas Medicas
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -142,9 +142,9 @@ Recetas
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
-                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>                    
+                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                     <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
-                    <!--- 
+                    <!---
                     <a class="btn btn-success"data-toggle="modal" id="nuevo"
                         data-target="#mediumModal" data-attr="#myModal2" title="Create a project">
                         Crear nueva versión
@@ -155,10 +155,10 @@ Recetas
                         Registrar receta
                     </a>
                     --->
-                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.create') }}" 
+                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.create') }}"
                         class="btn btn-success">Crear nueva versión
                     </a>
-                    
+
                 </div>
             </div>
         </div>
@@ -272,7 +272,7 @@ Recetas
 
                     case 'r':
                         b.innerHTML = "Anular receta";
-                        
+
                         var eliminar = document.getElementById("eliminar");
                         var nuevo = document.getElementById("nuevo");
                         var counter = 5;
@@ -296,7 +296,7 @@ Recetas
                             }
                         }, 1000);
 
-                        
+
                         break;
 
                     default:
@@ -355,7 +355,7 @@ Recetas
                 }
             }
 
-            
+
     </script>
 
 @endsection

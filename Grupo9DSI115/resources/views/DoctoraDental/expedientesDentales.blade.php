@@ -2,7 +2,7 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Expedientes Dentales
+EXPEDIENTES DENTALES
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
@@ -72,7 +72,7 @@ Expedientes Dentales
                           </div>
                         </div>
                       </div>
-                        
+
                         <!--
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
@@ -86,7 +86,7 @@ Expedientes Dentales
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 										<th>Apellido</th>
 										<th>Telefono</th>
@@ -106,7 +106,7 @@ Expedientes Dentales
                                                 <td>{{ $paciente->telefonoCelular }}</td>
                                                 <td>{{ $paciente->fechaDeNacimiento }}</td>
                                             @endif
-                                            
+
                                             @endforeach
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
@@ -172,7 +172,7 @@ Expedientes Dentales
                         @else
                             $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                         @endif
-                    @enderror 
+                    @enderror
 
                     @if ($key == 'sexo_id')
                         @if (old($key)==1)
@@ -245,7 +245,7 @@ Expedientes Dentales
                 case 't':
                     b.innerHTML = "";
                     break;
-                
+
                 case 'r':
                     b.innerHTML = "";
                     break;

@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Usuario
+USUARIOS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Registrar Usuario
+Listado de Usuario
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -51,13 +51,13 @@ Registrar Usuario
                                         }, 5000);
                                     </script>
                                 @endif
-                                
+
                             </div>
                           </div>
                         </div>
                       </div>
-                        
-                        
+
+
                         <!--
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
@@ -71,7 +71,7 @@ Registrar Usuario
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 										<th>Email</th>
 										<th>Rol</th>
@@ -90,9 +90,9 @@ Registrar Usuario
                                                 <td>{{ $r->nombreRol }}</td>
                                             @endif
                                             @endforeach
-											
+
                                             <td>
-                                                
+
 
                                                     {{-- <a class="btn btn-sm btn-primary " href="{{ route('usuarios.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a> --}}
                                                     <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
@@ -136,7 +136,7 @@ Registrar Usuario
             <div class="modal-content bg-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
-                        
+
                     </h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
