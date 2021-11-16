@@ -77,8 +77,8 @@
                                     <tr>
                                         <th scope="row">{{ ++$i }}</th>
                                         <td>{{$collecionConsulta['fecha']}}</td>
-                                        <td>{{ $collecionConsulta['peso'] }}</td>
-                                        <td>{{ $collecionConsulta['frecuencia_cardiaca'] }}</td>
+                                        <td>{{ $collecionConsulta['peso'] }} Kg</td>
+                                        <td>{{ $collecionConsulta['frecuencia_cardiaca'] }} latidos/minuto</td>
                                         <td>{{$collecionConsulta['descripcion']}}</td>
                                     </tr>
                                     @endforeach

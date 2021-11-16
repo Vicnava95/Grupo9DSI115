@@ -225,8 +225,8 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
                             <tr>
                                 <th scope="row">{{ ++$i }}</th>
                                 <td>{{$collecionConsulta['fecha']}}</td>
-                                <td>{{ $collecionConsulta['peso'] }}</td>
-                                <td>{{ $collecionConsulta['frecuencia_cardiaca'] }}</td>
+                                <td>{{ $collecionConsulta['peso'] }} Kg</td>
+                                <td>{{ $collecionConsulta['frecuencia_cardiaca'] }} latidos/minuto</td>
                                 <td>{{$collecionConsulta['descripcion']}}</td>
                                 <td>
                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton"
