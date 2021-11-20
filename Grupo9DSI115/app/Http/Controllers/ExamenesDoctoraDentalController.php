@@ -57,7 +57,7 @@ class ExamenesDoctoraDentalController extends Controller
         $examenesDoctoraDental = ExamenesDoctoraDental::create($input);
 
         return redirect()->route('examenesDentales.index')
-            ->with('success', 'ExamenesDoctoraDental created successfully.');
+            ->with('success', 'Examen creado satisfactoriamente.');
     }
 
     /**
@@ -110,7 +110,7 @@ class ExamenesDoctoraDentalController extends Controller
         $examenesDentale->update($input);
 
         return redirect()->route('examenesDentales.index')
-            ->with('success', 'ExamenesDoctoraDental updated successfully');
+            ->with('success', 'Examen actualizado satisfactoriamente');
     }
 
     public function delete($id)
@@ -129,6 +129,6 @@ class ExamenesDoctoraDentalController extends Controller
         $examenesDoctoraDental = ExamenesDoctoraDental::find($id)->delete();
 
         return redirect()->route('examenesDentales.index')
-            ->with('success', 'ExamenesDoctoraDental deleted successfully');
+            ->with('success', 'Examen eliminado satisfactoriamente');
     }
 }

@@ -27,10 +27,18 @@ class Pago extends Model
     
     static $rules = [
 		'descripcion' => 'required',
-		'costo' => 'required|integer|min:0',
+		'costo' => 'required|regex:/^\d+(\.\d{1,2})?$/',
 		'fecha' => 'required',
 		//'estado_pago_id' => 'required|integer|exists:estado_pagos,id',
 		'expediente_doctora_dental_id' => 'required|integer|exists:expediente_doctora_dentals,id',
+    ];
+
+    static $rulesWithoutExpedienteDoctoraDental = [
+		'descripcion' => 'required',
+		'costo' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+		'fecha' => 'required',
+		//'estado_pago_id' => 'required|integer|exists:estado_pagos,id',
+		//'expediente_doctora_dental_id' => 'required|integer|exists:expediente_doctora_dentals,id',
     ];
 
     protected $perPage = 20;

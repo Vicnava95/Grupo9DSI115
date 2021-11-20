@@ -2,7 +2,7 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Abonos
+ABONOS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
@@ -12,7 +12,7 @@ Listado de abonos
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-    
+
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -37,7 +37,7 @@ Listado de abonos
                               </div>
                         </div>
                     </div>
-                    
+
                         <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content bg-dark">
@@ -52,7 +52,7 @@ Listado de abonos
                                             }, 5000);
                                         </script>
                                     @endif
-                                    
+
                                     @if ($message = Session::get('error'))
                                         <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
                                         <p class="text-white text-center">{{ $message }}</p>
@@ -74,7 +74,7 @@ Listado de abonos
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Monto</th>
 										<th>Pago</th>
 
@@ -85,7 +85,7 @@ Listado de abonos
                                     @foreach ($abonos as $abono)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>${{ $abono->monto }}</td>
 											<td>{{ $abono->Pago->descripcion }}</td>
 

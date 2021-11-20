@@ -21,7 +21,10 @@ class PagoController extends Controller
     public function index()
     {
         $pagos = Pago::paginate();
-
+        
+        foreach ($pagos as $pago) {
+            $pago['abono'] = Abono::select('*')->where('pago_id',$pago->id)->get()->sum('monto');
+        }
         return view('pago.index', compact('pagos'))
             ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
     }
@@ -51,7 +54,7 @@ class PagoController extends Controller
         $pago = Pago::create($request->all());
 
         return redirect()->route('pagos.index')
-            ->with('success', 'Pago created successfully.');
+            ->with('success', 'Pago creado satisfactoriamente.');
     }
 
     /**
@@ -98,7 +101,7 @@ class PagoController extends Controller
             else
                 $pago->update(['estado_pago_id'=>'2']);
             return redirect()->route('pagos.index')
-                ->with('success', 'Pago updated successfully');
+                ->with('success', 'Pago actualizado satisfactoriamente');
         } else{
         return redirect()->route('pagos.index')
             ->with('error', 'El pago no se puede actualizar. El total de abono es de $'.$abonos);
@@ -121,6 +124,6 @@ class PagoController extends Controller
         $pago = Pago::find($id)->delete();
 
         return redirect()->route('pagos.index')
-            ->with('success', 'Pago deleted successfully');
+            ->with('success', 'Pago eliminado satisfactoriamente');
     }
 }

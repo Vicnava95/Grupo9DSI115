@@ -62,6 +62,11 @@
                             <strong>Doctor:</strong>
                             {{ $consulta->Persona->nombrePersonas }} {{ $consulta->Persona->apellidoPersonas }}
                         </div>
+                        <div class="form-group float-right">
+                            <a class="btn btn-primary text-white" href="{{ route('consultas.imprimir', $consulta->id) }}" target="_blank">Ver</a>
+                            <a class="btn btn-primary text-white" href="{{ route('consultas.descargar', $consulta->id) }}" target="_blank">Descargar</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

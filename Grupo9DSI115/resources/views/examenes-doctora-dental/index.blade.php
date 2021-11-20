@@ -2,17 +2,17 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Examenes doctor dental
+EXAMENES DENTALES
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Examenes doctor dental
+Listado de examenes dentales
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-    
+
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -63,11 +63,10 @@ Examenes doctor dental
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>
-										<th>Expediente</th>
 
                                         <th></th>
                                     </tr>
@@ -79,7 +78,6 @@ Examenes doctor dental
                                             <td><a href="/examenesDentalesImagenes/{{ $examenesDoctoraDental->imagen }}" target="_blank">{{ $examenesDoctoraDental->imagen }}</a></td>
 											<td>{{ $examenesDoctoraDental->fecha }}</td>
 											<td>{{ $examenesDoctoraDental->descripcion }}</td>
-											<td>{{ $examenesDoctoraDental->expediente_doctora_dental_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"
@@ -143,7 +141,7 @@ Examenes doctor dental
             let href=localStorage.getItem('formulario');
             mostrarModal(href)
                 setTimeout(function(){
-                @foreach ($examen->getAttributes() as $key => $value)
+                @foreach ($examenesDoctoraDental->getAttributes() as $key => $value)
                     @error($key)
                         $("[name='{{$key}}']").addClass('is-invalid').parent().append('<div class="invalid-feedback"><p>{{$message}}</p></div>')
                     @enderror

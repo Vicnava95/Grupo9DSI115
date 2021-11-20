@@ -34,7 +34,10 @@
                             <strong>Extendida por:</strong>
                             Doctor {{ $receta->Consulta->Persona->nombrePersonas }}{{ $receta->Consulta->Persona->apellidoPersonas }}
                         </div>
-
+                        <div class="form-group float-right">
+                            <a class="btn btn-primary text-white" href="{{ route('recetas.imprimir', $receta->id) }}" target="_blank">Ver</a>
+                            <a class="btn btn-primary text-white" href="{{ route('recetas.descargar', $receta->id) }}" target="_blank">Descargar</a>
+                        </div>
                     </div>
                 </div>
             </div>

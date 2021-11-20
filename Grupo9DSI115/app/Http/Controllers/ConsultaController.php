@@ -153,6 +153,14 @@ class ConsultaController extends Controller
         return $pdf->stream();
     }
 
+    public function descargar($id)
+    {
+        $consulta = Consulta::find($id);
+        $fecha = Carbon::now()->format('Y-m-d');
+        $pdf = PDF::loadView('pdf.consulta', compact('consulta', 'fecha'));
+        return $pdf->download('consulta.pdf');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

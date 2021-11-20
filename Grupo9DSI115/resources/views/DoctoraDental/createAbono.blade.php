@@ -6,13 +6,14 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">Examen</span>
+                    <span class="card-title">Abono</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" id="formCreate" action="{{ route('examenesDentales.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" id="formCreate" action="{{ route('storeAbonoExpedienteDental', ['idPaciente'=>$idPaciente,'idPago' => $idPago]) }}"  role="form" enctype="multipart/form-data">
                         @csrf
 
-                        @include('examenes-doctora-dental.form')
+                        @include('DoctoraDental.formAbono')
+
                     </form>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Pago;
 use App\Models\Abono;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class AbonoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Abono::$rules);
-
+        $request->request->add(['fecha'=> Carbon::today('America/El_Salvador')->format('Y-m-d')]);
         $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->get()->sum('monto');
         $totalAbonos = $abonos + $request->get('monto');
         $pago = Pago::where('id', $request->get('pago_id'))->first();
@@ -63,10 +64,8 @@ class AbonoController extends Controller
             if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
             else $pago->update(['estado_pago_id'=>'2']);
             return redirect()->route('abonos.index')
-            ->with('success', 'Abono created successfully.');
+            ->with('success', 'Abono creado satisfactoriamente.');
         }
-
-        
     }
 
     /**
@@ -105,26 +104,22 @@ class AbonoController extends Controller
     public function update(Request $request, Abono $abono)
     {
         request()->validate(Abono::$rules);
-        
+        $request->request->add(['fecha'=> Carbon::today('America/El_Salvador')->format('Y-m-d')]);
         $abonos = Abono::select('*')->where('pago_id',$request->get('pago_id'))->where('id','!=',$abono->id)->get()->sum('monto');
         $totalAbonos = $abonos + $request->get('monto');
         $pago = Pago::where('id', $request->get('pago_id'))->first();
         $pagoTotal = $pago->costo;
         $faltante = $pagoTotal - $abonos;
         if ($totalAbonos>$pagoTotal) {
-            return redirect()->route('abonos.index')
+            return redirect()->back()
             ->with('error', 'El abono a actualizar supera el pago total. Para completar el pago hace falta $'.$faltante);
         }else{
             $abono->update($request->all());
             if($pagoTotal==$totalAbonos) $pago->update(['estado_pago_id'=>'1']);
             else $pago->update(['estado_pago_id'=>'2']);
-            return redirect()->route('abonos.index')
-            ->with('success', 'Abono updated successfully');
+            return redirect()->back()
+            ->with('success', 'Abono actualizado satisfactoriamente');
         }
-
-        
-
-        
     }
 
     public function delete($id)
@@ -143,6 +138,6 @@ class AbonoController extends Controller
         $abono = Abono::find($id)->delete();
 
         return redirect()->route('abonos.index')
-            ->with('success', 'Abono deleted successfully');
+            ->with('success', 'Abono eliminado satisfactoriamente');
     }
 }

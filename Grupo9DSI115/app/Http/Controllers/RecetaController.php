@@ -131,6 +131,17 @@ class RecetaController extends Controller
         return $pdf->stream();
     }
 
+    public function descargar($id)
+    {
+        $receta = Receta::find($id);
+        $fecha = Carbon::now()->format('Y-m-d');
+        $pdf = PDF::loadView('pdf.receta', compact('receta', 'fecha'));
+        return $pdf->download('receeta.pdf');
+    }
+
+
+    
+
     /**
      * Show the form for editing the specified resource.
      *
