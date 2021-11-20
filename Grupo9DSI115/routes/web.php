@@ -21,6 +21,10 @@ use App\Sexo;
     return view('DoctoraDental.DashboardDoctoraDental');
 });*/
 
+//Rutas de los reportes
+Route::resource('reportes', 'ReporteController');
+Route::get('reporteCitas', 'ReporteController@reporteCitas')->name('citas.reporteCitas');
+
 Route::resource('abonos', 'AbonoController');
 Route::get('abonos/{abono}/borrar', 'AbonoController@delete')->name('abonos.delete');
 
