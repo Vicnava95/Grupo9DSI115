@@ -2,17 +2,17 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Examenes doctor dental
+EXAMENES DENTALES
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Examenes doctor dental
+Listado de examenes dentales
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-    
+
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -63,7 +63,7 @@ Examenes doctor dental
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>

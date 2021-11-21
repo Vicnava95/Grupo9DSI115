@@ -8,6 +8,9 @@ CITAS
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
 Listado de Citas
+
+<a class="btn btn-secondary float-right text-white"  href="{{route('citas.reporteCitas') }}" >Reporte de citas</a>
+
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
