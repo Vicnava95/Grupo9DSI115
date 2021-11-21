@@ -296,23 +296,6 @@
                 @endif
 
                 <!-- Pacientes-->
-                {{-- <li class="nav-item">
-                    <a href=" {{ route('examenesGenerales.index') }}">
-                        <i class="fas fa-file-medical-alt"></i>
-                        <p>Examenes</p>
-                    </a>
-                </li>
-                @break
-                @default
-                <li class="nav-item">
-                    <a href="{{ route('examenesDentales.index') }} ">
-                        <i class="fas fa-file-medical-alt"></i>
-                        <p>Examenes</p>
-                    </a>
-                </li>
-                @endswitch
-                @endif --}}
-
 
                 <!-- Pagos-->
                 @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
