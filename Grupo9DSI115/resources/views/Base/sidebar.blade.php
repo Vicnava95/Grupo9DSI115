@@ -296,7 +296,7 @@
                 @endif
 
                 <!-- Pacientes-->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href=" {{ route('examenesGenerales.index') }}">
                         <i class="fas fa-file-medical-alt"></i>
                         <p>Examenes</p>
@@ -311,7 +311,7 @@
                     </a>
                 </li>
                 @endswitch
-                @endif
+                @endif --}}
 
 
                 <!-- Pagos-->

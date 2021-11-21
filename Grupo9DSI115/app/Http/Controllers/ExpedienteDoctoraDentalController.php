@@ -294,13 +294,16 @@ class ExpedienteDoctoraDentalController extends Controller
         return view('DoctoraDental.showAbonos', compact('abonos'));
     }
 
+    /**************************************************************** */
     //Diente - Tratamiento
-    public function showDiente($idDiente , $fecha){
+    public function showDiente($idDiente , $fecha, $idPaciente){
         $n = 1;
         $diente = Diente::find($idDiente);
-        $tratamientos = Tratamiento::where('diente_id',$diente->id)->get();
+        $tratamientos = Tratamiento::where('diente_id',$diente->id)
+                                    ->orderBy('created_at','desc')
+                                    ->get();
         //dd($tratamientos);
-        return view('DoctoraDental.modalDiente',compact('diente','tratamientos','fecha','n')); 
+        return view('DoctoraDental.modalDiente',compact('diente','tratamientos','fecha','n','idPaciente')); 
     }
 
     public function storeTratamiento(Request $request, $idDiente, $fecha){
@@ -312,6 +315,29 @@ class ExpedienteDoctoraDentalController extends Controller
         $tratamiento->save(); 
         return redirect()->back()
             ->with('success', 'Tratamiento creado satisfactoriamente.');
+    }
+
+    public function editTratamiento($idPaciente, Tratamiento $idTratamiento){
+        $expedienteDental = ExpedienteDoctoraDental::where('paciente_id', $idPaciente)->get();
+        $paciente = Paciente::find($idPaciente);
+        //dd($idTratamiento);
+        return view('DoctoraDental.editTratamiento',compact('idTratamiento','expedienteDental','paciente'));
+    }
+
+    public function updateTratamiento(Tratamiento $tratamiento, $idExpediente){
+        $tratamiento->update([
+            'descripcion' => request('descripcion')
+        ]);
+        $tratamiento->save();
+        return redirect()->route('ExpedientePacienteDoctoraDental',$idExpediente)
+            ->with('success', 'Tratamiento actualizado satisfactoriamente.');
+    }
+
+    public function destroyTratamiento($idTratamiento){
+        $tratamiento = Tratamiento::find($idTratamiento);
+        $tratamiento->delete();
+        return redirect()->back()
+            ->with('success', 'Tratamiento eliminado satisfactoriamente.');
     }
 
 }
