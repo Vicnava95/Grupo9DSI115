@@ -43,8 +43,8 @@
             </td>
             <td class="text-center">
                 Dr. {{ $consulta->Persona->apellidoPersonas }}, {{ $consulta->Persona->nombrePersonas }}<br>
-                J.V.P.O. No. 5488<br>
-                ODONTOLOGIA GENERAL E INFANTIL<br>
+                J.V.P.O. No. 16093<br>
+                Doctor en Medicina Ulceras y Heridas<br>
                 3 Caller Poniente, Barrio el Carnmen detras del cuartel, Zacatecoluca.<br>
                 Tel.: 2334-0725 Cel.: 7745-1655
             </td>
@@ -58,23 +58,23 @@
         </tr>
         <tr>
             <td class="padding-top">Peso:</td>
-            <td class="padding-top" colspan="2">{{ $consulta->peso }}</td>
+            <td class="padding-top" colspan="2">{{ $consulta->peso }} Kg</td>
         </tr>
         <tr>
             <td>Presión:</td>
-            <td colspan="2">{{ $consulta->presion }}</td>
+            <td colspan="2">{{ $consulta->presion }} mmHg</td>
         </tr>
         <tr>
             <td>Temperatura:</td>
-            <td colspan="2">{{ $consulta->temperatura }}</td>
+            <td colspan="2">{{ $consulta->temperatura }} ºC</td>
         </tr>
         <tr>
             <td>Frecuencia cardiaca:</td>
-            <td colspan="2">{{ $consulta->frecuencia_cardiaca }}</td>
+            <td colspan="2">{{ $consulta->frecuencia_cardiaca }} pulsaciones/minuto</td>
         </tr>
         <tr>
             <td>Frecuencia respiratoria:</td>
-            <td colspan="2">{{ $consulta->frecuencia_respiratoria }}</td>
+            <td colspan="2">{{ $consulta->frecuencia_respiratoria }} respiraciones/minuto</td>
         </tr>
         <tr>
             <td>Descripcion:</td>

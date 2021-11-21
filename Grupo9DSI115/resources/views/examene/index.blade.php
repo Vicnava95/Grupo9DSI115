@@ -2,12 +2,12 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Examenes
+Examenes doctor general
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de examenes
+Listado de examenes generales
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -25,7 +25,7 @@ Listado de examenes
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Examen') }}
+                                {{ __('Examenes generales') }}
                             </span>
 
                              <div class="float-right">
@@ -68,7 +68,6 @@ Listado de examenes
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>
-										<th>Consulta</th>
 
                                         <th></th>
                                     </tr>
@@ -81,7 +80,6 @@ Listado de examenes
 											<td><a href="/examenesGeneralesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
 											<td>{{ $examen->fecha }}</td>
 											<td>{{ $examen->descripcion }}</td>
-											<td>{{ $examen->consulta_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"

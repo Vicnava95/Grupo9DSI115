@@ -31,7 +31,7 @@
                         {{ $examenesDoctoraDental->descripcion }}
                     </div>
                     <div class="form-group">
-                        <strong>Expediente Doctora Dental Id:</strong>
+                        <strong>Expediente dental:</strong>
                         {{ $examenesDoctoraDental->expediente_doctora_dental_id }}
                     </div>
 

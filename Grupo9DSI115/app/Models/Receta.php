@@ -32,6 +32,13 @@ class Receta extends Model
         'estadoReceta_id' => 'required|integer|exists:estado_recetas,id',
     ];
 
+    static $rulesWithoutEstadoReceta = [
+		'descripcion' => 'required|max:255|string',
+		'fecha' => 'required|date',
+        'proximaCita'=> 'nullable|date|after_or_equal:fecha',
+		'consulta_id' => 'required|integer|exists:consultas,id'
+    ];
+
     protected $perPage = 20;
 
     /**

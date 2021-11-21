@@ -25,7 +25,7 @@ Examenes doctor dental
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Examenes Doctora Dental') }}
+                                {{ __('Examenes dentales') }}
                             </span>
 
                              <div class="float-right">
