@@ -2,7 +2,7 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-PERSONAS
+Personas
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->

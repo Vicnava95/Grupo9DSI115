@@ -60,7 +60,7 @@
             </div>
         </div>
         {{--@if (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)--}}
-            <!-- <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-4' }} col-12"> -->
+            <!-- <div class="{{ (Auth::user()->rols_fk!=3 && Auth::user()->rols_fk!=2)? 'col-md-6' : 'col-md-4' }} col-12"> 
                 <div class="form-group" id="estado">
                     {{ Form::label('Estado*') }}
                        <select class="form-control custom-select custom-select-m bg-dark" style="color:lightgray" name="persona_id">
@@ -76,7 +76,7 @@
                      
                      {!! $errors->first('estadoReceta_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
-            <!-- </div> -->
+             </div> -->
         {{--@endif--}}
     </div>
     {{--<div class="box-footer mt20">

@@ -2,12 +2,13 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Registrar Receta
+RECETAS MEDICAS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Recetas
+Recetas Medicas
+<a class="btn btn-secondary float-right text-white"  href="{{route('recetas.reporteRecetas') }}" >Reporte de Recetas</a>
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -142,9 +143,9 @@ Recetas
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
-                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>                    
+                    <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                     <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
-                    <!--- 
+                    <!---
                     <a class="btn btn-success"data-toggle="modal" id="nuevo"
                         data-target="#mediumModal" data-attr="#myModal2" title="Create a project">
                         Crear nueva versión
@@ -155,10 +156,10 @@ Recetas
                         Registrar receta
                     </a>
                     --->
-                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.create') }}" 
+                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.create') }}"
                         class="btn btn-success">Crear nueva versión
                     </a>
-                    
+
                 </div>
             </div>
         </div>
@@ -175,21 +176,23 @@ Recetas
 	<div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content bg-dark">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-                        <---Titulo--->
-                    </h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-        </div><div class="container"></div>
-            <div class="modal-body" id="mediumBody">
+            <h5 class="modal-title" id="exampleModalLongTitle2">
+                <---Titulo--->
+            </h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="container"></div>
+            <div class="modal-body" id="mediumBody2">
                 <div>
                         <!-- the result to be displayed apply here -->
+                        NUEVA VERSIÓN
                 </div>
             </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
+          <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Registrar</button>
         </div>
       </div>
     </div>
@@ -209,11 +212,22 @@ Recetas
                 },500);
             @endif
 
-
             // display a modal (medium modal)
             $(document).on('click', '#mediumButton', function(event) {
                 event.preventDefault();
                 let href = $(this).attr('data-attr');
+                
+                var id = href.charAt(30);
+                var id2 = href.charAt(31);
+
+                var ascii = id2.charCodeAt(0);
+
+                if (ascii > 48 && ascii < 57){
+                    id = id + id2;
+                }
+
+                alert(id);
+                
                 mostrarModal(href)
                 localStorage.setItem('formulario', href);
             });
@@ -272,7 +286,7 @@ Recetas
 
                     case 'r':
                         b.innerHTML = "Anular receta";
-                        
+
                         var eliminar = document.getElementById("eliminar");
                         var nuevo = document.getElementById("nuevo");
                         var counter = 5;
@@ -296,7 +310,7 @@ Recetas
                             }
                         }, 1000);
 
-                        
+
                         break;
 
                     default:
@@ -310,7 +324,7 @@ Recetas
                 event.preventDefault();
                 let href = $(this).attr('data-attr');
                 mostrarModal2(href)
-                localStorage.setItem('formulario', href);
+                //localStorage.setItem('formulario', href);
             });
 
             function mostrarModal2(href) {
@@ -323,7 +337,7 @@ Recetas
                     // return the result
                     success: function(result) {
                         $('#myModal2').modal("show");
-                        $('#mediumBody').html(result).show();
+                        $('#mediumBody2').html(result).show();
                     },
                     complete: function() {
                         $('#loader').hide();
@@ -338,24 +352,23 @@ Recetas
                 })
 
                 var letra = href.charAt(href.length - 1);
-                var b = document.getElementById('exampleModalLongTitle');
+                var b = document.getElementById('exampleModalLongTitle2');
 
-                if (letra != 'e') {
-                    document.getElementById('registrar').style.display = 'none';
+                //var id = href.charAt(href.length - 8);
+                //alert(id);
+
+                if (letra != 't') {
+                    document.getElementById('editar').style.display = 'none';
                 }
 
                 switch (letra) {
-                    case 'e':
-                        b.innerHTML = "Registrar receta";
-                        break;
-
-                    default:
-                        b.innerHTML = "Mostrar receta";
+                    case 't':
+                        b.innerHTML = "Registrar receta (Nueva Versión)";
                         break;
                 }
             }
 
-            
+
     </script>
 
 @endsection

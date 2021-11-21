@@ -2,17 +2,17 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Examenes doctor general
+EXAMENES MEDICOS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de examenes generales
+Listado de examenes medicos
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-    
+
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -64,7 +64,7 @@ Listado de examenes generales
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Imagen</th>
 										<th>Fecha</th>
 										<th>Descripcion</th>
@@ -76,7 +76,7 @@ Listado de examenes generales
                                     @foreach ($examenes as $examen)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td><a href="/examenesGeneralesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
 											<td>{{ $examen->fecha }}</td>
 											<td>{{ $examen->descripcion }}</td>

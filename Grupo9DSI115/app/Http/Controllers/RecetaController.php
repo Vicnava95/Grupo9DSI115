@@ -166,9 +166,14 @@ class RecetaController extends Controller
      */
     public function update(Request $request, Receta $receta)
     {
-        request()->validate(Receta::$rules);
+        
+        $request->request->add(['estadoReceta_id'=> strval(1)]);
+        request()->validate(Receta::$rules); 
+        
+        //request()->validate(Receta::$rules);
 
-        $receta->update($request->all());
+        //$receta->update($request->all());
+        $receta = Receta::create($request->all());
 
         return redirect()->route('recetas.index')
             ->with('success', 'Receta actualizada satisfactoriamente');
@@ -183,6 +188,8 @@ class RecetaController extends Controller
     public function delete($id)
     {
         $receta = Receta::find($id);
+        $datos = Receta::select('*')
+                ->get();
 
     return view('receta.destroy', compact('receta'));
     }

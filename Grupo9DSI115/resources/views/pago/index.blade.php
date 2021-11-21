@@ -2,7 +2,7 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Pagos
+PAGOS
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
@@ -12,7 +12,7 @@ Listado de pagos
 
 <!-- descripcion para el cuerpo de la pagina web-->
 @section('descripcion')
-    
+
 @endsection
 
 <!-- Agregar contenido de la pagina web-->
@@ -51,7 +51,7 @@ Listado de pagos
                                         }, 5000);
                                     </script>
                                 @endif
-                                
+
                                 @if ($message = Session::get('error'))
                                     <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
                                     <p class="text-white text-center">{{ $message }}</p>
@@ -73,7 +73,7 @@ Listado de pagos
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Descripcion</th>
 										<th>Costo</th>
                                         <th>Abono</th>
@@ -88,7 +88,7 @@ Listado de pagos
                                     @foreach ($pagos as $pago)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $pago->descripcion }}</td>
 											<td>${{ $pago->costo }}</td>
                                             <td>${{ $pago->abono }}</td>
@@ -174,7 +174,7 @@ Listado de pagos
                 </div>
                 <div class="modal-body" id="mediumBody2">
                     <div>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -200,7 +200,7 @@ Listado de pagos
                 </div>
                 <div class="modal-body" id="mediumBody3">
                     <div>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -214,13 +214,13 @@ Listado de pagos
     <script>
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
-                console.log('{{$errors}}')    
+                console.log('{{$errors}}')
                 @if ($errors->has('monto'))
                     mostrarModal3(href)
                 @else
                     mostrarModal(href)
                 @endif
-            
+
                 setTimeout(function(){
                 @foreach ($errors->getMessages() as $key => $value)
                     @error($key)
@@ -326,7 +326,7 @@ Listado de pagos
                     $('#mediumModal2').modal("show");
                     $('#mediumBody2').html(result).show();
                     $('#mediumModal').modal("hide");
-                    
+
                 },
                 complete: function() {
                     $('#loader').hide();
@@ -351,7 +351,7 @@ Listado de pagos
                     $('#mediumModal3').modal("show");
                     $('#mediumBody3').html(result).show();
                     $('#mediumModal2').modal("hide");
-                    
+
                 },
                 complete: function() {
                     $('#loader').hide();

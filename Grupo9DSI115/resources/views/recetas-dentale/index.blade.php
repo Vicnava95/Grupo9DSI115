@@ -2,7 +2,7 @@
 
 <!-- Titulo del head de la pagina-->
 @section('tituloPagnia')
-Recetas Dentales
+RECETAS DENTALES
 @endsection
 
 <!-- Titulo para el cuerpo de la pagina web-->
