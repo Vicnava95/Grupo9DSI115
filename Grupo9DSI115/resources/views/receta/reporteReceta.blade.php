@@ -21,7 +21,7 @@
     }
 </style>
     <div class="container-fluid">
-        <h3>REPORTE DE PRÓXIMAS CITAS</h3>
+        <h3>REPORTE DE RECETAS Y PRÓXIMAS CITAS</h3>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -34,24 +34,19 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-                                        <th>Paciente</th>
-                                        <th>Fecha</th>
-										<th>Hora</th>
-                                        <th>Estado</th>
-                                        <th>Doctor</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha emisión</th>
+										<th>Próxima cita</th>
                                     
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @foreach ($citas as $cita)
+                                        @foreach ($recetas as $receta)
                                         <tr>
                                             <td>{{++$i}}</td> 
-                                            <td>{{ $cita->nombres }} {{ $cita->apellidos  }}</td> 
-                                            <td>{{ $cita->fecha }}</td> 
-                                            <td>{{ $cita->hora }}</td> 
-                                            <td>{{ $cita->nombre }}</td> 
-                                            <td>{{ $cita->nombrePersonas }} {{ $cita->apellidoPersonas }}</td>
+                                            <td>{{ $receta->descripcion }}</td> 
+                                            <td>{{ $receta->fecha }}</td> 
+                                            <td>{{ $receta->proximaCita }}</td> 
                                         </tr>
                                         @endforeach    
                                 </tbody>
