@@ -26,7 +26,7 @@
                         {{ $cita->hora }}
                     </div>
                     <div class="form-group">
-                        <strong>Estadocita Id:</strong>
+                        <strong>Estado de la cita:</strong>
                         {{ $cita->EstadoCita->nombre }}
                     </div>
                 </div>

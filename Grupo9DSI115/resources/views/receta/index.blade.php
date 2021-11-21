@@ -7,7 +7,7 @@ RECETAS MEDICAS
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Recetas Medicas
+Recetas Médicas
 <a class="btn btn-secondary float-right text-white"  href="{{route('recetas.reporteRecetas') }}" >Reporte de Recetas</a>
 @endsection
 

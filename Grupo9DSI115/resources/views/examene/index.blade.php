@@ -7,7 +7,7 @@ EXAMENES MEDICOS
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de examenes medicos
+Listado de exámenes médicos
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -67,7 +67,7 @@ Listado de examenes medicos
 
 										<th>Imagen</th>
 										<th>Fecha</th>
-										<th>Descripcion</th>
+										<th>Descripción</th>
 
                                         <th></th>
                                     </tr>

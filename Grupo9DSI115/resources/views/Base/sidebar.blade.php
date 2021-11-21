@@ -168,7 +168,7 @@
                 <li class="nav-item">
                     <a href="{{route('consultas.index')}}">
                         <i class="fas fa-stethoscope"></i>
-                        <p>Consultas</p>
+                        <p>Consultas Médicas</p>
                     </a>
                 </li>
                 @endif
@@ -178,7 +178,7 @@
                 <li class="nav-item">
                     <a href="#">
                         <i class="fas fa-procedures"></i>
-                        <p>Tratamientos</p>
+                        <p>Tratamientos Dentales</p>
                     </a>
                 </li>
                 @endif
@@ -198,7 +198,7 @@
                             <li>
                                 <a href=" {{ route('recetas.index') }} ">
                                     <i class="fas fa-user-md"></i>
-                                    <span class="sub-item">Medicas</span>
+                                    <span class="sub-item">Médicas</span>
                                 </a>
                             </li>
                             <li>
@@ -286,14 +286,14 @@
                 @endif
 
                 <!--Abonos-->
-                @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
+                {{-- @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
                 <li class="nav-item">
                     <a href="{{route('abonos.index')}}">
                         <i class="fas fa-money-check-alt"></i>
                         <p>Abonos</p>
                     </a>
                 </li>
-                @endif
+                @endif --}}
 
                 <!-- Pacientes-->
                 <li class="nav-item">
