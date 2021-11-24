@@ -160,6 +160,12 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/expedienteDentalStorePaciente', 'ExpedienteDoctoraDentalController@storePaciente')->name('expedienteDentalStorePaciente');
         Route::get('/crearRecetaExpedienteDental/{idCita}','ExpedienteDoctoraDentalController@createReceta')->name('crearRecetaExpedienteDental');
         Route::post('/storeRecetaExpedienteDental','ExpedienteDoctoraDentalController@storeReceta')->name('storeRecetaExpedienteDental');
+
+
+        Route::get('/crearExamenExpedienteDental/{idExpediente}','ExpedienteDoctoraDentalController@createExamen')->name('crearExamenExpedienteDental');
+        Route::post('/storeExamenExpedienteDental/{idExpediente}','ExpedienteDoctoraDentalController@storeExamen')->name('storeExamenExpedienteDental');
+
+
         Route::resource('rDentales', 'RecetasDentaleController');
         Route::get('rDentales/{receta}/borrar', 'RecetasDentaleController@delete')->name('rDentales.delete');
         Route::get('rDentalesCreateExpediente/{idCita}','RecetasDentaleController@createReceta')->name('rDentalesRecetasExp');

@@ -29,6 +29,12 @@ class ExamenesDoctoraDental extends Model
       'expediente_doctora_dental_id' => 'required|integer|exists:expediente_doctora_dentals,id',
     ];
 
+    static $rulesWithoutExpediente = [
+      'imagen' => 'nullable|image|mimes:jpeg,png,jpg',//'required',
+      'fecha' => 'required',
+      'descripcion' => 'required'
+    ];
+
     protected $perPage = 20;
 
     /**

@@ -26,15 +26,19 @@
                                 <h2>{{$citaPaciente->fecha}}</h2>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('crearCitaDoctoraDental',$citaPaciente->paciente_id) }}">Crear Cita</a>
                                 </div>
-                                <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    data-attr="{{ route('crearExamenExpedienteDental',$expedientePaciente->id) }}">Crear Examen</a>
+                                </div>
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('rDentalesRecetasExp',$citaPaciente->id) }}">Crear Receta</a>
                                 </div>
-                                <div class="form-group col-md-4 col-12 d-flex justify-content-center align-items-end">
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
                                     data-attr="{{ route('createPagoExpedienteDental', $paciente->id) }}">Pagos</a>
                                 </div>

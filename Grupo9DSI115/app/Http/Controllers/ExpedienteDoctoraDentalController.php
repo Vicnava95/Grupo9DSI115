@@ -7,16 +7,17 @@ use Carbon\Carbon;
 use App\Models\Cita;
 use App\Models\Pago;
 use App\Models\Abono;
+use App\Models\Diente;
 use App\Models\Receta;
 use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
-use App\Models\Diente;
-use App\Models\Tratamiento;
 use App\Models\EstadoPago;
+use App\Models\Tratamiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ExamenesDoctoraDental;
 use App\Models\ExpedienteDoctoraDental;
 
 class ExpedienteDoctoraDentalController extends Controller
@@ -54,7 +55,7 @@ class ExpedienteDoctoraDentalController extends Controller
 
         $dientes = Diente::where('expedienteDental_id',$expedientePaciente->id)->get();
         //dd($dientes); 
-        return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas','pagos','dientes'));
+        return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas','pagos','dientes','expedientePaciente'));
     }
 
     public function crearConsulta(Request $request){
@@ -292,6 +293,34 @@ class ExpedienteDoctoraDentalController extends Controller
     {
         $abonos = Abono::where('pago_id', $idPago)->get();
         return view('DoctoraDental.showAbonos', compact('abonos'));
+    }
+
+
+    /***************************** */
+    //Examen
+    public function createExamen($idExpediente)
+    {
+        $examenesDoctoraDental = new ExamenesDoctoraDental();
+        return view('DoctoraDental.createExamen', compact('examenesDoctoraDental', 'idExpediente'));
+    }
+
+    public function storeExamen(Request $request, $idExpediente)
+    {
+        request()->validate(ExamenesDoctoraDental::$rulesWithoutExpediente);
+        $request->request->add(['expediente_doctora_dental_id'=> $idExpediente]);
+        $input = $request->all();
+
+        if ($imagen = $request->file('imagen')) {
+            $direccionDestino = 'examenesDentalesImagenes/';
+            $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($direccionDestino, $imagenExamen);
+            $input['imagen'] = "$imagenExamen";
+        }
+
+        $examenesDoctoraDental = ExamenesDoctoraDental::create($input);
+
+        return redirect()->back()
+            ->with('success', 'Examen creado satisfactoriamente.');
     }
 
     /**************************************************************** */
