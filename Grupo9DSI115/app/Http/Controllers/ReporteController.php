@@ -23,14 +23,14 @@ class ReporteController extends Controller
     public function reporteCitas()
     {        
         //Reporte de Citas Agendadas
-        $fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
+        //$fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
         $citas = DB::table('citas')
         ->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
         ->join('personas', 'citas.persona_id', '=', 'personas.id')
         ->join('estado_citas', 'citas.estadoCita_id', '=', 'estado_citas.id')
         ->select('pacientes.nombres', 'pacientes.apellidos', 'citas.fecha', 'citas.hora', 'estado_citas.nombre', 'personas.nombrePersonas', 'personas.apellidoPersonas')
-        ->whereDate('citas.fecha','>=', $fecha)
-        ->where('estado_citas.nombre', '!=', 'Finalizada')
+        /*->whereDate('citas.fecha','>=', $fecha)
+        ->where('estado_citas.nombre', '!=', 'Finalizada')*/
         ->orderBy('citas.fecha')
         ->orderBy('citas.hora')
         ->get();
