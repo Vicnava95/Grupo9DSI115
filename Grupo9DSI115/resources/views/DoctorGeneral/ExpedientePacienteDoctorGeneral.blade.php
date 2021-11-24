@@ -232,6 +232,13 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton"
                                         data-toggle="modal" data-target="#mediumModal"
                                         data-attr="{{ route('crearRecetaExpedienteGeneral',$collecionConsulta['id']) }}">
+                                        <i class="fas fa-receipt"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton"
+                                        data-toggle="modal" data-target="#mediumModal"
+                                        data-attr="{{ route('crearExamenExpedienteGeneral',$collecionConsulta['id']) }}">
                                         <i class="fas fa-file-medical-alt"></i>
                                     </a>
                                 </td>

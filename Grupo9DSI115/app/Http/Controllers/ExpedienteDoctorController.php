@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\ExpedienteDoctor;
-use App\Models\ExpedienteDoctoraDental;
-use App\Models\Cita;
-use App\Models\Paciente;
-use App\Models\Consulta;
-use App\Models\EstadoCita;
-use App\Models\Persona;
-use App\Models\Receta;
 use DB;
+use App\Models\Cita;
+use App\Models\Receta;
+use App\Models\Examene;
+use App\Models\Persona;
+use App\Models\Consulta;
+use App\Models\Paciente;
+use App\Models\EstadoCita;
+use Illuminate\Http\Request;
+use App\Models\ExpedienteDoctor;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ExpedienteDoctoraDental;
 
 class ExpedienteDoctorController extends Controller
 {
@@ -223,4 +224,30 @@ class ExpedienteDoctorController extends Controller
         return redirect()->back()
             ->with('success', 'Receta creada satisfactoriamente.');
     }
+
+    public function createExamen($idCita)
+    {
+        $examene = new Examene();
+        return view('DoctorGeneral.createExamen', compact('examene', 'idCita'));
+    }
+
+    public function storeExamen(Request $request, $idCita)
+    {
+        request()->validate(Examene::$rulesWithoutConsulta);
+        $request->request->add(['consulta_id'=> strval($idCita)]);
+        $input = $request->all();
+
+        if ($imagen = $request->file('imagen')) {
+            $direccionDestino = 'examenesGeneralesImagenes/';
+            $imagenExamen = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($direccionDestino, $imagenExamen);
+            $input['imagen'] = "$imagenExamen";
+        }
+
+        $examene = Examene::create($input);
+
+        return redirect()->back()
+            ->with('success', 'Examen creado satisfactoriamente.');
+    }
+
 }

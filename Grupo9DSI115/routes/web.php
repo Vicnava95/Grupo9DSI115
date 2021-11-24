@@ -139,6 +139,8 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/expedienteGeneralStorePaciente', 'ExpedienteDoctorController@storePaciente')->name('expedienteGeneralStorePaciente');
         Route::get('/crearRecetaExpedienteGeneral/{idCita}','ExpedienteDoctorController@createReceta')->name('crearRecetaExpedienteGeneral');
         Route::post('/storeRecetaExpedienteGeneral','ExpedienteDoctorController@storeReceta')->name('storeRecetaExpedienteGeneral');
+        Route::get('/crearExamenExpedienteGeneral/{idCita}','ExpedienteDoctorController@createExamen')->name('crearExamenExpedienteGeneral');
+        Route::post('/storeExamenExpedienteGeneral/{idCita}','ExpedienteDoctorController@storeExamen')->name('storeExamenExpedienteGeneral');
         Route::get('/doctorGeneral',function(){
             return view('Prueba.doctorGeneral');
         })->name('doctorGeneral');
