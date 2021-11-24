@@ -29,11 +29,7 @@ Listado de pagos
                             </span>
 
                              <div class="float-right">
-                                <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
-                                    id="mediumButton" data-target="#mediumModal"
-                                    data-attr="{{ route('pagos.create') }}" title="Create a project">
-                                    Registrar pago
-                                </a>
+                                
                               </div>
                         </div>
                     </div>
@@ -117,6 +113,12 @@ Listado de pagos
                                                         href="#" role="button"                                      data-attr="{{ route('showAbonosExpedienteDental', $pago->id) }}"
                                                         >
                                                         <i class="fas fa-list-alt"></i>
+                                                </a>
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
+                                                        data-target="#mediumModal"
+                                                        href="#" role="button" data-abono="abono" data-attr="{{ route('createAbonoExpedienteDental',['idPaciente'=>$pago->expediente_doctora_dental_id,'idPago' => $pago->id]) }}"
+                                                        >
+                                                        <i class="fas fa-hand-holding-usd"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -236,7 +238,8 @@ Listado de pagos
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            mostrarModal(href)
+            let abono = $(this).attr('data-abono');
+            mostrarModal(href,abono)
             localStorage.setItem('formulario', href);
         });
 
@@ -255,7 +258,7 @@ Listado de pagos
         });
 
 
-        function mostrarModal(href) {
+        function mostrarModal(href, abono) {
             document.getElementById('registrar').style.display = 'block';
             document.getElementById('editar').style.display = 'block';
             document.getElementById('eliminar').style.display = 'block';
@@ -284,7 +287,7 @@ Listado de pagos
             var letra = href.charAt(href.length - 1);
             var b = document.getElementById('exampleModalLongTitle');
 
-            if (letra != 'e') {
+            if (abono != 'abono') {
                 document.getElementById('registrar').style.display = 'none';
             }
 
@@ -295,6 +298,8 @@ Listado de pagos
             if (letra != 'r') {
                 document.getElementById('eliminar').style.display = 'none';
             }
+
+            
 
             switch (letra) {
                 case 'e':
