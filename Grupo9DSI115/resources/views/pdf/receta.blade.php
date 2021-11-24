@@ -43,8 +43,8 @@
             </td>
             <td class="text-center">
                 Dr. {{ $receta->Consulta->Persona->nombrePersonas }} {{ $receta->Consulta->Persona->apellidoPersonas }}<br>
-                J.V.P.O. No. 5488<br>
-                ODONTOLOGIA GENERAL E INFANTIL<br>
+                J.V.P.O. No. 16093<br>
+                Doctor en Medicina Ulceras y Heridas<br>
                 3 Caller Poniente, Barrio el Carnmen detras del cuartel, Zacatecoluca.<br>
                 Tel.: 2334-0725 Cel.: 7745-1655
             </td>

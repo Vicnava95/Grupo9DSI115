@@ -19,11 +19,11 @@
                             {{ $consulta->Paciente->apellidos }}, {{ $consulta->Paciente->nombres }}
                         </div>
                         <div class="form-group">
-                            <strong>Peso del paciente:</strong>
+                            <strong>Peso:</strong>
                             {{ $consulta->peso }} Kg
                         </div>
                         <div class="form-group">
-                            <strong>Estatura del paciente:</strong>
+                            <strong>Estatura:</strong>
                             {{ $consulta->estatura }} m
                         </div>
                         <div class="form-group">
@@ -31,19 +31,19 @@
                             {{ $consulta->imc }} Kg/m²
                         </div>
                         <div class="form-group">
-                            <strong>Presión arterial del paciente:</strong>
+                            <strong>Presión arterial:</strong>
                             {{ $consulta->presion }} mmHg
                         </div>
                         <div class="form-group">
-                            <strong>Temperatura corporal del paciente:</strong>
+                            <strong>Temperatura corporal:</strong>
                             {{ $consulta->temperatura }} ºC
                         </div>
                         <div class="form-group">
-                            <strong>Frecuencia cardiaca del paciente:</strong>
+                            <strong>Frecuencia cardiaca:</strong>
                             {{ $consulta->frecuencia_cardiaca }} pulsaciones/minuto
                         </div>
                         <div class="form-group">
-                            <strong>Frecuencia respiratoria del paciente:</strong>
+                            <strong>Frecuencia respiratoria:</strong>
                             {{ $consulta->frecuencia_respiratoria }} respiraciones/minuto
                         </div>
 
@@ -63,7 +63,7 @@
                             {{ $consulta->Persona->nombrePersonas }} {{ $consulta->Persona->apellidoPersonas }}
                         </div>
                         <div class="form-group float-right">
-                            <a class="btn btn-primary text-white" href="{{ route('consultas.imprimir', $consulta->id) }}" target="_blank">Ver</a>
+                            <a class="btn btn-primary text-white" href="{{ route('consultas.imprimir', $consulta->id) }}" target="_blank">Imprimir</a>
                             <a class="btn btn-primary text-white" href="{{ route('consultas.descargar', $consulta->id) }}" target="_blank">Descargar</a>
                         </div>
                         

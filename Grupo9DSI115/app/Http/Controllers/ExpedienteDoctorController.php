@@ -208,14 +208,15 @@ class ExpedienteDoctorController extends Controller
 
     public function createReceta($idCita)
     {
+
         $receta = new Receta();
         return view('DoctorGeneral.createReceta', compact('receta', 'idCita'));
     }
 
     public function storeReceta(Request $request)
     {
-        request()->validate(Receta::$rules);
-
+        request()->validate(Receta::$rulesWithoutEstadoReceta);
+        $request->request->add(['estadoReceta_id'=> '1']);
         $receta = Receta::create($request->all());
 
 

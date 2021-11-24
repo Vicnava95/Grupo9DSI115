@@ -7,7 +7,7 @@ EXAMENES MEDICOS
 
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
-Listado de examenes medicos
+Listado de exámenes médicos
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->
@@ -25,7 +25,7 @@ Listado de examenes medicos
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Examen') }}
+                                {{ __('Examenes generales') }}
                             </span>
 
                              <div class="float-right">
@@ -67,8 +67,7 @@ Listado de examenes medicos
 
 										<th>Imagen</th>
 										<th>Fecha</th>
-										<th>Descripcion</th>
-										<th>Consulta</th>
+										<th>Descripción</th>
 
                                         <th></th>
                                     </tr>
@@ -81,7 +80,6 @@ Listado de examenes medicos
 											<td><a href="/examenesGeneralesImagenes/{{ $examen->imagen }}" target="_blank">{{ $examen->imagen }}</a></td>
 											<td>{{ $examen->fecha }}</td>
 											<td>{{ $examen->descripcion }}</td>
-											<td>{{ $examen->consulta_id }}</td>
 
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1"

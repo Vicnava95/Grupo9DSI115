@@ -184,8 +184,11 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/showAbonosExpedienteDental/{idPago}','ExpedienteDoctoraDentalController@showAbonos')->name('showAbonosExpedienteDental');
 
         //Diente - Tratamiento
-        Route::get('showDiente/{idDiente}/{fecha}','ExpedienteDoctoraDentalController@showDiente')->name('showDiente');
+        Route::get('showDiente/{idDiente}/{fecha}/{idPaciente}','ExpedienteDoctoraDentalController@showDiente')->name('showDiente');
         Route::post('storeTratamiento/{idDiente}/{fecha}','ExpedienteDoctoraDentalController@storeTratamiento')->name('storeTratamiento');
+        Route::get('destroyDienteTratamiento/{idTratamiento}','ExpedienteDoctoraDentalController@destroyTratamiento')->name('destroyDienteTratamiento');
+        Route::get('editTratamientoDiente/{idPaciente}/{idTratamiento}','ExpedienteDoctoraDentalController@editTratamiento')->name('editTratamiento');
+        Route::patch('updateTratamientoDientes/{tratamiento}/{idExpediente}','ExpedienteDoctoraDentalController@updateTratamiento')->name('updateTratamiento');
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)
