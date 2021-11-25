@@ -44,7 +44,7 @@ Expedientes Dentales
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
                                     data-attr="{{ route('expedienteDentalCrearPaciente') }}" title="Create a project">
-                                    Registrar Persona
+                                    Registrar Paciente
                                 </a>
                             </div>
                         </div>
