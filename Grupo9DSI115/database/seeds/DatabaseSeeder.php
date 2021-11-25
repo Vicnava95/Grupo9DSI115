@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call([EstadoPagoSeeder::class]);
         $this->call([RecetasDentalesSeeder::class]);
         $this->call([DienteSeeder::class]);
+        $this->call([TratamientosDienteTableSeeder::class]);
     }
 }

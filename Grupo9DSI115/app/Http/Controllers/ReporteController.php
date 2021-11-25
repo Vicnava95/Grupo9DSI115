@@ -10,6 +10,7 @@ use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
+use App\Models\Diente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class ReporteController extends Controller
 {
 
     public function reporteCitas()
-    {        
+    {
         //Reporte de Citas Agendadas
         //$fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
         $citas = DB::table('citas')
@@ -43,7 +44,7 @@ class ReporteController extends Controller
     }
 
     public function reporteRecetas()
-    {        
+    {
         //Reporte de Recetas y Proximas Citas
         $fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
         $recetas = DB::table('recetas')
@@ -57,6 +58,33 @@ class ReporteController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('informeRecetas_ProximasCitas'.'.pdf');
+    }
+
+    public function reporteDiagnosticoDental($idPaciente,$expediente)
+    {
+        //Reporte de diagnostico dental
+        $paciente = Paciente::find($idPaciente);
+        //$dientes = Diente::select('*')
+        //->where('expedienteDental_id','=',$expediente);
+        $dientes = DB::table('dientes')->select('*')
+        ->where('expedienteDental_id','=',$expediente)
+        ->get();
+
+        $recetas = DB::table('recetas_dentales')->select('*')
+        ->where('expedienteDental_id','=',$expediente)
+        ->get();
+
+        $tratamientos = DB::table('tratamientos')->select('*')
+        ->orderBy('diente_id','ASC')
+        ->get();
+
+
+        $view = \View::make('DoctoraDental.reporteDiagnosticoDental', compact('paciente','dientes','recetas','tratamientos'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('informePaciente_DiagnosticoDental' . '.pdf');
+
+
     }
 
 }

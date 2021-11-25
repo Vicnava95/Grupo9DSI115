@@ -5,13 +5,16 @@
 @endsection
 
 @section('titulo')
-    <a href="{{route('dshDoctorDental.index')}}"><i class="fas fa-chevron-circle-left"></i></a>    
+    <a href="{{route('dshDoctorDental.index')}}"><i class="fas fa-chevron-circle-left"></i></a>
     <br>
     Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
+    <a class="btn btn-secondary float-right text-white"
+        href="{{ route('reporteDiagnosticoDental',[$paciente->id,$expedientePaciente->id]) }}">Reporte de diagnostico
+        dental</a>
 @endsection
 
 @section('descripcion')
-    
+
 @endsection
 
 @section('cuerpo')
@@ -19,27 +22,27 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
-                    
+
                         <div class="container">
-                            
+
                             <div class="text-center">
                                 <h2>{{$citaPaciente->fecha}}</h2>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
                                     data-attr="{{ route('crearCitaDoctoraDental',$citaPaciente->paciente_id) }}">Crear Cita</a>
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
                                     data-attr="{{ route('crearExamenExpedienteDental',$expedientePaciente->id) }}">Crear Examen</a>
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
                                     data-attr="{{ route('rDentalesRecetasExp',$citaPaciente->id) }}">Crear Receta</a>
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
+                                    <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal"
                                     data-attr="{{ route('createPagoExpedienteDental', $paciente->id) }}">Crear Pago</a>
                                 </div>
 
@@ -52,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -61,7 +64,7 @@
         <h2 class="text">Información personal</h2>
         <div class="card">
             <div class="container">
-                
+
                 <div class="row" style="margin-top:10px;">
                     <div class="form-group col-md-6 col-12 d-flex justify-content align-items-end">
                         <label class="text-center">Nombre: {{$paciente->nombres}}</label>
@@ -91,98 +94,98 @@
                     <br>
                     <div class="row">
                         <div class="col columna1" >
-                            <a  id="mediumButton" data-toggle="modal" data-dismiss="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-dismiss="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[7]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">18</button>
                             </a>
                         </div>
-                            
+
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[6]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">17</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[5]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">16</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[4]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">15</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[3]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">14</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[2]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">13</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[1]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">12</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[0]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">11</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[8]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">21</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[9]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">22</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[10]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">23</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[11]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">24</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[12]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">25</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[13]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">26</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[14]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">27</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[15]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">28</button>
                             </a>
@@ -191,103 +194,103 @@
                     <br>
                     <div class="row">
                         <div class="col columna1">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[31]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">48</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[30]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">47</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[29]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">46</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[28]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">45</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[27]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">44</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[26]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">43</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[25]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">42</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[24]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">41</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[16]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">31</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[17]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">32</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[18]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">33</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[19]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">34</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[20]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">35</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[21]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">36</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[22]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">37</button>
                             </a>
                         </div>
                         <div class="col">
-                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button" 
+                            <a  id="mediumButton" data-toggle="modal" data-target="#mediumModal"  href="#" role="button"
                                 data-attr="{{route('showDiente',[$dientes[23]->id,$citaPaciente->fecha, $citaPaciente->paciente_id])}}">
                                 <button type="button" class="btn btn-outline-primary">38</button>
                             </a>
                         </div>
                     </div>
-                    <br>             
+                    <br>
                 </div>
             </div>
             <div class="row">
@@ -300,7 +303,7 @@
             </div>
         <h2 class="text">Registro de Pagos</h2>
         <div class="card">
-            
+
                 <div class=" p-4 mb-4">
                     <div class="row">
                         <div class="col-12">
@@ -316,7 +319,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     @foreach ($pagos as $pago)
                                         <tr>
                                             <th scope="row">{{$pago->fecha}}</th>
@@ -347,7 +350,7 @@
                 </div>
         </div>
     </div>
-    
+
 
     <!-- Modal Registrar/Editar/Eliminar -->
     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
@@ -392,7 +395,7 @@
                 </div>
                 <div class="modal-body" id="mediumBody2">
                     <div>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -418,7 +421,7 @@
                 </div>
                 <div class="modal-body" id="mediumBody3">
                     <div>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -444,7 +447,7 @@
                         }, 5000);
                     </script>
                 @endif
-                
+
                 @if ($message = Session::get('error'))
                     <img class='w-25 mx-auto mb-3 d-block' src="{{asset('assets/img/error.svg')}}"/>
                     <p class="text-white text-center">{{ $message }}</p>
@@ -464,13 +467,13 @@
     <script>
         @if (count($errors) > 0)
             let href=localStorage.getItem('formulario');
-                console.log('{{$errors}}')    
+                console.log('{{$errors}}')
                 @if ($errors->has('monto'))
                     mostrarModal3(href)
                 @else
                     mostrarModal(href)
                 @endif
-            
+
                 setTimeout(function(){
                 @foreach ($errors->getMessages() as $key => $value)
                     @error($key)
@@ -481,8 +484,8 @@
             },500);
         @endif
 
-        
-        
+
+
         // display a modal (medium modal)
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
@@ -546,7 +549,7 @@
                     $('#mediumModal2').modal("show");
                     $('#mediumBody2').html(result).show();
                     $('#mediumModal').modal("hide");
-                    
+
                 },
                 complete: function() {
                     $('#loader').hide();
@@ -571,7 +574,7 @@
                     $('#mediumModal3').modal("show");
                     $('#mediumBody3').html(result).show();
                     $('#mediumModal2').modal("hide");
-                    
+
                 },
                 complete: function() {
                     $('#loader').hide();

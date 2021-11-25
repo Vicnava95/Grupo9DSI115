@@ -31,13 +31,13 @@ class ExpedienteDoctoraDentalController extends Controller
     public function index($cita)
     {
         $i = 0;
-        $citaPaciente = Cita::find($cita); 
+        $citaPaciente = Cita::find($cita);
         $paciente = Paciente::find($citaPaciente->paciente_id);
         $expedientePaciente = ExpedienteDoctoraDental::where('paciente_id',$paciente->id)->first();
         $consultasExpediente = DB::table('consulta_expedienteDoctora')
                     ->where('expedienteDoctora_id', $expedientePaciente->id)
                     ->get();
-        $cantidadConsultas = count($consultasExpediente); 
+        $cantidadConsultas = count($consultasExpediente);
         //dd($consultasExpediente);
         if($cantidadConsultas != 0){
             foreach ($consultasExpediente as $consulta){
@@ -55,7 +55,7 @@ class ExpedienteDoctoraDentalController extends Controller
         }
 
         $dientes = Diente::where('expedienteDental_id',$expedientePaciente->id)->get();
-        //dd($dientes); 
+        //dd($dientes);
         return view('DoctoraDental.ExpedientePacienteDoctoraDental',compact('i','paciente','citaPaciente','collecionConsultas','cantidadConsultas','pagos','dientes','expedientePaciente'));
     }
 
@@ -68,11 +68,11 @@ class ExpedienteDoctoraDentalController extends Controller
         foreach ($pagos as $pago) {
             $pago['abono'] = Abono::select('*')->where('pago_id',$pago->id)->get()->sum('monto');
         }
-        return view('DoctoraDental.ExpedienteShow',compact('i','paciente','dientes','pagos'));
+        return view('DoctoraDental.ExpedienteShow',compact('i','paciente','dientes','pagos', 'expedientePaciente'));
     }
 
     public function crearConsulta(Request $request){
-        //dd(request('descripcionConsulta')); 
+        //dd(request('descripcionConsulta'));
         $idPaciente = request('idPaciente');
 
         $consulta = Consulta::create([
@@ -81,7 +81,7 @@ class ExpedienteDoctoraDentalController extends Controller
             'descripcion'=> request('descripcionConsulta'),
             'fecha'=> request('fechaConsulta')
         ]);
-        $consulta->save(); 
+        $consulta->save();
 
         $idCita = request('idCita');
         $cita = Cita::find($idCita);
@@ -103,7 +103,7 @@ class ExpedienteDoctoraDentalController extends Controller
     public function expedientes(){
         $i = 1;
         $expedientes = ExpedienteDoctoraDental::all();
-        $pacientes = Paciente::all(); 
+        $pacientes = Paciente::all();
         return view('DoctoraDental.expedientesDentales',compact('i','expedientes','pacientes'));
     }
 
@@ -119,12 +119,12 @@ class ExpedienteDoctoraDentalController extends Controller
         //dd($urlView);
         $pacientes = Paciente::all();
         $paciente = Paciente::find($idPaciente);
-        //dd($paciente->id); 
+        //dd($paciente->id);
         $personas = Persona::select('*')
                 ->where('rolpersona_id',2)
                 ->orWhere('rolpersona_id',3)
                 ->get();
-        return view('DoctoraDental.create',compact('cita', 'pacientes','paciente','personas', 'urlView','estadocita')); 
+        return view('DoctoraDental.create',compact('cita', 'pacientes','paciente','personas', 'urlView','estadocita'));
     }
 
     public function storeCita(Request $request, $urlView)
@@ -143,7 +143,7 @@ class ExpedienteDoctoraDentalController extends Controller
             'paciente_id' => $request->paciente_id_hid,
             'persona_id'=> 3,
             'estadoCita_id' => $request->estadoCita_id
-        ]); 
+        ]);
         return redirect()->route('dshDoctorDental.index')
             ->with('success', 'Cita creada satisfactoriamente.');
     }
@@ -157,7 +157,7 @@ class ExpedienteDoctoraDentalController extends Controller
     public function destroy($id)
     {
         $expedientePaciente = ExpedienteDoctoraDental::find($id);
-        $expedientePaciente->delete(); 
+        $expedientePaciente->delete();
         return redirect()->route('expedientesDentales');
     }
 
@@ -261,7 +261,7 @@ class ExpedienteDoctoraDentalController extends Controller
 
         $expedienteDental = ExpedienteDoctoraDental::select('*')->where('paciente_id', $idPaciente)->first();
         $request->request->add(['expediente_doctora_dental_id'=> $expedienteDental->id]);
-        
+
         $pago = Pago::create($request->all());
 
         return redirect()->back()
@@ -328,7 +328,7 @@ class ExpedienteDoctoraDentalController extends Controller
             ->with('success', 'Abono actualizado satisfactoriamente');
         }
     }
-    
+
     public function showAbonos(Request $request, $idPago)
     {
         $abonos = Abono::where('pago_id', $idPago)->get();
@@ -372,7 +372,7 @@ class ExpedienteDoctoraDentalController extends Controller
                                     ->orderBy('created_at','desc')
                                     ->get();
         //dd($tratamientos);
-        return view('DoctoraDental.modalDiente',compact('diente','tratamientos','fecha','n','idPaciente')); 
+        return view('DoctoraDental.modalDiente',compact('diente','tratamientos','fecha','n','idPaciente'));
     }
 
     public function showInfoDiente($idDiente, $idPaciente){
@@ -383,7 +383,7 @@ class ExpedienteDoctoraDentalController extends Controller
                                     ->orderBy('created_at','desc')
                                     ->get();
 
-        return view('DoctoraDental.showDiente',compact('diente','tratamientos','n','idPaciente')); 
+        return view('DoctoraDental.showDiente',compact('diente','tratamientos','n','idPaciente'));
     }
     public function storeTratamiento(Request $request, $idDiente, $fecha){
         $tratamiento = Tratamiento::create([
@@ -391,7 +391,7 @@ class ExpedienteDoctoraDentalController extends Controller
             'diente_id' => $idDiente,
             'fecha' => $fecha
         ]);
-        $tratamiento->save(); 
+        $tratamiento->save();
         return redirect()->back()
             ->with('success', 'Tratamiento creado satisfactoriamente.');
     }
@@ -433,7 +433,7 @@ class ExpedienteDoctoraDentalController extends Controller
                     $arrayTratamiento[] = ['idDiente' => $tratamiento->diente_id, 'descripcion' => $tratamiento->descripcion, 'fecha' => $tratamiento->fecha, 'idTratamiento' => $tratamiento->id];
                 }
             }
-            
+
         }
         return view('DoctoraDental.tratamientos',compact('arrayTratamiento','i','dientes','paciente','expedientDental'));
     }
@@ -452,7 +452,7 @@ class ExpedienteDoctoraDentalController extends Controller
                     $arrayTratamiento[] = ['idDiente' => $tratamiento->diente_id, 'descripcion' => $tratamiento->descripcion, 'fecha' => $tratamiento->fecha, 'idTratamiento' => $tratamiento->id];
                 }
             }
-            
+
         }
         return view('DoctoraDental.showTratamientos',compact('arrayTratamiento','i','dientes','paciente','expedientDental'));
     }
