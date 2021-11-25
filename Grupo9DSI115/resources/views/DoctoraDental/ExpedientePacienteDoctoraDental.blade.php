@@ -40,7 +40,15 @@
                                 </div>
                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal" data-target="#mediumModal" 
-                                    data-attr="{{ route('createPagoExpedienteDental', $paciente->id) }}">Pagos</a>
+                                    data-attr="{{ route('createPagoExpedienteDental', $paciente->id) }}">Crear Pago</a>
+                                </div>
+
+                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                                    <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
+                                    id="mediumButton" data-target="#mediumModal"
+                                    data-attr="{{ route('examenesDentales.create') }}" title="Create a project">
+                                    Registrar examen
+                                </a>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +292,7 @@
             </div>
             <div class="row">
                 <div class="col" style="text-align:center;">
-                    <a class="btn btn-primary" href="#" role="button">Registro de Tratamientos</a>
+                    <a class="btn btn-primary" href="{{route('tratamientosExpediente',$paciente->id)}}" role="button">Registro de Tratamientos</a>
                 </div>
                 <div class="col" style="text-align:center;">
                     <a class="btn btn-primary" href="{{route('showRecetasPaciente',$citaPaciente->id)}}" role="button">Registro de Recetas</a>

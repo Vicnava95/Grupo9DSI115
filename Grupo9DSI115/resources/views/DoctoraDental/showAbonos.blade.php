@@ -12,19 +12,19 @@
                             <tr>
                                 <th>Monto</th>
                                 <th>Fecha</th>
-                                <th>Editar</th>
+                                {{-- <th>Editar</th> --}}
                             </tr>
                             @foreach ($abonos as $abono)
                                 <tr>
                                     <th>${{ $abono->monto }}</th>
                                     <th>{{ $abono->fecha }}</th>
-                                    <th>
+                                    {{-- <th>
                                         <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
                                             id="mediumButton3" data-toggle="modal" data-target="#mediumModal3"
                                             data-attr="{{ route('editAbonoExpedienteDental', $abono->id) }}">
                                             <i class="fa fa-fw fa-edit"></i>
                                         </a>
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             @endforeach
                     </table>

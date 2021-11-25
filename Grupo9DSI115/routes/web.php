@@ -65,7 +65,7 @@ Route::get('/dashboardAdministrador', 'DashboardController@administradorIndex')-
 //consulta
 Route::resource('consultas', 'ConsultaController');
 Route::get('consultas/{consulta}/borrar', 'ConsultaController@delete')->name('consultas.delete');
-Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente'); 
+Route::get('searchPaciente/{name}','ConsultaController@searchPaciente')->name('consultas.searchPaciente');
 Route::get('consultas/{consulta}/imprimir', 'ConsultaController@imprimir')->name('consultas.imprimir');
 Route::get('consultas/{consulta}/descargar', 'ConsultaController@descargar')->name('consultas.descargar');
 //recetas
@@ -90,7 +90,7 @@ Route::get('/prueba',function(){
 Route::get('/registro', 'Auth\RegisterController@index')->name('registro');
 Route::post('/registro', 'Auth\RegisterController@register')->name('register_post');
 //php artisan route:list --name=pacientes
-//para visualizar los nombres de las rutas
+//<------------------------------------------------------------PARA VISUALIZAR RUTAS RESOURCES  ----------------------------------------------------------------------------------------------------------->
 //Route::resource('usuarios','UserController');
 
 //Route::resource('pacientes', 'PacienteController');
@@ -127,10 +127,10 @@ Route::middleware(['auth'])->group(function (){
 
     //Rutas asignadas para el Doctor General (SOLO PARA EL DOCTOR)
     Route::group(['middleware' => 'DoctorGeneralMiddleware'],function(){
-        Route::get('/expedientePacienteGeneral/{cita}','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor'); 
+        Route::get('/expedientePacienteGeneral/{cita}','ExpedienteDoctorController@index')->name('ExpedientePacienteDoctor');
         Route::post('/crearConsulta','ExpedienteDoctorController@crearConsulta')->name('crearConsulta');
         Route::get('/expedientesGeneral','ExpedienteDoctorController@expedientes')->name('expedientesGeneral');
-        Route::get('mostrarExpedienteGeneral/{id}','ExpedienteDoctorController@showExpediente')->name('showExpedienteGeneral'); 
+        Route::get('mostrarExpedienteGeneral/{id}','ExpedienteDoctorController@showExpediente')->name('showExpedienteGeneral');
         Route::get('/eliminarExpedienteGeneral/{id}/borrar','ExpedienteDoctorController@deleteExpediente')->name('deleteExpedienteGeneral');
         Route::delete('destroyExpedienteGeneral/{id}','ExpedienteDoctorController@destroy')->name('destroyExpedienteGeneral');
         Route::get('/crearCitaDoctor/{idPaciente}','ExpedienteDoctorController@crearCitaDoctor')->name('crearCitaDoctor');
@@ -148,10 +148,10 @@ Route::middleware(['auth'])->group(function (){
 
     //Rutas asignadas para la Doctora Dental (SOLO PARA LA DOCTORA)
     Route::group(['middleware' => 'DoctoraDentalMiddleware'],function(){
-        Route::get('/expedientePaciente/{cita}','ExpedienteDoctoraDentalController@index')->name('ExpedientePacienteDoctoraDental'); 
+        Route::get('/expedientePaciente/{cita}','ExpedienteDoctoraDentalController@index')->name('ExpedientePacienteDoctoraDental');
         Route::post('/crearConsultaD','ExpedienteDoctoraDentalController@crearConsulta')->name('crearConsultaDoctora');
         Route::get('/expedientesDentales','ExpedienteDoctoraDentalController@expedientes')->name('expedientesDentales');
-        Route::get('/mostrarExpediente/{id}','ExpedienteDoctoraDentalController@showExpediente')->name('showExpediente'); 
+        Route::get('/mostrarExpediente/{id}','ExpedienteDoctoraDentalController@showExpediente')->name('showExpediente');
         Route::get('/eliminarExpedienteDental/{id}/borrar','ExpedienteDoctoraDentalController@deleteExpediente')->name('deleteExpedienteDental');
         Route::delete('destroyExpedienteDental/{id}','ExpedienteDoctoraDentalController@destroy')->name('destroyExpedienteDental');
         Route::get('/crearCitaDoctora/{idPaciente}','ExpedienteDoctoraDentalController@crearCitaDoctora')->name('crearCitaDoctoraDental');
@@ -177,9 +177,9 @@ Route::middleware(['auth'])->group(function (){
 
 
         Route::get('/createPagoExpedienteDental/{idPaciente}','ExpedienteDoctoraDentalController@createPago')->name('createPagoExpedienteDental');
-        
+
         Route::post('/storePagoExpedienteDental/{idPaciente}','ExpedienteDoctoraDentalController@storePago')->name('storePagoExpedienteDental');
-        
+
         Route::get('/createAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@createAbono')->name('createAbonoExpedienteDental');
 
         Route::post('/storeAbonoExpedienteDental/{idPaciente}/{idPago}','ExpedienteDoctoraDentalController@storeAbono')->name('storeAbonoExpedienteDental');
@@ -187,8 +187,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/editAbonoExpedienteDental/{id}','ExpedienteDoctoraDentalController@editAbono')->name('editAbonoExpedienteDental');
 
         Route::patch('/updateAbonoExpedienteDental/{abono}','ExpedienteDoctoraDentalController@updateAbono')->name('updateAbonoExpedienteDental');
-        
-        
+
+
         Route::get('/showAbonosExpedienteDental/{idPago}','ExpedienteDoctoraDentalController@showAbonos')->name('showAbonosExpedienteDental');
 
         //Diente - Tratamiento
@@ -197,6 +197,12 @@ Route::middleware(['auth'])->group(function (){
         Route::get('destroyDienteTratamiento/{idTratamiento}','ExpedienteDoctoraDentalController@destroyTratamiento')->name('destroyDienteTratamiento');
         Route::get('editTratamientoDiente/{idPaciente}/{idTratamiento}','ExpedienteDoctoraDentalController@editTratamiento')->name('editTratamiento');
         Route::patch('updateTratamientoDientes/{tratamiento}/{idExpediente}','ExpedienteDoctoraDentalController@updateTratamiento')->name('updateTratamiento');
+        Route::get('tratamientosExpediente/{pacienteId}','ExpedienteDoctoraDentalController@tratamientosExpediente')->name('tratamientosExpediente');
+        Route::patch('updateTratamientoDiente/{idTratamiento}','ExpedienteDoctoraDentalController@updateTramientoDiente')->name('updateTramientoDiente');
+
+        Route::get('showInfoDiente/{idDiente}/{idPaciente}','ExpedienteDoctoraDentalController@showInfoDiente')->name('showInfoDiente');
+        Route::get('showTratamientosExpediente/{pacienteId}','ExpedienteDoctoraDentalController@showTratamientosExpediente')->name('showTratamientosExpediente');
+        Route::get('showInfoRecetas/{pacienteId}','ExpedienteDoctoraDentalController@showInfoRecetas')->name('showInfoRecetas');
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)
