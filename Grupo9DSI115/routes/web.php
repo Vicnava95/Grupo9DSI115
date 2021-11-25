@@ -189,6 +189,12 @@ Route::middleware(['auth'])->group(function (){
         Route::get('destroyDienteTratamiento/{idTratamiento}','ExpedienteDoctoraDentalController@destroyTratamiento')->name('destroyDienteTratamiento');
         Route::get('editTratamientoDiente/{idPaciente}/{idTratamiento}','ExpedienteDoctoraDentalController@editTratamiento')->name('editTratamiento');
         Route::patch('updateTratamientoDientes/{tratamiento}/{idExpediente}','ExpedienteDoctoraDentalController@updateTratamiento')->name('updateTratamiento');
+        Route::get('tratamientosExpediente/{pacienteId}','ExpedienteDoctoraDentalController@tratamientosExpediente')->name('tratamientosExpediente');
+        Route::patch('updateTratamientoDiente/{idTratamiento}','ExpedienteDoctoraDentalController@updateTramientoDiente')->name('updateTramientoDiente');
+
+        Route::get('showInfoDiente/{idDiente}/{idPaciente}','ExpedienteDoctoraDentalController@showInfoDiente')->name('showInfoDiente');
+        Route::get('showTratamientosExpediente/{pacienteId}','ExpedienteDoctoraDentalController@showTratamientosExpediente')->name('showTratamientosExpediente');
+        Route::get('showInfoRecetas/{pacienteId}','ExpedienteDoctoraDentalController@showInfoRecetas')->name('showInfoRecetas');
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)
