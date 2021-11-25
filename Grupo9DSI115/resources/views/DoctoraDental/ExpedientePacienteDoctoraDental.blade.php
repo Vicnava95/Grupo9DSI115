@@ -43,12 +43,12 @@
                                     data-attr="{{ route('createPagoExpedienteDental', $paciente->id) }}">Crear Pago</a>
                                 </div>
 
-                                <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+{{--                                 <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                                     <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
                                     data-attr="{{ route('examenesDentales.create') }}" title="Create a project">
                                     Registrar examen
-                                </a>
+                                </a> --}}
                                 </div>
                             </div>
                         </div>
