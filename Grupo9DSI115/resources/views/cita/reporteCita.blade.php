@@ -21,7 +21,8 @@
     }
 </style>
     <div class="container-fluid">
-        <h3>REPORTE DE PRÓXIMAS CITAS</h3>
+        <img src="{{ public_path().'/assets/img/Logo.png' }}" alt="Logo" height="40px">
+        <h3>REPORTE CONSOLIDADO DE CITAS DR. {{ Auth::user()->name }}</h3>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -34,13 +35,13 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
                                         <th>Paciente</th>
                                         <th>Fecha</th>
 										<th>Hora</th>
                                         <th>Estado</th>
+                                        @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
                                         <th>Doctor</th>
-                                    
+                                        @endif                                    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,7 +52,9 @@
                                             <td>{{ $cita->fecha }}</td> 
                                             <td>{{ $cita->hora }}</td> 
                                             <td>{{ $cita->nombre }}</td> 
+                                            @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
                                             <td>{{ $cita->nombrePersonas }} {{ $cita->apellidoPersonas }}</td>
+                                            @endif
                                         </tr>
                                         @endforeach    
                                 </tbody>

@@ -163,7 +163,7 @@ Recetas Médicas
                         Registrar receta
                     </a>
                     --->
-                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.create') }}"
+                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.edit', $receta->id) }}"
                         class="btn btn-success">Crear nueva versión
                     </a>
 
@@ -233,8 +233,10 @@ Recetas Médicas
                     id = id + id2;
                 }
 
-                alert(id);
+                
 
+                //alert(id);
+                
                 mostrarModal(href)
                 localStorage.setItem('formulario', href);
             });
