@@ -25,6 +25,15 @@ Recetas Dentales
                             <span id="card_title">
                                 Recetas Dentales
                             </span>
+
+                            <div class="flex-fill bd-highlight ml-5">
+                                <form action="{{ route('rDentales.index') }}" method="GET" class="d-flex">
+                                    <input class="form-control" type="text" placeholder="codigo de receta, codigo de consulta o nombre de paciente"
+                                        name="texto" aria-label="default input" autocomplete='off'>
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </form>
+                            </div>
+
                              {{-- <div class="float-right ml-5">
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
                                     data-target="#mediumModal" data-attr="{{ route('rDentales.create') }}" title="Create a project">

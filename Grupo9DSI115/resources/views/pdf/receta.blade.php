@@ -4,7 +4,7 @@
     <title>Receta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        
+
         .text-center {
             text-align: center;
         }
@@ -60,7 +60,7 @@
             <td colspan="2">{{ $receta->fecha }}</td>
         </tr>
         <tr>
-            <td>Receta medica:</td>
+            <td>Descripción receta :</td>
             <td colspan="2">{{ $receta->descripcion }}</td>
         </tr>
         <tr>

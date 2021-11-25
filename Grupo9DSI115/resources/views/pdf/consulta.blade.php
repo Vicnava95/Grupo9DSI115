@@ -4,7 +4,7 @@
     <title>Consulta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        
+
         .text-center {
             text-align: center;
         }
@@ -61,6 +61,14 @@
             <td class="padding-top" colspan="2">{{ $consulta->peso }} Kg</td>
         </tr>
         <tr>
+            <td >Estatura:</td>
+            <td colspan="2">{{ $consulta->estatura }} Kg</td>
+        </tr>
+        <tr>
+            <td>IMC:</td>
+            <td colspan="2">{{ $consulta->imc }} Kg/m²</td>
+        </tr>
+        <tr>
             <td>Presión:</td>
             <td colspan="2">{{ $consulta->presion }} mmHg</td>
         </tr>
@@ -79,6 +87,10 @@
         <tr>
             <td>Descripcion:</td>
             <td colspan="2">{{ $consulta->descripcion }}</td>
+        </tr>
+        <tr>
+            <td>Examanes solicitados:</td>
+            <td colspan="2">{{ $consulta->solicitud_examen }}</td>
         </tr>
     </table>
 </body>

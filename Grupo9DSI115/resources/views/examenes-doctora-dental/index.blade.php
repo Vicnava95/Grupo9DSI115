@@ -28,7 +28,7 @@ Listado de examenes dentales
                                 {{ __('Examenes dentales') }}
                             </span>
 
-                             <div class="float-right">
+                             <div class="float-right" hidden>
                                 <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal"
                                     id="mediumButton" data-target="#mediumModal"
                                     data-attr="{{ route('examenesDentales.create') }}" title="Create a project">
