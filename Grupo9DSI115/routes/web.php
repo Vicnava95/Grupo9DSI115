@@ -144,6 +144,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/doctorGeneral',function(){
             return view('Prueba.doctorGeneral');
         })->name('doctorGeneral');
+        Route::get('/reporteDiagnosticoGeneral/{idExpedienteGeneral}', 'ReporteController@reporteDiagnosticoGeneral')->name('reporteDiagnosticoGeneral');
+        
     });
 
     //Rutas asignadas para la Doctora Dental (SOLO PARA LA DOCTORA)

@@ -17,7 +17,7 @@
             position: absolute;
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            widtd: 100%;
+            width: 100%;
         }
         tr, td {
             vertical-align: top;

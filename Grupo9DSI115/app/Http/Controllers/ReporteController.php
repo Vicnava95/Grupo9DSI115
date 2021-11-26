@@ -1,17 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use Carbon\Carbon;
 use DB;
+use PDF;
+use Carbon\Carbon;
 use App\Models\Cita;
-use App\Models\ExpedienteDoctor;
-use App\Models\ExpedienteDoctoraDental;
+use App\Models\Receta;
 use App\Models\Persona;
 use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
 use Illuminate\Http\Request;
+use App\Models\ExpedienteDoctor;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ExpedienteDoctoraDental;
 
 /**
  * Class ReporteController
@@ -57,6 +59,29 @@ class ReporteController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('informeRecetas_ProximasCitas'.'.pdf');
+    }
+
+    public function reporteDiagnosticoGeneral($idExpedienteGeneral)
+    {        
+        
+        $expedienteGeneral = ExpedienteDoctor::find($idExpedienteGeneral);
+        $paciente = Paciente::find($expedienteGeneral->paciente_id);
+        
+        $listadoConsultaExpedienteDoctor = DB::table('consulta_expedientedoctor')
+        ->where('expedienteDoctor_id',$expedienteGeneral->id)
+        ->get();        
+        $consultas=[];
+        foreach ($listadoConsultaExpedienteDoctor as $consultaExpedienteDoctor) {
+            $consulta = Consulta::find($consultaExpedienteDoctor->consulta_id);
+            $recetas = Receta::select('*')
+                ->where('consulta_id', $consulta->id)
+                ->get();
+            $consulta['recetas'] = $recetas;
+            array_push($consultas, $consulta);
+        }
+
+        $pdf = PDF::loadView('DoctorGeneral.reporteDiagnosticoGeneral', compact('paciente','consultas'));
+        return $pdf->stream('reporteDiagnosticoGeneral'.'.pdf');
     }
 
 }
