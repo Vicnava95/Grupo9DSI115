@@ -20,6 +20,14 @@
     tr:nth-child(even){
         background-color:#dddddd;
     }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .centrar {
+        text-align: center;
+    }
 </style>
     <div class="container-fluid">
         <img src="{{ public_path().'/assets/img/Logo.png' }}" alt="Logo" height="40px">
@@ -52,53 +60,53 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <br>
+
                             <!--Tabla de dientes-->
+                            <br>
                             <table>
                                 <thead class="thead">
                                     <tr>
-                                        <th>Cod Diente</th>
-                                        <th>Descripción</th>
-
+                                        <th colspan="2">ODONTOGRAMA</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $k=0; @endphp
-                                    @for($i = 0; $i < 32; $i++)
                                     <tr>
-                                        <td>{{ ++$k }}</td>
-                                        <td>{{ $dientes[$i]->nombreDiente }}</td>
+                                        <td class="bold">Nº Diente</td>
+                                        <td class="bold">Descripción</td>
                                     </tr>
-                                    @endfor
+                                    @foreach($dientes as $diente)
+                                    <tr>
+                                        <td>{{ $diente->numeroDiente }}</td>
+                                        <td>{{ $diente->nombreDiente }}</td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>
                             <!--Tabla de tratamientos-->
+
                             <table>
                                 <thead class="thead">
                                     <tr>
-                                        <th>Cod Diente</th>
-                                        <th>Tratamiento</th>
+                                        <th colspan="2">HISTORIAL DE TRATAMIENTOS POR PIEZA DENTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Prueba Definitiva -->
-                                    @php $m=0; $n=1   @endphp
-                                    @while($m <32)
-                                        @for($j = 0; $j < sizeof($tratamientos) - 1 ; $j++)
-                                            @if($dientes[$m]->id == $tratamientos[$j]->diente_id)
                                             <tr>
-                                                <td>{{ $n }}</td>
+                                                <td class="bold">Nº Diente</td>
+                                                <td class="bold">Tratamiento</td>
+                                            </tr>
+                                    <!-- Prueba Definitiva -->
+                                    @foreach($dientes as $diente)
+                                        @for($j = 0; $j < sizeof($tratamientos) - 1 ; $j++)
+                                            @if($diente->id == $tratamientos[$j]->diente_id)
+                                            <tr>
+                                                <td>{{ $diente->numeroDiente }}</td>
                                                 <td>{{ $tratamientos[$j]->descripcion }}</td>
                                             </tr>
                                             @endif
                                         @endfor
-                                        @php $n++;
-                                            $m++;
-                                        @endphp
-                                    @endwhile
-
-
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>
@@ -106,12 +114,15 @@
                             <table>
                                 <thead class="thead">
                                     <tr>
-                                        <th>Receta</th>
-                                        <th>Fecha de emision</th>
-                                        <th>Descripcion</th>
+                                        <th colspan="3">HISTORIAL DE RECETAS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td class="bold">Receta</td>
+                                        <td class="bold">Fecha de emision</td>
+                                        <td class="bold">Descripción</td>
+                                    </tr>
                                 @php $l=0; @endphp
                                     @foreach($recetas as $receta)
                                     <tr>

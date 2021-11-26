@@ -60,10 +60,10 @@ class ReporteController extends Controller
         return $pdf->stream('informeRecetas_ProximasCitas'.'.pdf');
     }
 
-    public function reporteDiagnosticoDental($idPaciente,$expediente)
+    public function reporteDiagnosticoDental($paciente,$expediente)
     {
         //Reporte de diagnostico dental
-        $paciente = Paciente::find($idPaciente);
+        $paciente = Paciente::find($paciente);
         //$dientes = Diente::select('*')
         //->where('expedienteDental_id','=',$expediente);
         $dientes = DB::table('dientes')->select('*')

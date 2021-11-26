@@ -17,7 +17,7 @@ class TratamientosDienteTableSeeder extends Seeder
         for($i = 1;$i<=256;$i++){
             DB::table('tratamientos')->insert([
                 'fecha' => '2021-11-25',
-                'descripcion' => 'blanqueamiento con láser',
+                'descripcion' => 'Blanqueamiento con láser',
                 'diente_id' => $i
             ]);
         }
@@ -25,7 +25,7 @@ class TratamientosDienteTableSeeder extends Seeder
         While($j<=225){
             DB::table('tratamientos')->insert([
                 'fecha' => '2021-11-25',
-                'descripcion' => 'empaste de coloración dental',
+                'descripcion' => 'Empaste de coloración dental',
                 'diente_id' => $j
             ]);
             $j=$j+32;
@@ -35,7 +35,7 @@ class TratamientosDienteTableSeeder extends Seeder
         while ($k <= 225) {
             DB::table('tratamientos')->insert([
                 'fecha' => '2021-11-25',
-                'descripcion' => 'Colocacion de carillas',
+                'descripcion' => 'Colocacion de carilla',
                 'diente_id' => $k
             ]);
             $k = $k + 32;
