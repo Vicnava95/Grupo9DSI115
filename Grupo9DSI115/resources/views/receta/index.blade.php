@@ -110,6 +110,7 @@ Recetas Médicas
                                                 </a>
                                             </td>
                                         </tr>
+
                                     @endif
                                     @endforeach
                                 </tbody>
@@ -145,21 +146,8 @@ Recetas Médicas
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
                     <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
-                    <!---
-                    <a class="btn btn-success"data-toggle="modal" id="nuevo"
-                        data-target="#mediumModal" data-attr="#myModal2" title="Create a project">
-                        Crear nueva versión
+                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.edit', $receta->id) }}">
                     </a>
-
-                    <a class="btn btn-primary float-right text-white" data-placement="left" data-toggle="modal" id="mediumButton"
-                        data-target="#mediumModal" data-attr="{{ route('recetas.create') }}" title="Create a project">
-                        Registrar receta
-                    </a>
-                    --->
-                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('recetas.edit', $receta->id) }}"
-                        class="btn btn-success">Crear nueva versión
-                    </a>
-
                 </div>
             </div>
         </div>
@@ -188,6 +176,7 @@ Recetas Médicas
                 <div>
                         <!-- the result to be displayed apply here -->
                         NUEVA VERSIÓN
+                        
                 </div>
             </div>
         <div class="modal-footer">
@@ -215,21 +204,7 @@ Recetas Médicas
             // display a modal (medium modal)
             $(document).on('click', '#mediumButton', function(event) {
                 event.preventDefault();
-                let href = $(this).attr('data-attr');
-                
-                var id = href.charAt(30);
-                var id2 = href.charAt(31);
-
-                var ascii = id2.charCodeAt(0);
-
-                if (ascii > 48 && ascii < 57){
-                    id = id + id2;
-                }
-
-                
-
-                //alert(id);
-                
+                let href = $(this).attr('data-attr');                
                 mostrarModal(href)
                 localStorage.setItem('formulario', href);
             });
@@ -325,7 +300,7 @@ Recetas Médicas
             $(document).on('click', '#nuevo', function(event) {
                 event.preventDefault();
                 let href = $(this).attr('data-attr');
-                mostrarModal2(href)
+                mostrarModal2(href);
                 //localStorage.setItem('formulario', href);
             });
 
@@ -356,9 +331,6 @@ Recetas Médicas
                 var letra = href.charAt(href.length - 1);
                 var b = document.getElementById('exampleModalLongTitle2');
 
-                //var id = href.charAt(href.length - 8);
-                //alert(id);
-
                 if (letra != 't') {
                     document.getElementById('editar').style.display = 'none';
                 }
@@ -369,8 +341,6 @@ Recetas Médicas
                         break;
                 }
             }
-
-
     </script>
 
 @endsection
