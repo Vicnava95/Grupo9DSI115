@@ -50,20 +50,6 @@
                                         <td>{{ $paciente->fechaDeNacimiento }}</td>
                                         <td>{{ $paciente->direccion }}</td>
                                     </tr>
-                                        {{--
-                                        @foreach ($citas as $cita)
-                                        <tr>
-                                            <td>{{++$i}}</td>
-                                            <td>{{ $cita->nombres }} {{ $cita->apellidos  }}</td>
-                                            <td>{{ $cita->fecha }}</td>
-                                            <td>{{ $cita->hora }}</td>
-                                            <td>{{ $cita->nombre }}</td>
-                                            @if(Auth::user()->rols_fk==1||Auth::user()->rols_fk==4)
-                                            <td>{{ $cita->nombrePersonas }} {{ $cita->apellidoPersonas }}</td>
-                                            @endif
-                                        </tr>
-                                        @endforeach
-                                        --}}
                                 </tbody>
                             </table>
                             <br>
@@ -95,19 +81,8 @@
                                         <th>Tratamiento</th>
                                     </tr>
                                 </thead>
-                                <tbody>{{--
-                                    @for($i = 0; $i < 32; $i++)
-                                        @for($j = 0; $j < sizeof($tratamientos) - 1 ; $j++)
-                                            @if($dientes[$i]->id == $tratamientos[$j]->diente_id)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ $tratamientos[$j]->descripcion }}</td>
-                                            </tr>
-                                            @endif
-                                        @endfor
-                                    @endfor
-                                    --}}
-                                    <!-- Prueba -->
+                                <tbody>
+                                    <!-- Prueba Definitiva -->
                                     @php $m=0; $n=1   @endphp
                                     @while($m <32)
                                         @for($j = 0; $j < sizeof($tratamientos) - 1 ; $j++)
