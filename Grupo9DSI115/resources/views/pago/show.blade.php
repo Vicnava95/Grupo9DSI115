@@ -12,7 +12,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <strong>Expediente Doctora Dental:</strong>
-                                {{ $pago->expediente_doctora_dental_id }}
+                                {{ $pago->expedienteDoctoraDental}}
                             </div>
                         </div>
                         <div class="col-12 col-md-6">

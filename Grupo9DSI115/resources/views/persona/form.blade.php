@@ -1,26 +1,37 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('nombres*') }}
-            {{ Form::text('nombrePersonas', !empty($persona->nombrePersonas) ? $persona->nombrePersonas : '', ['class' => 'form-control' . ($errors->has('nombrePersonas') ? ' is-invalid' : ''), 'placeholder' => 'Nombres']) }}
-            {!! $errors->first('nombrePersonas', '<div class="invalid-feedback">:message</p>') !!}
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('nombres*') }}
+                    {{ Form::text('nombrePersonas', !empty($persona->nombrePersonas) ? $persona->nombrePersonas : '', ['class' => 'form-control' . ($errors->has('nombrePersonas') ? ' is-invalid' : ''), 'placeholder' => 'Nombres']) }}
+                    {!! $errors->first('nombrePersonas', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('apellidos*') }}
+                    {{ Form::text('apellidoPersonas', !empty($persona->apellidoPersonas) ? $persona->apellidoPersonas : '', ['class' => 'form-control' . ($errors->has('apellidoPersonas') ? ' is-invalid' : ''), 'placeholder' => 'Apellidos']) }}
+                    {!! $errors->first('apellidoPersonas', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            {{ Form::label('apellidos*') }}
-            {{ Form::text('apellidoPersonas', !empty($persona->apellidoPersonas) ? $persona->apellidoPersonas : '', ['class' => 'form-control' . ($errors->has('apellidoPersonas') ? ' is-invalid' : ''), 'placeholder' => 'Apellidos']) }}
-            {!! $errors->first('apellidoPersonas', '<div class="invalid-feedback">:message</p>') !!}
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('DUI*') }}
+                    {{ Form::text('dui', $persona->dui, ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'DUI', 'id' => 'dui']) }}
+                    {!! $errors->first('dui', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    {{ Form::label('telefono*') }}
+                    {{ Form::text('telefono', !empty($persona->telefono) ? $persona->telefono : '', ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono', 'id' => 'telef']) }}
+                    {!! $errors->first('telefono', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            {{ Form::label('DUI*') }}
-            {{ Form::text('dui', $persona->dui, ['class' => 'form-control' . ($errors->has('dui') ? ' is-invalid' : ''), 'placeholder' => 'DUI']) }}
-            {!! $errors->first('dui', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('telefono*') }}
-            {{ Form::text('telefono', !empty($persona->telefono) ? $persona->telefono : '', ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
-            {!! $errors->first('telefono', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
@@ -41,11 +52,12 @@
                         })
                     })
                 </script>
+            </div>
 
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {{ Form::label('NIT*') }}
-                    {{ Form::text('nitPersona', $persona->nitPersona, ['class' => 'form-control' . ($errors->has('nitPersona') ? ' is-invalid' : ''), 'placeholder' => 'NIT']) }}
+                    {{ Form::text('nitPersona', $persona->nitPersona, ['class' => 'form-control' . ($errors->has('nitPersona') ? ' is-invalid' : ''), 'placeholder' => 'NIT', 'id' => 'nitPersona']) }}
                     {!! $errors->first('nitPersona', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
             </div>

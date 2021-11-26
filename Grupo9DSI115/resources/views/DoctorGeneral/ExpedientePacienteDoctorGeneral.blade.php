@@ -31,15 +31,12 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
                                 data-toggle="modal" data-target="#mediumModal"
                                 data-attr="{{ route('citas.create') }}" hidden>Tratamientos</a>
                         </div>
-                        <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
+                        <div class="form-group col-md-6 col-12 d-flex justify-content-center align-items-end">
                             <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal"
                                 data-target="#mediumModal"
                                 data-attr="{{ route('crearCitaDoctor',$citaPaciente->paciente_id) }}">Crear Cita</a>
                         </div>
-                        <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
-                            <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal"
-                                data-target="#mediumModal" data-attr="{{ route('citas.create') }}">Recetas</a>
-                        </div>
+                        
                         <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                             <a class="btn btn-primary disabled" id="mediumButton" href="#" role="button"
                                 data-toggle="modal" data-target="#mediumModal"
@@ -232,6 +229,13 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
                                     <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton"
                                         data-toggle="modal" data-target="#mediumModal"
                                         data-attr="{{ route('crearRecetaExpedienteGeneral',$collecionConsulta['id']) }}">
+                                        <i class="fas fa-receipt"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1" id="mediumButton"
+                                        data-toggle="modal" data-target="#mediumModal"
+                                        data-attr="{{ route('crearExamenExpedienteGeneral',$collecionConsulta['id']) }}">
                                         <i class="fas fa-file-medical-alt"></i>
                                     </a>
                                 </td>

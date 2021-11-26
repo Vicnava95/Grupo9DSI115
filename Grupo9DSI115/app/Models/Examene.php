@@ -29,6 +29,12 @@ class Examene extends Model
 		'consulta_id' => 'required|integer|exists:consultas,id',
     ];
 
+    static $rulesWithoutConsulta = [
+      'imagen' => 'nullable|image|mimes:jpeg,png,jpg',//'required',
+      'fecha' => 'required',
+      'descripcion' => 'required'
+      ];
+
     protected $perPage = 20;
 
     /**

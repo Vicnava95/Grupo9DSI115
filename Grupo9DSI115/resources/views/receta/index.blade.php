@@ -74,8 +74,12 @@ Recetas Médicas
                                     <tr>
                                         <th>No</th>
                                         <th>Paciente</th>
+                                        <th>Descripción</th>
                                         <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <!--
                                         <th>Consulta</th>
+                                        -->
                                         <th>Doctor</th>
                                         <th></th>
                                     </tr>
@@ -87,13 +91,16 @@ Recetas Médicas
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $receta->Consulta->Paciente->apellidos }}, {{ $receta->Consulta->Paciente->nombres }}</td>
                                             <td>{{ $receta->fecha }}</td>
-
+                                            <td>{{ $receta->descripcion }}</td>
+                                            <!--
                                             <td>
                                                 <a href="#" class="link-primary" id="mediumButton" data-toggle="modal"
                                                 data-target="#mediumModal" data-attr="{{ route('consultas.show', $receta->Consulta->Paciente->id) }}">
                                                     {!! Str::words($receta->Consulta->descripcion, 6, ' ...') !!}
                                                 </a>
                                             </td>
+                                            -->
+                                            <td>{{ $receta->estadoReceta->nombre }}</td>
                                             <td>{{ $receta->Consulta->Persona->nombrePersonas }}{{ $receta->Consulta->Persona->apellidoPersonas }}</td>
                                             <td>
                                                 <a class="btn btn-secondary btn-sm btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"

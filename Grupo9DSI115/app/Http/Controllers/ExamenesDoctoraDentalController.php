@@ -56,7 +56,7 @@ class ExamenesDoctoraDentalController extends Controller
 
         $examenesDoctoraDental = ExamenesDoctoraDental::create($input);
 
-        return redirect()->route('examenesDentales.index')
+        return redirect()->back()
             ->with('success', 'Examen creado satisfactoriamente.');
     }
 

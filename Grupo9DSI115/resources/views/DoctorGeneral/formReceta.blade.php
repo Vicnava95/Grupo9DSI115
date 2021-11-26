@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-12">
-                <div class="form-group" hidden>
+                <div class="form-group" >
                     {{ Form::label('Proxima Cita') }}
                     <div class="input-group date">
                         {{ Form::text('proximaCita', !empty($receta->proximaCita) ? $receta->proximaCita: '', ['class' => 'form-control' . ($errors->has('proximaCita') ? ' is-invalid' : ''), 'placeholder' =>  'Proximacita', 'id' => 'inputFecha2']) }}
