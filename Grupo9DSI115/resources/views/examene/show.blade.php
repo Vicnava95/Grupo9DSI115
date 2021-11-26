@@ -8,6 +8,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+
                     <div class="form-group">
                         <strong>Imagen:</strong>
                         @empty(!$examene->imagen)
@@ -18,6 +19,10 @@
                         @empty($examene->imagen)
                             No hay imagen
                         @endempty
+                    </div>
+                    <div class="form-group">
+                        <strong>Examen de :</strong>
+                        {{ $examene->consulta->paciente->nombres }} {{ $examene->consulta->paciente->apellidos }}
                     </div>
                     <div class="form-group">
                         <strong>Fecha:</strong>
@@ -31,7 +36,6 @@
                         <strong>Consulta:</strong>
                         {{ $examene->consulta_id }}
                     </div>
-
                 </div>
             </div>
         </div>
