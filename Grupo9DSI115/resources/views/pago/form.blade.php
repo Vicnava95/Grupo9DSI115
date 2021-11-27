@@ -1,8 +1,8 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="form-group">
+            <div class="col-12 col-md-6" hidden>
+                <div class="form-group" >
                     {{ Form::label('expediente_doctora_dental') }}
                     {{ Form::text('expediente_doctora_dental_id', $pago->expediente_doctora_dental_id, ['class' => 'form-control' . ($errors->has('expediente_doctora_dental_id') ? ' is-invalid' : ''), 'placeholder' => 'Expediente Doctora Dental']) }}
                     {!! $errors->first('expediente_doctora_dental_id', '<div class="invalid-feedback">:message</p>') !!}

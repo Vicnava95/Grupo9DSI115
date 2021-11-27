@@ -6,6 +6,7 @@
 
 @section('titulo')
     DASHBOARD DOCTORA DENTAL
+    <a class="btn btn-secondary float-right text-white"  href="{{route('reporteDiaTratamientos','ReporteDiario') }}" >Reporte de Tratamientos</a>
 @endsection
 
 @section('descripcion')

@@ -16,7 +16,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Descripción</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="descripcion" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="descripcion" rows="3" required></textarea>
                         </div> 
                     </form>
                     @if (!$tratamientos->isEmpty())

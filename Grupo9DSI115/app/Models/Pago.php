@@ -72,7 +72,7 @@ class Pago extends Model
      */
     public function expedienteDoctor()
     {
-        return $this->hasOne('App\Models\ExpedienteDoctor', 'id', 'expediente_doctora_dental_id');
+        return $this->hasOne('App\Models\ExpedienteDoctoraDental', 'id', 'expediente_doctora_dental_id');
     }
     
 

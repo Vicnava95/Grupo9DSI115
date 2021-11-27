@@ -26,7 +26,7 @@
     @method('PATCH')
     <div class="form-group">
         <label for="exampleFormControlTextarea2">Descripción</label>
-        <textarea class="form-control" id="exampleFormControlTextarea2" name="descripcion" rows="3">{{$idTratamiento->descripcion}}</textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea2" name="descripcion" rows="3" required>{{$idTratamiento->descripcion}}</textarea>
     </div>
         
     <button type="submit" form="formUpdateTratamiento" class="btn btn-primary">Actualizar</button>

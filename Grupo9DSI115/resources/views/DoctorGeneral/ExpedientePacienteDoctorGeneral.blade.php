@@ -24,6 +24,7 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
 
                     <div class="text-center">
                         <h2>{{$citaPaciente->fecha}}</h2>
+                        
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
@@ -31,11 +32,17 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
                                 data-toggle="modal" data-target="#mediumModal"
                                 data-attr="{{ route('citas.create') }}" hidden>Tratamientos</a>
                         </div>
-                        <div class="form-group col-md-6 col-12 d-flex justify-content-center align-items-end">
+                        <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                             <a class="btn btn-primary" id="mediumButton" href="#" role="button" data-toggle="modal"
                                 data-target="#mediumModal"
                                 data-attr="{{ route('crearCitaDoctor',$citaPaciente->paciente_id) }}">Crear Cita</a>
                         </div>
+
+                        <div class="form-group col-md-3 col-3 d-flex justify-content-center align-items-end">
+                            <a class="btn btn-primary float-right text-white" href="{{-- route('reporteDiagnosticoDental',[$paciente->id,$expedientePaciente->id]) --}}">Reporte de diagnostico general</a>
+                        </div>
+
+                        
                         
                         <div class="form-group col-md-3 col-12 d-flex justify-content-center align-items-end">
                             <a class="btn btn-primary disabled" id="mediumButton" href="#" role="button"
