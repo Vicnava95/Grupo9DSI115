@@ -24,14 +24,11 @@ class ReporteController extends Controller
     public function reporteCitas()
     {
         //Reporte de Citas Agendadas
-        //$fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
         $citas = DB::table('citas')
         ->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
         ->join('personas', 'citas.persona_id', '=', 'personas.id')
         ->join('estado_citas', 'citas.estadoCita_id', '=', 'estado_citas.id')
         ->select('pacientes.nombres', 'pacientes.apellidos', 'citas.fecha', 'citas.hora', 'estado_citas.nombre', 'personas.nombrePersonas', 'personas.apellidoPersonas')
-        /*->whereDate('citas.fecha','>=', $fecha)
-        ->where('estado_citas.nombre', '!=', 'Finalizada')*/
         ->orderBy('citas.fecha')
         ->orderBy('citas.hora')
         ->get();
@@ -48,13 +45,16 @@ class ReporteController extends Controller
         //Reporte de Recetas y Proximas Citas
         $fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
         $recetas = DB::table('recetas')
+        ->join('consultas', 'recetas.consulta_id', '=', 'consultas.id')
+        ->join('pacientes', 'consultas.paciente_id', '=', 'pacientes.id')
         ->select('*')
-        ->whereDate('proximaCita','>=', $fecha)
-        ->where('estadoReceta_id', '=', '1')
+        //->whereDate('proximaCita','>=', $fecha)
+        //->where('estadoReceta_id', '=', '1')
         ->get();
+        $pacientes = DB::table('pacientes')->select('*')->get();
 
         $i = 0;
-        $view = \View::make('receta.reporteReceta', compact('recetas', 'i'))->render();
+        $view = \View::make('receta.reporteReceta', compact('recetas', 'i', 'pacientes'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('informeRecetas_ProximasCitas'.'.pdf');
@@ -85,6 +85,24 @@ class ReporteController extends Controller
         return $pdf->stream('informePaciente_DiagnosticoDental' . '.pdf');
 
 
+    }
+
+    public function reporteExamenes()
+    {
+        //Reporte descriptivo de examenes
+        $fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
+        $examenes = DB::table('examenes')
+        ->join('consultas', 'examenes.consulta_id', '=', 'consultas.id')
+        ->join('pacientes', 'consultas.paciente_id', '=', 'pacientes.id')
+        ->select('*')
+        ->get();
+        $pacientes = DB::table('pacientes')->select('*')->get();
+
+        $i = 0;
+        $view = \View::make('examene.reporteExamen', compact('examenes', 'i', 'pacientes'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('informeRecetas_ProximasCitas'.'.pdf');
     }
 
 }

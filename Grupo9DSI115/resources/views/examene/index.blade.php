@@ -8,6 +8,7 @@ EXAMENES MEDICOS
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
 Listado de exámenes médicos
+<a class="btn btn-secondary float-right text-white"  href="{{route('examene.reporteExamenes') }}" >Reporte de Examenes</a>
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->

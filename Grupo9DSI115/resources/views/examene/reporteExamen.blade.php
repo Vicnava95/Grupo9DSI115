@@ -1,5 +1,5 @@
 <style>
-    table{
+    table, p{
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
@@ -24,7 +24,7 @@
 </style>
     <div class="container-fluid">
     <img src="{{ public_path().'/assets/img/Logo.png' }}" alt="Logo" height="40px">
-        <h3>REPORTE DE RECETAS Y PRÓXIMAS CITAS</h3>
+        <h3>REPORTE DE EXAMENES</h3>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -34,31 +34,44 @@
                     <div class="card-body">
                         <div class="table-responsive">
                         @foreach ($pacientes as $paciente)
-                            <h3>Listado consolidado de recetas y proximas citas del paciente: </h3>
+                            <h3>Listado consolidado de examenes del paciente: </h3>
                             <h3>{{ $paciente->nombres }} {{ $paciente->apellidos }}</h3>
+                            <!--
                             <table style="page-break-after:always;">
                                 <thead class="thead">
                                     <tr>
                                         <th style="text-align: center;">No</th>
-                                        <th style="text-align: center;">Descripción - receta</th>
-                                        <th style="text-align: center;">Fecha emisión</th>
-										<th style="text-align: center;">Próxima cita</th>
+                                        <th style="text-align: center;">Imagen</th>
+                                        <th style="text-align: center;">Fecha registro</th>
+										<th style="text-align: center;">Descripción</th>
                                     
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @foreach ($recetas as $receta)
-                                        @if($receta->id == $paciente->id)
+                                        @foreach ($examenes as $examen)
+                                        @if($examen->id == $paciente->id)
                                         <tr>
                                             <td style="text-align: center;">{{++$i}}</td> 
-                                            <td>{{ $receta->descripcion }}</td> 
-                                            <td>{{ $receta->fecha }}</td> 
-                                            <td>{{ $receta->proximaCita }}</td> 
+                                            <td><img src="{{ public_path().'/examenesGeneralesImagenes/20211127003544.png' }}" width="300px" heigth="300px"></td> 
+                                            <td>{{ $examen->fecha }}</td> 
+                                            <td>{{ $examen->descripcion }}</td> 
                                         </tr>
                                         @endif
                                         @endforeach    
                                 </tbody>
                             </table>
+                            -->
+                            @foreach ($examenes as $examen)
+                                @if($examen->id == $paciente->id)
+                                <div>
+                                    <p style="text-align: center;">Fecha de registro: {{ $examen->fecha }}</p>
+                                    <div style="text-align: center;">
+                                    <img src="{{ public_path().'/examenesGeneralesImagenes/20211127003544.png' }}" width="500px" heigth="500px">    
+                                    </div>
+                                </div>
+                                
+                                @endif
+                            @endforeach 
                         @endforeach 
                         </div>
                     </div>
