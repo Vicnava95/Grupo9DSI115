@@ -18,9 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PacienteTableSeeder::class]);
         $this->call([RolPersonaTableSeeder::class]);
         $this->call([PersonaTableSeeder::class]);
-        $this->call([ConsultaSeeder::class]);
         $this->call([EstadoRecetaTableSeeder::class]);
-        $this->call([RecetaTableSeeder::class]);
         $this->call([EstadoCitaSeeder::class]);
         $this->call([CitaSeeder::class]);
         $this->call([ExpedientesDoctoraDental::class]);
@@ -29,5 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call([RecetasDentalesSeeder::class]);
         $this->call([DienteSeeder::class]);
         $this->call([TratamientosDienteTableSeeder::class]);
+        $this->call([ConsultaSeeder::class]);
+        $this->call([RecetaTableSeeder::class]);
+        $this->call([PagosAbonosSeeder::class]);
+        $this->call([ExamenesDentalesSeeder::class]);
     }
 }

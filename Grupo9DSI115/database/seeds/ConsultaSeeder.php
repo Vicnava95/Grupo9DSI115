@@ -33,6 +33,11 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
+        DB::table('consulta_expedientedoctor')->insert([
+            'consulta_id'=> '1',
+            'expedienteDoctor_id'=>'1'
+        ]);
+
         DB::table('consultas')->insert([
             'descripcion'=> 'El diagnóstico fue confirmado por biopsia. el paciente fue tratado con medios biológicos para estimular las defensas inmunológicas',
             'fecha' => $fecha,
@@ -46,6 +51,11 @@ class ConsultaSeeder extends Seeder
             'solicitud_examen'=>'',
             'paciente_id'=>'2',
             'persona_id'=>'2'
+        ]);
+
+        DB::table('consulta_expedientedoctor')->insert([
+            'consulta_id'=> '2',
+            'expedienteDoctor_id'=>'2'
         ]);
 
         DB::table('consultas')->insert([
@@ -63,6 +73,11 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
+        DB::table('consulta_expedientedoctor')->insert([
+            'consulta_id'=> '3',
+            'expedienteDoctor_id'=>'3'
+        ]);
+
         DB::table('consultas')->insert([
             'descripcion'=> 'Problemas de vista, le cuesta ver objetivos medianamente pequeños',
             'fecha' => $fecha,
@@ -76,6 +91,11 @@ class ConsultaSeeder extends Seeder
             'solicitud_examen'=>'Examen de la vista',
             'paciente_id'=>'4',
             'persona_id'=>'2'
+        ]);
+
+        DB::table('consulta_expedientedoctor')->insert([
+            'consulta_id'=> '4',
+            'expedienteDoctor_id'=>'4'
         ]);
 
         DB::table('consultas')->insert([
@@ -93,6 +113,11 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
+        DB::table('consulta_expedientedoctor')->insert([
+            'consulta_id'=> '5',
+            'expedienteDoctor_id'=>'5'
+        ]);
+
         DB::table('consultas')->insert([
             'descripcion'=> 'Nauceas y vertigo, nivel alto de azucar',
             'fecha' => $fecha,
@@ -106,6 +131,11 @@ class ConsultaSeeder extends Seeder
             'solicitud_examen'=>'Examen de glucosa',
             'paciente_id'=>'6',
             'persona_id'=>'2'
+        ]);
+
+        DB::table('consulta_expedientedoctor')->insert([
+            'consulta_id'=> '6',
+            'expedienteDoctor_id'=>'6'
         ]);
     }
 }
