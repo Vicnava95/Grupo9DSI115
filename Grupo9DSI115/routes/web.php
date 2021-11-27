@@ -27,6 +27,7 @@ Route::get('reporteCitas', 'ReporteController@reporteCitas')->name('citas.report
 Route::get('reporteRecetas', 'ReporteController@reporteRecetas')->name('recetas.reporteRecetas');
 Route::get('mostrarExpediente/{paciente}/{expediente}/ReporteDiagnosticoDental', 'ReporteController@reporteDiagnosticoDental')->name('reporteDiagnosticoDental');
 Route::get('reporteExamenes', 'ReporteController@reporteExamenes')->name('examene.reporteExamenes');
+Route::get('reportePagos', 'ReporteController@reportePagos')->name('pago.reportePagos');
 
 Route::resource('abonos', 'AbonoController');
 Route::get('abonos/{abono}/borrar', 'AbonoController@delete')->name('abonos.delete');

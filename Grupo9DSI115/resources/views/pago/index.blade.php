@@ -8,6 +8,7 @@ PAGOS
 <!-- Titulo para el cuerpo de la pagina web-->
 @section('titulo')
 Listado de pagos
+<a class="btn btn-secondary float-right text-white"  href="{{route('pago.reportePagos') }}" >Reporte de Pagos</a>
 @endsection
 
 <!-- descripcion para el cuerpo de la pagina web-->

@@ -14,6 +14,9 @@ use App\Models\Consulta;
 use App\Models\Paciente;
 use App\Models\EstadoCita;
 use App\Models\Tratamiento;
+use App\Models\Pago;
+use App\Models\Abono;
+use App\Models\EstadoPago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -170,5 +173,27 @@ class ReporteController extends Controller
         
     }
     /** END Reportes Victor */
+    public function reportePagos()
+    {
+        //Reporte pagos
+        //$fecha = Carbon::yesterday()->format('Y-m-d', 'America/El_Salvador');
+        $pagos = DB::table('pagos')
+        ->join('estado_pagos', 'pagos.estado_pago_id', '=', 'estado_pagos.id')
+        ->join('expediente_doctora_dentals', 'pagos.expediente_doctora_dental_id', '=', 'expediente_doctora_dentals.id')
+        ->join('pacientes', 'expediente_doctora_dentals.paciente_id', '=', 'pacientes.id')
+        ->join('abonos', 'pagos.id', '=', 'abonos.pago_id')
+        ->select('*')
+        ->get();
+        $pacientes = DB::table('pacientes')->select('*')->get();
+        $abonos = DB::table('abonos')->select('*')->get();
+        $expedientes = DB::table('expediente_doctora_dentals')->select('*')->get();
+        $estadoPagos = DB::table('estado_pagos')->select('*')->get();
+
+        $i = 0;
+        $view = \View::make('pago.reportePagos', compact('pagos', 'i', 'pacientes', 'abonos', 'expedientes', 'estadoPagos'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('informePagos'.'.pdf');
+    }
 
 }
