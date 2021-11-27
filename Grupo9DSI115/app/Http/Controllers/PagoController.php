@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pago;
 use App\Models\Abono;
+use App\Models\Persona;
+use App\Models\Paciente;
 use App\Models\EstadoPago;
 use Illuminate\Http\Request;
 
@@ -66,8 +68,9 @@ class PagoController extends Controller
     public function show($id)
     {
         $pago = Pago::find($id);
-
-        return view('pago.show', compact('pago'));
+        
+        $paciente = Paciente::find($pago->ExpedienteDoctor->paciente_id);
+        return view('pago.show', compact('pago', 'paciente'));
     }
 
     /**
