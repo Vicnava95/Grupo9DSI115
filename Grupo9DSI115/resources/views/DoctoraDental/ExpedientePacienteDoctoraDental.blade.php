@@ -8,6 +8,8 @@
     <a href="{{route('dshDoctorDental.index')}}"><i class="fas fa-chevron-circle-left"></i></a>    
     <br>
     Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
+    <a class="btn btn-secondary float-right text-white"  href="{{route('reportePacienteTratamiento',[$paciente,'ReporteTratamiento']) }}" >Reporte de Tratamientos</a>
+
 @endsection
 
 @section('descripcion')

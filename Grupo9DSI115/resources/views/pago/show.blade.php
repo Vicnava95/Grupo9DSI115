@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6" hidden>
                             <div class="form-group">
                                 <strong>Expediente Doctora Dental:</strong>
                                 {{ $pago->expedienteDoctoraDental}}

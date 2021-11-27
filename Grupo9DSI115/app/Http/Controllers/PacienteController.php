@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\Cita;
+use App\Models\Diente;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -125,6 +127,14 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
+        $citas = Cita::where('paciente_id',$id)->get();
+        foreach ($citas as $cita){
+            $cita->delete();
+        }
+        $dientes = Diente::where('expedienteDental_id',$id)->get();
+        foreach ($dientes as $diente){
+            $diente->delete();
+        }
         $paciente = Paciente::find($id)->delete();
 
         return redirect()->route('pacientes.index')

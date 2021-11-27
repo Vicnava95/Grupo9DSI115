@@ -157,6 +157,10 @@ class ExpedienteDoctoraDentalController extends Controller
     public function destroy($id)
     {
         $expedientePaciente = ExpedienteDoctoraDental::find($id);
+        $dientes = Diente::where('expedienteDental_id',$expedientePaciente->id)->get();
+        foreach ($dientes as $diente){
+            $diente->delete();
+        }
         $expedientePaciente->delete(); 
         return redirect()->route('expedientesDentales');
     }

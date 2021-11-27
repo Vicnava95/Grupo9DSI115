@@ -54,7 +54,7 @@
                 <div class="form-group">
                     {{ Form::label('fecha de nacimiento*') }}
                     <div class="input-group date">
-                        {{ Form::text('fechaDeNacimiento', $paciente->fechaDeNacimiento, ['class' => 'form-control' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de nacimiento', 'id' => 'inputFechaDeNacimiento']) }}
+                        {{ Form::text('fechaDeNacimiento', $paciente->fechaDeNacimiento, ['class' => 'form-control' . ($errors->has('fechaDeNacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de nacimiento', 'id' => 'inputFechaDeNacimiento' , 'autocomplete' => 'off']) }}
                         <div class="input-group-addon input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
