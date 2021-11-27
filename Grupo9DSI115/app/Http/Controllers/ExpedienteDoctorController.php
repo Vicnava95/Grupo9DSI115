@@ -43,7 +43,7 @@ class ExpedienteDoctorController extends Controller
         }
         //dd($collecionConsultas);
 
-        return view('DoctorGeneral.ExpedientePacienteDoctorGeneral', compact('i', 'paciente', 'citaPaciente', 'collecionConsultas', 'cantidadConsultas'));
+        return view('DoctorGeneral.ExpedientePacienteDoctorGeneral', compact('i', 'paciente', 'citaPaciente', 'collecionConsultas', 'cantidadConsultas', 'expedientePaciente'));
     }
 
     public function crearConsulta(Request $request)
@@ -126,7 +126,7 @@ class ExpedienteDoctorController extends Controller
         }
         //dd($collecionConsultas);
 
-        return view('DoctorGeneral.ExpedienteGeneralShow', compact('i', 'paciente', 'collecionConsultas', 'cantidadConsultas'));
+        return view('DoctorGeneral.ExpedienteGeneralShow', compact('i', 'paciente', 'collecionConsultas', 'cantidadConsultas', 'expedientePaciente'));
     }
 
     public function crearCitaDoctor($idPaciente)

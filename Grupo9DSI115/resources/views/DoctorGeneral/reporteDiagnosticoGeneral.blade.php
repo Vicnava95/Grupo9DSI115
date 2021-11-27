@@ -41,8 +41,10 @@
                 Clinica San Pablo
             </td>
             <td class="text-center">
-                Clinica San Pablo. <br>
-                3 Caller Poniente, Barrio el Carnmen detras del cuartel, Zacatecoluca.<br>
+                Gustavo Coto<br>
+                Doctor en Medicina Ulceras y Heridas<br>
+                JVPM No. 16093<br>
+                3 Caller Poniente, Barrio el Carmen detras del cuartel, Zacatecoluca.<br>
                 Tel.: 2334-0725 Cel.: 7745-1655
             </td>
             <td class="text-center">Consultas de<br>Lunes a viernes<br>De 8:00 am a 5:00 pm<br> Sabado de 8:00 am a 12:00 Md</td>

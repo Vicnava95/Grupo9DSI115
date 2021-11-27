@@ -39,7 +39,7 @@ Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
                         </div>
 
                         <div class="form-group col-md-3 col-3 d-flex justify-content-center align-items-end">
-                            <a class="btn btn-primary float-right text-white" href="{{-- route('reporteDiagnosticoDental',[$paciente->id,$expedientePaciente->id]) --}}">Reporte de diagnostico general</a>
+                            <a class="btn btn-primary float-right text-white" target="_blank" href="{{ route('reporteDiagnosticoGeneral', $expedientePaciente->id) }}">Reporte de diagnostico general</a>
                         </div>
 
                         

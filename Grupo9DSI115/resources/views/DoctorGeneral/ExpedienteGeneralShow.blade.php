@@ -8,6 +8,10 @@
     <a href="{{route('expedientesGeneral')}}"><i class="fas fa-chevron-circle-left"></i></a>
     <br>
     Expediente Clínico de: {{$paciente->nombres}} {{$paciente->apellidos}}
+
+
+        <a class="btn btn-secondary float-right text-white" target="_blank" href="{{ route('reporteDiagnosticoGeneral', $expedientePaciente->id) }}">Reporte de diagnostico general</a>
+    
 @endsection
 
 @section('descripcion')
