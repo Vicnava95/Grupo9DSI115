@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call([RecetaTableSeeder::class]);
         $this->call([PagosAbonosSeeder::class]);
         $this->call([ExamenesDentalesSeeder::class]);
+        $this->call([ExamenesGeneralesSeeder::class]);
     }
 }
