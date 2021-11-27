@@ -113,9 +113,14 @@ Expedientes Dentales
                                                         href="{{route('showExpediente', $expediente->paciente_id)}}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                 </a>
+                                                <a class="btn btn-sm btn-secondary btn-circle btn-circle-sm m-1"
+                                                        id="mediumButton" data-toggle="modal" data-target="#mediumModal"
+                                                        data-attr="{{ route('pacientes.edit', $expediente->paciente_id) }}">
+                                                        <i class="fa fa-fw fa-edit"></i>
+                                                    </a>
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1"
                                                     id="mediumButton" data-toggle="modal" data-target="#mediumModal"
-                                                    data-attr="{{ route('deleteExpedienteDental', $expediente) }}">
+                                                    data-attr="{{ route('deleteExpedienteDental', $expediente->paciente_id) }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </a>
                                             </td>

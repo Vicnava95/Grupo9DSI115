@@ -9,10 +9,10 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6" hidden>
                             <div class="form-group">
                                 <strong>Expediente Doctora Dental:</strong>
-                                {{ $pago->expedienteDoctoraDental}}
+                                {{ $pago->expediente_doctora_dental_id}}
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -33,10 +33,16 @@
                                 {{ $pago->fecha }}
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <strong>Descripcion:</strong>
                                 {{ $pago->descripcion }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <strong>Paciente:</strong>
+                                {{ $paciente->apellidos }}, {{ $paciente->nombres }}
                             </div>
                         </div>
                     </div>

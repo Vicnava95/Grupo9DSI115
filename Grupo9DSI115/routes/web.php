@@ -205,6 +205,9 @@ Route::middleware(['auth'])->group(function (){
         Route::get('showInfoDiente/{idDiente}/{idPaciente}','ExpedienteDoctoraDentalController@showInfoDiente')->name('showInfoDiente');
         Route::get('showTratamientosExpediente/{pacienteId}','ExpedienteDoctoraDentalController@showTratamientosExpediente')->name('showTratamientosExpediente');
         Route::get('showInfoRecetas/{pacienteId}','ExpedienteDoctoraDentalController@showInfoRecetas')->name('showInfoRecetas');
+
+        Route::get('reporteDiaTratamientos/{ReporteDiario}','ReporteController@reporteDiaTratamientos')->name('reporteDiaTratamientos');
+        Route::get('reportePacienteTratamiento/{paciente}/{ReporteTratamiento}','ReporteController@reportePacienteTratamiento')->name('reportePacienteTratamiento');
     });
 
     //Rutas asignadas para la secretaria (SOLO PARA LA SECRETARIA)

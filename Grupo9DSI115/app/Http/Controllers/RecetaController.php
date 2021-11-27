@@ -173,6 +173,7 @@ class RecetaController extends Controller
         //request()->validate(Receta::$rules);
 
         //$receta->update($request->all());
+        $request->receta->update(['estadoReceta_id'=> strval(2)]);
         $receta = Receta::create($request->all());
 
         return redirect()->route('recetas.index')
