@@ -72,14 +72,20 @@ class RecetasDentaleController extends Controller
 
     public function update(Request $request, RecetasDentale $recetasDentale)
     {
-        $recetasDentale->update([
+        /*$recetasDentale->update([
             'fecha' => request('fecha'),
             'descripcion' => request('descripcion'),
             'proximaCita' => request('proximaCita'),
             'expedienteDental_id' => request('expedienteDental_id'),
             'estadoReceta_id' => request('estadoReceta_id'),
         ]);
-        $recetasDentale->save();
+        $recetasDentale->save();*/
+
+        $request->request->add(['estadoReceta_id'=> strval(1)]);
+        request()->validate(RecetasDentale::$rules); 
+        $request->recetasDentale->update(['estadoReceta_id'=> strval(2)]);
+        $recetasDentale = RecetasDentale::create($request->all());
+
         return redirect()->route('rDentales.index')
             ->with('success', 'RecetasDentale updated successfully');
     }
@@ -92,7 +98,8 @@ class RecetasDentaleController extends Controller
     public function destroy($id)
     {
         //Cambiar el estado de la receta
-        $recetasDentale = RecetasDentale::find($id)->delete();
+        $recetasDentale = RecetasDentale::find($id)->update(['estadoReceta_id'=> strval(2)]);
+        //$recetasDentale->update(['estadoReceta_id'=> strval(2)]);
 
         return redirect()->route('rDentales.index')
             ->with('success', 'RecetasDentale deleted successfully');
