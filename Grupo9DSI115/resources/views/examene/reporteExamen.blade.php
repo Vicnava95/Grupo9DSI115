@@ -36,7 +36,7 @@
                         @foreach ($pacientes as $paciente)
                             <h3>Listado consolidado de examenes del paciente: </h3>
                             <h3>{{ $paciente->nombres }} {{ $paciente->apellidos }}</h3>
-                            <!--
+                            
                             <table style="page-break-after:always;">
                                 <thead class="thead">
                                     <tr>
@@ -49,19 +49,17 @@
                                 </thead>
                                 <tbody>
                                         @foreach ($examenes as $examen)
-                                        @if($examen->id == $paciente->id)
                                         <tr>
                                             <td style="text-align: center;">{{++$i}}</td> 
                                             <td><img src="{{ public_path().'/examenesGeneralesImagenes/20211127003544.png' }}" width="300px" heigth="300px"></td> 
                                             <td>{{ $examen->fecha }}</td> 
                                             <td>{{ $examen->descripcion }}</td> 
                                         </tr>
-                                        @endif
                                         @endforeach    
                                 </tbody>
                             </table>
-                            -->
-                            @foreach ($examenes as $examen)
+                            
+                            <!-- @foreach ($examenes as $examen)
                                 @if($examen->id == $paciente->id)
                                 <div>
                                     <p style="text-align: center;">Fecha de registro: {{ $examen->fecha }}</p>
@@ -72,7 +70,7 @@
                                 
                                 @endif
                             @endforeach 
-                        @endforeach 
+                        @endforeach -->
                         </div>
                     </div>
                 </div>

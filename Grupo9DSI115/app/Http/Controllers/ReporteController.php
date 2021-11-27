@@ -102,7 +102,7 @@ class ReporteController extends Controller
         $view = \View::make('examene.reporteExamen', compact('examenes', 'i', 'pacientes'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('informeRecetas_ProximasCitas'.'.pdf');
+        return $pdf->stream('informeExamenes'.'.pdf');
     }
 
 }
