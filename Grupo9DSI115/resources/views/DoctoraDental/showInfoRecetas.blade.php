@@ -5,7 +5,7 @@
 @endsection
 
 @section('titulo')
-    <a href="{{route('showExpediente',$expediente->id)}}"><i class="fas fa-chevron-circle-left"></i></a>    
+    <a href="{{route('showExpediente',$paciente->id)}}"><i class="fas fa-chevron-circle-left"></i></a>    
     <br>
     Recetas de: {{$paciente->nombres}} {{$paciente->apellidos}}
 @endsection

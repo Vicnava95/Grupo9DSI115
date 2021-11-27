@@ -5,7 +5,7 @@
 @endsection
 
 @section('titulo')
-<a href="{{route('showExpediente',$expedientDental[0]->id)}}"><i class="fas fa-chevron-circle-left"></i></a>    
+<a href="{{route('showExpediente',$paciente->id)}}"><i class="fas fa-chevron-circle-left"></i></a>    
     <br>
     Tratamientos Dentales
     <a class="btn btn-secondary float-right text-white"  href="{{route('reportePacienteTratamiento',[$paciente,'ReporteTratamiento']) }}" >Reporte de Tratamientos</a>
