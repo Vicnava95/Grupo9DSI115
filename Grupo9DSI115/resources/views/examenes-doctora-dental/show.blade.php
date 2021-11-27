@@ -9,7 +9,18 @@
                 </div>
 
                 <div class="card-body">
-                    
+                    <div class="form-group">
+                        <strong>Paciente:</strong>
+                        {{ $examenesDoctoraDental->expedienteDoctoraDental->id }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Fecha:</strong>
+                        {{ $examenesDoctoraDental->fecha }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Descripcion:</strong>
+                        {{ $examenesDoctoraDental->descripcion }}
+                    </div>
                     <div class="form-group">
                         <strong>Imagen:</strong>
                         @empty(!$examenesDoctoraDental->imagen)
@@ -22,15 +33,8 @@
                         @endempty
                         {{ $examenesDoctoraDental->imagen }}
                     </div>
-                    <div class="form-group">
-                        <strong>Fecha:</strong>
-                        {{ $examenesDoctoraDental->fecha }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Descripcion:</strong>
-                        {{ $examenesDoctoraDental->descripcion }}
-                    </div>
-                    <div class="form-group">
+                    
+                    <div class="form-group" hidden>
                         <strong>Expediente dental:</strong>
                         {{ $examenesDoctoraDental->expediente_doctora_dental_id }}
                     </div>

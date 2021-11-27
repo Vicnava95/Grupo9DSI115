@@ -42,7 +42,7 @@
             {{ Form::textArea('descripcion', $examenesDoctoraDental->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'rows'=>'4']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-        <div class="form-group">
+        <div class="form-group" hidden>
             {{ Form::label('expediente_doctora_dental_id') }}
             {{ Form::text('expediente_doctora_dental_id', $examenesDoctoraDental->expediente_doctora_dental_id, ['class' => 'form-control' . ($errors->has('expediente_doctora_dental_id') ? ' is-invalid' : ''), 'placeholder' => 'Expediente Doctora Dental Id']) }}
             {!! $errors->first('expediente_doctora_dental_id', '<div class="invalid-feedback">:message</p>') !!}

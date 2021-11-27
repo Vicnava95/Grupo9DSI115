@@ -42,7 +42,7 @@
             {{ Form::textArea('descripcion', $examene->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'rows'=>'4']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-        <div class="form-group">
+        <div class="form-group" hidden>
             {{ Form::label('consulta') }}
             {{ Form::text('consulta_id', $examene->consulta_id, ['class' => 'form-control' . ($errors->has('consulta_id') ? ' is-invalid' : ''), 'placeholder' => 'Consulta']) }}
             {!! $errors->first('consulta_id', '<div class="invalid-feedback">:message</p>') !!}

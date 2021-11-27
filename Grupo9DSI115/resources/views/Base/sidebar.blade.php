@@ -174,14 +174,14 @@
                 @endif
 
                 <!-- Tratamientos-->
-                @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
+                {{-- @if(Auth::user()->rols_fk==1 || Auth::user()->rols_fk==3)
                 <li class="nav-item">
                     <a href="#">
                         <i class="fas fa-procedures"></i>
                         <p>Tratamientos Dentales</p>
                     </a>
                 </li>
-                @endif
+                @endif --}}
 
                 <!-- Recetas-->
                 @if(!(Auth::user()->rols_fk==4))
