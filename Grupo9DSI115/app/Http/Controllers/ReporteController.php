@@ -118,7 +118,7 @@ class ReporteController extends Controller
         $expedienteGeneral = ExpedienteDoctor::find($idExpedienteGeneral);
         $paciente = Paciente::find($expedienteGeneral->paciente_id);
         
-        $listadoConsultaExpedienteDoctor = DB::table('consulta_expedientedoctor')
+        $listadoConsultaExpedienteDoctor = DB::table('consulta_expedienteDoctor')
         ->where('expedienteDoctor_id',$expedienteGeneral->id)
         ->get();        
         $consultas=[];
