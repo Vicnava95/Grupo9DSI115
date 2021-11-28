@@ -33,7 +33,7 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
-        DB::table('consulta_expedientedoctor')->insert([
+        DB::table('consulta_expedienteDoctor')->insert([
             'consulta_id'=> '1',
             'expedienteDoctor_id'=>'1'
         ]);
@@ -53,7 +53,7 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
-        DB::table('consulta_expedientedoctor')->insert([
+        DB::table('consulta_expedienteDoctor')->insert([
             'consulta_id'=> '2',
             'expedienteDoctor_id'=>'2'
         ]);
@@ -73,7 +73,7 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
-        DB::table('consulta_expedientedoctor')->insert([
+        DB::table('consulta_expedienteDoctor')->insert([
             'consulta_id'=> '3',
             'expedienteDoctor_id'=>'3'
         ]);
@@ -93,7 +93,7 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
-        DB::table('consulta_expedientedoctor')->insert([
+        DB::table('consulta_expedienteDoctor')->insert([
             'consulta_id'=> '4',
             'expedienteDoctor_id'=>'4'
         ]);
@@ -113,7 +113,7 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
-        DB::table('consulta_expedientedoctor')->insert([
+        DB::table('consulta_expedienteDoctor')->insert([
             'consulta_id'=> '5',
             'expedienteDoctor_id'=>'5'
         ]);
@@ -133,7 +133,7 @@ class ConsultaSeeder extends Seeder
             'persona_id'=>'2'
         ]);
 
-        DB::table('consulta_expedientedoctor')->insert([
+        DB::table('consulta_expedienteDoctor')->insert([
             'consulta_id'=> '6',
             'expedienteDoctor_id'=>'6'
         ]);
