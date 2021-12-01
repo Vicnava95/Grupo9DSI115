@@ -92,7 +92,7 @@ Recetas Dentales
                                                 </a> --}}
                                                 <a class="btn btn-sm btn-danger btn-circle btn-circle-sm m-1" id="mediumButton" data-toggle="modal"
                                                     data-target="#mediumModal" data-attr="{{route('rDentales.delete',$recetasDentale)}}">
-                                                    <i class="fa fa-fw fa-trash"></i>
+                                                    <i class="fas fa-window-close"></i>
                                                 </a>
 
                                             </td>
@@ -129,11 +129,48 @@ Recetas Dentales
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" form="formCreate" class="btn btn-primary" id="registrar">Registrar</button>
                     <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Editar</button>
-                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Eliminar</button>
+                    <button type="submit" form="formDelete" class="btn btn-danger" id="eliminar">Anular</button>
+                    <a data-toggle="modal" id="nuevo" href="#myModal2" data-attr="{{ route('rDentales.edit',$recetasDentale->id) }}">
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .modal:nth-of-type(even) {
+            z-index: 1052 !important;
+        }
+    </style>
+
+    <!--- Modal nueva version --->
+    <div class="modal fade" id="myModal2" data-backdrop="static">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle2">
+                <---Titulo--->
+            </h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="container"></div>
+            <div class="modal-body" id="mediumBody2">
+                <div>
+                        <!-- the result to be displayed apply here -->
+                        NUEVA VERSIÓN
+                        
+                </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" form="formEdit" class="btn btn-primary" id="editar">Registrar</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
     <script>
         @if (count($errors) > 0)
                 let href=localStorage.getItem('formulario');
@@ -208,11 +245,81 @@ Recetas Dentales
                         break;
 
                     case 'r':
-                        b.innerHTML = "Eliminar receta";
+                        b.innerHTML = "Anular receta";
+
+                        var eliminar = document.getElementById("eliminar");
+                        var nuevo = document.getElementById("nuevo");
+                        var counter = 5;
+                        var newElement = document.createElement("p");
+                        var newElement2 = document.createElement("p");
+                        newElement.innerHTML = "Espere 5 segundos";
+                        newElement2.innerHTML = "";
+                        var id;
+
+                        eliminar.parentNode.replaceChild(newElement, eliminar);
+                        nuevo.parentNode.replaceChild(newElement2, nuevo);
+
+                        id = setInterval(function() {
+                            counter--;
+                            if(counter < 0) {
+                                newElement.parentNode.replaceChild(eliminar, newElement);
+                                newElement2.parentNode.replaceChild(nuevo, newElement2);
+                                clearInterval(id);
+                            } else {
+                                newElement.innerHTML = "Espere " + counter.toString() + " segundos.";
+                            }
+                        }, 1000);
+
                         break;
 
                     default:
                         b.innerHTML = "Mostrar receta";
+                        break;
+                }
+            }
+
+            //Para modal de nuevo
+            $(document).on('click', '#nuevo', function(event) {
+                event.preventDefault();
+                let href = $(this).attr('data-attr');
+                mostrarModal2(href);
+                //localStorage.setItem('formulario', href);
+            });
+
+            function mostrarModal2(href) {
+                document.getElementById('nuevo').style.display = 'block';
+                $.ajax({
+                    url: href,
+                    beforeSend: function() {
+                        $('#loader').show();
+                    },
+                    // return the result
+                    success: function(result) {
+                        $('#myModal2').modal("show");
+                        $('#mediumBody2').html(result).show();
+                    },
+                    complete: function() {
+                        $('#loader').hide();
+                    },
+                    error: function(jqXHR, testStatus, error) {
+                        console.log(error);
+                        alert("Pagina " + href + " no se puede abrir. Error:" + error);
+                        $('#loader').hide();
+                    },
+                    timeout: 0
+
+                })
+
+                var letra = href.charAt(href.length - 1);
+                var b = document.getElementById('exampleModalLongTitle2');
+
+                if (letra != 't') {
+                    document.getElementById('editar').style.display = 'none';
+                }
+
+                switch (letra) {
+                    case 't':
+                        b.innerHTML = "Registrar receta dental (Nueva Versión)";
                         break;
                 }
             }
